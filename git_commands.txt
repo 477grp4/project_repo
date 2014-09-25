@@ -1,0 +1,49 @@
+
+In Console:
+
+
+Steps to setup a new repository
+-------------------------------
+Make a new repo on Github.com
+Make a directory on the computer, add any files you wish
+
+cd [directory]
+git init
+git add *
+git status
+git commit -m "commit notes"
+git remote set-url origin git@github.com:accountname/projectname.git
+git push -u origin master
+
+
+Commit to local repo
+--------------------
+git add filename
+git commit -m "commit notes"
+
+
+
+Update online github
+-----------------------
+git push -u origin master
+
+
+Check history
+-----------------------
+git log
+
+
+Check current commit/branch status
+-----------------------
+git status
+
+
+Unstaging an item that is ready to be committed
+-----------------------------------------------
+git reset HEAD filename
+
+
+Replace modified/uncommitted file with the previous commit
+-----------------------
+git checkout -- filename
+
