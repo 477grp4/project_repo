@@ -1,5 +1,4 @@
-
-In Console:
+In Git Console:
 
 
 Steps to setup a new repository
@@ -25,7 +24,7 @@ git commit -m "commit notes"
 
 Update online github
 -----------------------
-git push -u origin master
+git push 
 
 
 Check history
@@ -43,7 +42,13 @@ Unstaging an item that is ready to be committed
 git reset HEAD filename
 
 
-Replace modified/uncommitted file with the previous commit
------------------------
-git checkout -- filename
+Reverting back to a previous commit/State, do so carefully
+---------------------------------
+git reset --hard commitname (Moves the HEAD pointer)
+
+git reset --soft ORIG_HEAD  (Adds the full history, maintains HEAD position)
+git commit -a 		    (Commits state, will maintain history of revert)
+
+If you decide not to revert after first reset command, to undo the HEAD move:
+git pull 		    (move head back to present state)
 
