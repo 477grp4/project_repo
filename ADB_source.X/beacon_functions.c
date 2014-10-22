@@ -16,7 +16,7 @@ void InitSPI()
     OSCCONbits.IRCF = 0x0F; //set OSCCON IRCF bits to select OSC frequency=16Mhz
     OSCCONbits.SCS = 0x02; //set the SCS bits to select internal oscillator block
     
-    //	PORT C Assignments
+    //PORT C Assignments
     TRISCbits.TRISC2 = 0; // RC2 = output to SEE CS Pin
     TRISCbits.TRISC3 = 0; // RC3 = SCK output SEE
     TRISCbits.TRISC4 = 1; // RC4 = SDI input from SEE
@@ -365,6 +365,154 @@ void InitRecord()
 
 }
 
+/* record/playback test
+ 
+int main(int argc, char** argv)
+{
+    __delay_us(10);
+    InitTimer1();
+    InitSPI();
+    InitADC();
+    InitDAC();
+    InitRecord();
+
+    //TMR1ON = 0;
+    __delay_us(10);
+    TMR1IE              = 1;    //Enable TIMR1 interrupts
+
+
+    INTCONbits.GIE = 1;
+
+    int first_record = 1;
+    long int record_end_address = 0;
+    record_flag = 0;
+
+
+    while(1)
+    {
+        if(!first_record)
+        {
+            playback_mode(record_end_address);
+        }
+
+        if(record_flag)
+        {
+            first_record = 0;
+            record_end_address = record_mode();
+        }
+    }
+    
+} //record/playback test
+interrupt void isr(void)
+{
+    //startADC
+    if (TMR1IF && TMR1IE)
+    {
+        TMR1H               = 0xFF; //Set Timer counter to 100 for 10kHz
+        TMR1L               = 0x9B; //was 9B
+
+        TMR1IF = 0;
+        if(DAC_output_flag)
+        {
+            if(!isEmpty()) //!isEmpty
+            {
+                DACCON1 = ReadBuffer();
+            }
+        }
+        else if(ADC_sample_flag)
+        {
+            ADCON0bits.ADGO     = 1;
+        }       //Start Conversion
+    }
+
+    //ADC_ISR
+    if(ADIF & ADIE)
+    {
+        if(!isFull())
+        {
+            WriteBuffer(ADRESH);
+        }
+        ADIF = 0;
+    }
+
+    if(IOCIE &&  IOCBF2)
+    {
+        IOCBF2 = 0;
+        if(IOCBP2 & RB2)
+        {
+            record_flag = 1;
+        }
+        if(IOCBN2 & !RB2)
+        {
+            record_flag = 0;
+            
+        }
+    }
+    
+}
+ */
+
+//Likely a test of the entire ADC-DAC chain
+/*
+int main(int argc, char** argv)
+{
+    OSCCONbits.IRCF = 0xF;
+    OSCCONbits.SCS  = 2;
+
+    int x;
+
+    InitTimer1();
+    InitSPI();
+    InitADC();
+    InitDAC();
+
+    int count;
+    //Wait
+    __delay_us(10);
+    TMR1IE              = 1;    //Enable TIMR1 interrupts
+    while(1)
+    {
+    DACCON0bits.DACEN = 0;      //turn off DAC
+    ADCON0bits.ADON     = 1;    //turn on ADC
+    count = 0;
+    //WriteSPI_overhead(WRITE_ADDRESS);
+
+    while(count < 256)
+    {
+        if(!isEmpty())
+        {
+            WriteSPI(ReadBuffer());
+            count++;
+        }
+    }
+    SPI_CS = 1; //write page
+    ADCON0bits.ADON     = 0;    //turn off ADC
+
+    int DAC_count = 0;
+    DAC_output_flag = 1;
+    DACCON0bits.DACEN = 1;      //turn on DAC
+    while(1){
+        ReadSPI_overhead(READ_ADDRESS);
+        DAC_count = 0;
+        while(DAC_count<256)
+        {
+            if(!isFull())
+            {
+                DAC_count++;
+                WriteBuffer(ReadSPI());
+            }
+        }
+
+
+        SPI_CS = 1; //finish read
+    }
+
+
+    }
+}
+*/
+
+
 
 void initUART()
 {
@@ -427,5 +575,47 @@ void uart_write_message(unsigned char * data, int size)
 
     uart_xmit(0x0D);
     uart_xmit(0x0A);
+
+}
+
+
+
+void ToggleSleepGPS()
+{
+    TRISAbits.TRISA6 = 0; //ON/OFF pin
+
+    RA6 = 0;
+    __delay_ms(1000); //Must wait 1 second between pulses
+    RA6 = 1;
+    __delay_ms(100);  //.1ms pulse width
+    RA6 = 0;
+}
+void DisableGPS()
+{
+    //Disables the GPS, the previous settings remain intact
+    unsigned char init_117[13] = "$PSRF117,16*"; //OFF command
+    uart_write_message(init_117, 13); //Send OFF command
+}
+
+
+void SetupGPS()
+{
+    int x;
+    unsigned char startSequence[6] = "$PSRF";
+    unsigned char MID[4] = "103";
+    unsigned char message[22];
+
+    //Disable GSA,GSV,RMC,VTG
+    for(x = 0; x < 6; x++)
+    {
+        __delay_ms(1000);
+        sprintf(message, "%s%s,0%d,00,00,00*", startSequence, MID, x);
+        uart_write_message(message,  22);
+    }
+
+    __delay_ms(1000);
+    //Enable GLL in query mode
+    sprintf(message, "%s%s,01,01,01,00*", startSequence, MID);
+    uart_write_message(message,  22);
 
 }

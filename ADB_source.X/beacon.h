@@ -68,6 +68,9 @@ void initUART();
 unsigned char compute_checksum(unsigned char * data, int size);
 void uart_xmit(unsigned char mydata_byte);
 void uart_write_message(unsigned char * data, int size);
+void ToggleSleepGPS();
+void DisableGPS();
+void SetupGPS();
 #ifdef	__cplusplus
 }
 #endif
