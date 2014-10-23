@@ -520,7 +520,7 @@ void initUART()
     TRISCbits.TRISC6 = 0; //TX out
     TRISCbits.TRISC7 = 1; //RX in
     TXSTAbits.BRGH = 0; //low speed baud rate
-    //target baud: 9600
+    //target baud: 4800
     SPBRGH = 0; //Fosc/64
     SPBRGL = 51; //[16MHz/(4800 * 64)] - 1
     TXSTAbits.TX9 = 0; //8 data bit mode
@@ -530,11 +530,6 @@ void initUART()
     RCSTAbits.SPEN = 1; //serial port enabled
     RCSTAbits.RX9 = 0; //8 data bit mode
     RCSTAbits.CREN = 1; //receive enabled
-
-    //Set interrupts for handling incoming GPS signals
-    RCIE = 1;
-    PEIE = 1;
-    GIE = 1;
 }
 unsigned char compute_checksum(unsigned char * data, int size)
 {
@@ -553,6 +548,8 @@ void uart_xmit(unsigned char mydata_byte)
     while(!TXSTAbits.TRMT);    // make sure buffer full bit is high before transmitting
     TXREG = mydata_byte;       // transmit data
 }
+
+
 void uart_write_message(unsigned char * data, int size)
 {
     int x;
