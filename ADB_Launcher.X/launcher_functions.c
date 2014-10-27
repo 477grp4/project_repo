@@ -119,8 +119,8 @@ void InitSPI()
 void InitWatchdog()
 {
     //Used to wakeup from sleep mode
-    WDTCONbits.WDTPS = 0x0A;    //Set timing interval
-    WDTCONbits.SWDTEN = 0;      //Software enable or WDT
+    WDTCONbits.WDTPS = 0x0A;    //Set timing interval (0x0A ~= 1s)
+    WDTCONbits.SWDTEN = 0;      //Software enable of WDT
 }
 
 
@@ -333,12 +333,14 @@ void SetupGPS()
     //Disable GGA,GGL,GSA,GSV,RMC,VTG
     for(x = 0; x < 6; x++)
     {
-        __delay_ms(1000);
+        //__delay_ms(1000);
+        GoToSleep();
         sprintf(message, "%s%s,0%d,00,00,00*", startSequence, MID, x);
         uart_write_message(message,  22);
     }
 
-    __delay_ms(1000);
+    //__delay_ms(1000);
+    GoToSleep();
     //Enable GLL in query mode
     sprintf(message, "%s%s,01,01,01,00*", startSequence, MID);
     uart_write_message(message,  22);
@@ -462,3 +464,9 @@ void DecodeGPS()
 
 }
 
+void GoToSleep()
+{
+    WDTCONbits.SWDTEN = 1;      //Software disable of WDT
+    SLEEP();
+    WDTCONbits.SWDTEN = 0;      //Software enable of WDT
+}

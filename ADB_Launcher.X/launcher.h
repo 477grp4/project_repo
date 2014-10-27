@@ -74,6 +74,9 @@ void SetupGPS();
 void DecodeGPS();
 void UpdateGPS();
 
+//General Functions
+void GoToSleep();
+
 //Global Variables
 unsigned char recordModeFlag = 0;
 int start, end = 0;
