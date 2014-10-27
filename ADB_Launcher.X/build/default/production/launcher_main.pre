@@ -6180,7 +6180,7 @@ extern volatile __bit nTO @ (((unsigned) &STATUS)*8) + 4;
 
 extern volatile __bit nWPUEN @ (((unsigned) &OPTION_REG)*8) + 7;
 
-# 43 "launcher.h"
+# 44 "launcher.h"
 void InitCLK();
 void InitGPIO();
 void InitADC();
@@ -6216,13 +6216,28 @@ void DecodeGPS();
 void UpdateGPS();
 
 
-unsigned char recordModeFlag = 0;
+void GoToSleep(unsigned char count);
+void GoToSleepTenMin();
+void RecordMode();
+
+
+
+unsigned char recordFlag = 0;
 int start, end = 0;
 unsigned char buffer[51];
 volatile unsigned char gpsMessage[50];
 volatile char gpsIndex;
 unsigned char gpsInvalidFlag = 1;
 unsigned char messageDoneFlag = 0;
+unsigned char strobeFlag = 0;
+
+
+
+unsigned int validLatitude[3] = {0,0,0};
+unsigned char validNorthSouth = 'N';
+unsigned int validLongitude[3] = {0,0,0};
+unsigned char validEastWest = 'E';
+long int recordEndAdress;
 
 # 21 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -12290,37 +12305,57 @@ InitTimer1();
 InitWatchdog();
 initUART();
 
+unsigned char periodicCounter;
 gpsIndex = 1;
 
 INTCONbits.GIE = 1;
 
 ToggleSleepGPS();
-
 SetupGPS();
-_delay((unsigned long)((1000)*(16000000/4000.0)));
-
-
-
 
 while(1){
-_delay((unsigned long)((1000)*(16000000/4000.0)));
+
+
+if(strobeFlag)
+{
+
+PORTAbits.RA1 = 1;
+_delay((unsigned long)((100)*(16000000/4000.0)));
+PORTAbits.RA1 = 0;
+}
+
+if(recordFlag)
+{
+RecordMode();
+}
+
+
 UpdateGPS();
-while(!messageDoneFlag);
-DecodeGPS();
-messageDoneFlag = 0;
+
 if(gpsInvalidFlag)
 {
 PORTBbits.PORTB = LATBbits.LATB | 0x20;
 PORTBbits.PORTB = LATBbits.LATB & 0xEF;
+if(periodicCounter < 18)
+periodicCounter++;
 }
 else
 {
 PORTBbits.PORTB = LATBbits.LATB | 0x10;
 PORTBbits.PORTB = LATBbits.LATB & 0xDF;
+periodicCounter = 10;
+ToggleSleepGPS();
+}
+
+if(!recordFlag)
+{
+if(gpsInvalidFlag)
+GoToSleep(periodicCounter);
+else
+GoToSleepTenMin();
 }
 }
 
-# 72
 return (0);
 }
 
@@ -12354,7 +12389,7 @@ TMR1H = 0xFF;
 TMR1L = 0xCD;
 TMR1IF = 0;
 
-if(recordModeFlag)
+if(recordFlag)
 {
 ADCON0bits.ADGO = 1;
 }
@@ -12370,16 +12405,31 @@ WriteBuffer(ADRESH);
 PIR1bits.ADIF = 0;
 }
 
+
 if(INTCONbits.IOCIE && IOCBFbits.IOCBF3)
 {
 IOCBFbits.IOCBF3 = 0;
 if(IOCBPbits.IOCBP3 & PORTBbits.RB3)
 {
-recordModeFlag = 1;
+recordFlag = 1;
 }
 if(IOCBNbits.IOCBN3 & !PORTBbits.RB3)
 {
-recordModeFlag = 0;
+recordFlag = 0;
+}
+}
+
+
+if(INTCONbits.IOCIE && IOCAFbits.IOCAF1)
+{
+IOCAFbits.IOCAF1 = 0;
+if(IOCAPbits.IOCAP1 & PORTAbits.RA1)
+{
+strobeFlag = 1;
+}
+if(IOCANbits.IOCAN1 & !PORTAbits.RA1)
+{
+strobeFlag = 0;
 }
 }
 

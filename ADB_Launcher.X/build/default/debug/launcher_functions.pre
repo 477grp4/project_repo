@@ -1,7 +1,7 @@
 
 # 1 "launcher_functions.c"
 
-# 43 "launcher.h"
+# 47 "launcher.h"
 void InitCLK();
 void InitGPIO();
 void InitADC();
@@ -37,13 +37,28 @@ void DecodeGPS();
 void UpdateGPS();
 
 
-unsigned char recordModeFlag = 0;
+void GoToSleep(unsigned char count);
+void GoToSleepTenMin();
+void RecordMode();
+
+
+
+unsigned char recordFlag = 0;
 int start, end = 0;
 unsigned char buffer[51];
 volatile unsigned char gpsMessage[50];
 volatile char gpsIndex;
 unsigned char gpsInvalidFlag = 1;
 unsigned char messageDoneFlag = 0;
+unsigned char strobeFlag = 0;
+
+
+
+unsigned int validLatitude[3] = {0,0,0};
+unsigned char validNorthSouth = 'N';
+unsigned int validLongitude[3] = {0,0,0};
+unsigned char validEastWest = 'E';
+long int recordEndAdress;
 
 # 21 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -6210,6 +6225,13 @@ void InitGPIO()
 
 
 
+TRISAbits.TRISA1 = 1;
+IOCAPbits.IOCAP1 = 1;
+IOCANbits.IOCAN1 = 1;
+IOCAF = 0x00;
+INTCONbits.IOCIE = 1;
+
+
 TRISBbits.TRISB3 = 1;
 ANSELBbits.ANSB3 = 0;
 IOCBNbits.IOCBN3 = 1;
@@ -6219,7 +6241,7 @@ INTCONbits.IOCIE = 1;
 
 
 TRISAbits.TRISA0 = 1;
-TRISAbits.TRISA1 = 1;
+
 TRISAbits.TRISA2 = 1;
 TRISAbits.TRISA3 = 1;
 TRISAbits.TRISA4 = 0;
@@ -6250,7 +6272,7 @@ ANSELBbits.ANSB5 = 0;
 TRISCbits.TRISC0 = 0;
 TRISCbits.TRISC1 = 0;
 
-# 63
+# 70
 }
 
 void InitADC()
@@ -6296,7 +6318,7 @@ TRISCbits.TRISC3 = 0;
 TRISCbits.TRISC4 = 1;
 TRISCbits.TRISC5 = 0;
 
-LATC2 = 0;
+LATC2 = (0);
 
 
 SSPCON1bits.SSPEN=0x00;
@@ -6340,10 +6362,10 @@ unsigned char ReadStatusSPI(void)
 {
 unsigned char dataRead;
 
-LATC2=1;
+LATC2=(1);
 WriteSPI((0x05));
 dataRead = ReadSPI();
-LATC2=0;
+LATC2=(0);
 
 return(dataRead);
 }
@@ -6363,9 +6385,9 @@ StatusReg = (ReadStatusSPI() & 0x01);
 } while (StatusReg);
 
 
-LATC2 = 1;
+LATC2 = (1);
 WriteSPI((0x06));
-LATC2=0;
+LATC2 = (0);
 
 do
 {
@@ -6374,7 +6396,7 @@ StatusReg = (ReadStatusSPI() & 0x02);
 
 
 
-LATC2=1;
+LATC2=(1);
 WriteSPI((0x02));
 WriteSPI(address_bytes[0]);
 WriteSPI(address_bytes[1]);
@@ -6422,7 +6444,7 @@ StatusReg = (ReadStatusSPI() & 0x01);
 } while (StatusReg);
 
 
-LATC2 = 1;
+LATC2 = (1);
 WriteSPI((0x03));
 WriteSPI(addressBytes[0]);
 WriteSPI(addressBytes[1]);
@@ -6547,9 +6569,14 @@ RCIE = 1;
 PEIE = 1;
 GIE = 1;
 
-
 gpsIndex = 0;
+_delay((unsigned long)((1000)*(16000000/4000.0)));
 uart_write_message(GPSupdateMessage, 22);
+while(!messageDoneFlag);
+messageDoneFlag = 0;
+DecodeGPS();
+
+
 }
 
 
@@ -6576,14 +6603,17 @@ x = x + 1;
 
 if(gpsMessage[x]!= ',')
 {
+
 latitude[0] = (gpsMessage[x++] - 48)*10;
 latitude[0] += (gpsMessage[x++] - 48);
+
 
 latitude[1] = (gpsMessage[x++] - 48)*10;
 latitude[1] += (gpsMessage[x++] - 48);
 
 
 x = x + 1;
+
 
 latitude[2] = (gpsMessage[x++] - 48)*10;
 latitude[2] += (gpsMessage[x++] - 48);
@@ -6606,15 +6636,18 @@ x = x + 1;
 
 if(gpsMessage[x]!= ',')
 {
+
 longitude[0] = (gpsMessage[x++] - 48)*100;
 longitude[0] += (gpsMessage[x++] - 48)*10;
 longitude[0] += (gpsMessage[x++] - 48);
+
 
 longitude[1] = (gpsMessage[x++] - 48)*10;
 longitude[1] += (gpsMessage[x++] - 48);
 
 
 x = x + 1;
+
 
 longitude[2] = (gpsMessage[x++] - 48)*10;
 longitude[2] += (gpsMessage[x++] - 48);
@@ -6645,5 +6678,104 @@ gpsInvalidFlag = 0;
 else
 gpsInvalidFlag = 1;
 
+
+
+if(!gpsInvalidFlag)
+{
+
+for(x=0;x<3;x++)
+{
+validLatitude[x] = latitude[x];
+validLongitude[x] = longitude[x];
+}
+validNorthSouth = northSouth;
+validEastWest = eastWest;
+}
 }
 
+void GoToSleep(unsigned char count)
+{
+WDTCONbits.WDTPS = count;
+WDTCONbits.SWDTEN = 1;
+asm("sleep");
+WDTCONbits.SWDTEN = 0;
+}
+
+void GoToSleepTenMin()
+{
+unsigned char count = 0;
+WDTCONbits.WDTPS = 18;
+WDTCONbits.SWDTEN = 1;
+while(!recordFlag && count++ < 3)
+{
+asm("sleep");
+}
+WDTCONbits.SWDTEN = 0;
+}
+
+void RecordMode()
+{
+long int address = 18;
+int count = 18;
+int x;
+
+(start) = 0;
+(end) = 0;
+
+
+WriteOverheadSPI(address);
+for(x=0;x<3;x++)
+{
+WriteSPI(validLongitude[x]);
+WriteSPI(validLongitude[x]>>8);
+}
+WriteSPI(validNorthSouth);
+for(x=0;x<3;x++)
+{
+WriteSPI(validLatitude[x]);
+WriteSPI(validLatitude[x]>>8);
+}
+WriteSPI(validEastWest);
+
+TMR1IF = 0;
+TMR1IE = 1;
+TMR1ON = 1;
+
+while((recordFlag) && (address < 131072))
+{
+if(count>=256)
+{
+LATC2 = (0);
+count = 0;
+WriteOverheadSPI(address);
+}
+if(!((((start))==((end)))?(1):(0)))
+{
+WriteSPI(ReadBuffer());
+address++;
+count++;
+}
+}
+LATC2 = (0);
+TMR1IE = 0;
+TMR1ON = 0;
+_delay((unsigned long)((5)*(16000000/4000.0)));
+WriteOverheadSPI(0x0000000E);
+if(address >= 131072)
+{
+WriteSPI(131072 - 1);
+WriteSPI((131072 - 1)>>8);
+WriteSPI((131072 - 1)>>16);
+WriteSPI((131072 - 1)>>24);
+}
+else
+{
+WriteSPI(address);
+WriteSPI(address>>8);
+WriteSPI(address>>16);
+WriteSPI(address>>24);
+}
+LATC2 = (0);
+(start) = 0;
+(end) = 0;
+}

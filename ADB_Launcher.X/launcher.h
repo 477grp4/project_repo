@@ -37,7 +37,11 @@ extern "C" {
 #define GREEN_LED PORTBbits.RB4
 #define RED_LED PORTBbits.RB5
     
+#define MIN_PERIOD 10
+#define MAX_PERIOD 18
 
+#define CS_IDLE (0)
+#define CS_ACTIVE (1)
 
 //Initializaton Functions
 void InitCLK();
@@ -75,17 +79,28 @@ void DecodeGPS();
 void UpdateGPS();
 
 //General Functions
-void GoToSleep();
+void GoToSleep(unsigned char count);
+void GoToSleepTenMin();
+void RecordMode();
+
 
 //Global Variables
-unsigned char recordModeFlag = 0;
+unsigned char recordFlag = 0;
 int start, end = 0;
 unsigned char buffer[BUFFERSIZE];
 volatile unsigned char gpsMessage[50];
 volatile char gpsIndex;
 unsigned char gpsInvalidFlag = 1;
 unsigned char messageDoneFlag = 0;
+unsigned char strobeFlag = 0;
 
+
+//EEPROM Memory Buffers
+unsigned int validLatitude[3]  = {0,0,0};
+unsigned char validNorthSouth  = 'N';
+unsigned int validLongitude[3] = {0,0,0};
+unsigned char validEastWest    = 'E';
+long int recordEndAdress;
 
 #ifdef	__cplusplus
 }

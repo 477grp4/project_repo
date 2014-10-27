@@ -11,72 +11,80 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
-end_init CODE 0 A7 A7 2 2
+$C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
+end_init CODE 0 CD CD 2 2
 reset_vec CODE 0 0 0 3 2
 config CONFIG 0 8007 8007 2 2
 $dist/default/debug\ADB_Launcher.X.debug.obj
-cinit CODE 0 A9 A9 30 2
-intentry CODE 0 4 4 A3 2
-text20 CODE 0 676 676 17 2
-text18 CODE 0 609 609 37 2
-text17 CODE 0 7D6 7D6 1E 2
-text16 CODE 0 D9 D9 268 2
-text15 CODE 0 65D 65D 19 2
-text14 CODE 0 6C7 6C7 8 2
-text13 CODE 0 78F 78F 25 2
-text12 CODE 0 68D 68D 12 2
-text11 CODE 0 6AE 6AE F 2
-text10 CODE 0 6CF 6CF 7 2
-text9 CODE 0 736 736 2F 2
-text8 CODE 0 341 341 106 2
-text7 CODE 0 5C7 5C7 42 2
-text6 CODE 0 6BD 6BD A 2
-text5 CODE 0 555 555 72 2
-text4 CODE 0 447 447 92 2
-text3 CODE 0 7B4 7B4 22 2
-text2 CODE 0 640 640 1D 2
-text1 CODE 0 69F 69F F 2
-maintext CODE 0 4D9 4D9 7C 2
+cinit CODE 0 CF CF 38 2
+intentry CODE 0 4 4 C9 2
+text27 CODE 0 E21 E21 17 2
+text25 CODE 0 DD4 DD4 12 2
+text24 CODE 0 E50 E50 19 2
+text23 CODE 0 D87 D87 8 2
+text22 CODE 0 ECA ECA 2B 2
+text21 CODE 0 DE6 DE6 12 2
+text20 CODE 0 DA5 DA5 F 2
+text19 CODE 0 D80 D80 7 2
+text18 CODE 0 E38 E38 18 2
+text17 CODE 0 D99 D99 C 2
+text16 CODE 0 DF8 DF8 13 2
+text15 CODE 0 DC3 DC3 11 2
+text14 CODE 0 FA0 FA0 60 2
+text13 CODE 0 3CA 3CA 16D 2
+text12 CODE 0 F27 F27 37 2
+text11 CODE 0 7CF 7CF 2F 2
+text10 CODE 0 537 537 106 2
+text9 CODE 0 F5E F5E 42 2
+text8 CODE 0 D8F D8F A 2
+text7 CODE 0 75D 75D 72 2
+text6 CODE 0 63D 63D 92 2
+text5 CODE 0 EA8 EA8 22 2
+text4 CODE 0 E69 E69 1E 2
+text3 CODE 0 107 107 2C3 2
+text2 CODE 0 EF5 EF5 32 2
+text1 CODE 0 DB4 DB4 F 2
+maintext CODE 0 6CF 6CF 8E 2
 cstackBANK0 BANK0 1 20 20 50 1
 cstackCOMMON COMMON 1 70 70 9 1
-cstackBANK1 BANK1 1 EA EA 3 1
-inittext CODE 0 6DC 6DC 6 2
-clrtext CODE 0 6D6 6D6 6 2
+cstackBANK1 BANK1 1 DF DF 4 1
+inittext CODE 0 D74 D74 6 2
+clrtext CODE 0 D7A D7A 6 2
 bssBANK3 BANK3 1 1A0 1A0 33 1
-dataBANK2 BANK2 1 120 120 2A 1
-dataBANK1 BANK1 1 DF DF B 1
-bssBANK1 BANK1 1 A0 A0 3F 1
+dataBANK2 BANK2 1 152 152 16 1
+bssBANK2 BANK2 1 120 120 32 1
+dataBANK1 BANK1 1 A0 A0 21 1
+bssBANK1 BANK1 1 C1 C1 1E 1
 bssCOMMON COMMON 1 79 79 5 1
-nvBANK1 BANK1 1 ED ED 1 1
-stringtext STRCODE 0 700 700 36 2
-idataBANK2 CODE 0 765 765 2A 2
-idataBANK1 CODE 0 7F4 7F4 B 2
+nvBANK1 BANK1 1 E3 E3 1 1
+stringtext STRCODE 0 800 800 36 2
+idataBANK2 CODE 0 E0B E0B 16 2
+idataBANK1 CODE 0 E87 E87 21 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-BANK1 000EE-000EF 1
-BANK2 0014A-0016F 1
+BANK1 000E4-000EF 1
+BANK2 00168-0016F 1
 BANK3 001D3-001EF 1
 BANK4 00220-0026F 1
 BANK5 002A0-002EF 1
 BIGRAM 02000-021DF 1
 CODE 00003-00003 2
-CODE 006E2-006FF 2
-CODE 007FF-00FFF 2
+CODE 007FE-007FF 2
+CODE 00836-00D73 2
 CONST 00003-00003 2
-CONST 006E2-006FF 2
-CONST 007FF-00FFF 2
+CONST 007FE-007FF 2
+CONST 00836-00D73 2
 EEDATA 0F000-0F0FF 2
 ENTRY 00003-00003 2
-ENTRY 006E2-006FF 2
-ENTRY 007FF-00FFF 2
+ENTRY 007FE-007FF 2
+ENTRY 00836-00D73 2
 IDLOC 08000-08003 2
-RAM 000EE-000EF 1
-RAM 0014A-0016F 1
+RAM 000E4-000EF 1
+RAM 00168-0016F 1
 RAM 001D3-001EF 1
 RAM 00220-0026F 1
 RAM 002A0-002EF 1
@@ -114,11 +122,11 @@ SFR8 00400-0046F 1
 SFR9 00480-004EF 1
 STACK 02123-021DF 1
 STRCODE 00003-00003 2
-STRCODE 006E2-006FF 2
-STRCODE 007FF-00FFF 2
+STRCODE 007FE-007FF 2
+STRCODE 00836-00D73 2
 STRING 00003-00003 2
-STRING 006E2-006FF 2
-STRING 007FF-00FFF 2
+STRING 007FE-007FF 2
+STRING 00836-00D73 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -133,375 +141,502 @@ STRING 007FF-00FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/debug\ADB_Launcher.X.debug.obj
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":31 4 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":75 4 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":78 9 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":81 B intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":83 E intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":84 F intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":86 10 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":87 1D intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":89 26 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":90 28 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":93 29 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":95 2A intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":99 2C intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":101 31 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":102 34 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":103 36 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":105 37 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":107 3A intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":108 3C intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":112 3D intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":114 4B intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":116 74 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":118 79 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":121 7B intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":123 80 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":124 81 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":126 91 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":128 93 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":130 A1 intentry CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":134 A2 intentry CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1762 A9 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1765 A9 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1856 A9 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1857 AA cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1858 AB cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1859 AC cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1860 AD cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1864 AE cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1865 AF cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1866 B0 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1867 B1 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1868 B2 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1869 B3 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1873 B6 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1874 B7 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1875 B8 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1876 B9 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1877 BA cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1878 BB cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1893 BE cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1894 BF cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1895 C0 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1896 C1 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1897 C2 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1898 C3 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1899 C4 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1900 C5 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1901 C6 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1902 C7 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1906 CA cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1907 CB cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1908 CC cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1909 CD cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1910 CE cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1911 CF cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1912 D0 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1913 D1 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1914 D2 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1915 D3 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1921 D5 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1922 D5 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1923 D6 cinit CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1924 D7 cinit CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":365 D9 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":368 D9 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":369 E8 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":370 F6 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":376 104 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":378 111 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":379 11E text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":376 121 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":383 131 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":386 138 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":388 140 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":389 15D text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":391 170 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":392 18D text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":395 1A0 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":397 1A6 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":398 1C3 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":399 1D6 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":402 1F8 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":406 1FE text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":409 204 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":410 20C text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":413 218 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":416 21E text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":418 226 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":419 243 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":420 25E text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":422 271 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":423 28E text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":426 2A1 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":428 2A7 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":429 2C4 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":430 2D7 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":433 2F9 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":437 2FF text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":440 305 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":441 30D text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":444 319 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":447 31F text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":450 32E text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":452 336 text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":453 33A text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":454 33D text16 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":455 33D text16 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":492 341 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":542 343 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":545 347 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":547 359 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":550 35D text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":551 368 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":557 369 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":644 36A text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":743 36B text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":749 376 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":750 37A text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":786 37E text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":787 386 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":786 399 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":644 39A text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1268 3B4 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1270 3BF text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1271 3C1 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1272 3C5 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1314 3CA text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1315 3D0 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1314 3E7 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1447 3EF text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1448 3F3 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1481 3FE text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1483 402 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1498 40A text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1533 436 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1483 441 text8 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1547 442 text8 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":326 447 text4 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":329 447 text4 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":330 456 text4 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":334 466 text4 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":336 473 text4 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":337 481 text4 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":338 498 text4 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":334 4A1 text4 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":341 4B1 text4 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":343 4BF text4 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":344 4D0 text4 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":346 4D8 text4 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":20 4D9 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":23 4D9 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":24 4DC maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":25 4DF maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":26 4E2 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":27 4E5 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":28 4E8 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":29 4EB maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":31 4EE maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":33 4F3 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":35 4F4 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":37 4F7 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":38 4FA maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":44 508 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":45 516 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":46 519 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":47 51D maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":48 520 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":49 522 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":51 525 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":52 533 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":56 538 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":57 546 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":43 554 maintext CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":281 555 text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":287 557 text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":288 565 text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":289 56F text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":291 574 text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":292 582 text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":294 590 text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":296 5A4 text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":294 5AF text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":298 5B5 text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":299 5BA text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":301 5BF text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":302 5C3 text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":304 5C6 text5 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":262 5C7 text7 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":264 5C9 text7 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":266 5CA text7 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":268 5D8 text7 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":269 5F7 text7 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":266 601 text7 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":271 606 text7 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":6 609 text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":14 609 text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":15 60C text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":16 610 text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":17 612 text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":18 614 text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":19 619 text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":17 61D text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":22 61E text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":23 623 text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":24 62B text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":25 62F text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":27 630 text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":28 635 text18 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":30 639 text18 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":350 640 text2 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":352 640 text2 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":355 64F text2 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":356 651 text2 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":357 652 text2 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":360 653 text2 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":361 654 text2 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":362 65C text2 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":65 65D text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":68 65D text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":69 65F text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":72 661 text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":73 666 text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":74 668 text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":75 669 text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":76 66B text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":77 66D text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":78 66E text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":79 66F text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":82 670 text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":83 672 text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":84 674 text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":86 675 text15 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":197 676 text20 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":199 677 text20 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":201 680 text20 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":202 685 text20 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":204 688 text20 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":100 68D text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":103 68D text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":104 68F text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":105 690 text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":106 691 text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":108 692 text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":111 694 text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":112 696 text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":113 69A text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":114 69B text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":115 69C text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":116 69D text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":117 69E text12 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":245 69F text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":248 69F text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":249 6A1 text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":250 6A2 text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":252 6A4 text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":253 6A5 text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":254 6A7 text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":255 6A8 text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":256 6A9 text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":258 6AA text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":259 6AB text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":260 6AC text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":261 6AD text1 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":88 6AE text11 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":90 6AE text11 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":91 6B1 text11 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":92 6B5 text11 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":93 6B6 text11 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":94 6B7 text11 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":95 6B9 text11 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":96 6BB text11 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":98 6BC text11 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":273 6BD text6 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":276 6BF text6 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":277 6C2 text6 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":278 6C6 text6 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":8 6C7 text14 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":10 6C7 text14 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":11 6CA text14 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":12 6CE text14 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":119 6CF text10 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":122 6CF text10 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":123 6D4 text10 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":124 6D5 text10 CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1845 6D6 clrtext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1846 6D6 clrtext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1847 6D7 clrtext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1848 6D7 clrtext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1849 6D8 clrtext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1850 6D9 clrtext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1851 6DA clrtext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1852 6DB clrtext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1882 6DC inittext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1883 6DC inittext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1884 6DD inittext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1885 6DD inittext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1886 6DE inittext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1887 6DF inittext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1888 6E0 inittext CODE
-"C:\Users\477grp4\AppData\Local\Temp\s5pk.":1889 6E1 inittext CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":6 736 text9 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":13 736 text9 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":14 73B text9 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":15 73D text9 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":16 73F text9 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":17 744 text9 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":15 748 text9 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":20 749 text9 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":21 751 text9 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":22 755 text9 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":23 75A text9 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":25 75E text9 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":13 78F text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":18 78F text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":19 791 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":20 793 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":21 795 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":22 796 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":23 797 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":26 798 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":27 79A text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":28 79B text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":29 79C text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":30 79D text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":31 79E text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":32 79F text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":33 7A0 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":36 7A1 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":37 7A2 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":38 7A3 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":40 7A4 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":41 7A5 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":43 7A6 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":44 7A8 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":45 7A9 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":47 7AA text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":48 7AC text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":49 7AD text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":51 7AE text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":52 7AF text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":55 7B0 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":56 7B2 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":63 7B3 text13 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":308 7B4 text3 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":310 7B4 text3 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":312 7B6 text3 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":313 7B8 text3 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":314 7C5 text3 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":315 7C7 text3 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":316 7D3 text3 CODE
-"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":317 7D5 text3 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":15 7D6 text17 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":43 7D6 text17 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":45 7D9 text17 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":46 7DB text17 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":47 7DF text17 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":48 7E4 text17 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":49 7E9 text17 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":52 7ED text17 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":86 4 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":89 9 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":92 B intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":94 E intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":95 F intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":97 10 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":98 1E intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":100 28 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":101 2A intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":104 2B intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":106 2C intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":110 2E intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":112 33 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":113 36 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":114 38 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":116 39 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":118 3C intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":123 3D intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":125 4B intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":127 74 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":129 79 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":133 7B intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":135 80 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":136 81 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":138 91 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":140 94 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":142 A4 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":147 A6 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":149 AB intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":150 AC intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":152 B6 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":154 B9 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":156 C6 intentry CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":160 C8 intentry CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1797 CF cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1800 CF cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1918 CF cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1919 D0 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1920 D1 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1921 D2 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1922 D3 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1926 D4 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1927 D5 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1928 D6 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1929 D7 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1930 D8 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1931 D9 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1935 DC cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1936 DD cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1937 DE cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1938 DF cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1939 E0 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1940 E1 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1944 E4 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1945 E5 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1946 E6 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1947 E7 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1948 E8 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1949 E9 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1964 EC cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1965 ED cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1966 EE cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1967 EF cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1968 F0 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1969 F1 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1970 F2 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1971 F3 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1972 F4 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1973 F5 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1977 F8 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1978 F9 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1979 FA cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1980 FB cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1981 FC cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1982 FD cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1983 FE cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1984 FF cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1985 100 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1986 101 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1992 103 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1993 103 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1994 104 cinit CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1995 105 cinit CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":377 107 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":380 107 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":381 116 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":382 124 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":388 132 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":390 13F text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":391 14D text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":388 150 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":395 160 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":398 167 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":401 170 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":402 18E text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":405 1A2 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":406 1C0 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":409 1D4 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":412 1DA text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":413 1F8 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":414 20C text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":417 22E text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":421 234 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":424 23A text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":425 243 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":428 250 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":431 256 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":434 25F text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":435 27D text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":436 299 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":439 2AD text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":440 2CB text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":443 2DF text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":446 2E5 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":447 303 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":448 317 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":451 339 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":455 33F text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":458 345 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":459 34E text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":462 35B text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":465 361 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":468 371 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":470 37A text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":471 37E text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":472 381 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":473 381 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":477 384 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":480 387 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":482 395 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":483 3A2 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":480 3AE text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":485 3BD text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":486 3C3 text3 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":510 3CA text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":512 3CA text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":513 3D3 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":516 3D7 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":517 3D9 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":520 3DB text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":521 3E6 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":523 3F4 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":524 3FD text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":521 40A text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":526 41A text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":527 41F text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":529 42D text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":530 436 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":527 443 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":532 453 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":534 458 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":535 45A text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":536 45C text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":538 45E text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":540 477 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":542 482 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":543 484 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":544 487 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":546 492 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":548 49A text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":549 4A0 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":550 4A9 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":538 4AD text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":553 4AF text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":554 4B1 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":555 4B3 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":556 4B5 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":557 4BE text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":558 4CA text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":560 4DF text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":561 4E3 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":562 4E7 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":563 4EB text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":567 4ED text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":568 4F2 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":569 507 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":570 51C text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":572 530 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":573 532 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":574 534 text13 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":575 536 text13 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":492 537 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":542 539 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":545 53D text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":547 54F text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":550 553 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":551 55E text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":557 55F text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":644 560 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":743 561 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":749 56C text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":750 570 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":786 574 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":787 57C text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":786 58F text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":644 590 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1268 5AA text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1270 5B5 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1271 5B7 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1272 5BB text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1314 5C0 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1315 5C6 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1314 5DD text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1447 5E5 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1448 5E9 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1481 5F4 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1483 5F8 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1498 600 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1533 62C text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1483 637 text10 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c":1547 638 text10 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":333 63D text6 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":336 63D text6 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":337 64C text6 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":341 65C text6 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":343 669 text6 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":344 677 text6 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":345 68E text6 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":341 697 text6 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":348 6A7 text6 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":350 6B5 text6 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":351 6C6 text6 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":353 6CE text6 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":20 6CF maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":23 6CF maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":24 6D2 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":25 6D5 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":26 6D8 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":27 6DB maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":28 6DE maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":29 6E1 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":31 6E4 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":32 6E9 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":34 6ED maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":36 6EE maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":37 6F1 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":42 6F4 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":45 6F8 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":46 6FA maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":47 707 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":48 709 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":50 709 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":52 70D maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":56 711 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":58 714 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":60 718 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":61 726 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":64 734 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":67 735 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":68 743 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":70 751 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":73 754 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":75 758 maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c":39 75C maintext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":288 75D text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":294 75F text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":295 76D text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":296 777 text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":298 77C text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":299 78A text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":301 798 text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":303 7AC text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":301 7B7 text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":305 7BD text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":306 7C2 text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":308 7C7 text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":309 7CB text7 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":311 7CE text7 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":6 7CF text11 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":13 7CF text11 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":14 7D4 text11 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":15 7D6 text11 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":16 7D8 text11 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":17 7DD text11 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":15 7E1 text11 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":20 7E2 text11 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":21 7EA text11 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":22 7EE text11 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":23 7F3 text11 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwmod.c":25 7F7 text11 CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1953 D74 inittext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1954 D74 inittext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1955 D75 inittext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1956 D75 inittext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1957 D76 inittext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1958 D77 inittext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1959 D78 inittext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1960 D79 inittext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1907 D7A clrtext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1908 D7A clrtext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1909 D7B clrtext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1910 D7B clrtext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1911 D7C clrtext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1912 D7D clrtext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1913 D7E clrtext CODE
+"C:\Users\477grp4\AppData\Local\Temp\s6k4.":1914 D7F clrtext CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":126 D80 text19 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":129 D80 text19 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":130 D85 text19 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":131 D86 text19 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":8 D87 text23 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":10 D87 text23 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":11 D8A text23 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":12 D8E text23 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":280 D8F text8 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":283 D91 text8 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":284 D94 text8 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":285 D98 text8 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":144 D99 text17 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":148 D99 text17 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":149 D9B text17 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":150 D9D text17 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":151 DA2 text17 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":152 DA3 text17 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":95 DA5 text20 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":97 DA5 text20 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":98 DA8 text20 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":99 DAC text20 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":100 DAD text20 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":101 DAE text20 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":102 DB0 text20 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":103 DB2 text20 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":105 DB3 text20 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":252 DB4 text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":255 DB4 text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":256 DB6 text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":257 DB7 text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":259 DB9 text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":260 DBA text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":261 DBC text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":262 DBD text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":263 DBE text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":265 DBF text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":266 DC0 text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":267 DC1 text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":268 DC2 text1 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":155 DC3 text15 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":159 DC3 text15 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":160 DC5 text15 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":161 DC9 text15 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":162 DCF text15 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":164 DD1 text15 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":490 DD4 text25 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":492 DD6 text25 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":493 DE1 text25 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":494 DE2 text25 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":495 DE3 text25 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":496 DE5 text25 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":107 DE6 text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":110 DE6 text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":111 DE8 text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":112 DE9 text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":113 DEA text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":115 DEB text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":118 DED text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":119 DEF text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":120 DF3 text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":121 DF4 text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":122 DF5 text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":123 DF6 text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":124 DF7 text21 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":135 DF8 text16 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":138 DFA text16 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":139 E03 text16 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":140 E04 text16 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":141 E07 text16 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":142 E09 text16 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":141 E0A text16 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":204 E21 text27 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":206 E22 text27 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":208 E2B text27 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":209 E30 text27 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":211 E33 text27 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":214 E38 text18 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":218 E38 text18 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":219 E42 text18 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":220 E47 text18 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":222 E4A text18 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":223 E4E text18 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":72 E50 text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":75 E50 text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":76 E52 text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":79 E54 text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":80 E59 text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":81 E5B text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":82 E5C text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":83 E5E text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":84 E60 text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":85 E61 text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":86 E62 text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":89 E63 text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":90 E65 text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":91 E67 text24 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":93 E68 text24 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":15 E69 text4 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":43 E69 text4 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":45 E6C text4 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":46 E6E text4 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":47 E72 text4 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":48 E77 text4 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":49 E7C text4 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c":52 E80 text4 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":315 EA8 text5 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":317 EA8 text5 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":319 EAA text5 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":320 EAC text5 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":321 EB9 text5 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":322 EBB text5 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":323 EC7 text5 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":324 EC9 text5 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":13 ECA text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":18 ECA text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":19 ECC text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":20 ECE text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":21 ECF text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":22 ED0 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":25 ED1 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":26 ED3 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":27 ED5 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":28 ED7 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":29 ED8 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":30 ED9 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":33 EDA text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":35 EDC text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":36 EDD text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":37 EDE text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":38 EDF text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":39 EE0 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":40 EE1 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":43 EE2 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":44 EE3 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":45 EE4 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":47 EE5 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":48 EE6 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":50 EE7 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":51 EE9 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":52 EEA text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":54 EEB text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":55 EED text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":56 EEE text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":58 EEF text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":59 EF0 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":62 EF1 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":63 EF3 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":70 EF4 text22 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":357 EF5 text2 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":359 EF5 text2 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":362 F04 text2 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":363 F06 text2 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":364 F07 text2 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":366 F08 text2 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":367 F09 text2 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":368 F17 text2 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":369 F20 text2 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":370 F23 text2 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":371 F24 text2 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":374 F26 text2 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":6 F27 text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":14 F27 text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":15 F2A text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":16 F2E text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":17 F30 text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":18 F32 text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":19 F37 text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":17 F3B text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":22 F3C text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":23 F41 text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":24 F49 text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":25 F4D text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":27 F4E text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":28 F53 text12 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwdiv.c":30 F57 text12 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":269 F5E text9 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":271 F60 text9 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":273 F61 text9 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":275 F6F text9 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":276 F8E text9 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":273 F98 text9 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":278 F9D text9 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":167 FA0 text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":172 FA0 text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":173 FB5 text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":174 FC9 text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":178 FCD text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":179 FD5 text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":182 FD8 text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":183 FDA text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":184 FDE text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":186 FE0 text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":188 FE0 text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":189 FE8 text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":193 FEB text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":194 FED text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":195 FF1 text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":196 FF6 text14 CODE
+"P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c":197 FFB text14 CODE
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -515,46 +650,49 @@ $dist/default/debug\ADB_Launcher.X.debug.obj
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___lwdiv@dividend 28 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-_InitWatchdog D9E 0 CODE 0 text10 dist/default/debug\ADB_Launcher.X.debug.obj
+_InitWatchdog 1B00 0 CODE 0 text19 dist/default/debug\ADB_Launcher.X.debug.obj
 sprintf@f 34 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 ___lwdiv@counter 2D 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of_InitSPI 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+__size_of_ReadBuffer 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _RA6 66 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __S0 8009 0 ABS 0 - -
 __S1 1D3 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 _GIE 5F 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-__Hintentry 14E 0 CODE 0 intentry -
+__Hintentry 19A 0 CODE 0 intentry -
 __Lintentry 8 0 CODE 0 intentry -
 __pintentry 8 0 CODE 0 intentry dist/default/debug\ADB_Launcher.X.debug.obj
 compute_checksum@checksum 24 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 _end 79 0 COMMON 1 bssCOMMON dist/default/debug\ADB_Launcher.X.debug.obj
 _isr 8 0 CODE 0 intentry dist/default/debug\ADB_Launcher.X.debug.obj
+_WriteOverheadSPI 1F40 0 CODE 0 text14 dist/default/debug\ADB_Launcher.X.debug.obj
 _ADIE 48E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _ADIF 8E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-DisableGPS@F4903 136 0 BANK2 1 dataBANK2 dist/default/debug\ADB_Launcher.X.debug.obj
 _RCIE 48D 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _PEIE 5E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 uart_write_message@data 34 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 _OERR CE9 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 uart_write_message@size 28 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-_main 9B2 0 CODE 0 maintext dist/default/debug\ADB_Launcher.X.debug.obj
+_main D9E 0 CODE 0 maintext dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of_initUART 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-___sp 0 0 STACK 2 stack C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
+___sp 0 0 STACK 2 stack C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
 btemp 7E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 ltemp 7E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 ttemp 7E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 wtemp 7E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-start 14E 0 CODE 0 init C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
+start 19A 0 CODE 0 init C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
 _LATC2 872 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+DecodeGPS@F4928 C1 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
 SetupGPS@x 6A 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 _TMR1H 17 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+_IOCAF 393 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _IOCBF 396 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _TMR1L 16 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _RCREG 199 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _TXREG 19A 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-reset_vec 0 0 CODE 0 reset_vec C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
+reset_vec 0 0 CODE 0 reset_vec C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
 ltemp0 7E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 ttemp0 7E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 wtemp0 7E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
@@ -571,7 +709,8 @@ ttemp4 7F 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 wtemp4 86 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 wtemp5 88 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 wtemp6 7F 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-_uart_write_message AAA 0 CODE 0 text5 dist/default/debug\ADB_Launcher.X.debug.obj
+_uart_write_message EBA 0 CODE 0 text7 dist/default/debug\ADB_Launcher.X.debug.obj
+RecordMode@count 3A 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of_WriteBuffer 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Hconfig 10012 0 CONFIG 0 config -
 __Lconfig 1000E 0 CONFIG 0 config -
@@ -582,7 +721,7 @@ __Hbigram 0 0 ABS 0 bigram -
 __Lbigram 0 0 ABS 0 bigram -
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-__end_of__stringdata E6C 0 STRCODE 0 stringtext dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of__stringdata 106C 0 STRCODE 0 stringtext dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of_isr 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _start 7B 0 COMMON 1 bssCOMMON dist/default/debug\ADB_Launcher.X.debug.obj
 ?_sprintf 34 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
@@ -600,15 +739,15 @@ DecodeGPS@eastWest 38 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.de
 sprintf@ap 40 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 _LATBbits 10D 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _TMR1IE 488 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-_gpsIndex ED 0 BANK1 1 nvBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
-___int_sp 0 0 STACK 2 stack C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
+_gpsIndex E3 0 BANK1 1 nvBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+___int_sp 0 0 STACK 2 stack C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
 _TMR1IF 88 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __CFG_CLKOUTEN$OFF 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _SPBRGH 19C 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 ?___lwdiv 26 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-UpdateGPS@F4913 120 0 BANK2 1 dataBANK2 dist/default/debug\ADB_Launcher.X.debug.obj
 _SSPBUF 211 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _ADRESH 9C 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+_TMR1ON C0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _SPBRGL 19B 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Habs1 0 0 ABS 0 abs1 -
 __Labs1 0 0 ABS 0 abs1 -
@@ -630,36 +769,43 @@ __Lsfr6 0 0 ABS 0 sfr6 -
 __Hsfr7 0 0 ABS 0 sfr7 -
 __Lsfr7 0 0 ABS 0 sfr7 -
 __Hsfr8 0 0 ABS 0 sfr8 -
+ReadStatusSPI@dataRead 26 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __Lsfr8 0 0 ABS 0 sfr8 -
+RecordMode@address 3C 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of_InitWatchdog 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Hsfr9 0 0 ABS 0 sfr9 -
 __Lsfr9 0 0 ABS 0 sfr9 -
-DecodeGPS@F4919 A6 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_dpowers E14 0 STRCODE 0 stringtext dist/default/debug\ADB_Launcher.X.debug.obj
-_WriteBuffer CEC 0 CODE 0 text20 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_dpowers 1014 0 STRCODE 0 stringtext dist/default/debug\ADB_Launcher.X.debug.obj
+_WriteBuffer 1C42 0 CODE 0 text27 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hcode 0 0 ABS 0 code -
 __Lcode 0 0 ABS 0 code -
-__end_of_InitTimer1 D7A 0 CODE 0 text11 dist/default/debug\ADB_Launcher.X.debug.obj
-_isr$400 77 0 COMMON 1 cstackCOMMON dist/default/debug\ADB_Launcher.X.debug.obj
-stackhi 21DF 0 ABS 0 - C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
+__end_of_InitTimer1 1B68 0 CODE 0 text20 dist/default/debug\ADB_Launcher.X.debug.obj
+stackhi 21DF 0 ABS 0 - C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
 sprintf@sp 41 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
-__end_of_ToggleSleepGPS FAC 0 CODE 0 text3 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_ToggleSleepGPS 1D94 0 CODE 0 text5 dist/default/debug\ADB_Launcher.X.debug.obj
+_GoToSleep 1BA8 0 CODE 0 text25 dist/default/debug\ADB_Launcher.X.debug.obj
 __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 _buffer 1A0 0 BANK3 1 bssBANK3 dist/default/debug\ADB_Launcher.X.debug.obj
-stacklo 2123 0 ABS 0 - C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
-__Hinit 14E 0 CODE 0 init -
-__Linit 14E 0 CODE 0 init -
-___wmul FAC 0 CODE 0 text17 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_main AAA 0 CODE 0 maintext dist/default/debug\ADB_Launcher.X.debug.obj
+stacklo 2123 0 ABS 0 - C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
+_isr$524 77 0 COMMON 1 cstackCOMMON dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_GoToSleep 1BCC 0 CODE 0 text25 dist/default/debug\ADB_Launcher.X.debug.obj
+__Hinit 19A 0 CODE 0 init -
+__Linit 19A 0 CODE 0 init -
+___wmul 1CD2 0 CODE 0 text4 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_main EBA 0 CODE 0 maintext dist/default/debug\ADB_Launcher.X.debug.obj
+_strobeFlag DE 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
 __Htext 0 0 ABS 0 text -
 __Ltext 0 0 ABS 0 text -
 WriteBuffer@data 71 0 COMMON 1 cstackCOMMON dist/default/debug\ADB_Launcher.X.debug.obj
+_recordFlag DD 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
 ___wmul@multiplier 20 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __CFG_LVP$ON 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-end_of_initialization 1AA 0 CODE 0 cinit dist/default/debug\ADB_Launcher.X.debug.obj
-UpdateGPS@GPSupdateMessage 38 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
+end_of_initialization 206 0 CODE 0 cinit dist/default/debug\ADB_Launcher.X.debug.obj
+_validNorthSouth C0 0 BANK1 1 dataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+_RecordMode 794 0 CODE 0 text13 dist/default/debug\ADB_Launcher.X.debug.obj
+UpdateGPS@GPSupdateMessage 4B 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 ___wmul@multiplicand 22 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hsfr10 0 0 ABS 0 sfr10 -
 __Lsfr10 0 0 ABS 0 sfr10 -
@@ -679,7 +825,7 @@ __Lsfr31 0 0 ABS 0 sfr31 -
 __Lsfr12 0 0 ABS 0 sfr12 -
 __Hsfr22 0 0 ABS 0 sfr22 -
 __Lsfr22 0 0 ABS 0 sfr22 -
-__pnvBANK1 ED 0 BANK1 1 nvBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+__pnvBANK1 E3 0 BANK1 1 nvBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hsfr13 0 0 ABS 0 sfr13 -
 __Lsfr13 0 0 ABS 0 sfr13 -
 __Hsfr23 0 0 ABS 0 sfr23 -
@@ -702,7 +848,8 @@ __Hsfr17 0 0 ABS 0 sfr17 -
 __Lsfr17 0 0 ABS 0 sfr17 -
 __Hsfr27 0 0 ABS 0 sfr27 -
 __Lsfr27 0 0 ABS 0 sfr27 -
-__pdataBANK1 DF 0 BANK1 1 dataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+__pdataBANK1 A0 0 BANK1 1 dataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+__size_of_ReadStatusSPI 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Hsfr18 0 0 ABS 0 sfr18 -
 __Lsfr18 0 0 ABS 0 sfr18 -
 __Hsfr28 0 0 ABS 0 sfr28 -
@@ -711,46 +858,57 @@ __Hsfr19 0 0 ABS 0 sfr19 -
 __Lsfr19 0 0 ABS 0 sfr19 -
 __Hsfr29 0 0 ABS 0 sfr29 -
 __Lsfr29 0 0 ABS 0 sfr29 -
+_IOCAFbits 393 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _IOCBFbits 396 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+UpdateGPS@F4923 152 0 BANK2 1 dataBANK2 dist/default/debug\ADB_Launcher.X.debug.obj
 _TRISAbits 8C 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _RCSTAbits 19D 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _TRISBbits 8D 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_InitADC CEC 0 CODE 0 text15 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_InitADC 1CD2 0 CODE 0 text24 dist/default/debug\ADB_Launcher.X.debug.obj
+_IOCANbits 392 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _IOCBNbits 395 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _TRISCbits 8E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+_PORTAbits C 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _PORTBbits D 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+_IOCAPbits 391 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _TXSTAbits 19E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _IOCBPbits 394 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _T1CONbits 18 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Hstrings 0 0 ABS 0 strings -
 __Lstrings 0 0 ABS 0 strings -
 __size_of_ToggleSleepGPS 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-_uart_write_message$1094 2D 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-_uart_write_message$1095 2F 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-_InitTimer1 D5C 0 CODE 0 text11 dist/default/debug\ADB_Launcher.X.debug.obj
+__size_of_ReadSPI 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+_InitTimer1 1B4A 0 CODE 0 text20 dist/default/debug\ADB_Launcher.X.debug.obj
 DecodeGPS@northSouth 37 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-_InitADC CBA 0 CODE 0 text15 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_uart_write_message B8E 0 CODE 0 text5 dist/default/debug\ADB_Launcher.X.debug.obj
-_gpsMessage AD 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+_uart_write_message$1286 2D 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
+_InitADC 1CA0 0 CODE 0 text24 dist/default/debug\ADB_Launcher.X.debug.obj
+_uart_write_message$1287 2F 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_uart_write_message F9E 0 CODE 0 text7 dist/default/debug\ADB_Launcher.X.debug.obj
+DisableGPS@F4913 A0 0 BANK1 1 dataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+_gpsMessage 120 0 BANK2 1 bssBANK2 dist/default/debug\ADB_Launcher.X.debug.obj
+DecodeGPS@F4926 AD 0 BANK1 1 dataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
 __HdataBANK2 0 0 ABS 0 dataBANK2 -
 __LdataBANK2 0 0 ABS 0 dataBANK2 -
-__pdataBANK2 120 0 BANK2 1 dataBANK2 dist/default/debug\ADB_Launcher.X.debug.obj
-_uart_xmit D7A 0 CODE 0 text6 dist/default/debug\ADB_Launcher.X.debug.obj
+__pdataBANK2 152 0 BANK2 1 dataBANK2 dist/default/debug\ADB_Launcher.X.debug.obj
+_uart_xmit 1B1E 0 CODE 0 text8 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank0 0 0 ABS 0 bank0 -
 __Lbank0 0 0 ABS 0 bank0 -
+_validEastWest BF 0 BANK1 1 dataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank1 0 0 ABS 0 bank1 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
 __Lbank2 0 0 ABS 0 bank2 -
 __Hbank3 0 0 ABS 0 bank3 -
+WriteOverheadSPI@StatusReg 34 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __Lbank3 0 0 ABS 0 bank3 -
 ___latbits 1 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank4 0 0 ABS 0 bank4 -
 __Lbank4 0 0 ABS 0 bank4 -
-_InitCLK D8E 0 CODE 0 text14 dist/default/debug\ADB_Launcher.X.debug.obj
+_InitCLK 1B0E 0 CODE 0 text23 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank5 0 0 ABS 0 bank5 -
 __Lbank5 0 0 ABS 0 bank5 -
 __Hpowerup 0 0 CODE 0 powerup -
+_ReadSPI 1B32 0 CODE 0 text17 dist/default/debug\ADB_Launcher.X.debug.obj
 __Lpowerup 0 0 CODE 0 powerup -
 __Hbank6 0 0 BANK6 1 bank6 -
 __Lbank6 0 0 BANK6 1 bank6 -
@@ -759,71 +917,80 @@ __Hbank7 0 0 BANK7 1 bank7 -
 __Lbank7 0 0 BANK7 1 bank7 -
 __Hbank8 0 0 BANK8 1 bank8 -
 __Lbank8 0 0 BANK8 1 bank8 -
-_InitSPI D1A 0 CODE 0 text12 dist/default/debug\ADB_Launcher.X.debug.obj
+_InitSPI 1BCC 0 CODE 0 text21 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank9 0 0 BANK9 1 bank9 -
 _SSPCON1bits 215 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Lbank9 0 0 BANK9 1 bank9 -
-__ptext1 D3E 0 CODE 0 text1 dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext2 C80 0 CODE 0 text2 dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext3 F68 0 CODE 0 text3 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_initUART D5C 0 CODE 0 text1 dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext4 88E 0 CODE 0 text4 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext1 1B68 0 CODE 0 text1 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext2 1DEA 0 CODE 0 text2 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext3 20E 0 CODE 0 text3 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_initUART 1B86 0 CODE 0 text1 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext4 1CD2 0 CODE 0 text4 dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of_DecodeGPS 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext5 AAA 0 CODE 0 text5 dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext6 D7A 0 CODE 0 text6 dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext7 B8E 0 CODE 0 text7 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext5 1D50 0 CODE 0 text5 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext6 C7A 0 CODE 0 text6 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext7 EBA 0 CODE 0 text7 dist/default/debug\ADB_Launcher.X.debug.obj
 __HcstackBANK1 0 0 ABS 0 cstackBANK1 -
 __LcstackBANK1 0 0 ABS 0 cstackBANK1 -
-__ptext8 682 0 CODE 0 text8 dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext9 E6C 0 CODE 0 text9 dist/default/debug\ADB_Launcher.X.debug.obj
-__pcstackBANK1 EA 0 BANK1 1 cstackBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext8 1B1E 0 CODE 0 text8 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext9 1EBC 0 CODE 0 text9 dist/default/debug\ADB_Launcher.X.debug.obj
+__pcstackBANK1 DF 0 BANK1 1 cstackBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hclrtext 0 0 ABS 0 clrtext -
 __Lclrtext 0 0 ABS 0 clrtext -
+WriteOverheadSPI@address_bytes 31 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 uart_write_message@ascii_checksum 35 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of_UpdateGPS 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+_validLongitude D3 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
 __CFG_WDTE$SWDTEN 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of__initialization 1AA 0 CODE 0 cinit dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of___lwdiv C80 0 CODE 0 text18 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of__initialization 206 0 CODE 0 cinit dist/default/debug\ADB_Launcher.X.debug.obj
+ReadSPI@dataByte 21 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
+DecodeGPS@F4930 C7 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of___lwdiv 1EBC 0 CODE 0 text12 dist/default/debug\ADB_Launcher.X.debug.obj
+WriteSPI@temp 22 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 DecodeGPS@latitude 3A 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 _SSPSTATbits 214 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-SetupGPS@F4906 DF 0 BANK1 1 dataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_compute_checksum C12 0 CODE 0 text7 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_WriteBuffer D1A 0 CODE 0 text20 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_WriteOverheadSPI 2000 0 CODE 0 text14 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_compute_checksum 1F40 0 CODE 0 text9 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_WriteBuffer 1C70 0 CODE 0 text27 dist/default/debug\ADB_Launcher.X.debug.obj
+WriteSPI@databyte 24 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hidloc 0 0 IDLOC 0 idloc -
 uart_write_message@checksum 33 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __Lidloc 0 0 IDLOC 0 idloc -
 __Hstack 0 0 STACK 2 stack -
 __Lstack 0 0 STACK 2 stack -
 __size_of_InitADC 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-___lwmod E6C 0 CODE 0 text9 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_DecodeGPS 682 0 CODE 0 text16 dist/default/debug\ADB_Launcher.X.debug.obj
+___lwmod F9E 0 CODE 0 text11 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_DecodeGPS 794 0 CODE 0 text3 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hspace_0 8009 0 ABS 0 - -
 __Lspace_0 0 0 ABS 0 - -
-init_ram DB8 0 CODE 0 inittext dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_isr 14E 0 CODE 0 intentry dist/default/debug\ADB_Launcher.X.debug.obj
-_ToggleSleepGPS F68 0 CODE 0 text3 dist/default/debug\ADB_Launcher.X.debug.obj
-DecodeGPS@F4917 A0 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+init_ram 1AE8 0 CODE 0 inittext dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_isr 19A 0 CODE 0 intentry dist/default/debug\ADB_Launcher.X.debug.obj
+_ToggleSleepGPS 1D50 0 CODE 0 text5 dist/default/debug\ADB_Launcher.X.debug.obj
 SetupGPS@message 4A 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_UpdateGPS CBA 0 CODE 0 text2 dist/default/debug\ADB_Launcher.X.debug.obj
-_sprintf 682 0 CODE 0 text8 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_UpdateGPS 1E4E 0 CODE 0 text2 dist/default/debug\ADB_Launcher.X.debug.obj
+_sprintf A6E 0 CODE 0 text10 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hspace_1 1D3 0 ABS 0 - -
 __size_of_InitTimer1 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Lspace_1 0 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 ?___wmul 20 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-__Hcinit 1B2 0 CODE 0 cinit -
-__Lcinit 152 0 CODE 0 cinit -
+__Hcinit 20E 0 CODE 0 cinit -
+__Lcinit 19E 0 CODE 0 cinit -
 __Hspace_3 0 0 ABS 0 - -
-___lwdiv C12 0 CODE 0 text18 dist/default/debug\ADB_Launcher.X.debug.obj
+___lwdiv 1E4E 0 CODE 0 text12 dist/default/debug\ADB_Launcher.X.debug.obj
 __Lspace_3 0 0 ABS 0 - -
 __size_of_main 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-_dpowers E00 0 STRCODE 0 stringtext dist/default/debug\ADB_Launcher.X.debug.obj
+_dpowers 1000 0 STRCODE 0 stringtext dist/default/debug\ADB_Launcher.X.debug.obj
+GoToSleep@count 21 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
+SetupGPS@F4916 B4 0 BANK1 1 dataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+__size_of_GoToSleep 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+_ReadBuffer 1C70 0 CODE 0 text18 dist/default/debug\ADB_Launcher.X.debug.obj
 SetupGPS@startSequence 60 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_sprintf 88E 0 CODE 0 text8 dist/default/debug\ADB_Launcher.X.debug.obj
-_messageDoneFlag AC 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
-clear_ram0 DAC 0 CODE 0 clrtext dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_InitGPIO F68 0 CODE 0 text13 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_sprintf C7A 0 CODE 0 text10 dist/default/debug\ADB_Launcher.X.debug.obj
+_messageDoneFlag 7D 0 COMMON 1 bssCOMMON dist/default/debug\ADB_Launcher.X.debug.obj
+clear_ram0 1AF4 0 CODE 0 clrtext dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_InitGPIO 1DEA 0 CODE 0 text22 dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of___lwdiv 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank10 0 0 BANK10 1 bank10 -
 __Lbank10 0 0 BANK10 1 bank10 -
@@ -835,10 +1002,12 @@ __Lbank30 0 0 BANK30 1 bank30 -
 __Lbank11 0 0 BANK11 1 bank11 -
 __Hbank21 0 0 BANK21 1 bank21 -
 __Lbank21 0 0 BANK21 1 bank21 -
+__end_of_ReadBuffer 1CA0 0 CODE 0 text18 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank31 0 0 BANK31 1 bank31 -
 __Hbank12 0 0 BANK12 1 bank12 -
 __Lbank31 0 0 BANK31 1 bank31 -
 __Lbank12 0 0 BANK12 1 bank12 -
+_recordEndAdress D9 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
 sprintf@flag 3E 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank22 0 0 BANK22 1 bank22 -
 __Lbank22 0 0 BANK22 1 bank22 -
@@ -849,126 +1018,148 @@ __LbssBANK1 0 0 ABS 0 bssBANK1 -
 __Hbank23 0 0 BANK23 1 bank23 -
 __Lbank23 0 0 BANK23 1 bank23 -
 __Hbank14 0 0 BANK14 1 bank14 -
-__pbssBANK1 A0 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+__pbssBANK1 C1 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+__size_of_WriteOverheadSPI 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Lbank14 0 0 BANK14 1 bank14 -
 __Hstringtext 0 0 ABS 0 stringtext -
 __Lstringtext 0 0 ABS 0 stringtext -
 __Hbank24 0 0 BANK24 1 bank24 -
 __Lbank24 0 0 BANK24 1 bank24 -
-__pstringtext E00 0 STRCODE 0 stringtext dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext10 D9E 0 CODE 0 text10 dist/default/debug\ADB_Launcher.X.debug.obj
+__pstringtext 1000 0 STRCODE 0 stringtext dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext10 A6E 0 CODE 0 text10 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank15 0 0 BANK15 1 bank15 -
 __Lbank15 0 0 BANK15 1 bank15 -
 DecodeGPS@status 39 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext20 CEC 0 CODE 0 text20 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext20 1B4A 0 CODE 0 text20 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank25 0 0 BANK25 1 bank25 -
 __Lbank25 0 0 BANK25 1 bank25 -
-__ptext11 D5C 0 CODE 0 text11 dist/default/debug\ADB_Launcher.X.debug.obj
+RecordMode@x 40 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext11 F9E 0 CODE 0 text11 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank16 0 0 BANK16 1 bank16 -
 __Lbank16 0 0 BANK16 1 bank16 -
+__ptext21 1BCC 0 CODE 0 text21 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank26 0 0 BANK26 1 bank26 -
 __Lbank26 0 0 BANK26 1 bank26 -
-_compute_checksum B8E 0 CODE 0 text7 dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext12 D1A 0 CODE 0 text12 dist/default/debug\ADB_Launcher.X.debug.obj
+_compute_checksum 1EBC 0 CODE 0 text9 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext12 1E4E 0 CODE 0 text12 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank17 0 0 BANK17 1 bank17 -
 __Lbank17 0 0 BANK17 1 bank17 -
+__HbssBANK2 0 0 ABS 0 bssBANK2 -
+__ptext22 1D94 0 CODE 0 text22 dist/default/debug\ADB_Launcher.X.debug.obj
+__LbssBANK2 0 0 ABS 0 bssBANK2 -
 __Hbank27 0 0 BANK27 1 bank27 -
 __Lbank27 0 0 BANK27 1 bank27 -
 __CFG_PLLEN$OFF 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext13 F1E 0 CODE 0 text13 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext13 794 0 CODE 0 text13 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank18 0 0 BANK18 1 bank18 -
+__pbssBANK2 120 0 BANK2 1 bssBANK2 dist/default/debug\ADB_Launcher.X.debug.obj
 __Lbank18 0 0 BANK18 1 bank18 -
 _ADCON0bits 9D 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _ADCON1bits 9E 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext23 1B0E 0 CODE 0 text23 dist/default/debug\ADB_Launcher.X.debug.obj
 sprintf@prec 3F 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank28 0 0 BANK28 1 bank28 -
 __HidataBANK1 0 0 ABS 0 idataBANK1 -
 __Lbank28 0 0 BANK28 1 bank28 -
 __LidataBANK1 0 0 ABS 0 idataBANK1 -
 _ADCON2bits 9F 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext14 D8E 0 CODE 0 text14 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext14 1F40 0 CODE 0 text14 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank19 0 0 BANK19 1 bank19 -
 __Lbank19 0 0 BANK19 1 bank19 -
-__pidataBANK1 FE8 0 CODE 0 idataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+__pidataBANK1 1D0E 0 CODE 0 idataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext24 1CA0 0 CODE 0 text24 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hbank29 0 0 BANK29 1 bank29 -
 __Lbank29 0 0 BANK29 1 bank29 -
-__ptext15 CBA 0 CODE 0 text15 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_InitSPI D3E 0 CODE 0 text12 dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext16 1B2 0 CODE 0 text16 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext15 1B86 0 CODE 0 text15 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_InitSPI 1BF0 0 CODE 0 text21 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext25 1BA8 0 CODE 0 text25 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext16 1BF0 0 CODE 0 text16 dist/default/debug\ADB_Launcher.X.debug.obj
 __HbssBANK3 0 0 ABS 0 bssBANK3 -
 __LbssBANK3 0 0 ABS 0 bssBANK3 -
 __CFG_BOREN$OFF 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext17 FAC 0 CODE 0 text17 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext17 1B32 0 CODE 0 text17 dist/default/debug\ADB_Launcher.X.debug.obj
 __pbssBANK3 1A0 0 BANK3 1 bssBANK3 dist/default/debug\ADB_Launcher.X.debug.obj
 _ANSELAbits 18C 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of___lwmod ECA 0 CODE 0 text9 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of___lwmod FFC 0 CODE 0 text11 dist/default/debug\ADB_Launcher.X.debug.obj
 _ANSELBbits 18D 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext27 1C42 0 CODE 0 text27 dist/default/debug\ADB_Launcher.X.debug.obj
 ___lwmod@divisor 2E 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-__ptext18 C12 0 CODE 0 text18 dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext18 1C70 0 CODE 0 text18 dist/default/debug\ADB_Launcher.X.debug.obj
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
-_recordModeFlag 7D 0 COMMON 1 bssCOMMON dist/default/debug\ADB_Launcher.X.debug.obj
+__size_of_WriteSPI 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+__ptext19 1B00 0 CODE 0 text19 dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of_SetupGPS 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __pbssCOMMON 79 0 COMMON 1 bssCOMMON dist/default/debug\ADB_Launcher.X.debug.obj
+main@periodicCounter E2 0 BANK1 1 cstackBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+_validLatitude CD 0 BANK1 1 bssBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+ReadBuffer@read_data 21 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 _T1GCONbits 19 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _OSCCONbits 99 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _WDTCONbits 97 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 _INTCONbits B 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of_InitCLK 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-__Hend_init 152 0 CODE 0 end_init -
-__Lend_init 14E 0 CODE 0 end_init -
+__Hend_init 19E 0 CODE 0 end_init -
+__Lend_init 19A 0 CODE 0 end_init -
 ___lwdiv@divisor 26 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-_DecodeGPS 1B2 0 CODE 0 text16 dist/default/debug\ADB_Launcher.X.debug.obj
+_DecodeGPS 20E 0 CODE 0 text3 dist/default/debug\ADB_Launcher.X.debug.obj
 DecodeGPS@longitude 40 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-_UpdateGPS C80 0 CODE 0 text2 dist/default/debug\ADB_Launcher.X.debug.obj
+_UpdateGPS 1DEA 0 CODE 0 text2 dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of___wmul 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Hreset_vec 6 0 CODE 0 reset_vec -
 __Lreset_vec 0 0 CODE 0 reset_vec -
 __HidataBANK2 0 0 ABS 0 idataBANK2 -
 __LidataBANK2 0 0 ABS 0 idataBANK2 -
-__pidataBANK2 ECA 0 CODE 0 idataBANK2 dist/default/debug\ADB_Launcher.X.debug.obj
+__pidataBANK2 1C16 0 CODE 0 idataBANK2 dist/default/debug\ADB_Launcher.X.debug.obj
 uart_write_message@x 31 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-__stringdata E14 0 STRCODE 0 stringtext dist/default/debug\ADB_Launcher.X.debug.obj
-_gpsInvalidFlag E9 0 BANK1 1 dataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
-intlevel0 0 0 CODE 0 functab C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
+__stringdata 1014 0 STRCODE 0 stringtext dist/default/debug\ADB_Launcher.X.debug.obj
+_gpsInvalidFlag BE 0 BANK1 1 dataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
+intlevel0 0 0 CODE 0 functab C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
 __size_of_uart_xmit 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-intlevel1 0 0 CODE 0 functab C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
-intlevel2 0 0 CODE 0 functab C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
+intlevel1 0 0 CODE 0 functab C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
+intlevel2 0 0 CODE 0 functab C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
+WriteOverheadSPI@address 27 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 compute_checksum@x 26 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-_InitGPIO F1E 0 CODE 0 text13 dist/default/debug\ADB_Launcher.X.debug.obj
-intlevel3 0 0 CODE 0 functab C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
-intlevel4 0 0 CODE 0 functab C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
-intlevel5 0 0 CODE 0 functab C:\Users\477grp4\AppData\Local\Temp\s5pk.obj
-SetupGPS@F4908 E5 0 BANK1 1 dataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
-DecodeGPS@F4915 143 0 BANK2 1 dataBANK2 dist/default/debug\ADB_Launcher.X.debug.obj
+_InitGPIO 1D94 0 CODE 0 text22 dist/default/debug\ADB_Launcher.X.debug.obj
+intlevel3 0 0 CODE 0 functab C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
+intlevel4 0 0 CODE 0 functab C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
+_WriteSPI 1BF0 0 CODE 0 text16 dist/default/debug\ADB_Launcher.X.debug.obj
+intlevel5 0 0 CODE 0 functab C:\Users\477grp4\AppData\Local\Temp\s6k4.obj
 __size_of___lwmod 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of_InitGPIO 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-_initUART D3E 0 CODE 0 text1 dist/default/debug\ADB_Launcher.X.debug.obj
+_initUART 1B68 0 CODE 0 text1 dist/default/debug\ADB_Launcher.X.debug.obj
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of___wmul FE8 0 CODE 0 text17 dist/default/debug\ADB_Launcher.X.debug.obj
-start_initialization 152 0 CODE 0 cinit dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_uart_xmit D8E 0 CODE 0 text6 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of___wmul 1D0E 0 CODE 0 text4 dist/default/debug\ADB_Launcher.X.debug.obj
+__size_of_RecordMode 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
+_ReadStatusSPI 1B86 0 CODE 0 text15 dist/default/debug\ADB_Launcher.X.debug.obj
+start_initialization 19E 0 CODE 0 cinit dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_uart_xmit 1B32 0 CODE 0 text8 dist/default/debug\ADB_Launcher.X.debug.obj
 ___lwdiv@quotient 2B 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-_SetupGPS 88E 0 CODE 0 text4 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_SetupGPS 9B2 0 CODE 0 text4 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_WriteSPI 1C16 0 CODE 0 text16 dist/default/debug\ADB_Launcher.X.debug.obj
+_SetupGPS C7A 0 CODE 0 text6 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_SetupGPS D9E 0 CODE 0 text6 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_ReadSPI 1B4A 0 CODE 0 text17 dist/default/debug\ADB_Launcher.X.debug.obj
 compute_checksum@data 25 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_ReadStatusSPI 1BA8 0 CODE 0 text15 dist/default/debug\ADB_Launcher.X.debug.obj
 compute_checksum@size 20 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_InitWatchdog DAC 0 CODE 0 text10 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_InitWatchdog 1B0E 0 CODE 0 text19 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_RecordMode A6E 0 CODE 0 text13 dist/default/debug\ADB_Launcher.X.debug.obj
 __Hmaintext 0 0 ABS 0 maintext -
 __Lmaintext 0 0 ABS 0 maintext -
-__pmaintext 9B2 0 CODE 0 maintext dist/default/debug\ADB_Launcher.X.debug.obj
+__pmaintext D9E 0 CODE 0 maintext dist/default/debug\ADB_Launcher.X.debug.obj
 __CFG_MCLRE$ON 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __size_of_uart_write_message 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Hinittext 0 0 ABS 0 inittext -
 __CFG_FOSC$INTOSC 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
 __Linittext 0 0 ABS 0 inittext -
 __size_of_sprintf 0 0 ABS 0 - dist/default/debug\ADB_Launcher.X.debug.obj
-__initialization 152 0 CODE 0 cinit dist/default/debug\ADB_Launcher.X.debug.obj
+__initialization 19E 0 CODE 0 cinit dist/default/debug\ADB_Launcher.X.debug.obj
+SetupGPS@F4918 BA 0 BANK1 1 dataBANK1 dist/default/debug\ADB_Launcher.X.debug.obj
 ___lwmod@dividend 30 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 sprintf@_val 42 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
-__end_of_InitCLK D9E 0 CODE 0 text14 dist/default/debug\ADB_Launcher.X.debug.obj
+__end_of_InitCLK 1B1E 0 CODE 0 text23 dist/default/debug\ADB_Launcher.X.debug.obj
 ___wmul@product 24 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 ___lwmod@counter 33 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 sprintf@c 46 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
@@ -998,12 +1189,35 @@ sprintf@c 46 0 BANK0 1 cstackBANK0 dist/default/debug\ADB_Launcher.X.debug.obj
 # All other numeric quantities are in decimal.
 %SEGMENTS
 reset_vec 0 0 0 3 2
-intentry 0 4 8 6DE 2
+intentry 0 4 8 7FA 2
 config 0 8007 1000E 2 2
 cstackCOMMON 1 70 70 E 1
 cstackBANK0 1 20 20 50 1
-bssBANK1 1 A0 A0 4E 1
 bssBANK3 1 1A0 1A0 33 1
-dataBANK2 1 120 120 2A 1
-stringtext 0 700 E00 36 2
-text9 0 736 E6C C9 2
+bssBANK2 1 120 120 48 1
+dataBANK1 1 A0 A0 44 1
+text14 0 FA0 1F40 60 2
+text9 0 F5E 1EBC 42 2
+text12 0 F27 1E4E 37 2
+stringtext 0 800 1000 36 2
+text2 0 EF5 1DEA 32 2
+text22 0 ECA 1D94 2B 2
+text5 0 EA8 1D50 22 2
+idataBANK1 0 E87 1D0E 21 2
+text4 0 E69 1CD2 1E 2
+text24 0 E50 1CA0 19 2
+text18 0 E38 1C70 18 2
+text27 0 E21 1C42 17 2
+idataBANK2 0 E0B 1C16 16 2
+text16 0 DF8 1BF0 13 2
+text21 0 DE6 1BCC 12 2
+text25 0 DD4 1BA8 12 2
+text15 0 DC3 1B86 11 2
+text1 0 DB4 1B68 F 2
+text20 0 DA5 1B4A F 2
+text17 0 D99 1B32 C 2
+text8 0 D8F 1B1E A 2
+text23 0 D87 1B0E 8 2
+text19 0 D80 1B00 7 2
+clrtext 0 D7A 1AF4 6 2
+inittext 0 D74 1AE8 6 2

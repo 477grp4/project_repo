@@ -13,6 +13,13 @@ void InitCLK()
 void InitGPIO()
 {
     //SPI/UART pins are declared in their respective Init functions
+    
+    //Stobe-Select Interrupt initialization
+    TRISAbits.TRISA1 = 1;       //Set RA1 to input
+    IOCAPbits.IOCAP1 = 1;       //Enable positive edge interrupt for pin RA1
+    IOCANbits.IOCAN1 = 1;       //enable negative edge interrupt for pin RB3
+    IOCAF            = 0x00;    //Clear IOC flags
+    INTCONbits.IOCIE = 1;       //Enable interrupts on change
 
     //Record Button Interrupt initialization
     TRISBbits.TRISB3 = 1; //set RB3 to input
@@ -24,7 +31,7 @@ void InitGPIO()
 
     //Port A
     TRISAbits.TRISA0 = 1;       //Analog input, microphone signal
-    TRISAbits.TRISA1 = 1;       //Strobe Select
+    //TRISAbits.TRISA1 = 1;       //Strobe Select
     TRISAbits.TRISA2 = 1;       //Beacon charging indicator
     TRISAbits.TRISA3 = 1;       //Play-Button input
     TRISAbits.TRISA4 = 0;       //Mem-Access output
@@ -105,7 +112,7 @@ void InitSPI()
     TRISCbits.TRISC4 = 1; // RC4 = SDI input from SEE
     TRISCbits.TRISC5 = 0; // RC5 = SDO output to SEE
 
-    SPI_CS = 0; // start high. Need falling edge to do anything |must be changed!
+    SPI_CS = CS_IDLE; // start high. Need falling edge to do anything
 
     // Setup SPI as Master mode, Mode 00 and clock rate of Fosc/16
     SSPCON1bits.SSPEN=0x00;      // Disable SPI Port for configuration
@@ -149,10 +156,10 @@ unsigned char ReadStatusSPI(void)
 {
     unsigned char dataRead;
 
-    SPI_CS=1; //must be changed!
+    SPI_CS=CS_ACTIVE;
     WriteSPI(SPI_RDSR);         // Send read status register command
     dataRead = ReadSPI();  // Read the data
-    SPI_CS=0; //must be changed!
+    SPI_CS=CS_IDLE;
 
     return(dataRead);
 }
@@ -172,9 +179,9 @@ void WriteOverheadSPI(long int address)
     } while (StatusReg);
 
     //__delay_ms(5);
-    SPI_CS = 1;         //bring chip select low must be changed!
+    SPI_CS = CS_ACTIVE;         //bring chip select low
     WriteSPI(SPI_WREN); //send write enable
-    SPI_CS=0; //must be changed!
+    SPI_CS = CS_IDLE;
 
     do
     {
@@ -183,7 +190,7 @@ void WriteOverheadSPI(long int address)
     //__delay_ms(5);          // If you don't want to use the polling method you can
                                // just wait for the max write cycle time (5ms)
 
-    SPI_CS=1; //must be changed!
+    SPI_CS=CS_ACTIVE;
     WriteSPI(SPI_WRITE);         // Send write command
     WriteSPI(address_bytes[0]);
     WriteSPI(address_bytes[1]);
@@ -231,7 +238,7 @@ void ReadOverheadSPI(int address)
     } while (StatusReg);
 
     //__delay_ms(5);
-    SPI_CS = 1; //must be changed!
+    SPI_CS = CS_ACTIVE;
     WriteSPI(SPI_READ);
     WriteSPI(addressBytes[0]);
     WriteSPI(addressBytes[1]);
@@ -304,7 +311,7 @@ void uart_write_message(unsigned char * data, int size)
 }
 
 
-
+//GPS Functions
 void ToggleSleepGPS()
 {
     TRISAbits.TRISA6 = 0; //ON/OFF pin
@@ -333,14 +340,12 @@ void SetupGPS()
     //Disable GGA,GGL,GSA,GSV,RMC,VTG
     for(x = 0; x < 6; x++)
     {
-        //__delay_ms(1000);
-        GoToSleep();
+        __delay_ms(1000);
         sprintf(message, "%s%s,0%d,00,00,00*", startSequence, MID, x);
         uart_write_message(message,  22);
     }
 
-    //__delay_ms(1000);
-    GoToSleep();
+    __delay_ms(1000);
     //Enable GLL in query mode
     sprintf(message, "%s%s,01,01,01,00*", startSequence, MID);
     uart_write_message(message,  22);
@@ -358,9 +363,14 @@ void UpdateGPS()
     PEIE = 1;
     GIE = 1;
 
-    //Get a single GLL message
     gpsIndex = 0;
-    uart_write_message(GPSupdateMessage,  22);
+    __delay_ms(1000);
+    uart_write_message(GPSupdateMessage,  22);  //Get a single GLL message
+    while(!messageDoneFlag);    //wait for GPS to finish transferring message
+    messageDoneFlag = 0;        //clear the message done flag
+    DecodeGPS();                //decode the message sent by the GPS
+
+
 }
 
 
@@ -462,11 +472,104 @@ void DecodeGPS()
     else
         gpsInvalidFlag = 1;
 
+
+
+    if(!gpsInvalidFlag)
+    {
+        //Copy the valid GPS coordinates to the global buffer
+        for(x=0;x<3;x++)
+        {
+         validLatitude[x]   = latitude[x];
+         validLongitude[x]  = longitude[x];
+        }
+         validNorthSouth = northSouth;
+         validEastWest   = eastWest;
+    }
 }
 
-void GoToSleep()
+void GoToSleep(unsigned char count)
 {
-    WDTCONbits.SWDTEN = 1;      //Software disable of WDT
+    WDTCONbits.WDTPS = count;    //Set timing interval
+    WDTCONbits.SWDTEN = 1;                  //Software enable of WDT
     SLEEP();
-    WDTCONbits.SWDTEN = 0;      //Software enable of WDT
+    WDTCONbits.SWDTEN = 0;                  //Software disable of WDT
+}
+
+void GoToSleepTenMin()
+{
+    unsigned char count = 0;
+    WDTCONbits.WDTPS = MAX_PERIOD;
+    WDTCONbits.SWDTEN = 1;
+    while(!recordFlag && count++ < 3)
+    {
+        SLEEP();
+    }
+    WDTCONbits.SWDTEN = 0;
+}
+
+void RecordMode()
+{
+    long int address = 18;
+    int count = 18;
+    int x;
+
+    RING_START = 0; //clear the buffer
+    RING_END = 0;
+
+    //Write the Header GPS Data
+    WriteOverheadSPI(address);
+    for(x=0;x<3;x++)
+    {
+        WriteSPI(validLongitude[x]);
+        WriteSPI(validLongitude[x]>>8);
+    }
+    WriteSPI(validNorthSouth);
+    for(x=0;x<3;x++)
+    {
+        WriteSPI(validLatitude[x]);
+        WriteSPI(validLatitude[x]>>8);
+    }
+    WriteSPI(validEastWest);
+
+    TMR1IF  = 0;    //Clear interrupt flag
+    TMR1IE  = 1;    //Start Interrupt
+    TMR1ON  = 1;    //Start Timer
+
+    while((recordFlag) && (address < RECORD_END_ADDRESS))
+    {
+        if(count>=256) //perform overhead on next page
+        {
+            SPI_CS = CS_IDLE;
+            count = 0;
+            WriteOverheadSPI(address);
+        }
+        if(!isEmpty())
+        {
+            WriteSPI(ReadBuffer());
+            address++;
+            count++;
+        }
+    }
+    SPI_CS = CS_IDLE;
+    TMR1IE  = 0;    //Stop Interrupt
+    TMR1ON  = 0;    //Stop Timer
+    __delay_ms(5);
+    WriteOverheadSPI(0x0000000E);
+    if(address >= RECORD_END_ADDRESS)
+    {
+        WriteSPI(RECORD_END_ADDRESS - 1);
+        WriteSPI((RECORD_END_ADDRESS - 1)>>8);
+        WriteSPI((RECORD_END_ADDRESS - 1)>>16);
+        WriteSPI((RECORD_END_ADDRESS - 1)>>24);
+    }
+    else
+    {
+        WriteSPI(address);
+        WriteSPI(address>>8);
+        WriteSPI(address>>16);
+        WriteSPI(address>>24);
+    }
+    SPI_CS = CS_IDLE;
+    RING_START = 0; //clear the buffer
+    RING_END = 0;
 }

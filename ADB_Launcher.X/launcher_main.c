@@ -28,46 +28,57 @@ int main(int argc, char** argv) {
     InitWatchdog();
     initUART();             //Initialize UART module
 
+    unsigned char periodicCounter = MIN_PERIOD;
     gpsIndex = 1;
 
     INTCONbits.GIE = 1;
 
     ToggleSleepGPS();       //Turn GPS on
-
     SetupGPS();             //Setup Lat/Long recording
-    //__delay_ms(1000);
-
-    
-    
 
     while(1){
-        GoToSleep(); //sleep
+
+        //Check Flags
+        if(strobeFlag)
+        {
+             //Strobe LED
+            PORTAbits.RA1 = 1;
+            __delay_ms(100);
+            PORTAbits.RA1 = 0;
+        }
+
+        if(recordFlag)
+        {
+            RecordMode();
+        }
+        
+        //Not recording, Update the GPS
         UpdateGPS(); //tell GPS to send an update
-        while(!messageDoneFlag); //wait for GPS to finish transferring message
-        DecodeGPS(); //decode the message sent by the GPS
-        messageDoneFlag = 0; //clear the message done flag
+
         if(gpsInvalidFlag) //turn on red LED if invalid message
         {
             PORTBbits.PORTB = LATBbits.LATB | 0x20; //turn red LED on
             PORTBbits.PORTB = LATBbits.LATB & 0xEF; //turn green LED off
+            //if(periodicCounter < MAX_PERIOD)
+            //    periodicCounter++;
         }
         else //turn on green LED if valid message
         {
             PORTBbits.PORTB = LATBbits.LATB | 0x10; //turn green LED on
             PORTBbits.PORTB = LATBbits.LATB & 0xDF; //turn red LED off
+            //periodicCounter = MIN_PERIOD;
+            ToggleSleepGPS();                       //Hibernate
+        }
+        
+        if(!recordFlag)
+        {
+            GoToSleep(periodicCounter);
+            //if(gpsInvalidFlag)
+            //    GoToSleep(periodicCounter);
+            //else
+            //    GoToSleepTenMin();
         }
     }
-/*
-
-    //Main Loop
-    while(1)
-    {
-        if (recordModeFlag)
-            TMR1IE              = 1;    //Enable TIMR1 interrupts
-        else
-            TMR1IE              = 0;    //Disable TIMR1 interrupts
-    }
-*/
 
     return (EXIT_SUCCESS);
 }
@@ -102,7 +113,7 @@ interrupt void isr(void)
         TMR1L               = 0xCD;
         TMR1IF              = 0;
 
-        if(recordModeFlag)
+        if(recordFlag)
         {
             ADCON0bits.ADGO     = 1; //Start Conversion
         }
@@ -118,16 +129,31 @@ interrupt void isr(void)
         PIR1bits.ADIF = 0;
     }
 
+    //Record Button IOC
     if(INTCONbits.IOCIE &&  IOCBFbits.IOCBF3)
     {
         IOCBFbits.IOCBF3 = 0;
         if(IOCBPbits.IOCBP3 & PORTBbits.RB3)
         {
-            recordModeFlag = 1;
+            recordFlag = 1;
         }
         if(IOCBNbits.IOCBN3 & !PORTBbits.RB3)
         {
-            recordModeFlag = 0;
+            recordFlag = 0;
+        }
+    }
+    
+    //Strobe-Select IOC
+    if(INTCONbits.IOCIE &&  IOCAFbits.IOCAF1)
+    {
+        IOCAFbits.IOCAF1 = 0;
+        if(IOCAPbits.IOCAP1 & PORTAbits.RA1)
+        {
+            strobeFlag = 1;
+        }
+        if(IOCANbits.IOCAN1 & !PORTAbits.RA1)
+        {
+            strobeFlag = 0;
         }
     }
 
