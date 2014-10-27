@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=testmain.c
+SOURCEFILES_QUOTED_IF_SPACED=beacon_functions.c beacon_main.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/testmain.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/testmain.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/beacon_functions.p1 ${OBJECTDIR}/beacon_main.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/beacon_functions.p1.d ${OBJECTDIR}/beacon_main.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/testmain.p1
+OBJECTFILES=${OBJECTDIR}/beacon_functions.p1 ${OBJECTDIR}/beacon_main.p1
 
 # Source Files
-SOURCEFILES=testmain.c
+SOURCEFILES=beacon_functions.c beacon_main.c
 
 
 CFLAGS=
@@ -77,26 +77,42 @@ ifneq ($(INFORMATION_MESSAGE), )
 endif
 	${MAKE}  -f nbproject/Makefile-default.mk dist/${CND_CONF}/${IMAGE_TYPE}/ADB_source.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 
-MP_PROCESSOR_OPTION=16F1783
+MP_PROCESSOR_OPTION=16LF1783
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/testmain.p1: testmain.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/beacon_functions.p1: beacon_functions.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/testmain.p1.d 
-	@${RM} ${OBJECTDIR}/testmain.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/testmain.p1  testmain.c 
-	@-${MV} ${OBJECTDIR}/testmain.d ${OBJECTDIR}/testmain.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/testmain.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/beacon_functions.p1.d 
+	@${RM} ${OBJECTDIR}/beacon_functions.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/beacon_functions.p1  beacon_functions.c 
+	@-${MV} ${OBJECTDIR}/beacon_functions.d ${OBJECTDIR}/beacon_functions.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/beacon_functions.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/beacon_main.p1: beacon_main.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/beacon_main.p1.d 
+	@${RM} ${OBJECTDIR}/beacon_main.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/beacon_main.p1  beacon_main.c 
+	@-${MV} ${OBJECTDIR}/beacon_main.d ${OBJECTDIR}/beacon_main.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/beacon_main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
-${OBJECTDIR}/testmain.p1: testmain.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/beacon_functions.p1: beacon_functions.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/testmain.p1.d 
-	@${RM} ${OBJECTDIR}/testmain.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/testmain.p1  testmain.c 
-	@-${MV} ${OBJECTDIR}/testmain.d ${OBJECTDIR}/testmain.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/testmain.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/beacon_functions.p1.d 
+	@${RM} ${OBJECTDIR}/beacon_functions.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/beacon_functions.p1  beacon_functions.c 
+	@-${MV} ${OBJECTDIR}/beacon_functions.d ${OBJECTDIR}/beacon_functions.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/beacon_functions.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/beacon_main.p1: beacon_main.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/beacon_main.p1.d 
+	@${RM} ${OBJECTDIR}/beacon_main.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/beacon_main.p1  beacon_main.c 
+	@-${MV} ${OBJECTDIR}/beacon_main.d ${OBJECTDIR}/beacon_main.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/beacon_main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

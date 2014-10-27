@@ -1,0 +1,25 @@
+__stringdata: STRCODE, 1802 0 44
+_dpowers: STRCODE, 1792 0 10
+_InitTimer1: CODE, 1710 0 15
+_ToggleSleepGPS: CODE, 1972 0 34
+_main: CODE, 1241 0 124
+_InitADC: CODE, 1629 0 25
+_uart_write_message: CODE, 1365 0 114
+_initUART: CODE, 1695 0 15
+__initialization: CODE, 169 0 44
+___lwdiv: CODE, 1545 0 55
+_compute_checksum: CODE, 1479 0 66
+_WriteBuffer: CODE, 1654 0 23
+_DecodeGPS: CODE, 217 0 616
+_isr: CODE, 4 0 163
+_UpdateGPS: CODE, 1600 0 29
+_sprintf: CODE, 833 0 262
+_InitGPIO: CODE, 1935 0 37
+_InitSPI: CODE, 1677 0 18
+___lwmod: CODE, 1846 0 47
+___wmul: CODE, 2006 0 30
+_uart_xmit: CODE, 1725 0 10
+_SetupGPS: CODE, 1095 0 146
+_InitWatchdog: CODE, 1743 0 7
+_InitCLK: CODE, 1735 0 8
+Total: 1942

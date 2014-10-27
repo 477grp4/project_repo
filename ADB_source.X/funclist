@@ -1,4 +1,11 @@
-_main: CODE, 52 0 17
-__initialization: CODE, 46 0 2
-_isr: CODE, 4 0 40
-Total: 59
+_InitTimer0: CODE, 184 0 10
+_main: CODE, 103 0 22
+__initialization: CODE, 58 0 12
+_isr: CODE, 4 0 52
+_InitGPIO: CODE, 74 0 29
+_ReadBuffer: CODE, 125 0 22
+_InitSPI: CODE, 166 0 18
+_InitDAC: CODE, 147 0 19
+_InitWatchdog: CODE, 202 0 7
+_InitCLK: CODE, 194 0 8
+Total: 199
