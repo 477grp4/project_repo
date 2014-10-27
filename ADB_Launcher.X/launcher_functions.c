@@ -385,15 +385,18 @@ void DecodeGPS()
     //Latitude
     if(gpsMessage[x]!= ',')
     {
+        //decode degrees
         latitude[0] = (gpsMessage[x++] - 48)*10;
         latitude[0] += (gpsMessage[x++] - 48);
 
+        //decode minutes
         latitude[1] = (gpsMessage[x++] - 48)*10;
         latitude[1] += (gpsMessage[x++] - 48);
 
         //skip period
         x = x + 1;
 
+        //decode seconds
         latitude[2] = (gpsMessage[x++] - 48)*10;
         latitude[2] += (gpsMessage[x++] - 48);
         latitude[2] = (latitude[2]*60)/100;
@@ -415,16 +418,19 @@ void DecodeGPS()
     //Longitude
     if(gpsMessage[x]!= ',')
     {
+        //decode degrees
         longitude[0] = (gpsMessage[x++] - 48)*100;
         longitude[0] += (gpsMessage[x++] - 48)*10;
         longitude[0] += (gpsMessage[x++] - 48);
 
+        //decode minutes
         longitude[1] = (gpsMessage[x++] - 48)*10;
         longitude[1] += (gpsMessage[x++] - 48);
 
         //skip period
         x = x + 1;
 
+        //decode seconds
         longitude[2] = (gpsMessage[x++] - 48)*10;
         longitude[2] += (gpsMessage[x++] - 48);
         longitude[2] = (longitude[2]*60)/100;

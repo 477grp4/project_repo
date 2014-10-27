@@ -42,19 +42,19 @@ int main(int argc, char** argv) {
 
     while(1){
          __delay_ms(1000);
-         UpdateGPS();
-         while(!messageDoneFlag);
-         DecodeGPS();
-         messageDoneFlag = 0;
-         if(gpsInvalidFlag)
+         UpdateGPS(); //tell GPS to send an update
+         while(!messageDoneFlag); //wait for GPS to finish transferring message
+         DecodeGPS(); //decode the message sent by the GPS
+         messageDoneFlag = 0; //clear the message done flag
+         if(gpsInvalidFlag) //turn on red LED if invalid message
          {
-             PORTBbits.PORTB = LATBbits.LATB | 0x20;
-             PORTBbits.PORTB = LATBbits.LATB & 0xEF;
+             PORTBbits.PORTB = LATBbits.LATB | 0x20; //turn red LED on
+             PORTBbits.PORTB = LATBbits.LATB & 0xEF; //turn green LED off
          }
-         else
+         else //turn on green LED if valid message
          {
-             PORTBbits.PORTB = LATBbits.LATB | 0x10;
-             PORTBbits.PORTB = LATBbits.LATB & 0xDF;
+             PORTBbits.PORTB = LATBbits.LATB | 0x10; //turn green LED on
+             PORTBbits.PORTB = LATBbits.LATB & 0xDF; //turn red LED off
          }
     }
 /*
