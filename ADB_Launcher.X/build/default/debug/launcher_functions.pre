@@ -1,7 +1,7 @@
 
 # 1 "launcher_functions.c"
 
-# 47 "launcher.h"
+# 49 "launcher.h"
 void InitCLK();
 void InitGPIO();
 void InitADC();
@@ -38,7 +38,7 @@ void UpdateGPS();
 
 
 void GoToSleep(unsigned char count);
-void GoToSleepTenMin();
+void Hibernate();
 void RecordMode();
 
 
@@ -6226,6 +6226,7 @@ void InitGPIO()
 
 
 TRISAbits.TRISA1 = 1;
+ANSELAbits.ANSA1 = 0;
 IOCAPbits.IOCAP1 = 1;
 IOCANbits.IOCAN1 = 1;
 IOCAF = 0x00;
@@ -6272,7 +6273,7 @@ ANSELBbits.ANSB5 = 0;
 TRISCbits.TRISC0 = 0;
 TRISCbits.TRISC1 = 0;
 
-# 70
+# 71
 }
 
 void InitADC()
@@ -6513,20 +6514,19 @@ uart_xmit(ascii_checksum[1]);
 
 uart_xmit(0x0D);
 uart_xmit(0x0A);
-
+while(!TXSTAbits.TRMT);
 }
 
 
 
 void ToggleSleepGPS()
 {
-TRISAbits.TRISA6 = 0;
-
-RA6 = 0;
+PORTAbits.RA6 = 0;
 _delay((unsigned long)((1000)*(16000000/4000.0)));
-RA6 = 1;
+PORTAbits.RA6 = 1;
 _delay((unsigned long)((100)*(16000000/4000.0)));
-RA6 = 0;
+PORTAbits.RA6 = 0;
+_delay((unsigned long)((1000)*(16000000/4000.0)));
 }
 void DisableGPS()
 {
@@ -6569,10 +6569,13 @@ RCIE = 1;
 PEIE = 1;
 GIE = 1;
 
+if(!PORTCbits.RC7)
+ToggleSleepGPS();
+
 gpsIndex = 0;
-_delay((unsigned long)((1000)*(16000000/4000.0)));
 uart_write_message(GPSupdateMessage, 22);
 while(!messageDoneFlag);
+
 messageDoneFlag = 0;
 DecodeGPS();
 
@@ -6701,10 +6704,10 @@ asm("sleep");
 WDTCONbits.SWDTEN = 0;
 }
 
-void GoToSleepTenMin()
+void Hibernate()
 {
 unsigned char count = 0;
-WDTCONbits.WDTPS = 18;
+WDTCONbits.WDTPS = 14;
 WDTCONbits.SWDTEN = 1;
 while(!recordFlag && count++ < 3)
 {

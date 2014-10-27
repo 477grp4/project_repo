@@ -16,8 +16,9 @@ void InitGPIO()
     
     //Stobe-Select Interrupt initialization
     TRISAbits.TRISA1 = 1;       //Set RA1 to input
+    ANSELAbits.ANSA1 = 0;
     IOCAPbits.IOCAP1 = 1;       //Enable positive edge interrupt for pin RA1
-    IOCANbits.IOCAN1 = 1;       //enable negative edge interrupt for pin RB3
+    IOCANbits.IOCAN1 = 1;       //enable negative edge interrupt for pin RA1
     IOCAF            = 0x00;    //Clear IOC flags
     INTCONbits.IOCIE = 1;       //Enable interrupts on change
 
@@ -307,20 +308,19 @@ void uart_write_message(unsigned char * data, int size)
 
     uart_xmit(0x0D);
     uart_xmit(0x0A);
-
+    while(!TXSTAbits.TRMT); //wait for last byte to transmit
 }
 
 
 //GPS Functions
 void ToggleSleepGPS()
 {
-    TRISAbits.TRISA6 = 0; //ON/OFF pin
-
-    RA6 = 0;
+    PORTAbits.RA6 = 0;
     __delay_ms(1000); //Must wait 1 second between pulses
-    RA6 = 1;
+    PORTAbits.RA6 = 1;
     __delay_ms(100);  //.1ms pulse width
-    RA6 = 0;
+    PORTAbits.RA6 = 0;
+    __delay_ms(1000);
 }
 void DisableGPS()
 {
@@ -363,10 +363,13 @@ void UpdateGPS()
     PEIE = 1;
     GIE = 1;
 
+    if(!PORTCbits.RC7)          //if GPS is off
+        ToggleSleepGPS();       //Turn GPS on
+
     gpsIndex = 0;
-    __delay_ms(1000);
     uart_write_message(GPSupdateMessage,  22);  //Get a single GLL message
-    while(!messageDoneFlag);    //wait for GPS to finish transferring message
+    while(!messageDoneFlag);//wait for GPS to finish transferring message
+
     messageDoneFlag = 0;        //clear the message done flag
     DecodeGPS();                //decode the message sent by the GPS
 
@@ -495,12 +498,12 @@ void GoToSleep(unsigned char count)
     WDTCONbits.SWDTEN = 0;                  //Software disable of WDT
 }
 
-void GoToSleepTenMin()
+void Hibernate()
 {
     unsigned char count = 0;
     WDTCONbits.WDTPS = MAX_PERIOD;
     WDTCONbits.SWDTEN = 1;
-    while(!recordFlag && count++ < 3)
+    while(!recordFlag && count++ < NUM_PERIODS)
     {
         SLEEP();
     }

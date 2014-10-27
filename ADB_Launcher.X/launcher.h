@@ -38,7 +38,9 @@ extern "C" {
 #define RED_LED PORTBbits.RB5
     
 #define MIN_PERIOD 10
-#define MAX_PERIOD 18
+#define MAX_PERIOD 14
+//#define MAX_PERIOD 18
+#define NUM_PERIODS 3   //number of MAX_PERIODS to sleep on hibernate
 
 #define CS_IDLE (0)
 #define CS_ACTIVE (1)
@@ -80,7 +82,7 @@ void UpdateGPS();
 
 //General Functions
 void GoToSleep(unsigned char count);
-void GoToSleepTenMin();
+void Hibernate();
 void RecordMode();
 
 

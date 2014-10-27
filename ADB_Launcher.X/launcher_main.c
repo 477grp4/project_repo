@@ -33,18 +33,19 @@ int main(int argc, char** argv) {
 
     INTCONbits.GIE = 1;
 
-    ToggleSleepGPS();       //Turn GPS on
+    if(!PORTCbits.RC7)
+        ToggleSleepGPS();       //Turn GPS on
     SetupGPS();             //Setup Lat/Long recording
 
     while(1){
 
         //Check Flags
-        if(strobeFlag)
+        if(PORTAbits.RA1)
         {
              //Strobe LED
-            PORTAbits.RA1 = 1;
+            PORTBbits.RB0 = 1;
             __delay_ms(100);
-            PORTAbits.RA1 = 0;
+            PORTBbits.RB0 = 0;
         }
 
         if(recordFlag)
@@ -59,24 +60,25 @@ int main(int argc, char** argv) {
         {
             PORTBbits.PORTB = LATBbits.LATB | 0x20; //turn red LED on
             PORTBbits.PORTB = LATBbits.LATB & 0xEF; //turn green LED off
-            //if(periodicCounter < MAX_PERIOD)
-            //    periodicCounter++;
+            if(periodicCounter < MAX_PERIOD)
+                periodicCounter++;
         }
         else //turn on green LED if valid message
         {
             PORTBbits.PORTB = LATBbits.LATB | 0x10; //turn green LED on
             PORTBbits.PORTB = LATBbits.LATB & 0xDF; //turn red LED off
-            //periodicCounter = MIN_PERIOD;
+            periodicCounter = MIN_PERIOD;
             ToggleSleepGPS();                       //Hibernate
         }
         
         if(!recordFlag)
         {
-            GoToSleep(periodicCounter);
-            //if(gpsInvalidFlag)
-            //    GoToSleep(periodicCounter);
-            //else
-            //    GoToSleepTenMin();
+            if(strobeFlag)
+                GoToSleep(MIN_PERIOD);
+            else if(gpsInvalidFlag)
+                GoToSleep(periodicCounter);
+            else
+                Hibernate();
         }
     }
 

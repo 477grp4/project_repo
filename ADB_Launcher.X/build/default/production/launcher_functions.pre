@@ -1,7 +1,7 @@
 
 # 1 "launcher_functions.c"
 
-# 44 "launcher.h"
+# 49 "launcher.h"
 void InitCLK();
 void InitGPIO();
 void InitADC();
@@ -38,7 +38,7 @@ void UpdateGPS();
 
 
 void GoToSleep(unsigned char count);
-void GoToSleepTenMin();
+void Hibernate();
 void RecordMode();
 
 
@@ -6226,6 +6226,7 @@ void InitGPIO()
 
 
 TRISAbits.TRISA1 = 1;
+ANSELAbits.ANSA1 = 0;
 IOCAPbits.IOCAP1 = 1;
 IOCANbits.IOCAN1 = 1;
 IOCAF = 0x00;
@@ -6272,7 +6273,7 @@ ANSELBbits.ANSB5 = 0;
 TRISCbits.TRISC0 = 0;
 TRISCbits.TRISC1 = 0;
 
-# 70
+# 71
 }
 
 void InitADC()
@@ -6318,7 +6319,7 @@ TRISCbits.TRISC3 = 0;
 TRISCbits.TRISC4 = 1;
 TRISCbits.TRISC5 = 0;
 
-LATC2 = 0;
+LATC2 = (0);
 
 
 SSPCON1bits.SSPEN=0x00;
@@ -6362,10 +6363,10 @@ unsigned char ReadStatusSPI(void)
 {
 unsigned char dataRead;
 
-LATC2=1;
+LATC2=(1);
 WriteSPI((0x05));
 dataRead = ReadSPI();
-LATC2=0;
+LATC2=(0);
 
 return(dataRead);
 }
@@ -6385,9 +6386,9 @@ StatusReg = (ReadStatusSPI() & 0x01);
 } while (StatusReg);
 
 
-LATC2 = 1;
+LATC2 = (1);
 WriteSPI((0x06));
-LATC2=0;
+LATC2 = (0);
 
 do
 {
@@ -6396,7 +6397,7 @@ StatusReg = (ReadStatusSPI() & 0x02);
 
 
 
-LATC2=1;
+LATC2=(1);
 WriteSPI((0x02));
 WriteSPI(address_bytes[0]);
 WriteSPI(address_bytes[1]);
@@ -6444,7 +6445,7 @@ StatusReg = (ReadStatusSPI() & 0x01);
 } while (StatusReg);
 
 
-LATC2 = 1;
+LATC2 = (1);
 WriteSPI((0x03));
 WriteSPI(addressBytes[0]);
 WriteSPI(addressBytes[1]);
@@ -6513,20 +6514,19 @@ uart_xmit(ascii_checksum[1]);
 
 uart_xmit(0x0D);
 uart_xmit(0x0A);
-
+while(!TXSTAbits.TRMT);
 }
 
 
 
 void ToggleSleepGPS()
 {
-TRISAbits.TRISA6 = 0;
-
-RA6 = 0;
+PORTAbits.RA6 = 0;
 _delay((unsigned long)((1000)*(16000000/4000.0)));
-RA6 = 1;
+PORTAbits.RA6 = 1;
 _delay((unsigned long)((100)*(16000000/4000.0)));
-RA6 = 0;
+PORTAbits.RA6 = 0;
+_delay((unsigned long)((1000)*(16000000/4000.0)));
 }
 void DisableGPS()
 {
@@ -6570,9 +6570,9 @@ PEIE = 1;
 GIE = 1;
 
 gpsIndex = 0;
-_delay((unsigned long)((1000)*(16000000/4000.0)));
 uart_write_message(GPSupdateMessage, 22);
 while(!messageDoneFlag);
+
 messageDoneFlag = 0;
 DecodeGPS();
 
@@ -6701,16 +6701,18 @@ asm("sleep");
 WDTCONbits.SWDTEN = 0;
 }
 
-void GoToSleepTenMin()
+void Hibernate()
 {
 unsigned char count = 0;
-WDTCONbits.WDTPS = 18;
+WDTCONbits.WDTPS = 14;
 WDTCONbits.SWDTEN = 1;
 while(!recordFlag && count++ < 3)
 {
 asm("sleep");
 }
 WDTCONbits.SWDTEN = 0;
+if(!PORTCbits.RC7)
+ToggleSleepGPS();
 }
 
 void RecordMode()
@@ -6745,7 +6747,7 @@ while((recordFlag) && (address < 131072))
 {
 if(count>=256)
 {
-LATC2 = 1;
+LATC2 = (0);
 count = 0;
 WriteOverheadSPI(address);
 }
@@ -6756,7 +6758,7 @@ address++;
 count++;
 }
 }
-LATC2 = 1;
+LATC2 = (0);
 TMR1IE = 0;
 TMR1ON = 0;
 _delay((unsigned long)((5)*(16000000/4000.0)));
@@ -6775,7 +6777,7 @@ WriteSPI(address>>8);
 WriteSPI(address>>16);
 WriteSPI(address>>24);
 }
-LATC2 = 1;
+LATC2 = (0);
 (start) = 0;
 (end) = 0;
 }

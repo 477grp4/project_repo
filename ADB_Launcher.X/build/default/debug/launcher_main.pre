@@ -6180,7 +6180,7 @@ extern volatile __bit nTO @ (((unsigned) &STATUS)*8) + 4;
 
 extern volatile __bit nWPUEN @ (((unsigned) &OPTION_REG)*8) + 7;
 
-# 47 "launcher.h"
+# 49 "launcher.h"
 void InitCLK();
 void InitGPIO();
 void InitADC();
@@ -6217,7 +6217,7 @@ void UpdateGPS();
 
 
 void GoToSleep(unsigned char count);
-void GoToSleepTenMin();
+void Hibernate();
 void RecordMode();
 
 
@@ -12310,18 +12310,19 @@ gpsIndex = 1;
 
 INTCONbits.GIE = 1;
 
+if(!PORTCbits.RC7)
 ToggleSleepGPS();
 SetupGPS();
 
 while(1){
 
 
-if(strobeFlag)
+if(PORTAbits.RA1)
 {
 
-PORTAbits.RA1 = 1;
+PORTBbits.RB0 = 1;
 _delay((unsigned long)((100)*(16000000/4000.0)));
-PORTAbits.RA1 = 0;
+PORTBbits.RB0 = 0;
 }
 
 if(recordFlag)
@@ -12336,24 +12337,25 @@ if(gpsInvalidFlag)
 {
 PORTBbits.PORTB = LATBbits.LATB | 0x20;
 PORTBbits.PORTB = LATBbits.LATB & 0xEF;
-
-
+if(periodicCounter < 14)
+periodicCounter++;
 }
 else
 {
 PORTBbits.PORTB = LATBbits.LATB | 0x10;
 PORTBbits.PORTB = LATBbits.LATB & 0xDF;
-
+periodicCounter = 10;
 ToggleSleepGPS();
 }
 
 if(!recordFlag)
 {
+if(strobeFlag)
+GoToSleep(10);
+else if(gpsInvalidFlag)
 GoToSleep(periodicCounter);
-
-
-
-
+else
+Hibernate();
 }
 }
 

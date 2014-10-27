@@ -105,41 +105,41 @@
 [v ___fltoee __fltoee `(d  1 e 3 0 ]
 "49 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic\ftdiv.c
 [v ___ftdiv __ftdiv `(f  1 e 3 0 ]
-"8 P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c
+"8 C:\Users\Brian\Documents\GitHub\SeniorDesign\project_repo\ADB_Launcher.X\launcher_functions.c
 [v _InitCLK InitCLK `(v  1 e 0 0 ]
 "13
 [v _InitGPIO InitGPIO `(v  1 e 0 0 ]
-"72
+"73
 [v _InitADC InitADC `(v  1 e 0 0 ]
-"95
+"96
 [v _InitTimer1 InitTimer1 `(v  1 e 0 0 ]
-"107
+"108
 [v _InitSPI InitSPI `(v  1 e 0 0 ]
-"126
+"127
 [v _InitWatchdog InitWatchdog `(v  1 e 0 0 ]
-"135
+"136
 [v _WriteSPI WriteSPI `(v  1 e 0 0 ]
-"144
+"145
 [v _ReadSPI ReadSPI `(uc  1 e 1 0 ]
-"155
+"156
 [v _ReadStatusSPI ReadStatusSPI `(uc  1 e 1 0 ]
-"167
+"168
 [v _WriteOverheadSPI WriteOverheadSPI `(v  1 e 0 0 ]
-"204
+"205
 [v _WriteBuffer WriteBuffer `(v  1 e 0 0 ]
-"214
+"215
 [v _ReadBuffer ReadBuffer `(uc  1 e 1 0 ]
-"227
+"228
 [v _ReadOverheadSPI ReadOverheadSPI `(v  1 e 0 0 ]
-"252
+"253
 [v _initUART initUART `(v  1 e 0 0 ]
-"269
+"270
 [v _compute_checksum compute_checksum `(uc  1 e 1 0 ]
-"280
+"281
 [v _uart_xmit uart_xmit `(v  1 e 0 0 ]
-"288
+"289
 [v _uart_write_message uart_write_message `(v  1 e 0 0 ]
-"315
+"316
 [v _ToggleSleepGPS ToggleSleepGPS `(v  1 e 0 0 ]
 "325
 [v _DisableGPS DisableGPS `(v  1 e 0 0 ]
@@ -147,17 +147,17 @@
 [v _SetupGPS SetupGPS `(v  1 e 0 0 ]
 "357
 [v _UpdateGPS UpdateGPS `(v  1 e 0 0 ]
-"377
+"380
 [v _DecodeGPS DecodeGPS `(v  1 e 0 0 ]
-"490
+"493
 [v _GoToSleep GoToSleep `(v  1 e 0 0 ]
-"498
-[v _GoToSleepTenMin GoToSleepTenMin `(v  1 e 0 0 ]
-"510
+"501
+[v _Hibernate Hibernate `(v  1 e 0 0 ]
+"513
 [v _RecordMode RecordMode `(v  1 e 0 0 ]
-"20 P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c
+"20 C:\Users\Brian\Documents\GitHub\SeniorDesign\project_repo\ADB_Launcher.X\launcher_main.c
 [v _main main `(i  1 e 2 0 ]
-"86
+"88
 [v _isr isr `II(v  1 e 0 0 ]
 [s S47 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
@@ -176,23 +176,25 @@
 ]
 [u S61 . 1 `S47 1 . 1 0 `S56 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES61  1 e 1 @11 ]
-[s S87 . 1 `uc 1 RA0 1 0 :1:0 
-`uc 1 RA1 1 0 :1:1 
-`uc 1 RA2 1 0 :1:2 
-`uc 1 RA3 1 0 :1:3 
-`uc 1 RA4 1 0 :1:4 
-`uc 1 RA5 1 0 :1:5 
-`uc 1 RA6 1 0 :1:6 
-`uc 1 RA7 1 0 :1:7 
+[s S79 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
 ]
 "432
-[s S96 . 1 `uc 1 PORTA 1 0 :8:0 
+[s S88 . 1 `uc 1 PORTC 1 0 :8:0 
 ]
-[u S98 . 1 `S87 1 . 1 0 `S96 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES98  1 e 1 @12 ]
+[u S90 . 1 `S79 1 . 1 0 `S88 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES90  1 e 1 @12 ]
 "501
-[v _PORTBbits PORTBbits `VES98  1 e 1 @13 ]
-[s S184 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[v _PORTBbits PORTBbits `VES90  1 e 1 @13 ]
+"570
+[v _PORTCbits PORTCbits `VES90  1 e 1 @14 ]
+[s S214 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSP1IF 1 0 :1:3 
@@ -202,17 +204,17 @@
 `uc 1 TMR1GIF 1 0 :1:7 
 ]
 "656
-[u S193 . 1 `S184 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES193  1 e 1 @17 ]
+[u S223 . 1 `S214 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES223  1 e 1 @17 ]
 "819
 [v _TMR1L TMR1L `VEuc  1 e 1 @22 ]
 "838
 [v _TMR1H TMR1H `VEuc  1 e 1 @23 ]
 "1349
-[v _PIE1bits PIE1bits `VES193  1 e 1 @145 ]
+[v _PIE1bits PIE1bits `VES223  1 e 1 @145 ]
 "1897
 [v _ADRESH ADRESH `VEuc  1 e 1 @156 ]
-[s S232 . 1 `uc 1 ADON 1 0 :1:0 
+[s S262 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -222,43 +224,43 @@
 `uc 1 ADRMD 1 0 :1:7 
 ]
 "1946
-[s S241 . 1 `uc 1 . 1 0 :1:0 
+[s S271 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 ADGO 1 0 :1:1 
 `uc 1 CHS 1 0 :5:2 
 ]
-[s S245 . 1 `uc 1 . 1 0 :1:0 
+[s S275 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 ]
-[s S248 . 1 `uc 1 . 1 0 :1:0 
+[s S278 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 DONE 1 0 :1:1 
 ]
-[u S251 . 1 `S232 1 . 1 0 `S241 1 . 1 0 `S245 1 . 1 0 `S248 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES251  1 e 1 @157 ]
+[u S281 . 1 `S262 1 . 1 0 `S271 1 . 1 0 `S275 1 . 1 0 `S278 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES281  1 e 1 @157 ]
 "2245
-[v _LATBbits LATBbits `VES98  1 e 1 @269 ]
+[v _LATBbits LATBbits `VES90  1 e 1 @269 ]
 "3491
 [v _RCREG RCREG `VEuc  1 e 1 @409 ]
 "3855
-[v _RCSTAbits RCSTAbits `VES193  1 e 1 @413 ]
+[v _RCSTAbits RCSTAbits `VES223  1 e 1 @413 ]
 "6138
-[v _IOCAPbits IOCAPbits `VES98  1 e 1 @913 ]
+[v _IOCAPbits IOCAPbits `VES90  1 e 1 @913 ]
 "6207
-[v _IOCANbits IOCANbits `VES98  1 e 1 @914 ]
+[v _IOCANbits IOCANbits `VES90  1 e 1 @914 ]
 "6276
-[v _IOCAFbits IOCAFbits `VES98  1 e 1 @915 ]
+[v _IOCAFbits IOCAFbits `VES90  1 e 1 @915 ]
 "6345
-[v _IOCBPbits IOCBPbits `VES98  1 e 1 @916 ]
+[v _IOCBPbits IOCBPbits `VES90  1 e 1 @916 ]
 "6414
-[v _IOCBNbits IOCBNbits `VES98  1 e 1 @917 ]
+[v _IOCBNbits IOCBNbits `VES90  1 e 1 @917 ]
 "6483
-[v _IOCBFbits IOCBFbits `VES98  1 e 1 @918 ]
+[v _IOCBFbits IOCBFbits `VES90  1 e 1 @918 ]
 "11062
 [v _OERR OERR `VEb  1 e 0 @3305 ]
 "12096
 [v _TMR1IE TMR1IE `VEb  1 e 0 @1160 ]
 "12098
 [v _TMR1IF TMR1IF `VEb  1 e 0 @136 ]
-[s S918 . 1 `uc 1 TMR1ON 1 0 :1:0 
+[s S956 . 1 `uc 1 TMR1ON 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 nT1SYNC 1 0 :1:2 
 `uc 1 T1OSCEN 1 0 :1:3 
@@ -268,13 +270,13 @@
 `uc 1 TMR1CS1 1 0 :1:7 
 ]
 "879 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16lf1783.h
-[s S927 . 1 `uc 1 . 1 0 :4:0 
+[s S965 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 T1CKPS 1 0 :2:4 
 `uc 1 TMR1CS 1 0 :2:6 
 ]
-[u S931 . 1 `S918 1 . 1 0 `S927 1 . 1 0 ]
-[v _T1CONbits T1CONbits `VES931  1 e 1 @24 ]
-[s S948 . 1 `uc 1 T1GSS0 1 0 :1:0 
+[u S969 . 1 `S956 1 . 1 0 `S965 1 . 1 0 ]
+[v _T1CONbits T1CONbits `VES969  1 e 1 @24 ]
+[s S986 . 1 `uc 1 T1GSS0 1 0 :1:0 
 `uc 1 T1GSS1 1 0 :1:1 
 `uc 1 T1GVAL 1 0 :1:2 
 `uc 1 T1GGO 1 0 :1:3 
@@ -284,17 +286,17 @@
 `uc 1 TMR1GE 1 0 :1:7 
 ]
 "948
-[s S957 . 1 `uc 1 T1GSS 1 0 :2:0 
+[s S995 . 1 `uc 1 T1GSS 1 0 :2:0 
 ]
-[u S959 . 1 `S948 1 . 1 0 `S957 1 . 1 0 ]
-[v _T1GCONbits T1GCONbits `VES959  1 e 1 @25 ]
+[u S997 . 1 `S986 1 . 1 0 `S995 1 . 1 0 ]
+[v _T1GCONbits T1GCONbits `VES997  1 e 1 @25 ]
 "1125
-[v _TRISAbits TRISAbits `VES98  1 e 1 @140 ]
+[v _TRISAbits TRISAbits `VES90  1 e 1 @140 ]
 "1194
-[v _TRISBbits TRISBbits `VES98  1 e 1 @141 ]
+[v _TRISBbits TRISBbits `VES90  1 e 1 @141 ]
 "1263
-[v _TRISCbits TRISCbits `VES98  1 e 1 @142 ]
-[s S1024 . 1 `uc 1 SWDTEN 1 0 :1:0 
+[v _TRISCbits TRISCbits `VES90  1 e 1 @142 ]
+[s S1062 . 1 `uc 1 SWDTEN 1 0 :1:0 
 `uc 1 WDTPS0 1 0 :1:1 
 `uc 1 WDTPS1 1 0 :1:2 
 `uc 1 WDTPS2 1 0 :1:3 
@@ -302,12 +304,12 @@
 `uc 1 WDTPS4 1 0 :1:5 
 ]
 "1644
-[s S1031 . 1 `uc 1 . 1 0 :1:0 
+[s S1069 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 WDTPS 1 0 :5:1 
 ]
-[u S1034 . 1 `S1024 1 . 1 0 `S1031 1 . 1 0 ]
-[v _WDTCONbits WDTCONbits `VES1034  1 e 1 @151 ]
-[s S581 . 1 `uc 1 SCS0 1 0 :1:0 
+[u S1072 . 1 `S1062 1 . 1 0 `S1069 1 . 1 0 ]
+[v _WDTCONbits WDTCONbits `VES1072  1 e 1 @151 ]
+[s S619 . 1 `uc 1 SCS0 1 0 :1:0 
 `uc 1 SCS1 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 IRCF0 1 0 :1:3 
@@ -317,13 +319,13 @@
 `uc 1 SPLLEN 1 0 :1:7 
 ]
 "1762
-[s S590 . 1 `uc 1 SCS 1 0 :2:0 
+[s S628 . 1 `uc 1 SCS 1 0 :2:0 
 `uc 1 . 1 0 :1:2 
 `uc 1 IRCF 1 0 :4:3 
 ]
-[u S594 . 1 `S581 1 . 1 0 `S590 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES594  1 e 1 @153 ]
-[s S832 . 1 `uc 1 ADPREF0 1 0 :1:0 
+[u S632 . 1 `S619 1 . 1 0 `S628 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES632  1 e 1 @153 ]
+[s S870 . 1 `uc 1 ADPREF0 1 0 :1:0 
 `uc 1 ADPREF1 1 0 :1:1 
 `uc 1 ADNREF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -333,13 +335,13 @@
 `uc 1 ADFM 1 0 :1:7 
 ]
 "2032
-[s S841 . 1 `uc 1 ADPREF 1 0 :2:0 
+[s S879 . 1 `uc 1 ADPREF 1 0 :2:0 
 `uc 1 . 1 0 :2:2 
 `uc 1 ADCS 1 0 :3:4 
 ]
-[u S845 . 1 `S832 1 . 1 0 `S841 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES845  1 e 1 @158 ]
-[s S887 . 1 `uc 1 CHSN0 1 0 :1:0 
+[u S883 . 1 `S870 1 . 1 0 `S879 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES883  1 e 1 @158 ]
+[s S925 . 1 `uc 1 CHSN0 1 0 :1:0 
 `uc 1 CHSN1 1 0 :1:1 
 `uc 1 CHSN2 1 0 :1:2 
 `uc 1 CHSN3 1 0 :1:3 
@@ -349,14 +351,14 @@
 `uc 1 TRIGSEL3 1 0 :1:7 
 ]
 "2102
-[s S896 . 1 `uc 1 CHSN 1 0 :4:0 
+[s S934 . 1 `uc 1 CHSN 1 0 :4:0 
 `uc 1 TRIGSEL 1 0 :4:4 
 ]
-[u S899 . 1 `S887 1 . 1 0 `S896 1 . 1 0 ]
-[v _ADCON2bits ADCON2bits `VES899  1 e 1 @159 ]
+[u S937 . 1 `S925 1 . 1 0 `S934 1 . 1 0 ]
+[v _ADCON2bits ADCON2bits `VES937  1 e 1 @159 ]
 "3179
-[v _ANSELAbits ANSELAbits `VES98  1 e 1 @396 ]
-[s S712 . 1 `uc 1 ANSB0 1 0 :1:0 
+[v _ANSELAbits ANSELAbits `VES90  1 e 1 @396 ]
+[s S776 . 1 `uc 1 ANSB0 1 0 :1:0 
 `uc 1 ANSB1 1 0 :1:1 
 `uc 1 ANSB2 1 0 :1:2 
 `uc 1 ANSB3 1 0 :1:3 
@@ -364,10 +366,10 @@
 `uc 1 ANSB5 1 0 :1:5 
 ]
 "3241
-[s S719 . 1 `uc 1 ANSELB 1 0 :6:0 
+[s S783 . 1 `uc 1 ANSELB 1 0 :6:0 
 ]
-[u S721 . 1 `S712 1 . 1 0 `S719 1 . 1 0 ]
-[v _ANSELBbits ANSELBbits `VES721  1 e 1 @397 ]
+[u S785 . 1 `S776 1 . 1 0 `S783 1 . 1 0 ]
+[v _ANSELBbits ANSELBbits `VES785  1 e 1 @397 ]
 "3280
 [v _EEADR EEADR `VEus  1 e 2 @401 ]
 "3335
@@ -383,12 +385,12 @@
 "3652
 [v _SPBRGH SPBRGH `VEuc  1 e 1 @412 ]
 "4014
-[v _TXSTAbits TXSTAbits `VES193  1 e 1 @414 ]
+[v _TXSTAbits TXSTAbits `VES223  1 e 1 @414 ]
 "4530
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @529 ]
 "4663
-[v _SSPSTATbits SSPSTATbits `VES193  1 e 1 @532 ]
-[s S977 . 1 `uc 1 SSPM0 1 0 :1:0 
+[v _SSPSTATbits SSPSTATbits `VES223  1 e 1 @532 ]
+[s S1015 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
 `uc 1 SSPM3 1 0 :1:3 
@@ -398,10 +400,10 @@
 `uc 1 WCOL 1 0 :1:7 
 ]
 "4791
-[s S986 . 1 `uc 1 SSPM 1 0 :4:0 
+[s S1024 . 1 `uc 1 SSPM 1 0 :4:0 
 ]
-[u S988 . 1 `S977 1 . 1 0 `S986 1 . 1 0 ]
-[v _SSPCON1bits SSPCON1bits `VES988  1 e 1 @533 ]
+[u S1026 . 1 `S1015 1 . 1 0 `S1024 1 . 1 0 ]
+[v _SSPCON1bits SSPCON1bits `VES1026  1 e 1 @533 ]
 "6236
 [v _IOCAF IOCAF `VEuc  1 e 1 @915 ]
 "6443
@@ -418,8 +420,6 @@
 [v _LATC2 LATC2 `VEb  1 e 0 @2162 ]
 "11404
 [v _PEIE PEIE `VEb  1 e 0 @94 ]
-"11854
-[v _RA6 RA6 `VEb  1 e 0 @102 ]
 "11894
 [v _RCIE RCIE `VEb  1 e 0 @1165 ]
 "11898
@@ -432,34 +432,34 @@
 [v _WREN WREN `VEb  1 e 0 @3242 ]
 "354 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c
 [v _dpowers dpowers `DCC[5]ui  1 s 10 dpowers ]
-"88 P:\Desktop\project\project_repo\ADB_Launcher.X\launcher.h
+"90 C:\Users\Brian\Documents\GitHub\SeniorDesign\project_repo\ADB_Launcher.X\launcher.h
 [v _recordFlag recordFlag `uc  1 e 1 0 ]
-"89
+"91
 [v _start start `i  1 e 2 0 ]
 [v _end end `i  1 e 2 0 ]
-"90
-[v _buffer buffer `[51]uc  1 e 51 0 ]
-"91
-[v _gpsMessage gpsMessage `VE[50]uc  1 e 50 0 ]
 "92
-[v _gpsIndex gpsIndex `VEuc  1 e 1 0 ]
+[v _buffer buffer `[51]uc  1 e 51 0 ]
 "93
-[v _gpsInvalidFlag gpsInvalidFlag `uc  1 e 1 0 ]
+[v _gpsMessage gpsMessage `VE[50]uc  1 e 50 0 ]
 "94
-[v _messageDoneFlag messageDoneFlag `uc  1 e 1 0 ]
+[v _gpsIndex gpsIndex `VEuc  1 e 1 0 ]
 "95
+[v _gpsInvalidFlag gpsInvalidFlag `uc  1 e 1 0 ]
+"96
+[v _messageDoneFlag messageDoneFlag `uc  1 e 1 0 ]
+"97
 [v _strobeFlag strobeFlag `uc  1 e 1 0 ]
-"99
-[v _validLatitude validLatitude `[3]ui  1 e 6 0 ]
-"100
-[v _validNorthSouth validNorthSouth `uc  1 e 1 0 ]
 "101
-[v _validLongitude validLongitude `[3]ui  1 e 6 0 ]
+[v _validLatitude validLatitude `[3]ui  1 e 6 0 ]
 "102
-[v _validEastWest validEastWest `uc  1 e 1 0 ]
+[v _validNorthSouth validNorthSouth `uc  1 e 1 0 ]
 "103
+[v _validLongitude validLongitude `[3]ui  1 e 6 0 ]
+"104
+[v _validEastWest validEastWest `uc  1 e 1 0 ]
+"105
 [v _recordEndAdress recordEndAdress `l  1 e 4 0 ]
-"20 P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c
+"20 C:\Users\Brian\Documents\GitHub\SeniorDesign\project_repo\ADB_Launcher.X\launcher_main.c
 [v _main main `(i  1 e 2 0 ]
 {
 "31
@@ -467,46 +467,51 @@
 "20
 [v main@argc argc `i  1 p 2 76 ]
 [v main@argv argv `*.1*.1uc  1 p 2 78 ]
-"84
+"86
 } 0
-"252 P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c
+"253 C:\Users\Brian\Documents\GitHub\SeniorDesign\project_repo\ADB_Launcher.X\launcher_functions.c
 [v _initUART initUART `(v  1 e 0 0 ]
 {
-"268
+"269
 } 0
 "357
 [v _UpdateGPS UpdateGPS `(v  1 e 0 0 ]
 {
 "359
-[v UpdateGPS@GPSupdateMessage GPSupdateMessage `[22]uc  1 a 22 43 ]
+[v UpdateGPS@GPSupdateMessage GPSupdateMessage `[22]uc  1 a 22 41 ]
 "358
-[v UpdateGPS@F4923 F4923 `[22]uc  1 s 22 F4923 ]
-"374
-} 0
+[v UpdateGPS@F4924 F4924 `[22]uc  1 s 22 F4924 ]
 "377
+} 0
+"316
+[v _ToggleSleepGPS ToggleSleepGPS `(v  1 e 0 0 ]
+{
+"324
+} 0
+"380
 [v _DecodeGPS DecodeGPS `(v  1 e 0 0 ]
 {
-"380
-[v DecodeGPS@messageID messageID `[7]uc  1 a 7 16 ]
-"382
-[v DecodeGPS@longitude longitude `[3]ui  1 a 6 32 ]
-"381
-[v DecodeGPS@latitude latitude `[3]ui  1 a 6 26 ]
-"386
-[v DecodeGPS@x x `i  1 a 2 38 ]
-"385
-[v DecodeGPS@status status `uc  1 a 1 25 ]
-"384
-[v DecodeGPS@eastWest eastWest `uc  1 a 1 24 ]
 "383
+[v DecodeGPS@messageID messageID `[7]uc  1 a 7 16 ]
+"385
+[v DecodeGPS@longitude longitude `[3]ui  1 a 6 32 ]
+"384
+[v DecodeGPS@latitude latitude `[3]ui  1 a 6 26 ]
+"389
+[v DecodeGPS@x x `i  1 a 2 38 ]
+"388
+[v DecodeGPS@status status `uc  1 a 1 25 ]
+"387
+[v DecodeGPS@eastWest eastWest `uc  1 a 1 24 ]
+"386
 [v DecodeGPS@northSouth northSouth `uc  1 a 1 23 ]
-"378
-[v DecodeGPS@F4926 F4926 `[7]uc  1 s 7 F4926 ]
-"380
-[v DecodeGPS@F4928 F4928 `[3]ui  1 s 6 F4928 ]
 "381
+[v DecodeGPS@F4926 F4926 `[7]uc  1 s 7 F4926 ]
+"383
+[v DecodeGPS@F4928 F4928 `[3]ui  1 s 6 F4928 ]
+"384
 [v DecodeGPS@F4930 F4930 `[3]ui  1 s 6 F4930 ]
-"488
+"491
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -518,12 +523,7 @@
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
 "53
 } 0
-"315 P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c
-[v _ToggleSleepGPS ToggleSleepGPS `(v  1 e 0 0 ]
-{
-"324
-} 0
-"333
+"333 C:\Users\Brian\Documents\GitHub\SeniorDesign\project_repo\ADB_Launcher.X\launcher_functions.c
 [v _SetupGPS SetupGPS `(v  1 e 0 0 ]
 {
 "338
@@ -534,59 +534,59 @@
 [v SetupGPS@MID MID `[4]uc  1 a 4 70 ]
 "335
 [v SetupGPS@x x `i  1 a 2 74 ]
-[v SetupGPS@F4916 F4916 `[6]uc  1 s 6 F4916 ]
+[v SetupGPS@F4917 F4917 `[6]uc  1 s 6 F4917 ]
 "336
-[v SetupGPS@F4918 F4918 `[4]uc  1 s 4 F4918 ]
+[v SetupGPS@F4919 F4919 `[4]uc  1 s 4 F4919 ]
 "353
 } 0
-"288
+"289
 [v _uart_write_message uart_write_message `(v  1 e 0 0 ]
 {
 [v uart_write_message@data data `*.4uc  1 a 1 wreg ]
-"292
+"293
 [v uart_write_message@ascii_checksum ascii_checksum `[2]uc  1 a 2 21 ]
-"290
-[v uart_write_message@x x `i  1 a 2 17 ]
 "291
+[v uart_write_message@x x `i  1 a 2 17 ]
+"292
 [v uart_write_message@checksum checksum `uc  1 a 1 19 ]
-"288
+"289
 [v uart_write_message@data data `*.4uc  1 a 1 wreg ]
 [v uart_write_message@size size `i  1 p 2 8 ]
-"294
+"295
 [v uart_write_message@data data `*.4uc  1 a 1 20 ]
-"311
+"312
 } 0
-"280
+"281
 [v _uart_xmit uart_xmit `(v  1 e 0 0 ]
 {
 [v uart_xmit@mydata_byte mydata_byte `uc  1 a 1 wreg ]
 [v uart_xmit@mydata_byte mydata_byte `uc  1 a 1 wreg ]
 [v uart_xmit@mydata_byte mydata_byte `uc  1 a 1 0 ]
-"285
+"286
 } 0
-"269
+"270
 [v _compute_checksum compute_checksum `(uc  1 e 1 0 ]
 {
 [v compute_checksum@data data `*.4uc  1 a 1 wreg ]
-"272
+"273
 [v compute_checksum@x x `i  1 a 2 6 ]
-"271
+"272
 [v compute_checksum@checksum checksum `uc  1 a 1 4 ]
-"269
+"270
 [v compute_checksum@data data `*.4uc  1 a 1 wreg ]
 [v compute_checksum@size size `i  1 p 2 0 ]
-"271
+"272
 [v compute_checksum@data data `*.4uc  1 a 1 5 ]
-"279
+"280
 } 0
 "492 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
 [v sprintf@sp sp `*.4uc  1 a 1 wreg ]
-[s S1344 . 4 `*.26DCCuc 1 _cp 2 0 `ui 1 _len 2 2 ]
+[s S1411 . 4 `*.26DCCuc 1 _cp 2 0 `ui 1 _len 2 2 ]
 "533
-[u S1347 . 4 `ui 1 _val 2 0 `S1344 1 _str 4 0 ]
-[v sprintf@_val _val `S1347  1 a 4 34 ]
+[u S1414 . 4 `ui 1 _val 2 0 `S1411 1 _str 4 0 ]
+[v sprintf@_val _val `S1414  1 a 4 34 ]
 "499
 [v sprintf@c c `c  1 a 1 38 ]
 "494
@@ -624,111 +624,118 @@
 [v ___lwdiv@dividend dividend `ui  1 p 2 8 ]
 "31
 } 0
-"510 P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c
+"513 C:\Users\Brian\Documents\GitHub\SeniorDesign\project_repo\ADB_Launcher.X\launcher_functions.c
 [v _RecordMode RecordMode `(v  1 e 0 0 ]
 {
-"512
+"515
 [v RecordMode@address address `l  1 a 4 28 ]
-"514
+"517
 [v RecordMode@x x `i  1 a 2 32 ]
-"513
+"516
 [v RecordMode@count count `i  1 a 2 26 ]
-"575
+"578
 } 0
-"167
+"168
 [v _WriteOverheadSPI WriteOverheadSPI `(v  1 e 0 0 ]
 {
-"169
-[v WriteOverheadSPI@address_bytes address_bytes `[3]uc  1 a 3 17 ]
 "170
+[v WriteOverheadSPI@address_bytes address_bytes `[3]uc  1 a 3 17 ]
+"171
 [v WriteOverheadSPI@StatusReg StatusReg `uc  1 a 1 20 ]
-"167
+"168
 [v WriteOverheadSPI@address address `l  1 p 4 7 ]
-"200
+"201
 } 0
-"155
+"156
 [v _ReadStatusSPI ReadStatusSPI `(uc  1 e 1 0 ]
 {
-"157
+"158
 [v ReadStatusSPI@dataRead dataRead `uc  1 a 1 6 ]
-"165
+"166
 } 0
-"135
+"136
 [v _WriteSPI WriteSPI `(v  1 e 0 0 ]
 {
 [v WriteSPI@databyte databyte `uc  1 a 1 wreg ]
-"137
-[v WriteSPI@temp temp `ui  1 a 2 2 ]
-"135
-[v WriteSPI@databyte databyte `uc  1 a 1 wreg ]
 "138
+[v WriteSPI@temp temp `ui  1 a 2 2 ]
+"136
+[v WriteSPI@databyte databyte `uc  1 a 1 wreg ]
+"139
 [v WriteSPI@databyte databyte `uc  1 a 1 4 ]
-"142
+"143
 } 0
-"144
+"145
 [v _ReadSPI ReadSPI `(uc  1 e 1 0 ]
 {
-"146
+"147
 [v ReadSPI@dataByte dataByte `uc  1 a 1 1 ]
-"153
+"154
 } 0
-"214
+"215
 [v _ReadBuffer ReadBuffer `(uc  1 e 1 0 ]
 {
-"216
+"217
 [v ReadBuffer@read_data read_data `uc  1 a 1 1 ]
-"224
+"225
 } 0
-"126
+"127
 [v _InitWatchdog InitWatchdog `(v  1 e 0 0 ]
 {
-"131
+"132
 } 0
-"95
+"96
 [v _InitTimer1 InitTimer1 `(v  1 e 0 0 ]
 {
-"105
+"106
 } 0
-"107
+"108
 [v _InitSPI InitSPI `(v  1 e 0 0 ]
 {
-"124
+"125
 } 0
 "13
 [v _InitGPIO InitGPIO `(v  1 e 0 0 ]
 {
-"70
+"71
 } 0
 "8
 [v _InitCLK InitCLK `(v  1 e 0 0 ]
 {
 "12
 } 0
-"72
+"73
 [v _InitADC InitADC `(v  1 e 0 0 ]
 {
-"93
+"94
 } 0
-"490
+"501
+[v _Hibernate Hibernate `(v  1 e 0 0 ]
+{
+"503
+[v Hibernate@count count `uc  1 a 1 1 ]
+"511
+} 0
+"493
 [v _GoToSleep GoToSleep `(v  1 e 0 0 ]
 {
 [v GoToSleep@count count `uc  1 a 1 wreg ]
 [v GoToSleep@count count `uc  1 a 1 wreg ]
-"492
+"495
 [v GoToSleep@count count `uc  1 a 1 1 ]
-"496
+"499
 } 0
-"86 P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c
+"88 C:\Users\Brian\Documents\GitHub\SeniorDesign\project_repo\ADB_Launcher.X\launcher_main.c
 [v _isr isr `II(v  1 e 0 0 ]
 {
-"160
+"162
 } 0
-"204 P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_functions.c
+"205 C:\Users\Brian\Documents\GitHub\SeniorDesign\project_repo\ADB_Launcher.X\launcher_functions.c
 [v _WriteBuffer WriteBuffer `(v  1 e 0 0 ]
 {
 [v WriteBuffer@data data `uc  1 a 1 wreg ]
 [v WriteBuffer@data data `uc  1 a 1 wreg ]
-"206
+"207
 [v WriteBuffer@data data `uc  1 a 1 1 ]
-"212
+"213
 } 0
