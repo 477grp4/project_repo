@@ -3,7 +3,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR0IF `Vb ~T0 @X0 0 e@90 ]
 "2833
 [v _DACCON1 `Vuc ~T0 @X0 0 e@281 ]
-"56 beacon.h
+"66 beacon.h
 [v _ReadBuffer `(uc ~T0 @X0 0 ef ]
 "794 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1783.h
 [v _TMR0 `Vuc ~T0 @X0 0 e@21 ]
@@ -29,6 +29,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S322 . . . ]
 "6276
 [v _IOCAFbits `VS322 ~T0 @X0 0 e@915 ]
+"6124
+[s S317 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S317 . IOCAP0 IOCAP1 IOCAP2 IOCAP3 IOCAP4 IOCAP5 IOCAP6 IOCAP7 ]
+"6134
+[s S318 :8 `uc 1 ]
+[n S318 . IOCAP ]
+"6123
+[u S316 `S317 1 `S318 1 ]
+[n S316 . . . ]
+"6138
+[v _IOCAPbits `VS316 ~T0 @X0 0 e@913 ]
 "418
 [s S35 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S35 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
@@ -40,23 +51,64 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S34 . . . ]
 "432
 [v _PORTAbits `VS34 ~T0 @X0 0 e@12 ]
+"6193
+[s S320 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S320 . IOCAN0 IOCAN1 IOCAN2 IOCAN3 IOCAN4 IOCAN5 IOCAN6 IOCAN7 ]
+"6203
+[s S321 :8 `uc 1 ]
+[n S321 . IOCAN ]
+"6192
+[u S319 `S320 1 `S321 1 ]
+[n S319 . . . ]
+"6207
+[v _IOCANbits `VS319 ~T0 @X0 0 e@914 ]
 [p mainexit ]
-"33 beacon.h
+"43 beacon.h
 [v _InitCLK `(v ~T0 @X0 0 ef ]
-"34
+"44
 [v _InitGPIO `(v ~T0 @X0 0 ef ]
-"35
+"45
 [v _InitDAC `(v ~T0 @X0 0 ef ]
-"36
+"46
 [v _InitSPI `(v ~T0 @X0 0 ef ]
-"37
+"47
 [v _InitTimer0 `(v ~T0 @X0 0 ef ]
-"38
+"48
 [v _InitWatchdog `(v ~T0 @X0 0 ef ]
 "11424 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1783.h
 [v _PEIE `Vb ~T0 @X0 0 e@94 ]
+"10724
+[v _GIE `Vb ~T0 @X0 0 e@95 ]
 "10990
 [v _LATC2 `Vb ~T0 @X0 0 e@2162 ]
+"4797
+[s S257 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S257 . SSPM0 SSPM1 SSPM2 SSPM3 CKP SSPEN SSPOV WCOL ]
+"4807
+[s S258 :4 `uc 1 ]
+[n S258 . SSPM ]
+"4796
+[u S256 `S257 1 `S258 1 ]
+[n S256 . . . ]
+"4811
+[v _SSPCON1bits `VS256 ~T0 @X0 0 e@533 ]
+"556
+[s S41 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S41 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"566
+[s S42 :8 `uc 1 ]
+[n S42 . PORTC ]
+"555
+[u S40 `S41 1 `S42 1 ]
+[n S40 . . . ]
+"570
+[v _PORTCbits `VS40 ~T0 @X0 0 e@14 ]
+"51 beacon.h
+[v _CheckDisconnect `(v ~T0 @X0 0 ef ]
+"53
+[v _PlaybackMode `(v ~T0 @X0 0 ef ]
+"52
+[v _TransmitMode `(v ~T0 @X0 0 ef ]
 [; ;stdio.h: 8: typedef int ptrdiff_t;
 [; ;stdio.h: 9: typedef unsigned size_t;
 [; ;stdio.h: 10: typedef unsigned short wchar_t;
@@ -4545,49 +4597,61 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic16f1783.h: 12286: extern volatile __bit nT1SYNC @ (((unsigned) &T1CON)*8) + 2;
 [; ;pic16f1783.h: 12288: extern volatile __bit nTO @ (((unsigned) &STATUS)*8) + 4;
 [; ;pic16f1783.h: 12290: extern volatile __bit nWPUEN @ (((unsigned) &OPTION_REG)*8) + 7;
-"23 beacon.h
+"28 beacon.h
 [v _start `i ~T0 @X0 1 e ]
 [v _end `i ~T0 @X0 1 e ]
 [i _end
 -> 0 `i
 ]
-[; ;beacon.h: 23: int start, end = 0;
-"24
+[; ;beacon.h: 28: int start, end = 0;
+"29
 [v _buffer `uc ~T0 @X0 -> 51 `i e ]
-[; ;beacon.h: 24: unsigned char buffer[51];
-"25
+[; ;beacon.h: 29: unsigned char buffer[51];
+"30
 [v _playbackFlag `i ~T0 @X0 1 e ]
 [i _playbackFlag
 -> 0 `i
 ]
-[; ;beacon.h: 25: int playbackFlag = 0;
-"26
+[; ;beacon.h: 30: int playbackFlag = 0;
+"31
 [v _transmitFlag `uc ~T0 @X0 1 e ]
-[; ;beacon.h: 26: unsigned char transmitFlag;
-"27
+[; ;beacon.h: 31: unsigned char transmitFlag;
+"32
 [v _dacOutputFlag `uc ~T0 @X0 1 e ]
 [i _dacOutputFlag
 -> -> 0 `i `uc
 ]
-[; ;beacon.h: 27: unsigned char dacOutputFlag =0;
-[; ;beacon.h: 33: void InitCLK();
-[; ;beacon.h: 34: void InitGPIO();
-[; ;beacon.h: 35: void InitDAC();
-[; ;beacon.h: 36: void InitSPI();
-[; ;beacon.h: 37: void InitTimer0();
-[; ;beacon.h: 38: void InitWatchdog();
-[; ;beacon.h: 41: void CheckDisconnect();
-[; ;beacon.h: 42: void TransmitMode();
-[; ;beacon.h: 43: void PlaybackMode();
-[; ;beacon.h: 46: void WriteSPI(unsigned char databyte);
-[; ;beacon.h: 47: unsigned char ReadSPI(void);
-[; ;beacon.h: 50: void ReadDataSPI(unsigned char *data, unsigned int address, unsigned int size);
-[; ;beacon.h: 51: unsigned char ReadStatusSPI(void);
-[; ;beacon.h: 52: void ReadOverheadSPI(int address);
-[; ;beacon.h: 55: void WriteBuffer(unsigned char data);
-[; ;beacon.h: 56: unsigned char ReadBuffer();
-[; ;beacon.h: 59: void WriteSPI_overhead(long int address);
-[; ;beacon.h: 60: unsigned char Read_SPI_StatusReg(void);
+[; ;beacon.h: 32: unsigned char dacOutputFlag =0;
+"34
+[v _Latitude `uc ~T0 @X0 -> 3 `i e ]
+[; ;beacon.h: 34: unsigned char Latitude[3];
+"35
+[v _NorthSouth `uc ~T0 @X0 1 e ]
+[; ;beacon.h: 35: unsigned char NorthSouth;
+"36
+[v _Longitude `uc ~T0 @X0 -> 3 `i e ]
+[; ;beacon.h: 36: unsigned char Longitude[3];
+"37
+[v _EastWest `uc ~T0 @X0 1 e ]
+[; ;beacon.h: 37: unsigned char EastWest;
+[; ;beacon.h: 43: void InitCLK();
+[; ;beacon.h: 44: void InitGPIO();
+[; ;beacon.h: 45: void InitDAC();
+[; ;beacon.h: 46: void InitSPI();
+[; ;beacon.h: 47: void InitTimer0();
+[; ;beacon.h: 48: void InitWatchdog();
+[; ;beacon.h: 51: void CheckDisconnect();
+[; ;beacon.h: 52: void TransmitMode();
+[; ;beacon.h: 53: void PlaybackMode();
+[; ;beacon.h: 56: void WriteSPI(unsigned char databyte);
+[; ;beacon.h: 57: unsigned char ReadSPI(void);
+[; ;beacon.h: 60: void ReadDataSPI(unsigned char *data, unsigned int address, unsigned int size);
+[; ;beacon.h: 61: unsigned char ReadStatusSPI(void);
+[; ;beacon.h: 62: void ReadOverheadSPI(long int address);
+[; ;beacon.h: 65: void WriteBuffer(unsigned char data);
+[; ;beacon.h: 66: unsigned char ReadBuffer();
+[; ;beacon.h: 69: void WriteSPI_overhead(long int address);
+[; ;beacon.h: 70: unsigned char Read_SPI_StatusReg(void);
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic16lf1783.h: 47: extern volatile unsigned char INDF0 @ 0x000;
@@ -9025,9 +9089,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p x LVP=ON ]
 [p x CLKOUTEN=OFF ]
 [p x BOREN=OFF ]
-[v F8024 `(v ~T0 @X0 1 tf ]
+[v F8028 `(v ~T0 @X0 1 tf ]
 "20
-[v _isr `IF8024 ~T0 @X0 1 e ]
+[v _isr `IF8028 ~T0 @X0 1 e ]
 "21
 {
 [; ;beacon_main.c: 20: interrupt void isr()
@@ -9073,87 +9137,144 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 1017 ]
 [; ;beacon_main.c: 35: }
-[; ;beacon_main.c: 36: if(INTCONbits.IOCIF)
-"36
-[e $ ! != -> . . _INTCONbits 0 0 `i -> -> -> 0 `i `Vuc `i 1020  ]
-[; ;beacon_main.c: 37: {
+[; ;beacon_main.c: 37: if(INTCONbits.IOCIE && IOCAFbits.IOCAF3)
 "37
-{
-[; ;beacon_main.c: 38: if(IOCAFbits.IOCAF3 && PORTAbits.RA3)
+[e $ ! && != -> . . _INTCONbits 0 3 `i -> -> -> 0 `i `Vuc `i != -> . . _IOCAFbits 0 3 `i -> -> -> 0 `i `Vuc `i 1020  ]
+[; ;beacon_main.c: 38: {
 "38
-[e $ ! && != -> . . _IOCAFbits 0 3 `i -> -> -> 0 `i `Vuc `i != -> . . _PORTAbits 0 3 `i -> -> -> 0 `i `Vuc `i 1021  ]
-[; ;beacon_main.c: 39: {
-"39
 {
-[; ;beacon_main.c: 40: playbackFlag = playbackFlag?0:1;
-"40
-[e = _playbackFlag ? != _playbackFlag -> 0 `i : -> 0 `i -> 1 `i ]
+[; ;beacon_main.c: 39: IOCAFbits.IOCAF3 = 0;
+"39
+[e = . . _IOCAFbits 0 3 -> -> 0 `i `uc ]
+[; ;beacon_main.c: 41: if(IOCAPbits.IOCAP3 && PORTAbits.RA3)
 "41
+[e $ ! && != -> . . _IOCAPbits 0 3 `i -> -> -> 0 `i `Vuc `i != -> . . _PORTAbits 0 3 `i -> -> -> 0 `i `Vuc `i 1021  ]
+[; ;beacon_main.c: 42: {
+"42
+{
+[; ;beacon_main.c: 43: playbackFlag = 1;
+"43
+[e = _playbackFlag -> 1 `i ]
+"44
 }
 [e :U 1021 ]
-"42
+[; ;beacon_main.c: 44: }
+[; ;beacon_main.c: 45: if(IOCANbits.IOCAN3 && !PORTAbits.RA3)
+"45
+[e $ ! && != -> . . _IOCANbits 0 3 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PORTAbits 0 3 `i -> -> -> 0 `i `Vuc `i 1022  ]
+[; ;beacon_main.c: 46: {
+"46
+{
+[; ;beacon_main.c: 47: playbackFlag = 0;
+"47
+[e = _playbackFlag -> 0 `i ]
+"48
+}
+[e :U 1022 ]
+"50
 }
 [e :U 1020 ]
-[; ;beacon_main.c: 41: }
-[; ;beacon_main.c: 42: }
-[; ;beacon_main.c: 43: }
-"43
+[; ;beacon_main.c: 48: }
+[; ;beacon_main.c: 50: }
+[; ;beacon_main.c: 51: }
+"51
 [e :UE 1016 ]
 }
-"46
+"54
 [v _main `(i ~T0 @X0 1 ef2`i`**uc ]
-"47
+"55
 {
-[; ;beacon_main.c: 46: int main(int argc, char** argv)
-[; ;beacon_main.c: 47: {
+[; ;beacon_main.c: 54: int main(int argc, char** argv)
+[; ;beacon_main.c: 55: {
 [e :U _main ]
-"46
+"54
 [v _argc `i ~T0 @X0 1 r1 ]
 [v _argv `**uc ~T0 @X0 1 r2 ]
-"47
-[f ]
-[; ;beacon_main.c: 50: InitCLK();
-"50
-[e ( _InitCLK ..  ]
-[; ;beacon_main.c: 51: InitGPIO();
-"51
-[e ( _InitGPIO ..  ]
-[; ;beacon_main.c: 52: InitDAC();
-"52
-[e ( _InitDAC ..  ]
-[; ;beacon_main.c: 53: InitSPI();
-"53
-[e ( _InitSPI ..  ]
-[; ;beacon_main.c: 54: InitTimer0();
-"54
-[e ( _InitTimer0 ..  ]
-[; ;beacon_main.c: 55: InitWatchdog();
 "55
-[e ( _InitWatchdog ..  ]
-[; ;beacon_main.c: 58: PEIE = 1;
+[f ]
+[; ;beacon_main.c: 58: InitCLK();
 "58
-[e = _PEIE -> -> 1 `i `b ]
-[; ;beacon_main.c: 60: LATC2 = 1;
+[e ( _InitCLK ..  ]
+[; ;beacon_main.c: 59: InitGPIO();
+"59
+[e ( _InitGPIO ..  ]
+[; ;beacon_main.c: 60: InitDAC();
 "60
+[e ( _InitDAC ..  ]
+[; ;beacon_main.c: 61: InitSPI();
+"61
+[e ( _InitSPI ..  ]
+[; ;beacon_main.c: 62: InitTimer0();
+"62
+[e ( _InitTimer0 ..  ]
+[; ;beacon_main.c: 63: InitWatchdog();
+"63
+[e ( _InitWatchdog ..  ]
+[; ;beacon_main.c: 66: PEIE = 1;
+"66
+[e = _PEIE -> -> 1 `i `b ]
+[; ;beacon_main.c: 67: GIE = 1;
+"67
+[e = _GIE -> -> 1 `i `b ]
+[; ;beacon_main.c: 69: LATC2 = (1);
+"69
 [e = _LATC2 -> -> 1 `i `b ]
-[; ;beacon_main.c: 63: while(1)
-"63
-[e :U 1024 ]
-[; ;beacon_main.c: 64: {
-"64
-{
-"85
-}
-[e :U 1023 ]
-"63
-[e $U 1024  ]
+[; ;beacon_main.c: 91: SSPCON1bits.SSPEN=0;
+"91
+[e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
+[; ;beacon_main.c: 92: PORTCbits.RC5 = 0;
+"92
+[e = . . _PORTCbits 0 5 -> -> 0 `i `uc ]
+[; ;beacon_main.c: 94: while(1)
+"94
 [e :U 1025 ]
-[; ;beacon_main.c: 85: }
-[; ;beacon_main.c: 87: return (0);
-"87
+[; ;beacon_main.c: 95: {
+"95
+{
+[; ;beacon_main.c: 96: LATC2 = (1);
+"96
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;beacon_main.c: 99: CheckDisconnect();
+"99
+[e ( _CheckDisconnect ..  ]
+[; ;beacon_main.c: 101: if(playbackFlag)
+"101
+[e $ ! != _playbackFlag -> 0 `i 1027  ]
+[; ;beacon_main.c: 102: {
+"102
+{
+[; ;beacon_main.c: 103: PlaybackMode();
+"103
+[e ( _PlaybackMode ..  ]
+[; ;beacon_main.c: 104: playbackFlag = 0;
+"104
+[e = _playbackFlag -> 0 `i ]
+"105
+}
+[e :U 1027 ]
+[; ;beacon_main.c: 105: }
+[; ;beacon_main.c: 108: if(transmitFlag)
+"108
+[e $ ! != -> _transmitFlag `i -> -> -> 0 `i `uc `i 1028  ]
+[; ;beacon_main.c: 109: TransmitMode();
+"109
+[e ( _TransmitMode ..  ]
+[e :U 1028 ]
+[; ;beacon_main.c: 112: asm("sleep");
+"112
+[; <" sleep ;# ">
+"113
+}
+[e :U 1024 ]
+"94
+[e $U 1025  ]
+[e :U 1026 ]
+[; ;beacon_main.c: 113: }
+[; ;beacon_main.c: 115: return (0);
+"115
 [e ) -> 0 `i ]
-[e $UE 1022  ]
-[; ;beacon_main.c: 88: }
-"88
-[e :UE 1022 ]
+[e $UE 1023  ]
+[; ;beacon_main.c: 116: }
+"116
+[e :UE 1023 ]
 }

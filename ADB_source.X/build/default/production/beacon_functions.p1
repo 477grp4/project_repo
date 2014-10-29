@@ -21,6 +21,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S65 . . . ]
 "1125
 [v _TRISAbits `VS65 ~T0 @X0 0 e@140 ]
+"3165
+[s S155 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S155 . ANSA0 ANSA1 ANSA2 ANSA3 ANSA4 ANSA5 . ANSA7 ]
+"3175
+[s S156 :8 `uc 1 ]
+[n S156 . ANSELA ]
+"3164
+[u S154 `S155 1 `S156 1 ]
+[n S154 . . . ]
+"3179
+[v _ANSELAbits `VS154 ~T0 @X0 0 e@396 ]
 "6104
 [s S310 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S310 . IOCAP0 IOCAP1 IOCAP2 IOCAP3 IOCAP4 IOCAP5 IOCAP6 IOCAP7 ]
@@ -32,6 +43,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S309 . . . ]
 "6118
 [v _IOCAPbits `VS309 ~T0 @X0 0 e@913 ]
+"6173
+[s S313 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S313 . IOCAN0 IOCAN1 IOCAN2 IOCAN3 IOCAN4 IOCAN5 IOCAN6 IOCAN7 ]
+"6183
+[s S314 :8 `uc 1 ]
+[n S314 . IOCAN ]
+"6172
+[u S312 `S313 1 `S314 1 ]
+[n S312 . . . ]
+"6187
+[v _IOCANbits `VS312 ~T0 @X0 0 e@914 ]
 "6236
 [v _IOCAF `Vuc ~T0 @X0 0 e@915 ]
 "341
@@ -142,6 +164,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR0CS `Vb ~T0 @X0 0 e@1197 ]
 "11416
 [v _PSA `Vb ~T0 @X0 0 e@1195 ]
+"11410
+[v _PS0 `Vb ~T0 @X0 0 e@1192 ]
+"11412
+[v _PS1 `Vb ~T0 @X0 0 e@1193 ]
+"11414
+[v _PS2 `Vb ~T0 @X0 0 e@1194 ]
 "794
 [v _TMR0 `Vuc ~T0 @X0 0 e@21 ]
 "1631
@@ -155,12 +183,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S87 . . . ]
 "1644
 [v _WDTCONbits `VS87 ~T0 @X0 0 e@151 ]
-"52 beacon.h
-[v _ReadOverheadSPI `(v ~T0 @X0 0 ef1`i ]
-"55
-[v _WriteBuffer `(v ~T0 @X0 0 ef1`uc ]
-"47
+"53 beacon.h
+[v _PlaybackMode `(v ~T0 @X0 0 ef ]
+"62
+[v _ReadOverheadSPI `(v ~T0 @X0 0 ef1`l ]
+"57
 [v _ReadSPI `(uc ~T0 @X0 0 ef ]
+"65
+[v _WriteBuffer `(v ~T0 @X0 0 ef1`uc ]
 "418 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16lf1783.h
 [s S30 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S30 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
@@ -182,51 +212,61 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S40 . . ]
 "656
 [v _PIR1bits `VS40 ~T0 @X0 0 e@17 ]
-"60 beacon.h
-[v _Read_SPI_StatusReg `(uc ~T0 @X0 0 ef ]
-"23 beacon.h
+"28 beacon.h
 [v _start `i ~T0 @X0 1 e ]
 [v _end `i ~T0 @X0 1 e ]
 [i _end
 -> 0 `i
 ]
-[; ;beacon.h: 23: int start, end = 0;
-"24
+[; ;beacon.h: 28: int start, end = 0;
+"29
 [v _buffer `uc ~T0 @X0 -> 51 `i e ]
-[; ;beacon.h: 24: unsigned char buffer[51];
-"25
+[; ;beacon.h: 29: unsigned char buffer[51];
+"30
 [v _playbackFlag `i ~T0 @X0 1 e ]
 [i _playbackFlag
 -> 0 `i
 ]
-[; ;beacon.h: 25: int playbackFlag = 0;
-"26
+[; ;beacon.h: 30: int playbackFlag = 0;
+"31
 [v _transmitFlag `uc ~T0 @X0 1 e ]
-[; ;beacon.h: 26: unsigned char transmitFlag;
-"27
+[; ;beacon.h: 31: unsigned char transmitFlag;
+"32
 [v _dacOutputFlag `uc ~T0 @X0 1 e ]
 [i _dacOutputFlag
 -> -> 0 `i `uc
 ]
-[; ;beacon.h: 27: unsigned char dacOutputFlag =0;
-[; ;beacon.h: 33: void InitCLK();
-[; ;beacon.h: 34: void InitGPIO();
-[; ;beacon.h: 35: void InitDAC();
-[; ;beacon.h: 36: void InitSPI();
-[; ;beacon.h: 37: void InitTimer0();
-[; ;beacon.h: 38: void InitWatchdog();
-[; ;beacon.h: 41: void CheckDisconnect();
-[; ;beacon.h: 42: void TransmitMode();
-[; ;beacon.h: 43: void PlaybackMode();
-[; ;beacon.h: 46: void WriteSPI(unsigned char databyte);
-[; ;beacon.h: 47: unsigned char ReadSPI(void);
-[; ;beacon.h: 50: void ReadDataSPI(unsigned char *data, unsigned int address, unsigned int size);
-[; ;beacon.h: 51: unsigned char ReadStatusSPI(void);
-[; ;beacon.h: 52: void ReadOverheadSPI(int address);
-[; ;beacon.h: 55: void WriteBuffer(unsigned char data);
-[; ;beacon.h: 56: unsigned char ReadBuffer();
-[; ;beacon.h: 59: void WriteSPI_overhead(long int address);
-[; ;beacon.h: 60: unsigned char Read_SPI_StatusReg(void);
+[; ;beacon.h: 32: unsigned char dacOutputFlag =0;
+"34
+[v _Latitude `uc ~T0 @X0 -> 3 `i e ]
+[; ;beacon.h: 34: unsigned char Latitude[3];
+"35
+[v _NorthSouth `uc ~T0 @X0 1 e ]
+[; ;beacon.h: 35: unsigned char NorthSouth;
+"36
+[v _Longitude `uc ~T0 @X0 -> 3 `i e ]
+[; ;beacon.h: 36: unsigned char Longitude[3];
+"37
+[v _EastWest `uc ~T0 @X0 1 e ]
+[; ;beacon.h: 37: unsigned char EastWest;
+[; ;beacon.h: 43: void InitCLK();
+[; ;beacon.h: 44: void InitGPIO();
+[; ;beacon.h: 45: void InitDAC();
+[; ;beacon.h: 46: void InitSPI();
+[; ;beacon.h: 47: void InitTimer0();
+[; ;beacon.h: 48: void InitWatchdog();
+[; ;beacon.h: 51: void CheckDisconnect();
+[; ;beacon.h: 52: void TransmitMode();
+[; ;beacon.h: 53: void PlaybackMode();
+[; ;beacon.h: 56: void WriteSPI(unsigned char databyte);
+[; ;beacon.h: 57: unsigned char ReadSPI(void);
+[; ;beacon.h: 60: void ReadDataSPI(unsigned char *data, unsigned int address, unsigned int size);
+[; ;beacon.h: 61: unsigned char ReadStatusSPI(void);
+[; ;beacon.h: 62: void ReadOverheadSPI(long int address);
+[; ;beacon.h: 65: void WriteBuffer(unsigned char data);
+[; ;beacon.h: 66: unsigned char ReadBuffer();
+[; ;beacon.h: 69: void WriteSPI_overhead(long int address);
+[; ;beacon.h: 70: unsigned char Read_SPI_StatusReg(void);
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic16lf1783.h: 47: extern volatile unsigned char INDF0 @ 0x000;
@@ -4657,682 +4697,696 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;beacon_functions.c: 14: TRISAbits.TRISA3 = 1;
 "14
 [e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 15: ANSELAbits.ANSA3 = 0;
+"15
+[e = . . _ANSELAbits 0 3 -> -> 0 `i `uc ]
 [; ;beacon_functions.c: 16: IOCAPbits.IOCAP3 = 1;
 "16
 [e = . . _IOCAPbits 0 3 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 17: IOCAF = 0x00;
+[; ;beacon_functions.c: 17: IOCANbits.IOCAN3 = 1;
 "17
-[e = _IOCAF -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 18: INTCONbits.IOCIE = 1;
+[e = . . _IOCANbits 0 3 -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 18: IOCAF = 0x00;
 "18
+[e = _IOCAF -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 19: INTCONbits.IOCIE = 1;
+"19
 [e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 21: TRISAbits.TRISA0 = 0;
-"21
+[; ;beacon_functions.c: 22: TRISAbits.TRISA0 = 0;
+"22
 [e = . . _TRISAbits 0 0 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 23: TRISAbits.TRISA2 = 0;
-"23
-[e = . . _TRISAbits 0 2 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 24: TRISAbits.TRISA3 = 1;
+[; ;beacon_functions.c: 24: TRISAbits.TRISA2 = 0;
 "24
-[e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 25: TRISAbits.TRISA4 = 1;
-"25
+[e = . . _TRISAbits 0 2 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 26: TRISAbits.TRISA4 = 1;
+"26
 [e = . . _TRISAbits 0 4 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 27: TRISAbits.TRISA6 = 0;
-"27
-[e = . . _TRISAbits 0 6 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 28: TRISAbits.TRISA7 = 0;
+[; ;beacon_functions.c: 28: TRISAbits.TRISA6 = 0;
 "28
+[e = . . _TRISAbits 0 6 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 29: TRISAbits.TRISA7 = 0;
+"29
 [e = . . _TRISAbits 0 7 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 31: TRISBbits.TRISB0 = 1;
-"31
-[e = . . _TRISBbits 0 0 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 32: TRISBbits.TRISB1 = 1;
+[; ;beacon_functions.c: 32: TRISBbits.TRISB0 = 1;
 "32
-[e = . . _TRISBbits 0 1 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 33: TRISBbits.TRISB2 = 1;
+[e = . . _TRISBbits 0 0 -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 33: TRISBbits.TRISB1 = 1;
 "33
-[e = . . _TRISBbits 0 2 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 34: TRISBbits.TRISB3 = 0;
+[e = . . _TRISBbits 0 1 -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 34: TRISBbits.TRISB2 = 1;
 "34
-[e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 35: TRISBbits.TRISB4 = 0;
+[e = . . _TRISBbits 0 2 -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 35: TRISBbits.TRISB3 = 0;
 "35
-[e = . . _TRISBbits 0 4 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 36: TRISBbits.TRISB5 = 0;
+[e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 36: TRISBbits.TRISB4 = 0;
 "36
-[e = . . _TRISBbits 0 5 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 37: PORTBbits.RB5 = 0;
+[e = . . _TRISBbits 0 4 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 37: TRISBbits.TRISB5 = 0;
 "37
+[e = . . _TRISBbits 0 5 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 38: PORTBbits.RB5 = 0;
+"38
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 40: TRISCbits.TRISC0 = 0;
-"40
-[e = . . _TRISCbits 0 0 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 41: TRISCbits.TRISC1 = 1;
+[; ;beacon_functions.c: 41: TRISCbits.TRISC0 = 0;
 "41
+[e = . . _TRISCbits 0 0 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 42: TRISCbits.TRISC1 = 1;
+"42
 [e = . . _TRISCbits 0 1 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 46: TRISCbits.TRISC6 = 0;
-"46
-[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 47: TRISCbits.TRISC7 = 0;
+[; ;beacon_functions.c: 47: TRISCbits.TRISC6 = 0;
 "47
-[e = . . _TRISCbits 0 7 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 48: PORTCbits.RC0 = 0;
+[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 48: TRISCbits.TRISC7 = 0;
 "48
-[e = . . _PORTCbits 0 0 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 49: }
+[e = . . _TRISCbits 0 7 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 49: PORTCbits.RC0 = 0;
 "49
+[e = . . _PORTCbits 0 0 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 50: }
+"50
 [e :UE 506 ]
 }
-"51
-[v _InitDAC `(v ~T0 @X0 1 ef ]
 "52
+[v _InitDAC `(v ~T0 @X0 1 ef ]
+"53
 {
-[; ;beacon_functions.c: 51: void InitDAC()
-[; ;beacon_functions.c: 52: {
+[; ;beacon_functions.c: 52: void InitDAC()
+[; ;beacon_functions.c: 53: {
 [e :U _InitDAC ]
 [f ]
-[; ;beacon_functions.c: 53: TRISAbits.TRISA5 = 1;
-"53
-[e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 54: TRISAbits.TRISA1 = 0;
+[; ;beacon_functions.c: 54: TRISAbits.TRISA5 = 1;
 "54
-[e = . . _TRISAbits 0 1 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 55: OPA1CONbits.OPA1CH = 0x2;
+[e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 55: TRISAbits.TRISA1 = 0;
 "55
-[e = . . _OPA1CONbits 1 0 -> -> 2 `i `uc ]
-[; ;beacon_functions.c: 56: OPA1CONbits.OPA1SP = 1;
+[e = . . _TRISAbits 0 1 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 56: OPA1CONbits.OPA1CH = 0x2;
 "56
-[e = . . _OPA1CONbits 0 3 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 57: OPA1CONbits.OPA1EN = 1;
+[e = . . _OPA1CONbits 1 0 -> -> 2 `i `uc ]
+[; ;beacon_functions.c: 57: OPA1CONbits.OPA1SP = 1;
 "57
+[e = . . _OPA1CONbits 0 3 -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 58: OPA1CONbits.OPA1EN = 1;
+"58
 [e = . . _OPA1CONbits 0 4 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 60: DACCON0bits.DACOE1 = 0;
-"60
-[e = . . _DACCON0bits 0 5 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 61: DACCON0bits.DACOE2 = 0;
+[; ;beacon_functions.c: 61: DACCON0bits.DACOE1 = 0;
 "61
-[e = . . _DACCON0bits 0 4 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 62: DACCON0bits.DACPSS = 0x0;
+[e = . . _DACCON0bits 0 5 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 62: DACCON0bits.DACOE2 = 0;
 "62
-[e = . . _DACCON0bits 1 1 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 63: DACCON0bits.DACNSS = 0;
+[e = . . _DACCON0bits 0 4 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 63: DACCON0bits.DACPSS = 0x0;
 "63
-[e = . . _DACCON0bits 0 0 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 64: DACCON0bits.DACEN = 1;
+[e = . . _DACCON0bits 1 1 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 64: DACCON0bits.DACNSS = 0;
 "64
-[e = . . _DACCON0bits 0 7 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 65: DACCON1 = 0x00;
+[e = . . _DACCON0bits 0 0 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 65: DACCON0bits.DACEN = 1;
 "65
-[e = _DACCON1 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 66: }
+[e = . . _DACCON0bits 0 7 -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 66: DACCON1 = 0x00;
 "66
+[e = _DACCON1 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 67: }
+"67
 [e :UE 507 ]
 }
-"68
-[v _InitSPI `(v ~T0 @X0 1 ef ]
 "69
+[v _InitSPI `(v ~T0 @X0 1 ef ]
+"70
 {
-[; ;beacon_functions.c: 68: void InitSPI()
-[; ;beacon_functions.c: 69: {
+[; ;beacon_functions.c: 69: void InitSPI()
+[; ;beacon_functions.c: 70: {
 [e :U _InitSPI ]
 [f ]
-[; ;beacon_functions.c: 75: TRISCbits.TRISC2 = 0;
-"75
-[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 76: TRISCbits.TRISC3 = 0;
+[; ;beacon_functions.c: 76: TRISCbits.TRISC2 = 0;
 "76
-[e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 77: TRISCbits.TRISC4 = 1;
+[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 77: TRISCbits.TRISC3 = 0;
 "77
-[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 78: TRISCbits.TRISC5 = 0;
+[e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 78: TRISCbits.TRISC4 = 1;
 "78
+[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 79: TRISCbits.TRISC5 = 0;
+"79
 [e = . . _TRISCbits 0 5 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 80: LATC2 = 0;
-"80
-[e = _LATC2 -> -> 0 `i `b ]
-[; ;beacon_functions.c: 83: SSPCON1bits.SSPEN=0x00;
-"83
-[e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 84: SSPCON1bits.SSPM=0x01;
+[; ;beacon_functions.c: 81: LATC2 = (1);
+"81
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;beacon_functions.c: 84: SSPCON1bits.SSPEN=0x00;
 "84
-[e = . . _SSPCON1bits 1 0 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 85: SSPCON1bits.CKP=0;
+[e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 85: SSPCON1bits.SSPM=0x01;
 "85
-[e = . . _SSPCON1bits 0 4 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 86: SSPSTATbits.CKE=1;
+[e = . . _SSPCON1bits 1 0 -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 86: SSPCON1bits.CKP=0;
 "86
-[e = . . _SSPSTATbits 0 6 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 87: SSPSTATbits.SMP=0;
+[e = . . _SSPCON1bits 0 4 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 87: SSPSTATbits.CKE=1;
 "87
-[e = . . _SSPSTATbits 0 7 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 88: SSPCON1bits.SSPEN=0x01;
+[e = . . _SSPSTATbits 0 6 -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 88: SSPSTATbits.SMP=0;
 "88
-[e = . . _SSPCON1bits 0 5 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 89: }
+[e = . . _SSPSTATbits 0 7 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 89: SSPCON1bits.SSPEN=0x01;
 "89
+[e = . . _SSPCON1bits 0 5 -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 90: }
+"90
 [e :UE 508 ]
 }
-"91
-[v _InitTimer0 `(v ~T0 @X0 1 ef ]
 "92
+[v _InitTimer0 `(v ~T0 @X0 1 ef ]
+"93
 {
-[; ;beacon_functions.c: 91: void InitTimer0()
-[; ;beacon_functions.c: 92: {
+[; ;beacon_functions.c: 92: void InitTimer0()
+[; ;beacon_functions.c: 93: {
 [e :U _InitTimer0 ]
 [f ]
-[; ;beacon_functions.c: 95: TMR0IE = 0;
-"95
-[e = _TMR0IE -> -> 0 `i `b ]
-[; ;beacon_functions.c: 96: TMR0IF = 0;
+[; ;beacon_functions.c: 96: TMR0IE = 0;
 "96
-[e = _TMR0IF -> -> 0 `i `b ]
-[; ;beacon_functions.c: 97: TMR0CS = 0;
+[e = _TMR0IE -> -> 0 `i `b ]
+[; ;beacon_functions.c: 97: TMR0IF = 0;
 "97
-[e = _TMR0CS -> -> 0 `i `b ]
-[; ;beacon_functions.c: 98: PSA = 1;
+[e = _TMR0IF -> -> 0 `i `b ]
+[; ;beacon_functions.c: 98: TMR0CS = 0;
 "98
-[e = _PSA -> -> 1 `i `b ]
-[; ;beacon_functions.c: 99: TMR0 = (0x48);
+[e = _TMR0CS -> -> 0 `i `b ]
+[; ;beacon_functions.c: 99: PSA = 0;
 "99
-[e = _TMR0 -> -> 72 `i `uc ]
-[; ;beacon_functions.c: 100: TMR0IE = 1;
+[e = _PSA -> -> 0 `i `b ]
+[; ;beacon_functions.c: 100: PS0 = 0;
 "100
-[e = _TMR0IE -> -> 1 `i `b ]
-[; ;beacon_functions.c: 101: }
+[e = _PS0 -> -> 0 `i `b ]
+[; ;beacon_functions.c: 101: PS1 = 0;
 "101
+[e = _PS1 -> -> 0 `i `b ]
+[; ;beacon_functions.c: 102: PS2 = 0;
+"102
+[e = _PS2 -> -> 0 `i `b ]
+[; ;beacon_functions.c: 103: TMR0 = (0x48);
+"103
+[e = _TMR0 -> -> 72 `i `uc ]
+[; ;beacon_functions.c: 104: TMR0IE = 1;
+"104
+[e = _TMR0IE -> -> 1 `i `b ]
+[; ;beacon_functions.c: 105: }
+"105
 [e :UE 509 ]
 }
-"103
+"107
 [v _InitWatchdog `(v ~T0 @X0 1 ef ]
-"104
+"108
 {
-[; ;beacon_functions.c: 103: void InitWatchdog()
-[; ;beacon_functions.c: 104: {
+[; ;beacon_functions.c: 107: void InitWatchdog()
+[; ;beacon_functions.c: 108: {
 [e :U _InitWatchdog ]
 [f ]
-[; ;beacon_functions.c: 106: WDTCONbits.WDTPS = 0x0D;
-"106
+[; ;beacon_functions.c: 110: WDTCONbits.WDTPS = 0x0D;
+"110
 [e = . . _WDTCONbits 1 1 -> -> 13 `i `uc ]
-[; ;beacon_functions.c: 107: WDTCONbits.SWDTEN = 1;
-"107
-[e = . . _WDTCONbits 0 0 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 108: }
-"108
+[; ;beacon_functions.c: 111: WDTCONbits.SWDTEN = 0;
+"111
+[e = . . _WDTCONbits 0 0 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 113: }
+"113
 [e :UE 510 ]
 }
-"110
+"115
 [v _CheckDisconnect `(v ~T0 @X0 1 ef ]
-"111
+"116
 {
-[; ;beacon_functions.c: 110: void CheckDisconnect()
-[; ;beacon_functions.c: 111: {
+[; ;beacon_functions.c: 115: void CheckDisconnect()
+[; ;beacon_functions.c: 116: {
 [e :U _CheckDisconnect ]
 [f ]
-[; ;beacon_functions.c: 112: PORTCbits.RC0 = 1;
-"112
+[; ;beacon_functions.c: 117: PORTCbits.RC0 = 1;
+"117
 [e = . . _PORTCbits 0 0 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 114: if (PORTCbits.RC1)
-"114
+[; ;beacon_functions.c: 119: if (PORTCbits.RC1)
+"119
 [e $ ! != -> . . _PORTCbits 0 1 `i -> -> -> 0 `i `Vuc `i 512  ]
-[; ;beacon_functions.c: 115: transmitFlag = 1;
-"115
+[; ;beacon_functions.c: 120: transmitFlag = 1;
+"120
 [e = _transmitFlag -> -> 1 `i `uc ]
 [e $U 513  ]
-"116
+"121
 [e :U 512 ]
-[; ;beacon_functions.c: 116: else
-[; ;beacon_functions.c: 117: transmitFlag = 0;
-"117
+[; ;beacon_functions.c: 121: else
+[; ;beacon_functions.c: 122: transmitFlag = 0;
+"122
 [e = _transmitFlag -> -> 0 `i `uc ]
 [e :U 513 ]
-[; ;beacon_functions.c: 119: PORTCbits.RC0 = 0;
-"119
+[; ;beacon_functions.c: 124: PORTCbits.RC0 = 0;
+"124
 [e = . . _PORTCbits 0 0 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 120: }
-"120
+[; ;beacon_functions.c: 125: }
+"125
 [e :UE 511 ]
 }
-"122
+"127
 [v _TransmitMode `(v ~T0 @X0 1 ef ]
-"123
+"128
 {
-[; ;beacon_functions.c: 122: void TransmitMode()
-[; ;beacon_functions.c: 123: {
+[; ;beacon_functions.c: 127: void TransmitMode()
+[; ;beacon_functions.c: 128: {
 [e :U _TransmitMode ]
 [f ]
-[; ;beacon_functions.c: 125: PORTBbits.RB5 = 1;
-"125
+[; ;beacon_functions.c: 130: PORTBbits.RB5 = 1;
+"130
 [e = . . _PORTBbits 0 5 -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 127: PORTBbits.RB5 = 0;
-"127
+[; ;beacon_functions.c: 131: PlaybackMode();
+"131
+[e ( _PlaybackMode ..  ]
+[; ;beacon_functions.c: 132: PORTBbits.RB5 = 0;
+"132
 [e = . . _PORTBbits 0 5 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 128: }
-"128
+[; ;beacon_functions.c: 133: }
+"133
 [e :UE 514 ]
 }
-"131
+"136
 [v _PlaybackMode `(v ~T0 @X0 1 ef ]
-"132
+"137
 {
-[; ;beacon_functions.c: 131: void PlaybackMode()
-[; ;beacon_functions.c: 132: {
+[; ;beacon_functions.c: 136: void PlaybackMode()
+[; ;beacon_functions.c: 137: {
 [e :U _PlaybackMode ]
 [f ]
-"133
+"138
 [v _curr_address `l ~T0 @X0 1 a ]
-[; ;beacon_functions.c: 133: long int curr_address = 0;
+[; ;beacon_functions.c: 138: long int curr_address = 0;
 [e = _curr_address -> -> 0 `i `l ]
-"134
-[v _DAC_count `i ~T0 @X0 1 a ]
-[; ;beacon_functions.c: 134: int DAC_count = 0;
-[e = _DAC_count -> 0 `i ]
-[; ;beacon_functions.c: 136: dacOutputFlag = 1;
-"136
-[e = _dacOutputFlag -> -> 1 `i `uc ]
-[; ;beacon_functions.c: 139: while((transmitFlag || (!transmitFlag && !PORTAbits.RA4)) && (curr_address<=131072))
 "139
+[v _end_address `l ~T0 @X0 1 a ]
+[; ;beacon_functions.c: 139: long int end_address;
+[; ;beacon_functions.c: 140: InitSPI();
+"140
+[e ( _InitSPI ..  ]
+[; ;beacon_functions.c: 142: dacOutputFlag = 1;
+"142
+[e = _dacOutputFlag -> -> 1 `i `uc ]
+[; ;beacon_functions.c: 144: ReadOverheadSPI(0);
+"144
+[e ( _ReadOverheadSPI (1 -> -> 0 `i `l ]
+[; ;beacon_functions.c: 147: end_address = ReadSPI();
+"147
+[e = _end_address -> ( _ReadSPI ..  `l ]
+[; ;beacon_functions.c: 148: end_address = end_address<<8;
+"148
+[e = _end_address << _end_address -> 8 `i ]
+[; ;beacon_functions.c: 149: end_address +=ReadSPI();
+"149
+[e =+ _end_address -> ( _ReadSPI ..  `l ]
+[; ;beacon_functions.c: 150: end_address = end_address<<8;
+"150
+[e = _end_address << _end_address -> 8 `i ]
+[; ;beacon_functions.c: 151: end_address +=ReadSPI();
+"151
+[e =+ _end_address -> ( _ReadSPI ..  `l ]
+[; ;beacon_functions.c: 153: Longitude[0] = ReadSPI();
+"153
+[e = *U + &U _Longitude * -> -> -> 0 `i `ui `ux -> -> # *U &U _Longitude `ui `ux ( _ReadSPI ..  ]
+[; ;beacon_functions.c: 154: Longitude[1] = ReadSPI();
+"154
+[e = *U + &U _Longitude * -> -> -> 1 `i `ui `ux -> -> # *U &U _Longitude `ui `ux ( _ReadSPI ..  ]
+[; ;beacon_functions.c: 155: Longitude[2] = ReadSPI();
+"155
+[e = *U + &U _Longitude * -> -> -> 2 `i `ui `ux -> -> # *U &U _Longitude `ui `ux ( _ReadSPI ..  ]
+[; ;beacon_functions.c: 157: NorthSouth = ReadSPI();
+"157
+[e = _NorthSouth ( _ReadSPI ..  ]
+[; ;beacon_functions.c: 159: Latitude[0] = ReadSPI();
+"159
+[e = *U + &U _Latitude * -> -> -> 0 `i `ui `ux -> -> # *U &U _Latitude `ui `ux ( _ReadSPI ..  ]
+[; ;beacon_functions.c: 160: Latitude[1] = ReadSPI();
+"160
+[e = *U + &U _Latitude * -> -> -> 1 `i `ui `ux -> -> # *U &U _Latitude `ui `ux ( _ReadSPI ..  ]
+[; ;beacon_functions.c: 161: Latitude[2] = ReadSPI();
+"161
+[e = *U + &U _Latitude * -> -> -> 2 `i `ui `ux -> -> # *U &U _Latitude `ui `ux ( _ReadSPI ..  ]
+[; ;beacon_functions.c: 163: EastWest = ReadSPI();
+"163
+[e = _EastWest ( _ReadSPI ..  ]
+[; ;beacon_functions.c: 166: while((transmitFlag || (!transmitFlag && !PORTAbits.RA4 && playbackFlag)) && (curr_address<=end_address))
+"166
 [e $U 516  ]
 [e :U 517 ]
-[; ;beacon_functions.c: 140: {
-"140
+[; ;beacon_functions.c: 167: {
+"167
 {
-[; ;beacon_functions.c: 141: ReadOverheadSPI(curr_address);
-"141
-[e ( _ReadOverheadSPI (1 -> _curr_address `i ]
-[; ;beacon_functions.c: 142: DAC_count = 0;
-"142
-[e = _DAC_count -> 0 `i ]
-[; ;beacon_functions.c: 145: while((transmitFlag || (!transmitFlag && !PORTAbits.RA4)) && (DAC_count<(256)) && (curr_address <= 131072))
-"145
-[e $U 519  ]
-[e :U 520 ]
-[; ;beacon_functions.c: 146: {
-"146
+[; ;beacon_functions.c: 172: if(!((((end))==(51))?((((start))==0)?(1):(0)):((((end)+1)==((start)))?(1):(0))))
+"172
+[e $ ! ! != ? == _end -> 51 `i : ? == _start -> 0 `i : -> 1 `i -> 0 `i ? == + _end -> 1 `i _start : -> 1 `i -> 0 `i -> 0 `i 519  ]
+[; ;beacon_functions.c: 173: {
+"173
 {
-[; ;beacon_functions.c: 147: if(!((((end))==(51))?((((start))==0)?(1):(0)):((((end)+1)==((start)))?(1):(0))))
-"147
-[e $ ! ! != ? == _end -> 51 `i : ? == _start -> 0 `i : -> 1 `i -> 0 `i ? == + _end -> 1 `i _start : -> 1 `i -> 0 `i -> 0 `i 522  ]
-[; ;beacon_functions.c: 148: {
-"148
-{
-[; ;beacon_functions.c: 149: DAC_count++;
-"149
-[e ++ _DAC_count -> 1 `i ]
-[; ;beacon_functions.c: 150: curr_address++;
-"150
+[; ;beacon_functions.c: 175: curr_address++;
+"175
 [e ++ _curr_address -> -> 1 `i `l ]
-[; ;beacon_functions.c: 151: WriteBuffer(ReadSPI());
-"151
+[; ;beacon_functions.c: 176: WriteBuffer(ReadSPI());
+"176
 [e ( _WriteBuffer (1 ( _ReadSPI ..  ]
-"152
-}
-[e :U 522 ]
-"153
+"177
 }
 [e :U 519 ]
-"145
-[e $ && && || != -> _transmitFlag `i -> -> -> 0 `i `uc `i && ! != -> _transmitFlag `i -> -> -> 0 `i `uc `i ! != -> . . _PORTAbits 0 4 `i -> -> -> 0 `i `Vuc `i < _DAC_count -> 256 `i <= _curr_address -> 131072 `l 520  ]
-[e :U 521 ]
-[; ;beacon_functions.c: 152: }
-[; ;beacon_functions.c: 153: }
-[; ;beacon_functions.c: 154: LATC2 = 1;
-"154
-[e = _LATC2 -> -> 1 `i `b ]
-"155
+"178
 }
 [e :U 516 ]
-"139
-[e $ && || != -> _transmitFlag `i -> -> -> 0 `i `uc `i && ! != -> _transmitFlag `i -> -> -> 0 `i `uc `i ! != -> . . _PORTAbits 0 4 `i -> -> -> 0 `i `Vuc `i <= _curr_address -> 131072 `l 517  ]
+"166
+[e $ && || != -> _transmitFlag `i -> -> -> 0 `i `uc `i && && ! != -> _transmitFlag `i -> -> -> 0 `i `uc `i ! != -> . . _PORTAbits 0 4 `i -> -> -> 0 `i `Vuc `i != _playbackFlag -> 0 `i <= _curr_address _end_address 517  ]
 [e :U 518 ]
-[; ;beacon_functions.c: 155: }
-[; ;beacon_functions.c: 156: }
-"156
+[; ;beacon_functions.c: 177: }
+[; ;beacon_functions.c: 178: }
+[; ;beacon_functions.c: 179: SSPCON1bits.SSPEN=0;
+"179
+[e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 180: PORTCbits.RC5 = 0;
+"180
+[e = . . _PORTCbits 0 5 -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 181: LATC2 = (1);
+"181
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;beacon_functions.c: 182: dacOutputFlag = 0;
+"182
+[e = _dacOutputFlag -> -> 0 `i `uc ]
+[; ;beacon_functions.c: 184: }
+"184
 [e :UE 515 ]
 }
-"159
+"187
 [v _WriteSPI `(v ~T0 @X0 1 ef1`uc ]
-"160
+"188
 {
-[; ;beacon_functions.c: 159: void WriteSPI(unsigned char databyte)
-[; ;beacon_functions.c: 160: {
+[; ;beacon_functions.c: 187: void WriteSPI(unsigned char databyte)
+[; ;beacon_functions.c: 188: {
 [e :U _WriteSPI ]
-"159
+"187
 [v _databyte `uc ~T0 @X0 1 r1 ]
-"160
+"188
 [f ]
 [v _buffer `ui ~T0 @X0 1 a ]
-[; ;beacon_functions.c: 161: unsigned int buffer;
-[; ;beacon_functions.c: 162: buffer = SSPBUF;
-"162
+[; ;beacon_functions.c: 189: unsigned int buffer;
+[; ;beacon_functions.c: 190: buffer = SSPBUF;
+"190
 [e = _buffer -> _SSPBUF `ui ]
-[; ;beacon_functions.c: 163: PIR1bits.SSP1IF=0;
-"163
+[; ;beacon_functions.c: 191: PIR1bits.SSP1IF=0;
+"191
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 164: SSPBUF = databyte;
-"164
+[; ;beacon_functions.c: 192: SSPBUF = databyte;
+"192
 [e = _SSPBUF _databyte ]
-[; ;beacon_functions.c: 165: while(!PIR1bits.SSP1IF);
-"165
-[e $U 524  ]
-[e :U 525 ]
-[e :U 524 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 525  ]
-[e :U 526 ]
-[; ;beacon_functions.c: 166: }
-"166
-[e :UE 523 ]
+[; ;beacon_functions.c: 193: while(!PIR1bits.SSP1IF);
+"193
+[e $U 521  ]
+[e :U 522 ]
+[e :U 521 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 522  ]
+[e :U 523 ]
+[; ;beacon_functions.c: 194: }
+"194
+[e :UE 520 ]
 }
-"168
+"196
 [v _ReadSPI `(uc ~T0 @X0 1 ef ]
-"169
+"197
 {
-[; ;beacon_functions.c: 168: unsigned char ReadSPI(void)
-[; ;beacon_functions.c: 169: {
+[; ;beacon_functions.c: 196: unsigned char ReadSPI(void)
+[; ;beacon_functions.c: 197: {
 [e :U _ReadSPI ]
 [f ]
-"170
+"198
 [v _dataByte `uc ~T0 @X0 1 a ]
-[; ;beacon_functions.c: 170: unsigned char dataByte;
-[; ;beacon_functions.c: 172: SSPBUF = 0x00;
-"172
+[; ;beacon_functions.c: 198: unsigned char dataByte;
+[; ;beacon_functions.c: 200: SSPBUF = 0x00;
+"200
 [e = _SSPBUF -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 173: while(!SSPSTATbits.BF);
-"173
-[e $U 528  ]
-[e :U 529 ]
-[e :U 528 ]
-[e $ ! != -> . . _SSPSTATbits 0 0 `i -> -> -> 0 `i `Vuc `i 529  ]
-[e :U 530 ]
-[; ;beacon_functions.c: 174: dataByte = SSPBUF;
-"174
+[; ;beacon_functions.c: 201: while(!SSPSTATbits.BF);
+"201
+[e $U 525  ]
+[e :U 526 ]
+[e :U 525 ]
+[e $ ! != -> . . _SSPSTATbits 0 0 `i -> -> -> 0 `i `Vuc `i 526  ]
+[e :U 527 ]
+[; ;beacon_functions.c: 202: dataByte = SSPBUF;
+"202
 [e = _dataByte _SSPBUF ]
-[; ;beacon_functions.c: 175: PIR1bits.SSP1IF=0;
-"175
+[; ;beacon_functions.c: 203: PIR1bits.SSP1IF=0;
+"203
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;beacon_functions.c: 176: return (dataByte);
-"176
+[; ;beacon_functions.c: 204: return (dataByte);
+"204
 [e ) _dataByte ]
-[e $UE 527  ]
-[; ;beacon_functions.c: 177: }
-"177
-[e :UE 527 ]
+[e $UE 524  ]
+[; ;beacon_functions.c: 205: }
+"205
+[e :UE 524 ]
 }
-"273
+"301
 [v _ReadStatusSPI `(uc ~T0 @X0 1 ef ]
-"274
+"302
 {
-[; ;beacon_functions.c: 273: unsigned char ReadStatusSPI(void)
-[; ;beacon_functions.c: 274: {
+[; ;beacon_functions.c: 301: unsigned char ReadStatusSPI(void)
+[; ;beacon_functions.c: 302: {
 [e :U _ReadStatusSPI ]
 [f ]
-"275
-[v _dataRead `uc ~T0 @X0 1 a ]
-[; ;beacon_functions.c: 275: unsigned char dataRead;
-[; ;beacon_functions.c: 277: LATC2=1;
-"277
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;beacon_functions.c: 278: WriteSPI((0x05));
-"278
-[e ( _WriteSPI (1 -> -> 5 `i `uc ]
-[; ;beacon_functions.c: 279: dataRead = ReadSPI();
-"279
-[e = _dataRead ( _ReadSPI ..  ]
-[; ;beacon_functions.c: 280: LATC2=0;
-"280
-[e = _LATC2 -> -> 0 `i `b ]
-[; ;beacon_functions.c: 282: return(dataRead);
-"282
-[e ) _dataRead ]
-[e $UE 531  ]
-[; ;beacon_functions.c: 283: }
-"283
-[e :UE 531 ]
-}
-"285
-[v _ReadOverheadSPI `(v ~T0 @X0 1 ef1`i ]
-"286
-{
-[; ;beacon_functions.c: 285: void ReadOverheadSPI(int address)
-[; ;beacon_functions.c: 286: {
-[e :U _ReadOverheadSPI ]
-"285
-[v _address `i ~T0 @X0 1 r1 ]
-"286
-[f ]
-"287
-[v _addressBytes `uc ~T0 @X0 -> 3 `i a ]
-[; ;beacon_functions.c: 287: unsigned char addressBytes[3];
-[; ;beacon_functions.c: 288: addressBytes[0]=(unsigned char)(address>>8);
-"288
-[e = *U + &U _addressBytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux -> >> _address -> 8 `i `uc ]
-[; ;beacon_functions.c: 289: addressBytes[1]=(unsigned char)(address>>4);
-"289
-[e = *U + &U _addressBytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux -> >> _address -> 4 `i `uc ]
-[; ;beacon_functions.c: 290: addressBytes[2]=(unsigned char)(address);
-"290
-[e = *U + &U _addressBytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux -> _address `uc ]
-"292
-[v _StatusReg `i ~T0 @X0 1 a ]
-[; ;beacon_functions.c: 292: int StatusReg;
-[; ;beacon_functions.c: 293: do
-"293
-[e :U 535 ]
-[; ;beacon_functions.c: 294: {
-"294
-{
-[; ;beacon_functions.c: 295: StatusReg = (ReadStatusSPI() & 0x01);
-"295
-[e = _StatusReg & -> ( _ReadStatusSPI ..  `i -> 1 `i ]
-"296
-}
-[; ;beacon_functions.c: 296: } while (StatusReg);
-[e $ != _StatusReg -> 0 `i 535  ]
-[e :U 534 ]
-[; ;beacon_functions.c: 299: LATC2 = 1;
-"299
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;beacon_functions.c: 300: WriteSPI((0x03));
-"300
-[e ( _WriteSPI (1 -> -> 3 `i `uc ]
-[; ;beacon_functions.c: 301: WriteSPI(addressBytes[0]);
-"301
-[e ( _WriteSPI (1 *U + &U _addressBytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux ]
-[; ;beacon_functions.c: 302: WriteSPI(addressBytes[1]);
-"302
-[e ( _WriteSPI (1 *U + &U _addressBytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux ]
-[; ;beacon_functions.c: 303: WriteSPI(addressBytes[2]);
 "303
-[e ( _WriteSPI (1 *U + &U _addressBytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux ]
-[; ;beacon_functions.c: 305: return;
+[v _dataRead `uc ~T0 @X0 1 a ]
+[; ;beacon_functions.c: 303: unsigned char dataRead;
+[; ;beacon_functions.c: 305: LATC2 = (0);
 "305
-[e $UE 532  ]
-[; ;beacon_functions.c: 306: }
+[e = _LATC2 -> -> 0 `i `b ]
+[; ;beacon_functions.c: 306: WriteSPI((0x05));
 "306
-[e :UE 532 ]
-}
-"309
-[v _WriteBuffer `(v ~T0 @X0 1 ef1`uc ]
+[e ( _WriteSPI (1 -> -> 5 `i `uc ]
+[; ;beacon_functions.c: 307: dataRead = ReadSPI();
+"307
+[e = _dataRead ( _ReadSPI ..  ]
+[; ;beacon_functions.c: 308: LATC2 = (1);
+"308
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;beacon_functions.c: 310: return(dataRead);
 "310
-{
-[; ;beacon_functions.c: 309: void WriteBuffer(unsigned char data)
-[; ;beacon_functions.c: 310: {
-[e :U _WriteBuffer ]
-"309
-[v _data `uc ~T0 @X0 1 r1 ]
-"310
-[f ]
-[; ;beacon_functions.c: 311: buffer[end] = data;
+[e ) _dataRead ]
+[e $UE 528  ]
+[; ;beacon_functions.c: 311: }
 "311
-[e = *U + &U _buffer * -> -> _end `ui `ux -> -> # *U &U _buffer `ui `ux _data ]
-[; ;beacon_functions.c: 313: if (end == 51)
-"313
-[e $ ! == _end -> 51 `i 537  ]
-[; ;beacon_functions.c: 314: end = 0;
-"314
-[e = _end -> 0 `i ]
-[e $U 538  ]
-"315
-[e :U 537 ]
-[; ;beacon_functions.c: 315: else
-[; ;beacon_functions.c: 316: end++;
-"316
-[e ++ _end -> 1 `i ]
-[e :U 538 ]
-[; ;beacon_functions.c: 317: }
-"317
-[e :UE 536 ]
+[e :UE 528 ]
 }
-"319
-[v _ReadBuffer `(uc ~T0 @X0 1 ef ]
-"320
+"313
+[v _ReadOverheadSPI `(v ~T0 @X0 1 ef1`l ]
+"314
 {
-[; ;beacon_functions.c: 319: unsigned char ReadBuffer()
-[; ;beacon_functions.c: 320: {
+[; ;beacon_functions.c: 313: void ReadOverheadSPI(long int address)
+[; ;beacon_functions.c: 314: {
+[e :U _ReadOverheadSPI ]
+"313
+[v _address `l ~T0 @X0 1 r1 ]
+"314
+[f ]
+"315
+[v _addressBytes `uc ~T0 @X0 -> 3 `i a ]
+[; ;beacon_functions.c: 315: unsigned char addressBytes[3];
+[; ;beacon_functions.c: 316: addressBytes[0]=(unsigned char)(address>>16);
+"316
+[e = *U + &U _addressBytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux -> >> _address -> 16 `i `uc ]
+[; ;beacon_functions.c: 317: addressBytes[1]=(unsigned char)(address>>8);
+"317
+[e = *U + &U _addressBytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux -> >> _address -> 8 `i `uc ]
+[; ;beacon_functions.c: 318: addressBytes[2]=(unsigned char)(address);
+"318
+[e = *U + &U _addressBytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux -> _address `uc ]
+"321
+[v _StatusReg `i ~T0 @X0 1 a ]
+[; ;beacon_functions.c: 321: int StatusReg;
+[; ;beacon_functions.c: 322: do
+"322
+[e :U 532 ]
+[; ;beacon_functions.c: 323: {
+"323
+{
+[; ;beacon_functions.c: 324: StatusReg = (ReadStatusSPI() & 0x01);
+"324
+[e = _StatusReg & -> ( _ReadStatusSPI ..  `i -> 1 `i ]
+"325
+}
+[; ;beacon_functions.c: 325: } while (StatusReg);
+[e $ != _StatusReg -> 0 `i 532  ]
+[e :U 531 ]
+[; ;beacon_functions.c: 328: LATC2 = (0);
+"328
+[e = _LATC2 -> -> 0 `i `b ]
+[; ;beacon_functions.c: 329: WriteSPI((0x03));
+"329
+[e ( _WriteSPI (1 -> -> 3 `i `uc ]
+[; ;beacon_functions.c: 330: WriteSPI(addressBytes[0]);
+"330
+[e ( _WriteSPI (1 *U + &U _addressBytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux ]
+[; ;beacon_functions.c: 331: WriteSPI(addressBytes[1]);
+"331
+[e ( _WriteSPI (1 *U + &U _addressBytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux ]
+[; ;beacon_functions.c: 332: WriteSPI(addressBytes[2]);
+"332
+[e ( _WriteSPI (1 *U + &U _addressBytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux ]
+[; ;beacon_functions.c: 334: return;
+"334
+[e $UE 529  ]
+[; ;beacon_functions.c: 335: }
+"335
+[e :UE 529 ]
+}
+"338
+[v _WriteBuffer `(v ~T0 @X0 1 ef1`uc ]
+"339
+{
+[; ;beacon_functions.c: 338: void WriteBuffer(unsigned char data)
+[; ;beacon_functions.c: 339: {
+[e :U _WriteBuffer ]
+"338
+[v _data `uc ~T0 @X0 1 r1 ]
+"339
+[f ]
+[; ;beacon_functions.c: 340: buffer[end] = data;
+"340
+[e = *U + &U _buffer * -> -> _end `ui `ux -> -> # *U &U _buffer `ui `ux _data ]
+[; ;beacon_functions.c: 342: if (end == 51)
+"342
+[e $ ! == _end -> 51 `i 534  ]
+[; ;beacon_functions.c: 343: end = 0;
+"343
+[e = _end -> 0 `i ]
+[e $U 535  ]
+"344
+[e :U 534 ]
+[; ;beacon_functions.c: 344: else
+[; ;beacon_functions.c: 345: end++;
+"345
+[e ++ _end -> 1 `i ]
+[e :U 535 ]
+[; ;beacon_functions.c: 346: }
+"346
+[e :UE 533 ]
+}
+"348
+[v _ReadBuffer `(uc ~T0 @X0 1 ef ]
+"349
+{
+[; ;beacon_functions.c: 348: unsigned char ReadBuffer()
+[; ;beacon_functions.c: 349: {
 [e :U _ReadBuffer ]
 [f ]
-"321
-[v _read_data `uc ~T0 @X0 1 a ]
-[; ;beacon_functions.c: 321: unsigned char read_data;
-[; ;beacon_functions.c: 323: read_data = buffer[start];
-"323
-[e = _read_data *U + &U _buffer * -> -> _start `ui `ux -> -> # *U &U _buffer `ui `ux ]
-[; ;beacon_functions.c: 324: if (start == 51)
-"324
-[e $ ! == _start -> 51 `i 540  ]
-[; ;beacon_functions.c: 325: start = 0;
-"325
-[e = _start -> 0 `i ]
-[e $U 541  ]
-"326
-[e :U 540 ]
-[; ;beacon_functions.c: 326: else
-[; ;beacon_functions.c: 327: start++;
-"327
-[e ++ _start -> 1 `i ]
-[e :U 541 ]
-[; ;beacon_functions.c: 328: return read_data;
-"328
-[e ) _read_data ]
-[e $UE 539  ]
-[; ;beacon_functions.c: 329: }
-"329
-[e :UE 539 ]
-}
-"333
-[v _WriteSPI_overhead `(v ~T0 @X0 1 ef1`l ]
-"334
-{
-[; ;beacon_functions.c: 333: void WriteSPI_overhead(long int address)
-[; ;beacon_functions.c: 334: {
-[e :U _WriteSPI_overhead ]
-"333
-[v _address `l ~T0 @X0 1 r1 ]
-"334
-[f ]
-"336
-[v _address_bytes `uc ~T0 @X0 -> 3 `i a ]
-"337
-[v _StatusReg `uc ~T0 @X0 1 a ]
-[; ;beacon_functions.c: 336: unsigned char address_bytes[3];
-[; ;beacon_functions.c: 337: unsigned char StatusReg;
-[; ;beacon_functions.c: 339: address_bytes[0]=(unsigned char)(address>>8);
-"339
-[e = *U + &U _address_bytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux -> >> _address -> 8 `i `uc ]
-[; ;beacon_functions.c: 340: address_bytes[1]=(unsigned char)(address>>4);
-"340
-[e = *U + &U _address_bytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux -> >> _address -> 4 `i `uc ]
-[; ;beacon_functions.c: 341: address_bytes[2]=(unsigned char)(address);
-"341
-[e = *U + &U _address_bytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux -> _address `uc ]
-[; ;beacon_functions.c: 343: do
-"343
-[e :U 545 ]
-[; ;beacon_functions.c: 344: {
-"344
-{
-[; ;beacon_functions.c: 345: StatusReg = (Read_SPI_StatusReg() & 0x01);
-"345
-[e = _StatusReg -> & -> ( _Read_SPI_StatusReg ..  `i -> 1 `i `uc ]
-"346
-}
-[; ;beacon_functions.c: 346: } while (StatusReg);
-[e $ != -> _StatusReg `i -> -> -> 0 `i `uc `i 545  ]
-[e :U 544 ]
-[; ;beacon_functions.c: 349: LATC2 = 1;
-"349
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;beacon_functions.c: 350: WriteSPI((0x06));
 "350
-[e ( _WriteSPI (1 -> -> 6 `i `uc ]
-[; ;beacon_functions.c: 351: LATC2=0;
-"351
-[e = _LATC2 -> -> 0 `i `b ]
-[; ;beacon_functions.c: 353: do
+[v _read_data `uc ~T0 @X0 1 a ]
+[; ;beacon_functions.c: 350: unsigned char read_data;
+[; ;beacon_functions.c: 352: read_data = buffer[start];
+"352
+[e = _read_data *U + &U _buffer * -> -> _start `ui `ux -> -> # *U &U _buffer `ui `ux ]
+[; ;beacon_functions.c: 353: if (start == 51)
 "353
-[e :U 548 ]
-[; ;beacon_functions.c: 354: {
+[e $ ! == _start -> 51 `i 537  ]
+[; ;beacon_functions.c: 354: start = 0;
 "354
-{
-[; ;beacon_functions.c: 355: StatusReg = (Read_SPI_StatusReg() & 0x02);
+[e = _start -> 0 `i ]
+[e $U 538  ]
 "355
-[e = _StatusReg -> & -> ( _Read_SPI_StatusReg ..  `i -> 2 `i `uc ]
+[e :U 537 ]
+[; ;beacon_functions.c: 355: else
+[; ;beacon_functions.c: 356: start++;
 "356
+[e ++ _start -> 1 `i ]
+[e :U 538 ]
+[; ;beacon_functions.c: 357: return read_data;
+"357
+[e ) _read_data ]
+[e $UE 536  ]
+[; ;beacon_functions.c: 358: }
+"358
+[e :UE 536 ]
 }
-[; ;beacon_functions.c: 356: } while (!StatusReg);
-[e $ ! != -> _StatusReg `i -> -> -> 0 `i `uc `i 548  ]
-[e :U 547 ]
-[; ;beacon_functions.c: 360: LATC2=1;
-"360
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;beacon_functions.c: 361: WriteSPI((0x02));
-"361
-[e ( _WriteSPI (1 -> -> 2 `i `uc ]
-[; ;beacon_functions.c: 362: WriteSPI(address_bytes[0]);
 "362
-[e ( _WriteSPI (1 *U + &U _address_bytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux ]
-[; ;beacon_functions.c: 363: WriteSPI(address_bytes[1]);
+[v _WriteSPI_overhead `(v ~T0 @X0 1 ef1`l ]
 "363
-[e ( _WriteSPI (1 *U + &U _address_bytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux ]
-[; ;beacon_functions.c: 364: WriteSPI(address_bytes[2]);
-"364
-[e ( _WriteSPI (1 *U + &U _address_bytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux ]
-[; ;beacon_functions.c: 366: return;
-"366
-[e $UE 542  ]
-[; ;beacon_functions.c: 367: }
-"367
-[e :UE 542 ]
-}
-"369
-[v _Read_SPI_StatusReg `(uc ~T0 @X0 1 ef ]
-"370
 {
-[; ;beacon_functions.c: 369: unsigned char Read_SPI_StatusReg(void)
-[; ;beacon_functions.c: 370: {
-[e :U _Read_SPI_StatusReg ]
+[; ;beacon_functions.c: 362: void WriteSPI_overhead(long int address)
+[; ;beacon_functions.c: 363: {
+[e :U _WriteSPI_overhead ]
+"362
+[v _address `l ~T0 @X0 1 r1 ]
+"363
 [f ]
-"371
-[v _data_read `uc ~T0 @X0 1 a ]
-[; ;beacon_functions.c: 371: unsigned char data_read;
-[; ;beacon_functions.c: 373: LATC2=1;
+"365
+[v _address_bytes `uc ~T0 @X0 -> 3 `i a ]
+"366
+[v _StatusReg `uc ~T0 @X0 1 a ]
+[; ;beacon_functions.c: 365: unsigned char address_bytes[3];
+[; ;beacon_functions.c: 366: unsigned char StatusReg;
+[; ;beacon_functions.c: 368: address_bytes[0]=(unsigned char)(address>>16);
+"368
+[e = *U + &U _address_bytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux -> >> _address -> 16 `i `uc ]
+[; ;beacon_functions.c: 369: address_bytes[1]=(unsigned char)(address>>8);
+"369
+[e = *U + &U _address_bytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux -> >> _address -> 8 `i `uc ]
+[; ;beacon_functions.c: 370: address_bytes[2]=(unsigned char)(address);
+"370
+[e = *U + &U _address_bytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux -> _address `uc ]
+[; ;beacon_functions.c: 372: do
+"372
+[e :U 542 ]
+[; ;beacon_functions.c: 373: {
 "373
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;beacon_functions.c: 374: WriteSPI((0x05));
+{
+[; ;beacon_functions.c: 374: StatusReg = (ReadStatusSPI() & 0x01);
 "374
-[e ( _WriteSPI (1 -> -> 5 `i `uc ]
-[; ;beacon_functions.c: 375: data_read = ReadSPI();
+[e = _StatusReg -> & -> ( _ReadStatusSPI ..  `i -> 1 `i `uc ]
 "375
-[e = _data_read ( _ReadSPI ..  ]
-[; ;beacon_functions.c: 376: LATC2=0;
-"376
-[e = _LATC2 -> -> 0 `i `b ]
-[; ;beacon_functions.c: 378: return(data_read);
+}
+[; ;beacon_functions.c: 375: } while (StatusReg);
+[e $ != -> _StatusReg `i -> -> -> 0 `i `uc `i 542  ]
+[e :U 541 ]
+[; ;beacon_functions.c: 378: LATC2 = (0);
 "378
-[e ) _data_read ]
-[e $UE 549  ]
-[; ;beacon_functions.c: 379: }
+[e = _LATC2 -> -> 0 `i `b ]
+[; ;beacon_functions.c: 379: WriteSPI((0x06));
 "379
-[e :UE 549 ]
+[e ( _WriteSPI (1 -> -> 6 `i `uc ]
+[; ;beacon_functions.c: 380: LATC2 = (1);
+"380
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;beacon_functions.c: 382: do
+"382
+[e :U 545 ]
+[; ;beacon_functions.c: 383: {
+"383
+{
+[; ;beacon_functions.c: 384: StatusReg = (ReadStatusSPI() & 0x02);
+"384
+[e = _StatusReg -> & -> ( _ReadStatusSPI ..  `i -> 2 `i `uc ]
+"385
+}
+[; ;beacon_functions.c: 385: } while (!StatusReg);
+[e $ ! != -> _StatusReg `i -> -> -> 0 `i `uc `i 545  ]
+[e :U 544 ]
+[; ;beacon_functions.c: 389: LATC2 = (0);
+"389
+[e = _LATC2 -> -> 0 `i `b ]
+[; ;beacon_functions.c: 390: WriteSPI((0x02));
+"390
+[e ( _WriteSPI (1 -> -> 2 `i `uc ]
+[; ;beacon_functions.c: 391: WriteSPI(address_bytes[0]);
+"391
+[e ( _WriteSPI (1 *U + &U _address_bytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux ]
+[; ;beacon_functions.c: 392: WriteSPI(address_bytes[1]);
+"392
+[e ( _WriteSPI (1 *U + &U _address_bytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux ]
+[; ;beacon_functions.c: 393: WriteSPI(address_bytes[2]);
+"393
+[e ( _WriteSPI (1 *U + &U _address_bytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux ]
+[; ;beacon_functions.c: 395: return;
+"395
+[e $UE 539  ]
+[; ;beacon_functions.c: 396: }
+"396
+[e :UE 539 ]
 }

@@ -11,17 +11,18 @@ void InitGPIO()
     //SPI and DAC outputs initialized in respective init funcitons
 
     //Playback Button Interrupt initialization
-    TRISAbits.TRISA3 = 1; //set RA3 to input
-    //IOCANbits.IOCAN3 = 1; //enable negative edge interrupt for pin RA3
-    IOCAPbits.IOCAP3 = 1; //enable positive edge interrupt for pin RA3
-    IOCAF = 0x00;
-    INTCONbits.IOCIE = 1; //enable interrupts on change
+    TRISAbits.TRISA3 = 1;       //Set RA3 to input
+    ANSELAbits.ANSA3 = 0;
+    IOCAPbits.IOCAP3 = 1;       //Enable positive edge interrupt for pin RA1
+    IOCANbits.IOCAN3 = 1;       //enable negative edge interrupt for pin RA1
+    IOCAF            = 0x00;    //Clear IOC flags
+    INTCONbits.IOCIE = 1;       //Enable interrupts on change
 
     //Port A
     TRISAbits.TRISA0 = 0;       //Output, unused
     //TRISAbits.TRISA1 = 0;     //set RA1 (OPA1 output) as output
     TRISAbits.TRISA2 = 0;       //Output, unused
-    TRISAbits.TRISA3 = 1;       //Play-Button input
+    //TRISAbits.TRISA3 = 1;       //Play-Button input
     TRISAbits.TRISA4 = 1;       //Mem-Access input
     //TRISAbits.TRISA5 = 1;     //set RA5 (OPA1 inverting input) as input
     TRISAbits.TRISA6 = 0;       //Output, unused
@@ -77,7 +78,7 @@ void InitSPI()
     TRISCbits.TRISC4 = 1; // RC4 = SDI input from SEE
     TRISCbits.TRISC5 = 0; // RC5 = SDO output to SEE
 
-    SPI_CS = 0; // start high. Need falling edge to do anything |must be changed!
+    SPI_CS = CS_IDLE;     // start high. Need falling edge to do anything
 
     // Setup SPI as Master mode, Mode 00 and clock rate of Fosc/16
     SSPCON1bits.SSPEN=0x00;      // Disable SPI Port for configuration
@@ -95,7 +96,10 @@ void InitTimer0()
     TMR0IE              = 0;    //turn off timer0 interrupt
     TMR0IF              = 0;    //turn off timer0 interrupt flag
     TMR0CS              = 0;    //set clock source to internal instruction clock (FOSC/4)
-    PSA                 = 1;    //turn off prescalar to timer0
+    PSA                 = 0;    //turn on prescalar to timer0
+    PS0                 = 0;    //set prescalar to 2
+    PS1                 = 0;
+    PS2                 = 0;
     TMR0                = SAMPLE_COUNT; //count 0d40 times to get from (16MHz/4) to 10kHz (was 9B)
     TMR0IE              = 1;    //Enable timer0 interrupt
 }
@@ -104,7 +108,8 @@ void InitWatchdog()
 {
     //Used to wakeup from sleep mode
     WDTCONbits.WDTPS = 0x0D;    //Set timing interval
-    WDTCONbits.SWDTEN = 1;      //Software enable or WDT
+    WDTCONbits.SWDTEN = 0;      //Software enable or WDT
+
 }
 
 void CheckDisconnect()
@@ -123,7 +128,7 @@ void TransmitMode()
 {
     //Add some sort of playback length
     TRANS_ENABLE    = 1;    //Set transmitter enable
-    //PlaybackMode();
+    PlaybackMode();
     TRANS_ENABLE    = 0;    //Disable transmitter
 }
 
@@ -131,28 +136,54 @@ void TransmitMode()
 void PlaybackMode()
 {
   long int curr_address = 0;
-  int DAC_count = 0;
+  long int end_address;
+  InitSPI();            //Start-up SPI again
   
   dacOutputFlag = 1;      //signals DAC to output next byte
 
-  //Checking transmit/playback before reading a page
-  while((transmitFlag || (!transmitFlag && !MEM_ACCESS)) && (curr_address<=RECORD_END_ADDRESS))
-  {
-    ReadOverheadSPI(curr_address);
-    DAC_count = 0;
+  ReadOverheadSPI(PLAYBACK_BEGIN_ADDRESS);
 
+  //Extract Header Data
+  end_address = ReadSPI();
+  end_address = end_address<<8;
+  end_address +=ReadSPI();
+  end_address = end_address<<8;
+  end_address +=ReadSPI();
+
+  Longitude[0] = ReadSPI();     //degrees
+  Longitude[1] = ReadSPI();     //minutes
+  Longitude[2] = ReadSPI();     //seconds
+
+  NorthSouth = ReadSPI();       //North/South (N/S)
+
+  Latitude[0] = ReadSPI();      //degrees
+  Latitude[1] = ReadSPI();      //minutes
+  Latitude[2] = ReadSPI();      //seconds
+
+  EastWest = ReadSPI();         //East/West (E/W)
+
+  //Checking transmit/playback before reading a page
+  while((transmitFlag || (!transmitFlag && !MEM_ACCESS && playbackFlag)) && (curr_address<=end_address))
+  {
+    
     //Checking transmit/playback before reading each byte of page
-    while((transmitFlag || (!transmitFlag && !MEM_ACCESS)) && (DAC_count<SPI_PAGE_SIZE) && (curr_address <= RECORD_END_ADDRESS))
-    {
+    //while((transmitFlag || (!transmitFlag && !MEM_ACCESS)) && (DAC_count<SPI_PAGE_SIZE) && (curr_address <= RECORD_END_ADDRESS))
+    //{
       if(!isFull())
       {
-        DAC_count++;
+        //DAC_count++;
         curr_address++;
         WriteBuffer(ReadSPI()); //Read single byte into circular buffer
       }
-    }
-    SPI_CS = 1;
   }
+
+  //TODO: read off GPS coordinates
+
+  SSPCON1bits.SSPEN=0;  // Disable SPI Port
+  PORTCbits.RC5 = 0;    //Set MOSI low
+  SPI_CS = CS_IDLE;
+  dacOutputFlag = 0;   //signals DAC to stop output
+
 }
 
 //SPI Functions
@@ -274,20 +305,21 @@ unsigned char ReadStatusSPI(void)
 {
     unsigned char dataRead;
 
-    SPI_CS=1; //must be changed!
-    WriteSPI(SPI_RDSR);         // Send read status register command
-    dataRead = ReadSPI();  // Read the data
-    SPI_CS=0; //must be changed!
+    SPI_CS = CS_ACTIVE;
+    WriteSPI(SPI_RDSR);     // Send read status register command
+    dataRead = ReadSPI();   // Read the data
+    SPI_CS = CS_IDLE;
 
     return(dataRead);
 }
 
-void ReadOverheadSPI(int address)
+void ReadOverheadSPI(long int address)
 {
     unsigned char addressBytes[3];
-    addressBytes[0]=(unsigned char)(address>>8);
-    addressBytes[1]=(unsigned char)(address>>4);
+    addressBytes[0]=(unsigned char)(address>>16);
+    addressBytes[1]=(unsigned char)(address>>8);
     addressBytes[2]=(unsigned char)(address);
+    //SPI_CS = 0; //must be removed!
 
     int StatusReg;
     do
@@ -296,7 +328,7 @@ void ReadOverheadSPI(int address)
     } while (StatusReg);
 
     //__delay_ms(5);
-    SPI_CS = 1; //must be changed!
+    SPI_CS = CS_ACTIVE; //must be changed!
     WriteSPI(SPI_READ);
     WriteSPI(addressBytes[0]);
     WriteSPI(addressBytes[1]);
@@ -336,28 +368,28 @@ void WriteSPI_overhead(long int address)
     unsigned char address_bytes[3];
     unsigned char StatusReg;
 
-    address_bytes[0]=(unsigned char)(address>>8);
-    address_bytes[1]=(unsigned char)(address>>4);
+    address_bytes[0]=(unsigned char)(address>>16);
+    address_bytes[1]=(unsigned char)(address>>8);
     address_bytes[2]=(unsigned char)(address);
 
     do
     {
-        StatusReg = (Read_SPI_StatusReg() & 0x01);   // Read the Status Register and mask out write in progress flag
+        StatusReg = (ReadStatusSPI() & 0x01);   // Read the Status Register and mask out write in progress flag
     } while (StatusReg);
 
     //__delay_ms(5);
-    SPI_CS = 1;         //bring chip select low must be changed!
-    WriteSPI(SPI_WREN); //send write enable
-    SPI_CS=0; //must be changed!
+    SPI_CS = CS_ACTIVE;     //bring chip select low must be changed!
+    WriteSPI(SPI_WREN);     //send write enable
+    SPI_CS = CS_IDLE;       //must be changed!
 
     do
     {
-        StatusReg = (Read_SPI_StatusReg() & 0x02);   // Read the Status Register and mask out write in progress flag
+        StatusReg = (ReadStatusSPI() & 0x02);   // Read the Status Register and mask out write in progress flag
     } while (!StatusReg);
     //__delay_ms(5);          // If you don't want to use the polling method you can
                                // just wait for the max write cycle time (5ms)
 
-    SPI_CS=1; //must be changed!
+    SPI_CS = CS_ACTIVE;
     WriteSPI(SPI_WRITE);         // Send write command
     WriteSPI(address_bytes[0]);
     WriteSPI(address_bytes[1]);
@@ -366,14 +398,3 @@ void WriteSPI_overhead(long int address)
     return;
 }
 
-unsigned char Read_SPI_StatusReg(void)
-{
-    unsigned char data_read;
-
-    SPI_CS=1; //must be changed!
-    WriteSPI(SPI_RDSR);         // Send read status register command
-    data_read = ReadSPI();  // Read the data
-    SPI_CS=0; //must be changed!
-
-    return(data_read);
-}

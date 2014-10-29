@@ -6177,14 +6177,19 @@ extern volatile __bit nTO @ (((unsigned) &STATUS)*8) + 4;
 
 extern volatile __bit nWPUEN @ (((unsigned) &OPTION_REG)*8) + 7;
 
-# 23 "beacon.h"
+# 28 "beacon.h"
 int start, end = 0;
 unsigned char buffer[51];
 int playbackFlag = 0;
 unsigned char transmitFlag;
 unsigned char dacOutputFlag =0;
 
-# 33
+unsigned char Latitude[3];
+unsigned char NorthSouth;
+unsigned char Longitude[3];
+unsigned char EastWest;
+
+# 43
 void InitCLK();
 void InitGPIO();
 void InitDAC();
@@ -6204,7 +6209,7 @@ unsigned char ReadSPI(void);
 
 void ReadDataSPI(unsigned char *data, unsigned int address, unsigned int size);
 unsigned char ReadStatusSPI(void);
-void ReadOverheadSPI(int address);
+void ReadOverheadSPI(long int address);
 
 
 void WriteBuffer(unsigned char data);
@@ -12323,12 +12328,20 @@ DACCON1 = ReadBuffer();
 TMR0 = (0x48);
 TMR0IF = 0;
 }
-if(INTCONbits.IOCIF)
+
+if(INTCONbits.IOCIE && IOCAFbits.IOCAF3)
 {
-if(IOCAFbits.IOCAF3 && PORTAbits.RA3)
+IOCAFbits.IOCAF3 = 0;
+
+if(IOCAPbits.IOCAP3 && PORTAbits.RA3)
 {
-playbackFlag = playbackFlag?0:1;
+playbackFlag = 1;
 }
+if(IOCANbits.IOCAN3 && !PORTAbits.RA3)
+{
+playbackFlag = 0;
+}
+
 }
 }
 
@@ -12346,14 +12359,33 @@ InitWatchdog();
 
 
 PEIE = 1;
+GIE = 1;
 
-LATC2 = 1;
+LATC2 = (1);
 
+# 91
+SSPCON1bits.SSPEN=0;
+PORTCbits.RC5 = 0;
 
 while(1)
 {
+LATC2 = (1);
 
-# 85
+
+CheckDisconnect();
+
+if(playbackFlag)
+{
+PlaybackMode();
+playbackFlag = 0;
+}
+
+
+if(transmitFlag)
+TransmitMode();
+
+
+asm("sleep");
 }
 
 return (0);

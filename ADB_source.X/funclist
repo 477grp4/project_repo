@@ -1,11 +1,19 @@
-_InitTimer0: CODE, 184 0 10
-_main: CODE, 103 0 22
-__initialization: CODE, 58 0 12
-_isr: CODE, 4 0 52
-_InitGPIO: CODE, 74 0 29
-_ReadBuffer: CODE, 125 0 22
-_InitSPI: CODE, 166 0 18
-_InitDAC: CODE, 147 0 19
-_InitWatchdog: CODE, 202 0 7
-_InitCLK: CODE, 194 0 8
-Total: 199
+_PlaybackMode: CODE, 82 0 272
+_InitTimer0: CODE, 632 0 13
+_main: CODE, 435 0 50
+_CheckDisconnect: CODE, 657 0 10
+__initialization: CODE, 62 0 16
+_WriteBuffer: CODE, 516 0 23
+_isr: CODE, 4 0 56
+_TransmitMode: CODE, 675 0 7
+_InitGPIO: CODE, 485 0 31
+_ReadBuffer: CODE, 539 0 23
+_InitSPI: CODE, 599 0 18
+_InitDAC: CODE, 562 0 19
+_WriteSPI: CODE, 581 0 18
+_ReadSPI: CODE, 645 0 12
+_ReadStatusSPI: CODE, 617 0 15
+_InitWatchdog: CODE, 682 0 7
+_InitCLK: CODE, 667 0 8
+_ReadOverheadSPI: CODE, 354 0 81
+Total: 679

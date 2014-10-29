@@ -170,8 +170,8 @@ void WriteOverheadSPI(long int address)
     unsigned char address_bytes[3];
     unsigned char StatusReg;
 
-    address_bytes[0]=(unsigned char)(address>>8);
-    address_bytes[1]=(unsigned char)(address>>4);
+    address_bytes[0]=(unsigned char)(address>>16);
+    address_bytes[1]=(unsigned char)(address>>8);
     address_bytes[2]=(unsigned char)(address);
 
     do
@@ -225,11 +225,11 @@ unsigned char ReadBuffer()
 }
 
 //FOR TESTING PURPOSES ONLY
-void ReadOverheadSPI(int address)
+void ReadOverheadSPI(long int address)
 {
     unsigned char addressBytes[3];
-    addressBytes[0]=(unsigned char)(address>>8);
-    addressBytes[1]=(unsigned char)(address>>4);
+    addressBytes[0]=(unsigned char)(address>>16);
+    addressBytes[1]=(unsigned char)(address>>8);
     addressBytes[2]=(unsigned char)(address);
 
     int StatusReg;
@@ -347,7 +347,7 @@ void SetupGPS()
 
     __delay_ms(1000);
     //Enable GLL in query mode
-    sprintf(message, "%s%s,01,01,01,00*", startSequence, MID);
+    sprintf(message, "%s%s,01,01,00,00*", startSequence, MID);
     uart_write_message(message,  22);
 
 }
@@ -381,8 +381,8 @@ void DecodeGPS()
 {
     //Used to decode a GLL output message
     unsigned char messageID[7] = "$GPGLL";
-    unsigned int latitude[3] = {0,0,0};
-    unsigned int longitude[3] = {0,0,0};
+    unsigned char latitude[3] = {0,0,0};
+    unsigned char longitude[3] = {0,0,0};
     unsigned char northSouth;
     unsigned char eastWest;
     unsigned char status;
@@ -512,8 +512,9 @@ void Hibernate()
 
 void RecordMode()
 {
-    long int address = 18;
-    int count = 18;
+    MEM_ACCESS = 1;
+    long int address = RECORD_BEGIN_ADDRESS;
+    int count = BEGIN_PAGE_OFFSET;
     int x;
 
     RING_START = 0; //clear the buffer
@@ -523,26 +524,24 @@ void RecordMode()
     WriteOverheadSPI(address);
     for(x=0;x<3;x++)
     {
-        WriteSPI(validLongitude[x]);
-        WriteSPI(validLongitude[x]>>8);
+        WriteBuffer(validLongitude[x]);
     }
-    WriteSPI(validNorthSouth);
+    WriteBuffer(validNorthSouth);
     for(x=0;x<3;x++)
     {
-        WriteSPI(validLatitude[x]);
-        WriteSPI(validLatitude[x]>>8);
+        WriteBuffer(validLatitude[x]);
     }
-    WriteSPI(validEastWest);
+    WriteBuffer(validEastWest);
 
     TMR1IF  = 0;    //Clear interrupt flag
     TMR1IE  = 1;    //Start Interrupt
     TMR1ON  = 1;    //Start Timer
 
-    while((recordFlag) && (address < RECORD_END_ADDRESS))
+    while(((recordFlag) || !isEmpty()) && (address < RECORD_END_ADDRESS))
     {
         if(count>=256) //perform overhead on next page
         {
-            SPI_CS = CS_IDLE;
+            SPI_CS = CS_IDLE;   //Used for end of a page
             count = 0;
             WriteOverheadSPI(address);
         }
@@ -552,27 +551,67 @@ void RecordMode()
             address++;
             count++;
         }
+
     }
     SPI_CS = CS_IDLE;
     TMR1IE  = 0;    //Stop Interrupt
     TMR1ON  = 0;    //Stop Timer
     __delay_ms(5);
-    WriteOverheadSPI(0x0000000E);
+    WriteOverheadSPI(RECORD_BEGIN_ADDRESS-3);
     if(address >= RECORD_END_ADDRESS)
     {
-        WriteSPI(RECORD_END_ADDRESS - 1);
-        WriteSPI((RECORD_END_ADDRESS - 1)>>8);
         WriteSPI((RECORD_END_ADDRESS - 1)>>16);
-        WriteSPI((RECORD_END_ADDRESS - 1)>>24);
+        WriteSPI((RECORD_END_ADDRESS - 1)>>8);
+        WriteSPI(RECORD_END_ADDRESS - 1);
     }
     else
     {
-        WriteSPI(address);
-        WriteSPI(address>>8);
         WriteSPI(address>>16);
-        WriteSPI(address>>24);
+        WriteSPI(address>>8);
+        WriteSPI(address);
     }
     SPI_CS = CS_IDLE;
     RING_START = 0; //clear the buffer
     RING_END = 0;
+    MEM_ACCESS = 0;
+}
+
+//to make pre-recorded messages only!
+void PreRecordMode()
+{
+    long int address = 0;
+    int count = 256;
+    int x;
+    RING_START = 0;
+    RING_END = 0;
+
+    for(x = 0;x < 1; x++)
+    {
+        while(!recordFlag);
+        __delay_ms(320); //wait for mic to charge
+        TMR1IF  = 0;    //Clear interrupt flag
+        TMR1IE  = 1;    //Start Interrupt
+        TMR1ON  = 1;    //Start Timer
+        while(((recordFlag) || !isEmpty()) && (address < RECORD_END_ADDRESS))
+        {
+            if(count>=256) //perform overhead on next page
+            {
+                SPI_CS = CS_IDLE;
+                count = 0;
+                WriteOverheadSPI(address);
+            }
+            if(!isEmpty())
+            {
+                WriteSPI(ReadBuffer());
+                address++;
+                count++;
+            }
+        }
+        TMR1IF  = 0;    //Clear interrupt flag
+        TMR1IE  = 0;    //Stop Interrupt
+        TMR1ON  = 0;    //Stop Timer
+        preRecordingAddresses[x] = address;
+    }
+    return;
+
 }

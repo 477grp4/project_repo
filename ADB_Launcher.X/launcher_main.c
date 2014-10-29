@@ -33,11 +33,35 @@ int main(int argc, char** argv) {
 
     INTCONbits.GIE = 1;
 
+    //PreRecordMode();
+
+    /*
+  
+    WriteOverheadSPI(0x00000100);
+
+    int lcv = 0;
+    for(lcv=0;lcv<100;lcv++)
+    {
+        WriteSPI((unsigned char)lcv);
+    }
+
+    SPI_CS = 1;
+    SSPCON1bits.SSPEN=0;  // Disable SPI Port
+    PORTCbits.RC5 = 0;    //Set MOSI low
+    
+    while(1);
+*/
+
     if(!PORTCbits.RC7)
         ToggleSleepGPS();       //Turn GPS on
     SetupGPS();             //Setup Lat/Long recording
 
+    SSPCON1bits.SSPEN=0;      // Disable SPI Port
+    PORTCbits.RC5 = 0;        //Set MOSI low
+
     while(1){
+
+        SPI_CS = CS_IDLE;
 
         //Check Flags
         if(PORTAbits.RA1)
@@ -50,9 +74,12 @@ int main(int argc, char** argv) {
 
         if(recordFlag)
         {
+            InitSPI();            //Start-up SPI again
             RecordMode();
+            SSPCON1bits.SSPEN=0;  // Disable SPI Port
+            PORTCbits.RC5 = 0;    //Set MOSI low
         }
-        
+
         //Not recording, Update the GPS
         UpdateGPS(); //tell GPS to send an update
 
@@ -126,7 +153,8 @@ interrupt void isr(void)
     {
         if(!isFull())
         {
-            WriteBuffer(ADRESH);
+            if(recordFlag)
+                WriteBuffer(ADRESH);
         }
         PIR1bits.ADIF = 0;
     }

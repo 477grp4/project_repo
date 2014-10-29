@@ -33,12 +33,20 @@ interrupt void isr()
         TMR0 = SAMPLE_COUNT;        //Reset Timer0 counter
         TMR0IF = 0;
     }
-    if(INTCONbits.IOCIF)
+    //Playback IOC
+    if(INTCONbits.IOCIE && IOCAFbits.IOCAF3)
     {
-        if(IOCAFbits.IOCAF3 && PORTAbits.RA3)
+        IOCAFbits.IOCAF3 = 0;
+
+        if(IOCAPbits.IOCAP3 && PORTAbits.RA3)
         {
-            playbackFlag = playbackFlag?0:1;
+            playbackFlag = 1;
         }
+        if(IOCANbits.IOCAN3 && !PORTAbits.RA3)
+        {
+            playbackFlag = 0;
+        }
+        
     }
 }
 
@@ -56,32 +64,52 @@ int main(int argc, char** argv)
 
     //Setup interrupts
     PEIE = 1;
-    //GIE = 1;
-    SPI_CS = 1; //hands off mode for testing the launcher
+    GIE = 1;
 
+    SPI_CS = CS_IDLE; //must be changed!
+
+    /*
+    unsigned char data;
+    int x;
+    __delay_ms(5);
+
+    SPI_CS = 1; //must be changed!
+
+    WriteSPI(SPI_READ);
+    WriteSPI(0x00);
+    WriteSPI(0x00);
+    WriteSPI(0x00);
+
+    for(x = 0; x < 100; x++)
+    {
+     data = ReadSPI();
+    }
+*/
+    //SPI_CS = 1; //must be changed!
     //Main loop
+
+    SSPCON1bits.SSPEN=0;  // Disable SPI Port
+    PORTCbits.RC5 = 0;    //Set MOSI low
+
     while(1)
     {
+        SPI_CS = CS_IDLE; //hands off mode for testing the launcher
 
         //Check if beacon has been launched
-        //CheckDisconnect(); //DONE+TESTED
+        CheckDisconnect(); //DONE+TESTED
+
+        if(playbackFlag)
+        {
+            PlaybackMode();
+            playbackFlag = 0;
+        }
 
         //Transmit message
-        //if(transmitFlag) //DONE+TESTED
-        //    TransmitMode(); //DONE+TESTED
-               
-        //Check if beacon needs to playback message
-        //else if(playbackFlag)
-        //{
-            //PlaybackMode();
-            //playbackFlag = 0;
-        //}
-
-
-
+        if(transmitFlag) //DONE+TESTED
+            TransmitMode(); //DONE+TESTED
 
         //Go back to sleep, wait for interrupts
-        //SLEEP();
+        SLEEP();
     }
 
     return (EXIT_SUCCESS);

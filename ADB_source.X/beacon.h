@@ -16,8 +16,13 @@
 #define SPI_RDSR (0x05) //read STATUS register
 #define SPI_WRDI (0x04) //reset write enable latch
 #define SPI_PAGE_SIZE (256)
-#define RECORD_END_ADDRESS 131072
+//#define RECORD_END_ADDRESS 131072
 
+#define CS_IDLE (1)
+#define CS_ACTIVE (0)
+//for testing
+#define PLAYBACK_BEGIN_ADDRESS 0
+#define RECORD_END_ADDRESS 72755
 
 //Global variables
 int start, end = 0;
@@ -25,6 +30,11 @@ unsigned char buffer[BUFFERSIZE];
 int playbackFlag = 0;
 unsigned char transmitFlag;
 unsigned char dacOutputFlag =0;
+
+unsigned char Latitude[3];
+unsigned char NorthSouth;
+unsigned char Longitude[3];
+unsigned char EastWest;
 
 
 //Function Declarations
@@ -49,7 +59,7 @@ unsigned char ReadSPI(void);
 //void WriteDataSPI(unsigned char *data, unsigned int address, unsigned int size);
 void ReadDataSPI(unsigned char *data, unsigned int address, unsigned int size);
 unsigned char ReadStatusSPI(void);
-void ReadOverheadSPI(int address);
+void ReadOverheadSPI(long int address);
 
 //Circular Buffer
 void WriteBuffer(unsigned char data);

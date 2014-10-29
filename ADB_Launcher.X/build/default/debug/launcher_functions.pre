@@ -1,7 +1,7 @@
 
 # 1 "launcher_functions.c"
 
-# 49 "launcher.h"
+# 51 "launcher.h"
 void InitCLK();
 void InitGPIO();
 void InitADC();
@@ -21,7 +21,9 @@ void WriteBuffer(unsigned char data);
 unsigned char ReadBuffer();
 
 
-void ReadOverheadSPI(int address);
+void ReadOverheadSPI(long int address);
+long int preRecordingAddresses[17];
+void PreRecordMode();
 
 
 void initUART();
@@ -6319,7 +6321,7 @@ TRISCbits.TRISC3 = 0;
 TRISCbits.TRISC4 = 1;
 TRISCbits.TRISC5 = 0;
 
-LATC2 = (0);
+LATC2 = (1);
 
 
 SSPCON1bits.SSPEN=0x00;
@@ -6363,10 +6365,10 @@ unsigned char ReadStatusSPI(void)
 {
 unsigned char dataRead;
 
-LATC2=(1);
+LATC2=(0);
 WriteSPI((0x05));
 dataRead = ReadSPI();
-LATC2=(0);
+LATC2=(1);
 
 return(dataRead);
 }
@@ -6376,8 +6378,8 @@ void WriteOverheadSPI(long int address)
 unsigned char address_bytes[3];
 unsigned char StatusReg;
 
-address_bytes[0]=(unsigned char)(address>>8);
-address_bytes[1]=(unsigned char)(address>>4);
+address_bytes[0]=(unsigned char)(address>>16);
+address_bytes[1]=(unsigned char)(address>>8);
 address_bytes[2]=(unsigned char)(address);
 
 do
@@ -6386,9 +6388,9 @@ StatusReg = (ReadStatusSPI() & 0x01);
 } while (StatusReg);
 
 
-LATC2 = (1);
-WriteSPI((0x06));
 LATC2 = (0);
+WriteSPI((0x06));
+LATC2 = (1);
 
 do
 {
@@ -6397,7 +6399,7 @@ StatusReg = (ReadStatusSPI() & 0x02);
 
 
 
-LATC2=(1);
+LATC2=(0);
 WriteSPI((0x02));
 WriteSPI(address_bytes[0]);
 WriteSPI(address_bytes[1]);
@@ -6431,11 +6433,11 @@ return read_data;
 }
 
 
-void ReadOverheadSPI(int address)
+void ReadOverheadSPI(long int address)
 {
 unsigned char addressBytes[3];
-addressBytes[0]=(unsigned char)(address>>8);
-addressBytes[1]=(unsigned char)(address>>4);
+addressBytes[0]=(unsigned char)(address>>16);
+addressBytes[1]=(unsigned char)(address>>8);
 addressBytes[2]=(unsigned char)(address);
 
 int StatusReg;
@@ -6445,7 +6447,7 @@ StatusReg = (ReadStatusSPI() & 0x01);
 } while (StatusReg);
 
 
-LATC2 = (1);
+LATC2 = (0);
 WriteSPI((0x03));
 WriteSPI(addressBytes[0]);
 WriteSPI(addressBytes[1]);
@@ -6553,7 +6555,7 @@ uart_write_message(message, 22);
 
 _delay((unsigned long)((1000)*(16000000/4000.0)));
 
-sprintf(message, "%s%s,01,01,01,00*", startSequence, MID);
+sprintf(message, "%s%s,01,01,00,00*", startSequence, MID);
 uart_write_message(message, 22);
 
 }
@@ -6718,8 +6720,8 @@ WDTCONbits.SWDTEN = 0;
 
 void RecordMode()
 {
-long int address = 18;
-int count = 18;
+long int address = 0;
+int count = 0;
 int x;
 
 (start) = 0;
@@ -6729,26 +6731,26 @@ int x;
 WriteOverheadSPI(address);
 for(x=0;x<3;x++)
 {
-WriteSPI(validLongitude[x]);
-WriteSPI(validLongitude[x]>>8);
+WriteBuffer(validLongitude[x]);
+WriteBuffer(validLongitude[x]>>8);
 }
-WriteSPI(validNorthSouth);
+WriteBuffer(validNorthSouth);
 for(x=0;x<3;x++)
 {
-WriteSPI(validLatitude[x]);
-WriteSPI(validLatitude[x]>>8);
+WriteBuffer(validLatitude[x]);
+WriteBuffer(validLatitude[x]>>8);
 }
-WriteSPI(validEastWest);
+WriteBuffer(validEastWest);
 
 TMR1IF = 0;
 TMR1IE = 1;
 TMR1ON = 1;
 
-while((recordFlag) && (address < 131072))
+while(((recordFlag) || !((((start))==((end)))?(1):(0))) && (address < 131072))
 {
 if(count>=256)
 {
-LATC2 = (0);
+LATC2 = (1);
 count = 0;
 WriteOverheadSPI(address);
 }
@@ -6758,12 +6760,13 @@ WriteSPI(ReadBuffer());
 address++;
 count++;
 }
+
 }
-LATC2 = (0);
+LATC2 = (1);
 TMR1IE = 0;
 TMR1ON = 0;
 _delay((unsigned long)((5)*(16000000/4000.0)));
-WriteOverheadSPI(0x0000000E);
+WriteOverheadSPI(0-4);
 if(address >= 131072)
 {
 WriteSPI(131072 - 1);
@@ -6778,7 +6781,47 @@ WriteSPI(address>>8);
 WriteSPI(address>>16);
 WriteSPI(address>>24);
 }
-LATC2 = (0);
+LATC2 = (1);
 (start) = 0;
 (end) = 0;
+}
+
+
+void PreRecordMode()
+{
+long int address = 0;
+int count = 256;
+int x;
+(start) = 0;
+(end) = 0;
+
+for(x = 0;x < 1; x++)
+{
+while(!recordFlag);
+_delay((unsigned long)((320)*(16000000/4000.0)));
+TMR1IF = 0;
+TMR1IE = 1;
+TMR1ON = 1;
+while(((recordFlag) || !((((start))==((end)))?(1):(0))) && (address < 131072))
+{
+if(count>=256)
+{
+LATC2 = (1);
+count = 0;
+WriteOverheadSPI(address);
+}
+if(!((((start))==((end)))?(1):(0)))
+{
+WriteSPI(ReadBuffer());
+address++;
+count++;
+}
+}
+TMR1IF = 0;
+TMR1IE = 0;
+TMR1ON = 0;
+preRecordingAddresses[x] = address;
+}
+return;
+
 }
