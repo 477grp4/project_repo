@@ -21,8 +21,31 @@
 #define CS_IDLE (1)
 #define CS_ACTIVE (0)
 //for testing
-#define PLAYBACK_BEGIN_ADDRESS 0
+#define PLAYBACK_BEGIN_ADDRESS 0xE5A0
 #define RECORD_END_ADDRESS 72755
+
+
+#define START_0 0x0
+#define START_1 0xBAF
+#define START_2 0x1F33
+#define START_3 0x3239
+#define START_4 0x44AB
+#define START_5 0x55E4
+#define START_6 0x692B
+#define START_7 0x76BB
+#define START_8 0x8190
+#define START_9 0x8C3A
+#define START_N 0x9668
+#define START_S 0xA2CA
+#define START_E 0xB02D
+#define START_W 0xBB4C
+#define START_D 0xC746
+#define START_M 0xD279
+#define START_SS 0xDBF7
+//e5a0
+
+
+
 
 //Global variables
 int start, end = 0;
@@ -68,3 +91,6 @@ unsigned char ReadBuffer();
 //FOR TESTING PURPOSES ONLY
 void WriteSPI_overhead(long int address);
 unsigned char Read_SPI_StatusReg(void);
+
+void PlayAddress(long int startAddress, long int endAddress);
+void ConvertGPS();

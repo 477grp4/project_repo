@@ -68,25 +68,6 @@ int main(int argc, char** argv)
 
     SPI_CS = CS_IDLE; //must be changed!
 
-    /*
-    unsigned char data;
-    int x;
-    __delay_ms(5);
-
-    SPI_CS = 1; //must be changed!
-
-    WriteSPI(SPI_READ);
-    WriteSPI(0x00);
-    WriteSPI(0x00);
-    WriteSPI(0x00);
-
-    for(x = 0; x < 100; x++)
-    {
-     data = ReadSPI();
-    }
-*/
-    //SPI_CS = 1; //must be changed!
-    //Main loop
 
     SSPCON1bits.SSPEN=0;  // Disable SPI Port
     PORTCbits.RC5 = 0;    //Set MOSI low
@@ -100,6 +81,12 @@ int main(int argc, char** argv)
 
         if(playbackFlag)
         {
+            
+            InitSPI();
+            ConvertGPS();
+            SSPCON1bits.SSPEN=0;  // Disable SPI Port
+            PORTCbits.RC5 = 0;    //Set MOSI low
+            SPI_CS = CS_IDLE;
             PlaybackMode();
             playbackFlag = 0;
         }

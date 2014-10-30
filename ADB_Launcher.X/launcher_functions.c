@@ -335,7 +335,7 @@ void SetupGPS()
     int x;
     unsigned char startSequence[6] = "$PSRF";
     unsigned char MID[4] = "103";
-    unsigned char message[22];
+    unsigned char message[50];
 
     //Disable GGA,GGL,GSA,GSV,RMC,VTG
     for(x = 0; x < 6; x++)
@@ -347,8 +347,12 @@ void SetupGPS()
 
     __delay_ms(1000);
     //Enable GLL in query mode
-    sprintf(message, "%s%s,01,01,00,00*", startSequence, MID);
-    uart_write_message(message,  22);
+    //sprintf(message, "%s%s,01,01,00,00*", startSequence, MID);
+    //uart_write_message(message,  22);
+
+    //Initialize with West Lafayette's cordinates
+    sprintf(message, "%s104,40.441944,-86.9125,0,0,0,0,12,2*", startSequence);
+    uart_write_message(message,  42);
 
 }
 
@@ -356,7 +360,7 @@ void SetupGPS()
 
 void UpdateGPS()
 {
-    unsigned char GPSupdateMessage[22]  = "$PSRF103,01,01,00,00*"; //Send for an update
+    unsigned char GPSupdateMessage[22]  = "$PSRF103,01,01,01,00*"; //Send for an update
     //Set interrupts for handling incoming GPS signals
     //This will interrupt any outgoing transmission, so only do it when needed.
     RCIE = 1;
@@ -585,7 +589,7 @@ void PreRecordMode()
     RING_START = 0;
     RING_END = 0;
 
-    for(x = 0;x < 1; x++)
+    for(x = 0;x < 17; x++)
     {
         while(!recordFlag);
         __delay_ms(320); //wait for mic to charge
@@ -607,6 +611,7 @@ void PreRecordMode()
                 count++;
             }
         }
+        SPI_CS = CS_IDLE;
         TMR1IF  = 0;    //Clear interrupt flag
         TMR1IE  = 0;    //Stop Interrupt
         TMR1ON  = 0;    //Stop Timer
@@ -615,3 +620,4 @@ void PreRecordMode()
     return;
 
 }
+

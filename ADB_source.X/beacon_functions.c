@@ -132,6 +132,25 @@ void TransmitMode()
     TRANS_ENABLE    = 0;    //Disable transmitter
 }
 
+void PlayAddress(long int startAddress, long int endAddress)
+{
+    long int curr_address = startAddress;
+
+    dacOutputFlag = 1;              //signals DAC to output next byte
+    ReadOverheadSPI(startAddress);  //Set address
+
+    while(curr_address<=endAddress)
+    {
+      if(!isFull())
+      {
+        //DAC_count++;
+        curr_address++;
+        WriteBuffer(ReadSPI()); //Read single byte into circular buffer
+      }
+    }
+
+    dacOutputFlag = 0;   //signals DAC to stop output
+}
 
 void PlaybackMode()
 {
@@ -398,3 +417,69 @@ void WriteSPI_overhead(long int address)
     return;
 }
 
+
+void ConvertGPS()
+{
+    unsigned char datas[21] = "40D26M46XN79D58M56XW";
+    int x;
+
+    for(x = 0; x < 20; x++)
+    {
+        __delay_ms(200);
+        switch (datas[x]) {
+            case '0':
+                PlayAddress(START_0, START_1);
+                break;
+            case '1' :
+                PlayAddress(START_1, START_2);
+                break;
+            case '2':
+                PlayAddress(START_2, START_3);
+                break;
+            case '3' :
+                PlayAddress(START_3, START_4);
+                break;
+            case '4':
+                PlayAddress(START_4, START_5);
+                break;
+            case '5' :
+                PlayAddress(START_5, START_6);
+                break;
+            case '6':
+                PlayAddress(START_6, START_7);
+                break;
+            case '7' :
+                PlayAddress(START_7, START_8);
+                break;
+            case '8':
+                PlayAddress(START_8, START_9);
+                break;
+            case '9' :
+                PlayAddress(START_9, START_N);
+                break;
+            case 'N':
+                PlayAddress(START_N, START_S);
+                break;
+            case 'S' :
+                PlayAddress(START_S, START_E);
+                break;
+            case 'E':
+                PlayAddress(START_E, START_W);
+                break;
+            case 'W' :
+                PlayAddress(START_W, START_D);
+                break;
+            case 'D':
+                PlayAddress(START_D, START_M);
+                break;
+            case 'M' :
+                PlayAddress(START_M, START_SS);
+                break;
+            case 'X':
+                PlayAddress(START_SS, PLAYBACK_BEGIN_ADDRESS);
+                break;
+            default:
+                break;
+        }
+    }
+}
