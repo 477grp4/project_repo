@@ -3,7 +3,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR0IF `Vb ~T0 @X0 0 e@90 ]
 "2833
 [v _DACCON1 `Vuc ~T0 @X0 0 e@281 ]
-"66 beacon.h
+"89 beacon.h
 [v _ReadBuffer `(uc ~T0 @X0 0 ef ]
 "794 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1783.h
 [v _TMR0 `Vuc ~T0 @X0 0 e@21 ]
@@ -63,17 +63,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 "6207
 [v _IOCANbits `VS319 ~T0 @X0 0 e@914 ]
 [p mainexit ]
-"43 beacon.h
+"66 beacon.h
 [v _InitCLK `(v ~T0 @X0 0 ef ]
-"44
+"67
 [v _InitGPIO `(v ~T0 @X0 0 ef ]
-"45
+"68
 [v _InitDAC `(v ~T0 @X0 0 ef ]
-"46
+"69
 [v _InitSPI `(v ~T0 @X0 0 ef ]
-"47
+"70
 [v _InitTimer0 `(v ~T0 @X0 0 ef ]
-"48
+"71
 [v _InitWatchdog `(v ~T0 @X0 0 ef ]
 "11424 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1783.h
 [v _PEIE `Vb ~T0 @X0 0 e@94 ]
@@ -103,11 +103,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S40 . . . ]
 "570
 [v _PORTCbits `VS40 ~T0 @X0 0 e@14 ]
-"51 beacon.h
+"74 beacon.h
 [v _CheckDisconnect `(v ~T0 @X0 0 ef ]
-"53
+"76
 [v _PlaybackMode `(v ~T0 @X0 0 ef ]
-"52
+"75
 [v _TransmitMode `(v ~T0 @X0 0 ef ]
 [; ;stdio.h: 8: typedef int ptrdiff_t;
 [; ;stdio.h: 9: typedef unsigned size_t;
@@ -4597,61 +4597,77 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic16f1783.h: 12286: extern volatile __bit nT1SYNC @ (((unsigned) &T1CON)*8) + 2;
 [; ;pic16f1783.h: 12288: extern volatile __bit nTO @ (((unsigned) &STATUS)*8) + 4;
 [; ;pic16f1783.h: 12290: extern volatile __bit nWPUEN @ (((unsigned) &OPTION_REG)*8) + 7;
-"28 beacon.h
+"51 beacon.h
 [v _start `i ~T0 @X0 1 e ]
 [v _end `i ~T0 @X0 1 e ]
 [i _end
 -> 0 `i
 ]
-[; ;beacon.h: 28: int start, end = 0;
-"29
+[; ;beacon.h: 51: int start, end = 0;
+"52
 [v _buffer `uc ~T0 @X0 -> 51 `i e ]
-[; ;beacon.h: 29: unsigned char buffer[51];
-"30
-[v _playbackFlag `i ~T0 @X0 1 e ]
+[; ;beacon.h: 52: unsigned char buffer[51];
+"53
+[v _playbackFlag `uc ~T0 @X0 1 e ]
 [i _playbackFlag
--> 0 `i
+-> -> 0 `i `uc
 ]
-[; ;beacon.h: 30: int playbackFlag = 0;
-"31
+[; ;beacon.h: 53: unsigned char playbackFlag = 0;
+"54
 [v _transmitFlag `uc ~T0 @X0 1 e ]
-[; ;beacon.h: 31: unsigned char transmitFlag;
-"32
+[; ;beacon.h: 54: unsigned char transmitFlag;
+"55
 [v _dacOutputFlag `uc ~T0 @X0 1 e ]
 [i _dacOutputFlag
 -> -> 0 `i `uc
 ]
-[; ;beacon.h: 32: unsigned char dacOutputFlag =0;
-"34
+[; ;beacon.h: 55: unsigned char dacOutputFlag =0;
+"57
 [v _Latitude `uc ~T0 @X0 -> 3 `i e ]
-[; ;beacon.h: 34: unsigned char Latitude[3];
-"35
+[i _Latitude
+:U ..
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+..
+]
+[; ;beacon.h: 57: unsigned char Latitude[3] = {0,0,0};
+"58
 [v _NorthSouth `uc ~T0 @X0 1 e ]
-[; ;beacon.h: 35: unsigned char NorthSouth;
-"36
+[; ;beacon.h: 58: unsigned char NorthSouth;
+"59
 [v _Longitude `uc ~T0 @X0 -> 3 `i e ]
-[; ;beacon.h: 36: unsigned char Longitude[3];
-"37
+[i _Longitude
+:U ..
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+..
+]
+[; ;beacon.h: 59: unsigned char Longitude[3] = {0,0,0};
+"60
 [v _EastWest `uc ~T0 @X0 1 e ]
-[; ;beacon.h: 37: unsigned char EastWest;
-[; ;beacon.h: 43: void InitCLK();
-[; ;beacon.h: 44: void InitGPIO();
-[; ;beacon.h: 45: void InitDAC();
-[; ;beacon.h: 46: void InitSPI();
-[; ;beacon.h: 47: void InitTimer0();
-[; ;beacon.h: 48: void InitWatchdog();
-[; ;beacon.h: 51: void CheckDisconnect();
-[; ;beacon.h: 52: void TransmitMode();
-[; ;beacon.h: 53: void PlaybackMode();
-[; ;beacon.h: 56: void WriteSPI(unsigned char databyte);
-[; ;beacon.h: 57: unsigned char ReadSPI(void);
-[; ;beacon.h: 60: void ReadDataSPI(unsigned char *data, unsigned int address, unsigned int size);
-[; ;beacon.h: 61: unsigned char ReadStatusSPI(void);
-[; ;beacon.h: 62: void ReadOverheadSPI(long int address);
-[; ;beacon.h: 65: void WriteBuffer(unsigned char data);
-[; ;beacon.h: 66: unsigned char ReadBuffer();
-[; ;beacon.h: 69: void WriteSPI_overhead(long int address);
-[; ;beacon.h: 70: unsigned char Read_SPI_StatusReg(void);
+[; ;beacon.h: 60: unsigned char EastWest;
+[; ;beacon.h: 66: void InitCLK();
+[; ;beacon.h: 67: void InitGPIO();
+[; ;beacon.h: 68: void InitDAC();
+[; ;beacon.h: 69: void InitSPI();
+[; ;beacon.h: 70: void InitTimer0();
+[; ;beacon.h: 71: void InitWatchdog();
+[; ;beacon.h: 74: void CheckDisconnect();
+[; ;beacon.h: 75: void TransmitMode();
+[; ;beacon.h: 76: void PlaybackMode();
+[; ;beacon.h: 79: void WriteSPI(unsigned char databyte);
+[; ;beacon.h: 80: unsigned char ReadSPI(void);
+[; ;beacon.h: 83: void ReadDataSPI(unsigned char *data, unsigned int address, unsigned int size);
+[; ;beacon.h: 84: unsigned char ReadStatusSPI(void);
+[; ;beacon.h: 85: void ReadOverheadSPI(long int address);
+[; ;beacon.h: 88: void WriteBuffer(unsigned char data);
+[; ;beacon.h: 89: unsigned char ReadBuffer();
+[; ;beacon.h: 92: void WriteSPI_overhead(long int address);
+[; ;beacon.h: 93: unsigned char Read_SPI_StatusReg(void);
+[; ;beacon.h: 95: void PlayAddress(long int startAddress, long int endAddress);
+[; ;beacon.h: 96: void GPStoAudio();
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic16lf1783.h: 47: extern volatile unsigned char INDF0 @ 0x000;
@@ -9089,9 +9105,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p x LVP=ON ]
 [p x CLKOUTEN=OFF ]
 [p x BOREN=OFF ]
-[v F8028 `(v ~T0 @X0 1 tf ]
+[v F8032 `(v ~T0 @X0 1 tf ]
 "20
-[v _isr `IF8028 ~T0 @X0 1 e ]
+[v _isr `IF8032 ~T0 @X0 1 e ]
 "21
 {
 [; ;beacon_main.c: 20: interrupt void isr()
@@ -9154,7 +9170,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;beacon_main.c: 43: playbackFlag = 1;
 "43
-[e = _playbackFlag -> 1 `i ]
+[e = _playbackFlag -> -> 1 `i `uc ]
 "44
 }
 [e :U 1021 ]
@@ -9167,7 +9183,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;beacon_main.c: 47: playbackFlag = 0;
 "47
-[e = _playbackFlag -> 0 `i ]
+[e = _playbackFlag -> -> 0 `i `uc ]
 "48
 }
 [e :U 1022 ]
@@ -9219,62 +9235,62 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;beacon_main.c: 69: LATC2 = (1);
 "69
 [e = _LATC2 -> -> 1 `i `b ]
-[; ;beacon_main.c: 91: SSPCON1bits.SSPEN=0;
-"91
+[; ;beacon_main.c: 72: SSPCON1bits.SSPEN=0;
+"72
 [e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
-[; ;beacon_main.c: 92: PORTCbits.RC5 = 0;
-"92
+[; ;beacon_main.c: 73: PORTCbits.RC5 = 0;
+"73
 [e = . . _PORTCbits 0 5 -> -> 0 `i `uc ]
-[; ;beacon_main.c: 94: while(1)
-"94
+[; ;beacon_main.c: 75: while(1)
+"75
 [e :U 1025 ]
-[; ;beacon_main.c: 95: {
-"95
+[; ;beacon_main.c: 76: {
+"76
 {
-[; ;beacon_main.c: 96: LATC2 = (1);
-"96
+[; ;beacon_main.c: 77: LATC2 = (1);
+"77
 [e = _LATC2 -> -> 1 `i `b ]
-[; ;beacon_main.c: 99: CheckDisconnect();
-"99
+[; ;beacon_main.c: 80: CheckDisconnect();
+"80
 [e ( _CheckDisconnect ..  ]
-[; ;beacon_main.c: 101: if(playbackFlag)
-"101
-[e $ ! != _playbackFlag -> 0 `i 1027  ]
-[; ;beacon_main.c: 102: {
-"102
+[; ;beacon_main.c: 82: if(playbackFlag)
+"82
+[e $ ! != -> _playbackFlag `i -> -> -> 0 `i `uc `i 1027  ]
+[; ;beacon_main.c: 83: {
+"83
 {
-[; ;beacon_main.c: 103: PlaybackMode();
-"103
+[; ;beacon_main.c: 84: PlaybackMode();
+"84
 [e ( _PlaybackMode ..  ]
-[; ;beacon_main.c: 104: playbackFlag = 0;
-"104
-[e = _playbackFlag -> 0 `i ]
-"105
+[; ;beacon_main.c: 85: playbackFlag = 0;
+"85
+[e = _playbackFlag -> -> 0 `i `uc ]
+"86
 }
 [e :U 1027 ]
-[; ;beacon_main.c: 105: }
-[; ;beacon_main.c: 108: if(transmitFlag)
-"108
+[; ;beacon_main.c: 86: }
+[; ;beacon_main.c: 89: if(transmitFlag)
+"89
 [e $ ! != -> _transmitFlag `i -> -> -> 0 `i `uc `i 1028  ]
-[; ;beacon_main.c: 109: TransmitMode();
-"109
+[; ;beacon_main.c: 90: TransmitMode();
+"90
 [e ( _TransmitMode ..  ]
 [e :U 1028 ]
-[; ;beacon_main.c: 112: asm("sleep");
-"112
+[; ;beacon_main.c: 93: asm("sleep");
+"93
 [; <" sleep ;# ">
-"113
+"94
 }
 [e :U 1024 ]
-"94
+"75
 [e $U 1025  ]
 [e :U 1026 ]
-[; ;beacon_main.c: 113: }
-[; ;beacon_main.c: 115: return (0);
-"115
+[; ;beacon_main.c: 94: }
+[; ;beacon_main.c: 96: return (0);
+"96
 [e ) -> 0 `i ]
 [e $UE 1023  ]
-[; ;beacon_main.c: 116: }
-"116
+[; ;beacon_main.c: 97: }
+"97
 [e :UE 1023 ]
 }

@@ -139,7 +139,7 @@ void PlayAddress(long int startAddress, long int endAddress)
     dacOutputFlag = 1;              //signals DAC to output next byte
     ReadOverheadSPI(startAddress);  //Set address
 
-    while(curr_address<=endAddress)
+    while((transmitFlag || (!transmitFlag && !MEM_ACCESS && playbackFlag)) && curr_address<=endAddress)
     {
       if(!isFull())
       {
@@ -149,17 +149,16 @@ void PlayAddress(long int startAddress, long int endAddress)
       }
     }
 
+    SPI_CS = CS_IDLE;
     dacOutputFlag = 0;   //signals DAC to stop output
 }
 
 void PlaybackMode()
 {
-  long int curr_address = 0;
-  long int end_address;
+  long int curr_address = PLAYBACK_BEGIN_ADDRESS;
+  long int end_address = 0;
   InitSPI();            //Start-up SPI again
   
-  dacOutputFlag = 1;      //signals DAC to output next byte
-
   ReadOverheadSPI(PLAYBACK_BEGIN_ADDRESS);
 
   //Extract Header Data
@@ -169,34 +168,33 @@ void PlaybackMode()
   end_address = end_address<<8;
   end_address +=ReadSPI();
 
-  Longitude[0] = ReadSPI();     //degrees
-  Longitude[1] = ReadSPI();     //minutes
-  Longitude[2] = ReadSPI();     //seconds
+  Latitude[0] = ReadSPI();     //degrees
+  Latitude[1] = ReadSPI();     //minutes
+  Latitude[2] = ReadSPI();     //seconds
 
   NorthSouth = ReadSPI();       //North/South (N/S)
 
-  Latitude[0] = ReadSPI();      //degrees
-  Latitude[1] = ReadSPI();      //minutes
-  Latitude[2] = ReadSPI();      //seconds
+  Longitude[0] = ReadSPI();      //degrees
+  Longitude[1] = ReadSPI();      //minutes
+  Longitude[2] = ReadSPI();      //seconds
 
   EastWest = ReadSPI();         //East/West (E/W)
 
+  dacOutputFlag = 1;      //signals DAC to output next byte
   //Checking transmit/playback before reading a page
   while((transmitFlag || (!transmitFlag && !MEM_ACCESS && playbackFlag)) && (curr_address<=end_address))
   {
-    
-    //Checking transmit/playback before reading each byte of page
-    //while((transmitFlag || (!transmitFlag && !MEM_ACCESS)) && (DAC_count<SPI_PAGE_SIZE) && (curr_address <= RECORD_END_ADDRESS))
-    //{
-      if(!isFull())
-      {
-        //DAC_count++;
-        curr_address++;
-        WriteBuffer(ReadSPI()); //Read single byte into circular buffer
-      }
+    if(!isFull())
+    {
+      curr_address++;
+      WriteBuffer(ReadSPI()); //Read single byte into circular buffer
+    }
   }
+  SPI_CS = CS_IDLE;
+  while((transmitFlag || (!transmitFlag && !MEM_ACCESS && playbackFlag)) && !isEmpty());
 
   //TODO: read off GPS coordinates
+  GPStoAudio();
 
   SSPCON1bits.SSPEN=0;  // Disable SPI Port
   PORTCbits.RC5 = 0;    //Set MOSI low
@@ -418,12 +416,40 @@ void WriteSPI_overhead(long int address)
 }
 
 
-void ConvertGPS()
+void GPStoAudio()
 {
-    unsigned char datas[21] = "40D26M46XN79D58M56XW";
-    int x;
+    int x = 0;
+    unsigned char datas[21];
 
-    for(x = 0; x < 20; x++)
+    datas[0] = Latitude[0]/10+48;
+    datas[1] = (Latitude[0]%10)+48;
+    datas[2] = 'D';
+
+    datas[3] = Latitude[1]/10+48;
+    datas[4] = (Latitude[1]%10)+48;
+    datas[5] = 'M';
+
+    datas[6] = Latitude[2]/10+48;
+    datas[7] = (Latitude[2]%10)+48;
+    datas[8] = 'X';
+
+    datas[9] = NorthSouth;
+
+    datas[10] = Longitude[0]/100+48;
+    datas[11] = ((Longitude[0]%100)/10)+48;
+    datas[12] = Longitude[0]%10+48;
+    datas[13] = 'D';
+
+    datas[14] = Longitude[1]/10+48;
+    datas[15] = (Longitude[1]%10)+48;
+    datas[16] = 'M';
+
+    datas[17] = Longitude[2]/10+48;
+    datas[18] = (Longitude[2]%10)+48;
+    datas[19] = 'X';
+
+    datas[20] = EastWest;
+    while((transmitFlag || (!transmitFlag && !MEM_ACCESS && playbackFlag)) && (x < 21))
     {
         __delay_ms(200);
         switch (datas[x]) {
@@ -481,5 +507,6 @@ void ConvertGPS()
             default:
                 break;
         }
+        x++;
     }
 }

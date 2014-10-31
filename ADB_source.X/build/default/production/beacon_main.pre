@@ -6177,19 +6177,19 @@ extern volatile __bit nTO @ (((unsigned) &STATUS)*8) + 4;
 
 extern volatile __bit nWPUEN @ (((unsigned) &OPTION_REG)*8) + 7;
 
-# 28 "beacon.h"
+# 51 "beacon.h"
 int start, end = 0;
 unsigned char buffer[51];
-int playbackFlag = 0;
+unsigned char playbackFlag = 0;
 unsigned char transmitFlag;
 unsigned char dacOutputFlag =0;
 
-unsigned char Latitude[3];
+unsigned char Latitude[3] = {0,0,0};
 unsigned char NorthSouth;
-unsigned char Longitude[3];
+unsigned char Longitude[3] = {0,0,0};
 unsigned char EastWest;
 
-# 43
+# 66
 void InitCLK();
 void InitGPIO();
 void InitDAC();
@@ -6218,6 +6218,9 @@ unsigned char ReadBuffer();
 
 void WriteSPI_overhead(long int address);
 unsigned char Read_SPI_StatusReg(void);
+
+void PlayAddress(long int startAddress, long int endAddress);
+void GPStoAudio();
 
 # 21 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -12363,7 +12366,7 @@ GIE = 1;
 
 LATC2 = (1);
 
-# 91
+
 SSPCON1bits.SSPEN=0;
 PORTCbits.RC5 = 0;
 

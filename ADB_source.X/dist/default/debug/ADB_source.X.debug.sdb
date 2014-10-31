@@ -19,22 +19,26 @@
 [v _CheckDisconnect CheckDisconnect `(v  1 e 0 0 ]
 "127
 [v _TransmitMode TransmitMode `(v  1 e 0 0 ]
-"136
+"135
+[v _PlayAddress PlayAddress `(v  1 e 0 0 ]
+"156
 [v _PlaybackMode PlaybackMode `(v  1 e 0 0 ]
-"184
+"207
 [v _WriteSPI WriteSPI `(v  1 e 0 0 ]
-"193
+"216
 [v _ReadSPI ReadSPI `(uc  1 e 1 0 ]
-"298
+"321
 [v _ReadStatusSPI ReadStatusSPI `(uc  1 e 1 0 ]
-"310
+"333
 [v _ReadOverheadSPI ReadOverheadSPI `(v  1 e 0 0 ]
-"335
+"358
 [v _WriteBuffer WriteBuffer `(v  1 e 0 0 ]
-"345
+"368
 [v _ReadBuffer ReadBuffer `(uc  1 e 1 0 ]
-"359
+"382
 [v _WriteSPI_overhead WriteSPI_overhead `(v  1 e 0 0 ]
+"419
+[v _GPStoAudio GPStoAudio `(v  1 e 0 0 ]
 "20 R:\Desktop\project\project_repo\ADB_source.X\beacon_main.c
 [v _isr isr `II(v  1 e 0 0 ]
 "54
@@ -139,24 +143,24 @@
 [v ___fltoee __fltoee `(d  1 e 3 0 ]
 "49 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic\ftdiv.c
 [v ___ftdiv __ftdiv `(f  1 e 3 0 ]
-"28 R:\Desktop\project\project_repo\ADB_source.X\beacon.h
+"51 R:\Desktop\project\project_repo\ADB_source.X\beacon.h
 [v _start start `i  1 e 2 0 ]
 [v _end end `i  1 e 2 0 ]
-"29
+"52
 [v _buffer buffer `[51]uc  1 e 51 0 ]
-"30
-[v _playbackFlag playbackFlag `i  1 e 2 0 ]
-"31
+"53
+[v _playbackFlag playbackFlag `uc  1 e 1 0 ]
+"54
 [v _transmitFlag transmitFlag `uc  1 e 1 0 ]
-"32
+"55
 [v _dacOutputFlag dacOutputFlag `uc  1 e 1 0 ]
-"34
+"57
 [v _Latitude Latitude `[3]uc  1 e 3 0 ]
-"35
+"58
 [v _NorthSouth NorthSouth `uc  1 e 1 0 ]
-"36
+"59
 [v _Longitude Longitude `[3]uc  1 e 3 0 ]
-"37
+"60
 [v _EastWest EastWest `uc  1 e 1 0 ]
 [s S49 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
@@ -337,64 +341,117 @@
 "54 R:\Desktop\project\project_repo\ADB_source.X\beacon_main.c
 [v _main main `(i  1 e 2 0 ]
 {
-[v main@argc argc `i  1 p 2 29 ]
-[v main@argv argv `*.1*.1uc  1 p 2 31 ]
-"131
+[v main@argc argc `i  1 p 2 0 ]
+[v main@argv argv `*.1*.1uc  1 p 2 2 ]
+"97
 } 0
-"136 R:\Desktop\project\project_repo\ADB_source.X\beacon_functions.c
+"127 R:\Desktop\project\project_repo\ADB_source.X\beacon_functions.c
+[v _TransmitMode TransmitMode `(v  1 e 0 0 ]
+{
+"133
+} 0
+"156
 [v _PlaybackMode PlaybackMode `(v  1 e 0 0 ]
 {
-"139
-[v PlaybackMode@end_address end_address `l  1 a 4 25 ]
-"138
-[v PlaybackMode@curr_address curr_address `l  1 a 4 19 ]
-"181
+"159
+[v PlaybackMode@end_address end_address `l  1 a 4 71 ]
+"158
+[v PlaybackMode@curr_address curr_address `l  1 a 4 65 ]
+"204
 } 0
-"335
+"69
+[v _InitSPI InitSPI `(v  1 e 0 0 ]
+{
+"90
+} 0
+"419
+[v _GPStoAudio GPStoAudio `(v  1 e 0 0 ]
+{
+"422
+[v GPStoAudio@datas datas `[21]uc  1 a 21 38 ]
+"421
+[v GPStoAudio@x x `i  1 a 2 59 ]
+"512
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"11
+[v ___awmod@sign sign `uc  1 a 1 1 ]
+[v ___awmod@counter counter `uc  1 a 1 0 ]
+"6
+[v ___awmod@divisor divisor `i  1 p 2 3 ]
+[v ___awmod@dividend dividend `i  1 p 2 5 ]
+"35
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"11
+[v ___awdiv@quotient quotient `i  1 a 2 9 ]
+"12
+[v ___awdiv@sign sign `uc  1 a 1 8 ]
+[v ___awdiv@counter counter `uc  1 a 1 7 ]
+"6
+[v ___awdiv@divisor divisor `i  1 p 2 2 ]
+[v ___awdiv@dividend dividend `i  1 p 2 4 ]
+"42
+} 0
+"135 R:\Desktop\project\project_repo\ADB_source.X\beacon_functions.c
+[v _PlayAddress PlayAddress `(v  1 e 0 0 ]
+{
+"137
+[v PlayAddress@curr_address curr_address `l  1 a 4 29 ]
+"135
+[v PlayAddress@startAddress startAddress `l  1 p 4 17 ]
+[v PlayAddress@endAddress endAddress `l  1 p 4 21 ]
+"154
+} 0
+"358
 [v _WriteBuffer WriteBuffer `(v  1 e 0 0 ]
 {
 [v WriteBuffer@data data `uc  1 a 1 wreg ]
 [v WriteBuffer@data data `uc  1 a 1 wreg ]
-"337
+"360
 [v WriteBuffer@data data `uc  1 a 1 4 ]
-"343
+"366
 } 0
-"310
+"333
 [v _ReadOverheadSPI ReadOverheadSPI `(v  1 e 0 0 ]
 {
-"312
-[v ReadOverheadSPI@addressBytes addressBytes `[3]uc  1 a 3 12 ]
-"318
-[v ReadOverheadSPI@StatusReg StatusReg `i  1 a 2 10 ]
-"310
-[v ReadOverheadSPI@address address `l  1 p 4 0 ]
-"332
+"335
+[v ReadOverheadSPI@addressBytes addressBytes `[3]uc  1 a 3 14 ]
+"341
+[v ReadOverheadSPI@StatusReg StatusReg `i  1 a 2 12 ]
+"333
+[v ReadOverheadSPI@address address `l  1 p 4 2 ]
+"355
 } 0
-"298
+"321
 [v _ReadStatusSPI ReadStatusSPI `(uc  1 e 1 0 ]
 {
-"300
-[v ReadStatusSPI@dataRead dataRead `uc  1 a 1 9 ]
-"308
+"323
+[v ReadStatusSPI@dataRead dataRead `uc  1 a 1 1 ]
+"331
 } 0
-"184
+"207
 [v _WriteSPI WriteSPI `(v  1 e 0 0 ]
 {
 [v WriteSPI@databyte databyte `uc  1 a 1 wreg ]
-"185
+"208
 [v WriteSPI@buffer buffer `ui  1 a 2 5 ]
-"184
+"207
 [v WriteSPI@databyte databyte `uc  1 a 1 wreg ]
-"187
+"210
 [v WriteSPI@databyte databyte `uc  1 a 1 7 ]
-"191
+"214
 } 0
-"193
+"216
 [v _ReadSPI ReadSPI `(uc  1 e 1 0 ]
 {
-"195
+"218
 [v ReadSPI@dataByte dataByte `uc  1 a 1 4 ]
-"202
+"225
 } 0
 "107
 [v _InitWatchdog InitWatchdog `(v  1 e 0 0 ]
@@ -405,11 +462,6 @@
 [v _InitTimer0 InitTimer0 `(v  1 e 0 0 ]
 {
 "105
-} 0
-"69
-[v _InitSPI InitSPI `(v  1 e 0 0 ]
-{
-"90
 } 0
 "9
 [v _InitGPIO InitGPIO `(v  1 e 0 0 ]
@@ -436,10 +488,10 @@
 {
 "51
 } 0
-"345 R:\Desktop\project\project_repo\ADB_source.X\beacon_functions.c
+"368 R:\Desktop\project\project_repo\ADB_source.X\beacon_functions.c
 [v _ReadBuffer ReadBuffer `(uc  1 e 1 0 ]
 {
-"347
+"370
 [v ReadBuffer@read_data read_data `uc  1 a 1 1 ]
-"355
+"378
 } 0

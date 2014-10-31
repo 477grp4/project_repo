@@ -29,28 +29,28 @@ int main(int argc, char** argv) {
     initUART();             //Initialize UART module
 
     unsigned char periodicCounter = MIN_PERIOD;
-    gpsIndex = 1;
+    gpsIndex = 0;
 
     INTCONbits.GIE = 1;
 
     if(!PORTCbits.RC7)
         ToggleSleepGPS();       //Turn GPS on
     SetupGPS();             //Setup Lat/Long recording
+    SendGPSSPI();
 
     SSPCON1bits.SSPEN=0;      // Disable SPI Port
     PORTCbits.RC5 = 0;        //Set MOSI low
     
     SPI_CS = CS_IDLE;//prerecord
-
+    
     while(1){
-
         
         //PRE_RECORD FUNCTION
         //InitSPI();            //Start-up SPI again
         //PreRecordMode();
         //SSPCON1bits.SSPEN=0;  // Disable SPI Port
         //PORTCbits.RC5 = 0;    //Set MOSI low
-        //SPI_CS = CS_IDLE;//prerecord
+        SPI_CS = CS_IDLE;//prerecord
         //__delay_ms(5);
         
         SPI_CS = CS_IDLE;
@@ -66,10 +66,7 @@ int main(int argc, char** argv) {
 
         if(recordFlag)
         {
-            InitSPI();            //Start-up SPI again
-            RecordMode();
-            SSPCON1bits.SSPEN=0;  // Disable SPI Port
-            PORTCbits.RC5 = 0;    //Set MOSI low
+          RecordMode();
         }
 
         //Not recording, Update the GPS
@@ -99,6 +96,7 @@ int main(int argc, char** argv) {
             else
                 Hibernate();
         }
+        
 
     }
 

@@ -81,12 +81,6 @@ int main(int argc, char** argv)
 
         if(playbackFlag)
         {
-            
-            InitSPI();
-            ConvertGPS();
-            SSPCON1bits.SSPEN=0;  // Disable SPI Port
-            PORTCbits.RC5 = 0;    //Set MOSI low
-            SPI_CS = CS_IDLE;
             PlaybackMode();
             playbackFlag = 0;
         }

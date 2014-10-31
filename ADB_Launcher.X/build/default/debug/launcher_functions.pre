@@ -1,7 +1,7 @@
 
 # 1 "launcher_functions.c"
 
-# 51 "launcher.h"
+# 54 "launcher.h"
 void InitCLK();
 void InitGPIO();
 void InitADC();
@@ -15,6 +15,7 @@ void WriteSPI(unsigned char databyte);
 unsigned char ReadSPI(void);
 unsigned char ReadStatusSPI(void);
 void WriteOverheadSPI(long int address);
+void SendGPSSPI();
 
 
 void WriteBuffer(unsigned char data);
@@ -56,9 +57,9 @@ unsigned char strobeFlag = 0;
 
 
 
-unsigned int validLatitude[3] = {0,0,0};
+unsigned char validLatitude[3] = {40,25,20};
 unsigned char validNorthSouth = 'N';
-unsigned int validLongitude[3] = {0,0,0};
+unsigned char validLongitude[3] = {86,68,20};
 unsigned char validEastWest = 'E';
 long int recordEndAdress;
 
@@ -6543,7 +6544,7 @@ void SetupGPS()
 int x;
 unsigned char startSequence[6] = "$PSRF";
 unsigned char MID[4] = "103";
-unsigned char message[22];
+unsigned char message[50];
 
 
 for(x = 0; x < 6; x++)
@@ -6555,8 +6556,9 @@ uart_write_message(message, 22);
 
 _delay((unsigned long)((1000)*(16000000/4000.0)));
 
-sprintf(message, "%s%s,01,01,00,00*", startSequence, MID);
-uart_write_message(message, 22);
+# 354
+sprintf(message, "%s104,40.441944,-86.9125,0,0,0,0,12,2*", startSequence);
+uart_write_message(message, 42);
 
 }
 
@@ -6564,7 +6566,8 @@ uart_write_message(message, 22);
 
 void UpdateGPS()
 {
-unsigned char GPSupdateMessage[22] = "$PSRF103,01,01,00,00*";
+unsigned int count = 0;
+unsigned char GPSupdateMessage[22] = "$PSRF103,01,01,01,00*";
 
 
 RCIE = 1;
@@ -6576,8 +6579,22 @@ ToggleSleepGPS();
 
 gpsIndex = 0;
 uart_write_message(GPSupdateMessage, 22);
+while(!messageDoneFlag)
+{
+if(count == 60000)
+{
+ToggleSleepGPS();
+_delay((unsigned long)((1000)*(16000000/4000.0)));
+if(!PORTCbits.RC7)
+ToggleSleepGPS();
+SetupGPS();
 while(!messageDoneFlag);
-
+messageDoneFlag = 0;
+count = 0;
+uart_write_message(GPSupdateMessage, 22);
+}
+count++;
+}
 messageDoneFlag = 0;
 DecodeGPS();
 
@@ -6589,8 +6606,8 @@ void DecodeGPS()
 {
 
 unsigned char messageID[7] = "$GPGLL";
-unsigned int latitude[3] = {0,0,0};
-unsigned int longitude[3] = {0,0,0};
+unsigned char latitude[3] = {0,0,0};
+unsigned char longitude[3] = {0,0,0};
 unsigned char northSouth;
 unsigned char eastWest;
 unsigned char status;
@@ -6695,6 +6712,8 @@ validLongitude[x] = longitude[x];
 }
 validNorthSouth = northSouth;
 validEastWest = eastWest;
+
+SendGPSSPI();
 }
 }
 
@@ -6720,33 +6739,23 @@ WDTCONbits.SWDTEN = 0;
 
 void RecordMode()
 {
-long int address = 0;
-int count = 0;
-int x;
+PORTAbits.RA4 = 1;
+long int address = 0x135C0+11;
+int count = 203;
+
+
+
+InitSPI();
 
 (start) = 0;
 (end) = 0;
-
-
 WriteOverheadSPI(address);
-for(x=0;x<3;x++)
-{
-WriteBuffer(validLongitude[x]);
-WriteBuffer(validLongitude[x]>>8);
-}
-WriteBuffer(validNorthSouth);
-for(x=0;x<3;x++)
-{
-WriteBuffer(validLatitude[x]);
-WriteBuffer(validLatitude[x]>>8);
-}
-WriteBuffer(validEastWest);
 
 TMR1IF = 0;
 TMR1IE = 1;
 TMR1ON = 1;
 
-while(((recordFlag) || !((((start))==((end)))?(1):(0))) && (address < 131072))
+while((recordFlag) && (address < 131072))
 {
 if(count>=256)
 {
@@ -6762,28 +6771,68 @@ count++;
 }
 
 }
+while(!((((start))==((end)))?(1):(0)) && (address < 131072))
+{
+if(count>=256)
+{
+LATC2 = (1);
+count = 0;
+WriteOverheadSPI(address);
+}
+if(!((((start))==((end)))?(1):(0)))
+{
+WriteSPI(ReadBuffer());
+address++;
+count++;
+}
+}
 LATC2 = (1);
 TMR1IE = 0;
 TMR1ON = 0;
 _delay((unsigned long)((5)*(16000000/4000.0)));
-WriteOverheadSPI(0-4);
+WriteOverheadSPI(0x135C0);
 if(address >= 131072)
 {
-WriteSPI(131072 - 1);
-WriteSPI((131072 - 1)>>8);
 WriteSPI((131072 - 1)>>16);
-WriteSPI((131072 - 1)>>24);
+WriteSPI((131072 - 1)>>8);
+WriteSPI(131072 - 1);
 }
 else
 {
-WriteSPI(address);
-WriteSPI(address>>8);
 WriteSPI(address>>16);
-WriteSPI(address>>24);
+WriteSPI(address>>8);
+WriteSPI(address);
 }
 LATC2 = (1);
 (start) = 0;
 (end) = 0;
+SSPCON1bits.SSPEN=0;
+PORTCbits.RC5 = 0;
+PORTAbits.RA4 = 0;
+ToggleSleepGPS();
+}
+
+void SendGPSSPI()
+{
+long int address = 0x135C0 + 3;
+int x;
+PORTAbits.RA4 = 1;
+
+
+WriteOverheadSPI(address);
+for(x=0;x<3;x++)
+{
+WriteSPI(validLatitude[x]);
+}
+WriteSPI(validNorthSouth);
+for(x=0;x<3;x++)
+{
+WriteSPI(validLongitude[x]);
+}
+WriteSPI(validEastWest);
+LATC2 = (1);
+PORTAbits.RA4 = 0;
+
 }
 
 
@@ -6795,7 +6844,7 @@ int x;
 (start) = 0;
 (end) = 0;
 
-for(x = 0;x < 1; x++)
+for(x = 0;x < 17; x++)
 {
 while(!recordFlag);
 _delay((unsigned long)((320)*(16000000/4000.0)));
@@ -6817,6 +6866,7 @@ address++;
 count++;
 }
 }
+LATC2 = (1);
 TMR1IF = 0;
 TMR1IE = 0;
 TMR1ON = 0;
@@ -6825,3 +6875,4 @@ preRecordingAddresses[x] = address;
 return;
 
 }
+

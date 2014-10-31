@@ -1,19 +1,19 @@
 
 # 1 "beacon_functions.c"
 
-# 28 "beacon.h"
+# 51 "beacon.h"
 int start, end = 0;
 unsigned char buffer[51];
-int playbackFlag = 0;
+unsigned char playbackFlag = 0;
 unsigned char transmitFlag;
 unsigned char dacOutputFlag =0;
 
-unsigned char Latitude[3];
+unsigned char Latitude[3] = {0,0,0};
 unsigned char NorthSouth;
-unsigned char Longitude[3];
+unsigned char Longitude[3] = {0,0,0};
 unsigned char EastWest;
 
-# 43
+# 66
 void InitCLK();
 void InitGPIO();
 void InitDAC();
@@ -42,6 +42,9 @@ unsigned char ReadBuffer();
 
 void WriteSPI_overhead(long int address);
 unsigned char Read_SPI_StatusReg(void);
+
+void PlayAddress(long int startAddress, long int endAddress);
+void GPStoAudio();
 
 # 21 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -6221,16 +6224,34 @@ PlaybackMode();
 PORTBbits.RB5 = 0;
 }
 
+void PlayAddress(long int startAddress, long int endAddress)
+{
+long int curr_address = startAddress;
+
+dacOutputFlag = 1;
+ReadOverheadSPI(startAddress);
+
+while((transmitFlag || (!transmitFlag && !PORTAbits.RA4 && playbackFlag)) && curr_address<=endAddress)
+{
+if(!((((end))==(51))?((((start))==0)?(1):(0)):((((end)+1)==((start)))?(1):(0))))
+{
+
+curr_address++;
+WriteBuffer(ReadSPI());
+}
+}
+
+LATC2 = (1);
+dacOutputFlag = 0;
+}
 
 void PlaybackMode()
 {
-long int curr_address = 0;
-long int end_address;
+long int curr_address = 0x135C0;
+long int end_address = 0;
 InitSPI();
 
-dacOutputFlag = 1;
-
-ReadOverheadSPI(0);
+ReadOverheadSPI(0x135C0);
 
 
 end_address = ReadSPI();
@@ -6239,32 +6260,34 @@ end_address +=ReadSPI();
 end_address = end_address<<8;
 end_address +=ReadSPI();
 
-Longitude[0] = ReadSPI();
-Longitude[1] = ReadSPI();
-Longitude[2] = ReadSPI();
-
-NorthSouth = ReadSPI();
-
 Latitude[0] = ReadSPI();
 Latitude[1] = ReadSPI();
 Latitude[2] = ReadSPI();
 
+NorthSouth = ReadSPI();
+
+Longitude[0] = ReadSPI();
+Longitude[1] = ReadSPI();
+Longitude[2] = ReadSPI();
+
 EastWest = ReadSPI();
 
+dacOutputFlag = 1;
 
 while((transmitFlag || (!transmitFlag && !PORTAbits.RA4 && playbackFlag)) && (curr_address<=end_address))
 {
-
-
-
-
 if(!((((end))==(51))?((((start))==0)?(1):(0)):((((end)+1)==((start)))?(1):(0))))
 {
-
 curr_address++;
 WriteBuffer(ReadSPI());
 }
 }
+LATC2 = (1);
+while((transmitFlag || (!transmitFlag && !PORTAbits.RA4 && playbackFlag)) && !((((start))==((end)))?(1):(0)));
+
+
+GPStoAudio();
+
 SSPCON1bits.SSPEN=0;
 PORTCbits.RC5 = 0;
 LATC2 = (1);
@@ -6293,7 +6316,7 @@ PIR1bits.SSP1IF=0;
 return (dataByte);
 }
 
-# 301
+# 321
 unsigned char ReadStatusSPI(void)
 {
 unsigned char dataRead;
@@ -6391,3 +6414,98 @@ WriteSPI(address_bytes[2]);
 return;
 }
 
+
+void GPStoAudio()
+{
+int x = 0;
+unsigned char datas[21];
+
+datas[0] = Latitude[0]/10+48;
+datas[1] = (Latitude[0]%10)+48;
+datas[2] = 'D';
+
+datas[3] = Latitude[1]/10+48;
+datas[4] = (Latitude[1]%10)+48;
+datas[5] = 'M';
+
+datas[6] = Latitude[2]/10+48;
+datas[7] = (Latitude[2]%10)+48;
+datas[8] = 'X';
+
+datas[9] = NorthSouth;
+
+datas[10] = Longitude[0]/100+48;
+datas[11] = ((Longitude[0]%100)/10)+48;
+datas[12] = Longitude[0]%10+48;
+datas[13] = 'D';
+
+datas[14] = Longitude[1]/10+48;
+datas[15] = (Longitude[1]%10)+48;
+datas[16] = 'M';
+
+datas[17] = Longitude[2]/10+48;
+datas[18] = (Longitude[2]%10)+48;
+datas[19] = 'X';
+
+datas[20] = EastWest;
+while((transmitFlag || (!transmitFlag && !PORTAbits.RA4 && playbackFlag)) && (x < 21))
+{
+_delay((unsigned long)((200)*(16000000/4000.0)));
+switch (datas[x]) {
+case '0':
+PlayAddress(0x0, 0x1533);
+break;
+case '1' :
+PlayAddress(0x1533, 0x25AB);
+break;
+case '2':
+PlayAddress(0x25AB, 0x37E6);
+break;
+case '3' :
+PlayAddress(0x37E6, 0x497A);
+break;
+case '4':
+PlayAddress(0x497A, 0x5E33);
+break;
+case '5' :
+PlayAddress(0x5E33, 0x7017);
+break;
+case '6':
+PlayAddress(0x7017, 0x847F);
+break;
+case '7' :
+PlayAddress(0x847F, 0x959C);
+break;
+case '8':
+PlayAddress(0x959C, 0xA732);
+break;
+case '9' :
+PlayAddress(0xA732, 0xB9FF);
+break;
+case 'N':
+PlayAddress(0xB9FF, 0xCB39);
+break;
+case 'S' :
+PlayAddress(0xCB39, 0xDBE9);
+break;
+case 'E':
+PlayAddress(0xDBE9, 0xEB5A);
+break;
+case 'W' :
+PlayAddress(0xEB5A, 0xFE81);
+break;
+case 'D':
+PlayAddress(0xFE81, 0x1123A);
+break;
+case 'M' :
+PlayAddress(0x1123A, 0x120EA);
+break;
+case 'X':
+PlayAddress(0x120EA, 0x135C0);
+break;
+default:
+break;
+}
+x++;
+}
+}

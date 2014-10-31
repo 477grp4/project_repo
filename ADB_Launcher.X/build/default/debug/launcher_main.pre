@@ -6180,7 +6180,7 @@ extern volatile __bit nTO @ (((unsigned) &STATUS)*8) + 4;
 
 extern volatile __bit nWPUEN @ (((unsigned) &OPTION_REG)*8) + 7;
 
-# 51 "launcher.h"
+# 54 "launcher.h"
 void InitCLK();
 void InitGPIO();
 void InitADC();
@@ -6194,6 +6194,7 @@ void WriteSPI(unsigned char databyte);
 unsigned char ReadSPI(void);
 unsigned char ReadStatusSPI(void);
 void WriteOverheadSPI(long int address);
+void SendGPSSPI();
 
 
 void WriteBuffer(unsigned char data);
@@ -6235,9 +6236,9 @@ unsigned char strobeFlag = 0;
 
 
 
-unsigned int validLatitude[3] = {0,0,0};
+unsigned char validLatitude[3] = {40,25,20};
 unsigned char validNorthSouth = 'N';
-unsigned int validLongitude[3] = {0,0,0};
+unsigned char validLongitude[3] = {86,68,20};
 unsigned char validEastWest = 'E';
 long int recordEndAdress;
 
@@ -12308,32 +12309,71 @@ InitWatchdog();
 initUART();
 
 unsigned char periodicCounter = 10;
-gpsIndex = 1;
+gpsIndex = 0;
 
 INTCONbits.GIE = 1;
 
-# 55
 if(!PORTCbits.RC7)
 ToggleSleepGPS();
 SetupGPS();
+SendGPSSPI();
 
 SSPCON1bits.SSPEN=0;
 PORTCbits.RC5 = 0;
-
-while(1){
 
 LATC2 = (1);
 
-# 77
-if(recordFlag)
+while(1){
+
+# 53
+LATC2 = (1);
+
+
+LATC2 = (1);
+
+
+if(PORTAbits.RA1)
 {
-InitSPI();
-RecordMode();
-SSPCON1bits.SSPEN=0;
-PORTCbits.RC5 = 0;
+
+PORTBbits.RB0 = 1;
+_delay((unsigned long)((100)*(16000000/4000.0)));
+PORTBbits.RB0 = 0;
 }
 
-# 114
+if(recordFlag)
+{
+RecordMode();
+}
+
+
+UpdateGPS();
+
+if(gpsInvalidFlag)
+{
+PORTBbits.PORTB = LATBbits.LATB | 0x20;
+PORTBbits.PORTB = LATBbits.LATB & 0xEF;
+if(periodicCounter < 14)
+periodicCounter++;
+}
+else
+{
+PORTBbits.PORTB = LATBbits.LATB | 0x10;
+PORTBbits.PORTB = LATBbits.LATB & 0xDF;
+periodicCounter = 10;
+ToggleSleepGPS();
+}
+
+if(!recordFlag)
+{
+if(strobeFlag)
+GoToSleep(10);
+else if(gpsInvalidFlag)
+GoToSleep(periodicCounter);
+else
+Hibernate();
+}
+
+
 }
 
 return (0);

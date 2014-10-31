@@ -360,6 +360,7 @@ void SetupGPS()
 
 void UpdateGPS()
 {
+    unsigned int count = 0;
     unsigned char GPSupdateMessage[22]  = "$PSRF103,01,01,01,00*"; //Send for an update
     //Set interrupts for handling incoming GPS signals
     //This will interrupt any outgoing transmission, so only do it when needed.
@@ -372,8 +373,22 @@ void UpdateGPS()
 
     gpsIndex = 0;
     uart_write_message(GPSupdateMessage,  22);  //Get a single GLL message
-    while(!messageDoneFlag);//wait for GPS to finish transferring message
-
+    while(!messageDoneFlag)
+    {
+        if(count == 60000) //wait for GPS to finish transferring message
+        {
+            ToggleSleepGPS();
+            __delay_ms(1000);
+            if(!PORTCbits.RC7)
+                ToggleSleepGPS();
+            SetupGPS();
+            while(!messageDoneFlag);
+            messageDoneFlag = 0;
+            count = 0;
+            uart_write_message(GPSupdateMessage,  22);
+        }
+        count++;
+    }
     messageDoneFlag = 0;        //clear the message done flag
     DecodeGPS();                //decode the message sent by the GPS
 
@@ -483,14 +498,16 @@ void DecodeGPS()
 
     if(!gpsInvalidFlag)
     {
-        //Copy the valid GPS coordinates to the global buffer
-        for(x=0;x<3;x++)
-        {
-         validLatitude[x]   = latitude[x];
-         validLongitude[x]  = longitude[x];
-        }
-         validNorthSouth = northSouth;
-         validEastWest   = eastWest;
+      //Copy the valid GPS coordinates to the global buffer
+      for(x=0;x<3;x++)
+      {
+        validLatitude[x]   = latitude[x];
+        validLongitude[x]  = longitude[x];
+      }
+      validNorthSouth = northSouth;
+      validEastWest   = eastWest;
+
+      SendGPSSPI();
     }
 }
 
@@ -517,31 +534,22 @@ void Hibernate()
 void RecordMode()
 {
     MEM_ACCESS = 1;
-    long int address = RECORD_BEGIN_ADDRESS;
+    long int address = RECORD_BEGIN_ADDRESS+HEADER_OFFSET;
     int count = BEGIN_PAGE_OFFSET;
-    int x;
+
+    //if(PORTCbits.RC7)          //if GPS is on
+    //    ToggleSleepGPS();       //Turn GPS off
+    InitSPI();            //Start-up SPI again
 
     RING_START = 0; //clear the buffer
     RING_END = 0;
-
-    //Write the Header GPS Data
     WriteOverheadSPI(address);
-    for(x=0;x<3;x++)
-    {
-        WriteBuffer(validLongitude[x]);
-    }
-    WriteBuffer(validNorthSouth);
-    for(x=0;x<3;x++)
-    {
-        WriteBuffer(validLatitude[x]);
-    }
-    WriteBuffer(validEastWest);
 
     TMR1IF  = 0;    //Clear interrupt flag
     TMR1IE  = 1;    //Start Interrupt
     TMR1ON  = 1;    //Start Timer
 
-    while(((recordFlag) || !isEmpty()) && (address < RECORD_END_ADDRESS))
+    while((recordFlag) && (address < RECORD_END_ADDRESS))
     {
         if(count>=256) //perform overhead on next page
         {
@@ -557,11 +565,26 @@ void RecordMode()
         }
 
     }
+    while(!isEmpty() && (address < RECORD_END_ADDRESS))
+    {
+        if(count>=256) //perform overhead on next page
+        {
+            SPI_CS = CS_IDLE;   //Used for end of a page
+            count = 0;
+            WriteOverheadSPI(address);
+        }
+        if(!isEmpty())
+        {
+            WriteSPI(ReadBuffer());
+            address++;
+            count++;
+        }
+    }
     SPI_CS = CS_IDLE;
     TMR1IE  = 0;    //Stop Interrupt
     TMR1ON  = 0;    //Stop Timer
     __delay_ms(5);
-    WriteOverheadSPI(RECORD_BEGIN_ADDRESS-3);
+    WriteOverheadSPI(RECORD_BEGIN_ADDRESS);
     if(address >= RECORD_END_ADDRESS)
     {
         WriteSPI((RECORD_END_ADDRESS - 1)>>16);
@@ -577,7 +600,32 @@ void RecordMode()
     SPI_CS = CS_IDLE;
     RING_START = 0; //clear the buffer
     RING_END = 0;
+    SSPCON1bits.SSPEN=0;  // Disable SPI Port
+    PORTCbits.RC5 = 0;    //Set MOSI low
     MEM_ACCESS = 0;
+}
+
+void SendGPSSPI()
+{
+    long int address = RECORD_BEGIN_ADDRESS + 3;
+    int x;
+    MEM_ACCESS = 1;
+
+    //Write the Header GPS Data
+    WriteOverheadSPI(address);
+    for(x=0;x<3;x++)
+    {
+        WriteSPI(validLatitude[x]);
+    }
+    WriteSPI(validNorthSouth);
+    for(x=0;x<3;x++)
+    {
+        WriteSPI(validLongitude[x]);
+    }
+    WriteSPI(validEastWest);
+    SPI_CS = CS_IDLE;
+    MEM_ACCESS = 0;
+
 }
 
 //to make pre-recorded messages only!

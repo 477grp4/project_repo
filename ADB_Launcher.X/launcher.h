@@ -31,9 +31,10 @@ extern "C" {
 #define READ_ADDRESS 0x000000
 
 #define SPI_PAGE_SIZE (256)
-#define RECORD_BEGIN_ADDRESS 0xE5A0
+#define RECORD_BEGIN_ADDRESS 0x135C0
 #define RECORD_END_ADDRESS 131072
-#define BEGIN_PAGE_OFFSET 0 //this should be RECORD_BEGINADDRESS%256
+#define HEADER_OFFSET 11
+#define BEGIN_PAGE_OFFSET 203 //this should be (RECORD_BEGINADDRESS+HEADER_OFFSET)%256
 
 #define STROBE_LED PORTBbits.RB0
 #define GREEN_LED PORTBbits.RB4
@@ -63,6 +64,7 @@ void WriteSPI(unsigned char databyte);
 unsigned char ReadSPI(void);
 unsigned char ReadStatusSPI(void);
 void WriteOverheadSPI(long int address);
+void SendGPSSPI();
 
 //Circular Buffer Functions
 void WriteBuffer(unsigned char data);
@@ -104,9 +106,9 @@ unsigned char strobeFlag = 0;
 
 
 //EEPROM Memory Buffers
-unsigned char validLatitude[3]  = {0,0,0};
+unsigned char validLatitude[3]  = {40,25,20};
 unsigned char validNorthSouth  = 'N';
-unsigned char validLongitude[3] = {0,0,0};
+unsigned char validLongitude[3] = {86,68,20};
 unsigned char validEastWest    = 'E';
 long int recordEndAdress;
 
