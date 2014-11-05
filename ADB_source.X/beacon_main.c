@@ -79,7 +79,7 @@ int main(int argc, char** argv)
         //Check if beacon has been launched
         CheckDisconnect(); //DONE+TESTED
 
-        if(playbackFlag)
+        if(playbackFlag&&!MEM_ACCESS)
         {
             PlaybackMode();
             playbackFlag = 0;
@@ -90,7 +90,7 @@ int main(int argc, char** argv)
             TransmitMode(); //DONE+TESTED
 
         //Go back to sleep, wait for interrupts
-        SLEEP();
+        Hibernate();
     }
 
     return (EXIT_SUCCESS);

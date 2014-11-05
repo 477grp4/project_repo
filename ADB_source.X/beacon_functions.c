@@ -24,6 +24,7 @@ void InitGPIO()
     TRISAbits.TRISA2 = 0;       //Output, unused
     //TRISAbits.TRISA3 = 1;       //Play-Button input
     TRISAbits.TRISA4 = 1;       //Mem-Access input
+    ANSELAbits.ANSA4 = 0;
     //TRISAbits.TRISA5 = 1;     //set RA5 (OPA1 inverting input) as input
     TRISAbits.TRISA6 = 0;       //Output, unused
     TRISAbits.TRISA7 = 0;       //Output, unused
@@ -97,7 +98,7 @@ void InitTimer0()
     TMR0IF              = 0;    //turn off timer0 interrupt flag
     TMR0CS              = 0;    //set clock source to internal instruction clock (FOSC/4)
     PSA                 = 0;    //turn on prescalar to timer0
-    PS0                 = 0;    //set prescalar to 2
+    PS0                 = 1;    //set prescalar to 2
     PS1                 = 0;
     PS2                 = 0;
     TMR0                = SAMPLE_COUNT; //count 0d40 times to get from (16MHz/4) to 10kHz (was 9B)
@@ -107,14 +108,15 @@ void InitTimer0()
 void InitWatchdog()
 {
     //Used to wakeup from sleep mode
-    WDTCONbits.WDTPS = 0x0D;    //Set timing interval
-    WDTCONbits.SWDTEN = 0;      //Software enable or WDT
+    WDTCONbits.WDTPS = MAX_PERIOD;    //Set timing interval
+    WDTCONbits.SWDTEN = 0;      //Software disable of WDT
 
 }
 
 void CheckDisconnect()
 {
     PORTCbits.RC0 = 1;          //Set poll line high
+    __delay_us(2);
     
     if (PORTCbits.RC1)          //Check read line
         transmitFlag = 1;
@@ -157,9 +159,18 @@ void PlaybackMode()
 {
   long int curr_address = PLAYBACK_BEGIN_ADDRESS;
   long int end_address = 0;
+  //long int end_address = PLAYBACK_END_ADDRESS;
   InitSPI();            //Start-up SPI again
   
   ReadOverheadSPI(PLAYBACK_BEGIN_ADDRESS);
+  if(MEM_ACCESS)
+  {
+      SSPCON1bits.SSPEN=0;  // Disable SPI Port
+      PORTCbits.RC5 = 0;    //Set MOSI low
+      SPI_CS = CS_IDLE;
+      dacOutputFlag = 0;   //signals DAC to stop output
+      return;
+  }
 
   //Extract Header Data
   end_address = ReadSPI();
@@ -216,7 +227,6 @@ void WriteSPI(unsigned char databyte)
 unsigned char ReadSPI(void)
 {
     unsigned char dataByte;
-
     SSPBUF = 0x00;              // Write dummy data byte to the buffer to initiate transmission
     while(!SSPSTATbits.BF);     // Wait for interrupt flag to go high indicating transmission is complete
     dataByte = SSPBUF;          // Read the incoming data byte
@@ -339,10 +349,15 @@ void ReadOverheadSPI(long int address)
     //SPI_CS = 0; //must be removed!
 
     int StatusReg;
+
+    if(MEM_ACCESS)
+        return;
     do
     {
         StatusReg = (ReadStatusSPI() & 0x01);   // Read the Status Register and mask out WIP bit
-    } while (StatusReg);
+    } while (StatusReg&&!MEM_ACCESS);
+    if(MEM_ACCESS)
+        return;
 
     //__delay_ms(5);
     SPI_CS = CS_ACTIVE; //must be changed!
@@ -392,7 +407,9 @@ void WriteSPI_overhead(long int address)
     do
     {
         StatusReg = (ReadStatusSPI() & 0x01);   // Read the Status Register and mask out write in progress flag
-    } while (StatusReg);
+    } while (StatusReg&&!MEM_ACCESS);
+    if(MEM_ACCESS)
+        return;
 
     //__delay_ms(5);
     SPI_CS = CS_ACTIVE;     //bring chip select low must be changed!
@@ -402,7 +419,9 @@ void WriteSPI_overhead(long int address)
     do
     {
         StatusReg = (ReadStatusSPI() & 0x02);   // Read the Status Register and mask out write in progress flag
-    } while (!StatusReg);
+    } while (!StatusReg&&!MEM_ACCESS);
+    if(MEM_ACCESS)
+        return;
     //__delay_ms(5);          // If you don't want to use the polling method you can
                                // just wait for the max write cycle time (5ms)
 
@@ -449,6 +468,13 @@ void GPStoAudio()
     datas[19] = 'X';
 
     datas[20] = EastWest;
+
+    if(transmitFlag || (!transmitFlag && !MEM_ACCESS && playbackFlag))
+    {
+        __delay_ms(200);
+        PlayAddress(START_A, START_0);
+    }
+
     while((transmitFlag || (!transmitFlag && !MEM_ACCESS && playbackFlag)) && (x < 21))
     {
         __delay_ms(200);
@@ -509,4 +535,16 @@ void GPStoAudio()
         }
         x++;
     }
+}
+
+void Hibernate()
+{
+    unsigned char count = 0;
+    WDTCONbits.WDTPS = MAX_PERIOD;
+    WDTCONbits.SWDTEN = 1;
+    while(!playbackFlag && count++ < NUM_PERIODS)
+    {
+        SLEEP();
+    }
+    WDTCONbits.SWDTEN = 0;
 }

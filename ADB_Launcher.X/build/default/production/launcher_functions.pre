@@ -1,10 +1,11 @@
 
 # 1 "launcher_functions.c"
 
-# 54 "launcher.h"
+# 59 "launcher.h"
 void InitCLK();
 void InitGPIO();
 void InitADC();
+void InitTimer0();
 void InitTimer1();
 void InitSPI();
 void InitWatchdog();
@@ -16,6 +17,7 @@ unsigned char ReadSPI(void);
 unsigned char ReadStatusSPI(void);
 void WriteOverheadSPI(long int address);
 void SendGPSSPI();
+unsigned char CheckDisconnect();
 
 
 void WriteBuffer(unsigned char data);
@@ -23,11 +25,11 @@ unsigned char ReadBuffer();
 
 
 void ReadOverheadSPI(long int address);
-long int preRecordingAddresses[17];
+long int preRecordingAddresses[18];
 void PreRecordMode();
 
 
-void initUART();
+void InitUART();
 void uart_xmit(unsigned char mydata_byte);
 void uart_write_message(unsigned char * data, int size);
 
@@ -54,6 +56,8 @@ volatile char gpsIndex;
 unsigned char gpsInvalidFlag = 1;
 unsigned char messageDoneFlag = 0;
 unsigned char strobeFlag = 0;
+unsigned char eeprom_timeoutFlag = 0;
+unsigned char hasValidGPSFlag = 0;
 
 
 
@@ -6302,6 +6306,14 @@ PEIE = 1;
 
 }
 
+void InitTimer0()
+{
+INTCONbits.TMR0IE = 0;
+OPTION_REGbits.TMR0CS = 0;
+OPTION_REGbits.PSA = 0;
+OPTION_REGbits.PS = 0x3;
+}
+
 void InitTimer1()
 {
 T1CONbits.TMR1CS = 0;
@@ -6309,7 +6321,7 @@ T1CONbits.T1CKPS = 2;
 T1CONbits.nT1SYNC = 1;
 T1GCONbits.TMR1GE = 0;
 TMR1H = 0xFF;
-TMR1L = 0xCD;
+TMR1L = 0x71;
 T1CONbits.TMR1ON = 1;
 
 }
@@ -6400,6 +6412,7 @@ StatusReg = (ReadStatusSPI() & 0x02);
 
 
 
+
 LATC2=(0);
 WriteSPI((0x02));
 WriteSPI(address_bytes[0]);
@@ -6442,10 +6455,12 @@ addressBytes[1]=(unsigned char)(address>>8);
 addressBytes[2]=(unsigned char)(address);
 
 int StatusReg;
+
 do
 {
 StatusReg = (ReadStatusSPI() & 0x01);
 } while (StatusReg);
+
 
 
 LATC2 = (0);
@@ -6459,7 +6474,7 @@ return;
 
 
 
-void initUART()
+void InitUART()
 {
 
 TRISCbits.TRISC6 = 0;
@@ -6476,6 +6491,7 @@ RCSTAbits.SPEN = 1;
 RCSTAbits.RX9 = 0;
 RCSTAbits.CREN = 1;
 }
+
 unsigned char compute_checksum(unsigned char * data, int size)
 {
 unsigned char checksum = 0;
@@ -6487,6 +6503,7 @@ checksum ^= data[x];
 }
 return checksum;
 }
+
 void uart_xmit(unsigned char mydata_byte)
 {
 
@@ -6531,6 +6548,7 @@ _delay((unsigned long)((100)*(16000000/4000.0)));
 PORTAbits.RA6 = 0;
 _delay((unsigned long)((1000)*(16000000/4000.0)));
 }
+
 void DisableGPS()
 {
 
@@ -6556,17 +6574,16 @@ uart_write_message(message, 22);
 
 _delay((unsigned long)((1000)*(16000000/4000.0)));
 
-# 354
+# 368
 sprintf(message, "%s104,40.441944,-86.9125,0,0,0,0,12,2*", startSequence);
 uart_write_message(message, 42);
 
 }
 
 
-
 void UpdateGPS()
 {
-unsigned int count = 0;
+
 unsigned char GPSupdateMessage[22] = "$PSRF103,01,01,01,00*";
 
 
@@ -6574,27 +6591,19 @@ RCIE = 1;
 PEIE = 1;
 GIE = 1;
 
-if(!PORTCbits.RC7)
-ToggleSleepGPS();
+
+
 
 gpsIndex = 0;
 uart_write_message(GPSupdateMessage, 22);
-while(!messageDoneFlag)
+PORTBbits.PORTB = LATBbits.LATB | 0x20;
+PORTBbits.PORTB = LATBbits.LATB & 0xEF;
+do
 {
-if(count == 60000)
-{
-ToggleSleepGPS();
-_delay((unsigned long)((1000)*(16000000/4000.0)));
-if(!PORTCbits.RC7)
-ToggleSleepGPS();
-SetupGPS();
-while(!messageDoneFlag);
-messageDoneFlag = 0;
-count = 0;
-uart_write_message(GPSupdateMessage, 22);
-}
-count++;
-}
+
+# 412
+}while(!messageDoneFlag);
+PORTBbits.PORTB = LATBbits.LATB & 0xDF;
 messageDoneFlag = 0;
 DecodeGPS();
 
@@ -6616,7 +6625,10 @@ int x;
 for(x=0;x<6;x++)
 {
 if(gpsMessage[x] != messageID[x])
+{
 gpsInvalidFlag = 1;
+return;
+}
 }
 
 
@@ -6713,7 +6725,9 @@ validLongitude[x] = longitude[x];
 validNorthSouth = northSouth;
 validEastWest = eastWest;
 
-SendGPSSPI();
+hasValidGPSFlag = 1;
+
+
 }
 }
 
@@ -6740,20 +6754,33 @@ WDTCONbits.SWDTEN = 0;
 void RecordMode()
 {
 PORTAbits.RA4 = 1;
-long int address = 0x135C0+11;
-int count = 203;
-
-
+long int address = 0xBB68+11;
+int count = 115;
 
 InitSPI();
 
+
+if(CheckDisconnect())
+{
+LATC2 = (1);
 (start) = 0;
 (end) = 0;
-WriteOverheadSPI(address);
+SSPCON1bits.SSPEN=0;
+PORTCbits.RC5 = 0;
+PORTAbits.RA4 = 0;
+return;
+}
 
+(start) = 0;
+(end) = 0;
+
+_delay((unsigned long)((300)*(16000000/4000.0)));
+WriteOverheadSPI(address);
 TMR1IF = 0;
 TMR1IE = 1;
 TMR1ON = 1;
+PORTBbits.PORTB = LATBbits.LATB | 0x20;
+PORTBbits.PORTB = LATBbits.LATB & 0xEF;
 
 while((recordFlag) && (address < 131072))
 {
@@ -6771,6 +6798,7 @@ count++;
 }
 
 }
+
 while(!((((start))==((end)))?(1):(0)) && (address < 131072))
 {
 if(count>=256)
@@ -6790,7 +6818,9 @@ LATC2 = (1);
 TMR1IE = 0;
 TMR1ON = 0;
 _delay((unsigned long)((5)*(16000000/4000.0)));
-WriteOverheadSPI(0x135C0);
+
+
+WriteOverheadSPI(0xBB68);
 if(address >= 131072)
 {
 WriteSPI((131072 - 1)>>16);
@@ -6803,7 +6833,14 @@ WriteSPI(address>>16);
 WriteSPI(address>>8);
 WriteSPI(address);
 }
+
 LATC2 = (1);
+if(hasValidGPSFlag)
+{
+SendGPSSPI();
+hasValidGPSFlag = 0;
+}
+PORTBbits.PORTB = LATBbits.LATB & 0xDF;
 (start) = 0;
 (end) = 0;
 SSPCON1bits.SSPEN=0;
@@ -6813,11 +6850,13 @@ PORTAbits.RA4 = 0;
 
 void SendGPSSPI()
 {
-long int address = 0x135C0 + 3;
+long int address = 0xBB68 + 3;
 int x;
 PORTAbits.RA4 = 1;
+if(SSPCON1bits.SSPEN == 0)
+InitSPI();
 
-
+# 678
 WriteOverheadSPI(address);
 for(x=0;x<3;x++)
 {
@@ -6829,9 +6868,22 @@ for(x=0;x<3;x++)
 WriteSPI(validLongitude[x]);
 }
 WriteSPI(validEastWest);
-LATC2 = (1);
-PORTAbits.RA4 = 0;
 
+LATC2 = (1);
+
+# 698
+return;
+
+}
+
+unsigned char CheckDisconnect()
+{
+unsigned char status;
+status = ReadStatusSPI();
+if(status==0xff)
+return 1;
+else
+return 0;
 }
 
 
@@ -6842,8 +6894,20 @@ int count = 256;
 int x;
 (start) = 0;
 (end) = 0;
+PORTAbits.RA4 = 1;
 
-for(x = 0;x < 17; x++)
+if(CheckDisconnect())
+{
+LATC2 = (1);
+(start) = 0;
+(end) = 0;
+SSPCON1bits.SSPEN=0;
+PORTCbits.RC5 = 0;
+PORTAbits.RA4 = 0;
+return;
+}
+
+for(x = 0;x < 18; x++)
 {
 while(!recordFlag);
 _delay((unsigned long)((320)*(16000000/4000.0)));

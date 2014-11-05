@@ -23,23 +23,27 @@ int main(int argc, char** argv) {
     InitCLK();
     InitGPIO();
     InitADC();
-    InitSPI();
+    //InitSPI();
+    //InitTimer0();
     InitTimer1();
     InitWatchdog();
-    initUART();             //Initialize UART module
+    InitUART();             //Initialize UART module
 
     unsigned char periodicCounter = MIN_PERIOD;
     gpsIndex = 0;
 
     INTCONbits.GIE = 1;
 
-    if(!PORTCbits.RC7)
-        ToggleSleepGPS();       //Turn GPS on
+    //if(!PORTCbits.RC7)
+    //    ToggleSleepGPS();       //Turn GPS on
     SetupGPS();             //Setup Lat/Long recording
-    SendGPSSPI();
+    //SendGPSSPI();
 
-    SSPCON1bits.SSPEN=0;      // Disable SPI Port
-    PORTCbits.RC5 = 0;        //Set MOSI low
+    PORTBbits.PORTB = LATBbits.LATB & 0xDF; //turn red LED off
+    PORTBbits.PORTB = LATBbits.LATB | 0x10; //turn green LED on
+    __delay_ms(100);
+    PORTBbits.PORTB = LATBbits.LATB & 0xEF; //turn green LED off
+    
     
     SPI_CS = CS_IDLE;//prerecord
     
@@ -50,7 +54,7 @@ int main(int argc, char** argv) {
         //PreRecordMode();
         //SSPCON1bits.SSPEN=0;  // Disable SPI Port
         //PORTCbits.RC5 = 0;    //Set MOSI low
-        SPI_CS = CS_IDLE;//prerecord
+        //SPI_CS = CS_IDLE;//prerecord
         //__delay_ms(5);
         
         SPI_CS = CS_IDLE;
@@ -67,6 +71,7 @@ int main(int argc, char** argv) {
         if(recordFlag)
         {
           RecordMode();
+          recordFlag = 0;
         }
 
         //Not recording, Update the GPS
@@ -76,6 +81,8 @@ int main(int argc, char** argv) {
         {
             PORTBbits.PORTB = LATBbits.LATB | 0x20; //turn red LED on
             PORTBbits.PORTB = LATBbits.LATB & 0xEF; //turn green LED off
+            __delay_ms(250);
+            PORTBbits.PORTB = LATBbits.LATB & 0xDF; //turn red LED off
             if(periodicCounter < MAX_PERIOD)
                 periodicCounter++;
         }
@@ -83,18 +90,23 @@ int main(int argc, char** argv) {
         {
             PORTBbits.PORTB = LATBbits.LATB | 0x10; //turn green LED on
             PORTBbits.PORTB = LATBbits.LATB & 0xDF; //turn red LED off
+            __delay_ms(250);
+            PORTBbits.PORTB = LATBbits.LATB & 0xEF; //turn green LED off
             periodicCounter = MIN_PERIOD;
-            ToggleSleepGPS();                       //Hibernate
         }
         
         if(!recordFlag)
         {
-            if(strobeFlag)
+            if(PORTAbits.RA1) //check strobe
                 GoToSleep(MIN_PERIOD);
             else if(gpsInvalidFlag)
                 GoToSleep(periodicCounter);
             else
+            {
+                ToggleSleepGPS();       //Turn GPS off
                 Hibernate();
+                ToggleSleepGPS();       //Turn GPS on
+            }
         }
         
 
@@ -115,13 +127,21 @@ interrupt void isr(void)
             RCSTAbits.CREN = 1;
         }
         gpsMessage[gpsIndex++] = RCREG;
-        if(gpsMessage[gpsIndex-1] == 0x0A)
+        if(gpsIndex >= 50)
         {
             messageDoneFlag = 1;
+            gpsIndex = 0;
         }
         else
         {
-            messageDoneFlag = 0;
+            if(gpsMessage[gpsIndex-1] == 0x0A)
+            {
+                messageDoneFlag = 1;
+            }
+            else
+            {
+                messageDoneFlag = 0;
+            }
         }
         PIR1bits.RCIF = 0;
     }
@@ -129,8 +149,8 @@ interrupt void isr(void)
     //startADC
     if (TMR1IF && TMR1IE)
     {
-        TMR1H               = 0xFF; //Set Timer counter to 50 for 10kHz
-        TMR1L               = 0xCD;
+        TMR1H               = SAMPLE_PERIOD_UPPER; //Set Timer counter to 50 for 10kHz
+        TMR1L               = SAMPLE_PERIOD_LOWER;
         TMR1IF              = 0;
 
         if(recordFlag)
@@ -176,6 +196,12 @@ interrupt void isr(void)
         {
             strobeFlag = 0;
         }
+    }
+
+    if(INTCONbits.TMR0IE && INTCONbits.TMR0IF)
+    {
+        eeprom_timeoutFlag = 1;
+        INTCONbits.TMR0IF = 0;
     }
 
 }

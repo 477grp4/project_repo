@@ -1,6 +1,6 @@
 #define _XTAL_FREQ  16000000        // this is used by the __delay_ms(xx) and __delay_us(xx) functions
 #define SPI_CS LATC2        //Chip-select for SPI
-#define SAMPLE_COUNT (0x48) //sampling/playback frequency for DAC and ADC
+#define SAMPLE_COUNT (0x71) //sampling/playback frequency for DAC and ADC
 #define MEM_ACCESS PORTAbits.RA4
 #define TRANS_ENABLE PORTBbits.RB5
 
@@ -21,35 +21,38 @@
 #define CS_IDLE (1)
 #define CS_ACTIVE (0)
 //for testing
-#define PLAYBACK_BEGIN_ADDRESS 0x135C0
+#define PLAYBACK_BEGIN_ADDRESS 0xBB68
 #define PLAYBACK_END_ADDRESS 131072
 
+#define START_A 0x0
+#define START_0 0xC07
+#define START_1 0x1560
+#define START_2 0x2088
+#define START_3 0x2D85
+#define START_4 0x346A
+#define START_5 0x3B04
+#define START_6 0x4511
+#define START_7 0x50CF
+#define START_8 0x5C7A
+#define START_9 0x6300
+#define START_N 0x6DA0
+#define START_S 0x78AF
+#define START_E 0x8214
+#define START_W 0x8D4F
+#define START_D 0x9672
+#define START_M 0xA4C8
+#define START_SS 0xB110
+//0x135C0
 
-#define START_0 0x0
-#define START_1 0x1533
-#define START_2 0x25AB
-#define START_3 0x37E6
-#define START_4 0x497A
-#define START_5 0x5E33
-#define START_6 0x7017
-#define START_7 0x847F
-#define START_8 0x959C
-#define START_9 0xA732
-#define START_N 0xB9FF
-#define START_S 0xCB39
-#define START_E 0xDBE9
-#define START_W 0xEB5A
-#define START_D 0xFE81
-#define START_M 0x1123A
-#define START_SS 0x120EA
-//e5a0
-
-
+#define MIN_PERIOD 10
+#define MAX_PERIOD 13
+//#define MAX_PERIOD 18
+#define NUM_PERIODS 3   //number of MAX_PERIODS to sleep on hibernate
 
 
 //Global variables
 int start, end = 0;
-unsigned char buffer[BUFFERSIZE];
+unsigned char buffer[BUFFERSIZE+1];
 unsigned char playbackFlag = 0;
 unsigned char transmitFlag;
 unsigned char dacOutputFlag =0;
@@ -94,3 +97,4 @@ unsigned char Read_SPI_StatusReg(void);
 
 void PlayAddress(long int startAddress, long int endAddress);
 void GPStoAudio();
+void Hibernate();

@@ -1,9 +1,9 @@
 
 # 1 "beacon_functions.c"
 
-# 51 "beacon.h"
+# 54 "beacon.h"
 int start, end = 0;
-unsigned char buffer[51];
+unsigned char buffer[51+1];
 unsigned char playbackFlag = 0;
 unsigned char transmitFlag;
 unsigned char dacOutputFlag =0;
@@ -13,7 +13,7 @@ unsigned char NorthSouth;
 unsigned char Longitude[3] = {0,0,0};
 unsigned char EastWest;
 
-# 66
+# 69
 void InitCLK();
 void InitGPIO();
 void InitDAC();
@@ -45,6 +45,7 @@ unsigned char Read_SPI_StatusReg(void);
 
 void PlayAddress(long int startAddress, long int endAddress);
 void GPStoAudio();
+void Hibernate();
 
 # 21 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -6119,6 +6120,7 @@ TRISAbits.TRISA0 = 0;
 TRISAbits.TRISA2 = 0;
 
 TRISAbits.TRISA4 = 1;
+ANSELAbits.ANSA4 = 0;
 
 TRISAbits.TRISA6 = 0;
 TRISAbits.TRISA7 = 0;
@@ -6164,7 +6166,7 @@ DACCON1 = 0x00;
 void InitSPI()
 {
 
-# 76
+# 77
 TRISCbits.TRISC2 = 0;
 TRISCbits.TRISC3 = 0;
 TRISCbits.TRISC4 = 1;
@@ -6189,17 +6191,17 @@ TMR0IE = 0;
 TMR0IF = 0;
 TMR0CS = 0;
 PSA = 0;
-PS0 = 0;
+PS0 = 1;
 PS1 = 0;
 PS2 = 0;
-TMR0 = (0x48);
+TMR0 = (0x71);
 TMR0IE = 1;
 }
 
 void InitWatchdog()
 {
 
-WDTCONbits.WDTPS = 0x0D;
+WDTCONbits.WDTPS = 13;
 WDTCONbits.SWDTEN = 0;
 
 }
@@ -6207,6 +6209,7 @@ WDTCONbits.SWDTEN = 0;
 void CheckDisconnect()
 {
 PORTCbits.RC0 = 1;
+_delay((unsigned long)((2)*(16000000/4000000.0)));
 
 if (PORTCbits.RC1)
 transmitFlag = 1;
@@ -6247,11 +6250,20 @@ dacOutputFlag = 0;
 
 void PlaybackMode()
 {
-long int curr_address = 0x135C0;
+long int curr_address = 0xBB68;
 long int end_address = 0;
+
 InitSPI();
 
-ReadOverheadSPI(0x135C0);
+ReadOverheadSPI(0xBB68);
+if(PORTAbits.RA4)
+{
+SSPCON1bits.SSPEN=0;
+PORTCbits.RC5 = 0;
+LATC2 = (1);
+dacOutputFlag = 0;
+return;
+}
 
 
 end_address = ReadSPI();
@@ -6308,7 +6320,6 @@ while(!PIR1bits.SSP1IF);
 unsigned char ReadSPI(void)
 {
 unsigned char dataByte;
-
 SSPBUF = 0x00;
 while(!SSPSTATbits.BF);
 dataByte = SSPBUF;
@@ -6316,7 +6327,7 @@ PIR1bits.SSP1IF=0;
 return (dataByte);
 }
 
-# 321
+# 331
 unsigned char ReadStatusSPI(void)
 {
 unsigned char dataRead;
@@ -6338,10 +6349,15 @@ addressBytes[2]=(unsigned char)(address);
 
 
 int StatusReg;
+
+if(PORTAbits.RA4)
+return;
 do
 {
 StatusReg = (ReadStatusSPI() & 0x01);
-} while (StatusReg);
+} while (StatusReg&&!PORTAbits.RA4);
+if(PORTAbits.RA4)
+return;
 
 
 LATC2 = (0);
@@ -6391,7 +6407,9 @@ address_bytes[2]=(unsigned char)(address);
 do
 {
 StatusReg = (ReadStatusSPI() & 0x01);
-} while (StatusReg);
+} while (StatusReg&&!PORTAbits.RA4);
+if(PORTAbits.RA4)
+return;
 
 
 LATC2 = (0);
@@ -6401,7 +6419,9 @@ LATC2 = (1);
 do
 {
 StatusReg = (ReadStatusSPI() & 0x02);
-} while (!StatusReg);
+} while (!StatusReg&&!PORTAbits.RA4);
+if(PORTAbits.RA4)
+return;
 
 
 
@@ -6448,64 +6468,83 @@ datas[18] = (Longitude[2]%10)+48;
 datas[19] = 'X';
 
 datas[20] = EastWest;
+
+if(transmitFlag || (!transmitFlag && !PORTAbits.RA4 && playbackFlag))
+{
+_delay((unsigned long)((200)*(16000000/4000.0)));
+PlayAddress(0x0, 0xC07);
+}
+
 while((transmitFlag || (!transmitFlag && !PORTAbits.RA4 && playbackFlag)) && (x < 21))
 {
 _delay((unsigned long)((200)*(16000000/4000.0)));
 switch (datas[x]) {
 case '0':
-PlayAddress(0x0, 0x1533);
+PlayAddress(0xC07, 0x1560);
 break;
 case '1' :
-PlayAddress(0x1533, 0x25AB);
+PlayAddress(0x1560, 0x2088);
 break;
 case '2':
-PlayAddress(0x25AB, 0x37E6);
+PlayAddress(0x2088, 0x2D85);
 break;
 case '3' :
-PlayAddress(0x37E6, 0x497A);
+PlayAddress(0x2D85, 0x346A);
 break;
 case '4':
-PlayAddress(0x497A, 0x5E33);
+PlayAddress(0x346A, 0x3B04);
 break;
 case '5' :
-PlayAddress(0x5E33, 0x7017);
+PlayAddress(0x3B04, 0x4511);
 break;
 case '6':
-PlayAddress(0x7017, 0x847F);
+PlayAddress(0x4511, 0x50CF);
 break;
 case '7' :
-PlayAddress(0x847F, 0x959C);
+PlayAddress(0x50CF, 0x5C7A);
 break;
 case '8':
-PlayAddress(0x959C, 0xA732);
+PlayAddress(0x5C7A, 0x6300);
 break;
 case '9' :
-PlayAddress(0xA732, 0xB9FF);
+PlayAddress(0x6300, 0x6DA0);
 break;
 case 'N':
-PlayAddress(0xB9FF, 0xCB39);
+PlayAddress(0x6DA0, 0x78AF);
 break;
 case 'S' :
-PlayAddress(0xCB39, 0xDBE9);
+PlayAddress(0x78AF, 0x8214);
 break;
 case 'E':
-PlayAddress(0xDBE9, 0xEB5A);
+PlayAddress(0x8214, 0x8D4F);
 break;
 case 'W' :
-PlayAddress(0xEB5A, 0xFE81);
+PlayAddress(0x8D4F, 0x9672);
 break;
 case 'D':
-PlayAddress(0xFE81, 0x1123A);
+PlayAddress(0x9672, 0xA4C8);
 break;
 case 'M' :
-PlayAddress(0x1123A, 0x120EA);
+PlayAddress(0xA4C8, 0xB110);
 break;
 case 'X':
-PlayAddress(0x120EA, 0x135C0);
+PlayAddress(0xB110, 0xBB68);
 break;
 default:
 break;
 }
 x++;
 }
+}
+
+void Hibernate()
+{
+unsigned char count = 0;
+WDTCONbits.WDTPS = 13;
+WDTCONbits.SWDTEN = 1;
+while(!playbackFlag && count++ < 3)
+{
+asm("sleep");
+}
+WDTCONbits.SWDTEN = 0;
 }

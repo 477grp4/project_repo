@@ -6180,10 +6180,11 @@ extern volatile __bit nTO @ (((unsigned) &STATUS)*8) + 4;
 
 extern volatile __bit nWPUEN @ (((unsigned) &OPTION_REG)*8) + 7;
 
-# 54 "launcher.h"
+# 59 "launcher.h"
 void InitCLK();
 void InitGPIO();
 void InitADC();
+void InitTimer0();
 void InitTimer1();
 void InitSPI();
 void InitWatchdog();
@@ -6195,6 +6196,7 @@ unsigned char ReadSPI(void);
 unsigned char ReadStatusSPI(void);
 void WriteOverheadSPI(long int address);
 void SendGPSSPI();
+unsigned char CheckDisconnect();
 
 
 void WriteBuffer(unsigned char data);
@@ -6202,11 +6204,11 @@ unsigned char ReadBuffer();
 
 
 void ReadOverheadSPI(long int address);
-long int preRecordingAddresses[17];
+long int preRecordingAddresses[18];
 void PreRecordMode();
 
 
-void initUART();
+void InitUART();
 void uart_xmit(unsigned char mydata_byte);
 void uart_write_message(unsigned char * data, int size);
 
@@ -6233,6 +6235,8 @@ volatile char gpsIndex;
 unsigned char gpsInvalidFlag = 1;
 unsigned char messageDoneFlag = 0;
 unsigned char strobeFlag = 0;
+unsigned char eeprom_timeoutFlag = 0;
+unsigned char hasValidGPSFlag = 0;
 
 
 
@@ -12303,32 +12307,33 @@ int main(int argc, char** argv) {
 InitCLK();
 InitGPIO();
 InitADC();
-InitSPI();
+
+
 InitTimer1();
 InitWatchdog();
-initUART();
+InitUART();
 
 unsigned char periodicCounter = 10;
 gpsIndex = 0;
 
 INTCONbits.GIE = 1;
 
-if(!PORTCbits.RC7)
-ToggleSleepGPS();
-SetupGPS();
-SendGPSSPI();
 
-SSPCON1bits.SSPEN=0;
-PORTCbits.RC5 = 0;
+
+SetupGPS();
+
+
+PORTBbits.PORTB = LATBbits.LATB & 0xDF;
+PORTBbits.PORTB = LATBbits.LATB | 0x10;
+_delay((unsigned long)((100)*(16000000/4000.0)));
+PORTBbits.PORTB = LATBbits.LATB & 0xEF;
+
 
 LATC2 = (1);
 
 while(1){
 
-# 53
-LATC2 = (1);
-
-
+# 60
 LATC2 = (1);
 
 
@@ -12343,6 +12348,7 @@ PORTBbits.RB0 = 0;
 if(recordFlag)
 {
 RecordMode();
+recordFlag = 0;
 }
 
 
@@ -12352,6 +12358,8 @@ if(gpsInvalidFlag)
 {
 PORTBbits.PORTB = LATBbits.LATB | 0x20;
 PORTBbits.PORTB = LATBbits.LATB & 0xEF;
+_delay((unsigned long)((250)*(16000000/4000.0)));
+PORTBbits.PORTB = LATBbits.LATB & 0xDF;
 if(periodicCounter < 14)
 periodicCounter++;
 }
@@ -12359,18 +12367,23 @@ else
 {
 PORTBbits.PORTB = LATBbits.LATB | 0x10;
 PORTBbits.PORTB = LATBbits.LATB & 0xDF;
+_delay((unsigned long)((250)*(16000000/4000.0)));
+PORTBbits.PORTB = LATBbits.LATB & 0xEF;
 periodicCounter = 10;
-ToggleSleepGPS();
 }
 
 if(!recordFlag)
 {
-if(strobeFlag)
+if(PORTAbits.RA1)
 GoToSleep(10);
 else if(gpsInvalidFlag)
 GoToSleep(periodicCounter);
 else
+{
+ToggleSleepGPS();
 Hibernate();
+ToggleSleepGPS();
+}
 }
 
 
@@ -12391,6 +12404,13 @@ RCSTAbits.CREN = 0;
 RCSTAbits.CREN = 1;
 }
 gpsMessage[gpsIndex++] = RCREG;
+if(gpsIndex >= 50)
+{
+messageDoneFlag = 1;
+gpsIndex = 0;
+}
+else
+{
 if(gpsMessage[gpsIndex-1] == 0x0A)
 {
 messageDoneFlag = 1;
@@ -12399,6 +12419,7 @@ else
 {
 messageDoneFlag = 0;
 }
+}
 PIR1bits.RCIF = 0;
 }
 
@@ -12406,7 +12427,7 @@ PIR1bits.RCIF = 0;
 if (TMR1IF && TMR1IE)
 {
 TMR1H = 0xFF;
-TMR1L = 0xCD;
+TMR1L = 0x71;
 TMR1IF = 0;
 
 if(recordFlag)
@@ -12452,6 +12473,12 @@ if(IOCANbits.IOCAN1 & !PORTAbits.RA1)
 {
 strobeFlag = 0;
 }
+}
+
+if(INTCONbits.TMR0IE && INTCONbits.TMR0IF)
+{
+eeprom_timeoutFlag = 1;
+INTCONbits.TMR0IF = 0;
 }
 
 }

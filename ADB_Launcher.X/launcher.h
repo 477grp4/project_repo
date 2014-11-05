@@ -31,10 +31,13 @@ extern "C" {
 #define READ_ADDRESS 0x000000
 
 #define SPI_PAGE_SIZE (256)
-#define RECORD_BEGIN_ADDRESS 0x135C0
+#define RECORD_BEGIN_ADDRESS 0xBB68 //beginning of recording header. BEGIN_PAGE_OFFSET depends on this value!
 #define RECORD_END_ADDRESS 131072
-#define HEADER_OFFSET 11
-#define BEGIN_PAGE_OFFSET 203 //this should be (RECORD_BEGINADDRESS+HEADER_OFFSET)%256
+#define HEADER_OFFSET 11 //BEGIN_PAGE_OFFSET depends on this value!
+#define BEGIN_PAGE_OFFSET 115 //121 //this should be (RECORD_BEGINADDRESS+HEADER_OFFSET)%256
+
+#define SAMPLE_PERIOD_UPPER 0xFF
+#define SAMPLE_PERIOD_LOWER 0x71
 
 #define STROBE_LED PORTBbits.RB0
 #define GREEN_LED PORTBbits.RB4
@@ -50,10 +53,13 @@ extern "C" {
     
 #define MEM_ACCESS PORTAbits.RA4
 
+#define TIMEOUT_PERIOD 0xC0;
+
 //Initializaton Functions
 void InitCLK();
 void InitGPIO();
 void InitADC();
+void InitTimer0();
 void InitTimer1();
 void InitSPI();
 void InitWatchdog();
@@ -65,6 +71,7 @@ unsigned char ReadSPI(void);
 unsigned char ReadStatusSPI(void);
 void WriteOverheadSPI(long int address);
 void SendGPSSPI();
+unsigned char CheckDisconnect();
 
 //Circular Buffer Functions
 void WriteBuffer(unsigned char data);
@@ -72,11 +79,11 @@ unsigned char ReadBuffer();
 
 //FOR TESTING PURPOSES ONLY
 void ReadOverheadSPI(long int address);
-long int preRecordingAddresses[17];
+long int preRecordingAddresses[18];
 void PreRecordMode();
 
 //UART Functions
-void initUART();
+void InitUART();
 void uart_xmit(unsigned char mydata_byte);
 void uart_write_message(unsigned char * data, int size);
 
@@ -103,6 +110,8 @@ volatile char gpsIndex;
 unsigned char gpsInvalidFlag = 1;
 unsigned char messageDoneFlag = 0;
 unsigned char strobeFlag = 0;
+unsigned char eeprom_timeoutFlag = 0;
+unsigned char hasValidGPSFlag = 0;
 
 
 //EEPROM Memory Buffers

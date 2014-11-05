@@ -93,14 +93,22 @@ void InitADC()
     //GIE                 = 1;    //Enable global interrupts
 }
 
+void InitTimer0()
+{
+    INTCONbits.TMR0IE = 0;
+    OPTION_REGbits.TMR0CS = 0; //use instruction clock
+    OPTION_REGbits.PSA = 0; //use prescalar
+    OPTION_REGbits.PS = 0x3; //use 256 prescalar
+}
+
 void InitTimer1()
 {
     T1CONbits.TMR1CS    = 0;    //FOSC/4
     T1CONbits.T1CKPS    = 2;    //FOSC/8
     T1CONbits.nT1SYNC   = 1;    //Non synchronized input
     T1GCONbits.TMR1GE   = 0;    //Disregard gate function
-    TMR1H               = 0xFF; //Set Timer counter to 50 for 10kHz
-    TMR1L               = 0xCD;
+    TMR1H               = SAMPLE_PERIOD_UPPER; //Set Timer counter to 50 for 10kHz
+    TMR1L               = SAMPLE_PERIOD_LOWER;
     T1CONbits.TMR1ON    = 1;    //Enable timer
     
 }
@@ -188,6 +196,7 @@ void WriteOverheadSPI(long int address)
     {
         StatusReg = (ReadStatusSPI() & 0x02);   // Read the Status Register and mask out write in progress flag
     } while (!StatusReg);
+
     //__delay_ms(5);          // If you don't want to use the polling method you can
                                // just wait for the max write cycle time (5ms)
 
@@ -233,10 +242,12 @@ void ReadOverheadSPI(long int address)
     addressBytes[2]=(unsigned char)(address);
 
     int StatusReg;
+
     do
     {
         StatusReg = (ReadStatusSPI() & 0x01);   // Read the Status Register and mask out WIP bit
     } while (StatusReg);
+
 
     //__delay_ms(5);
     SPI_CS = CS_ACTIVE;
@@ -250,7 +261,7 @@ void ReadOverheadSPI(long int address)
 
 
 //UART Functions
-void initUART()
+void InitUART()
 {
     //NOTE: pins 6 and 7 on portC cannot be analog
     TRISCbits.TRISC6 = 0; //TX out
@@ -267,6 +278,7 @@ void initUART()
     RCSTAbits.RX9 = 0; //8 data bit mode
     RCSTAbits.CREN = 1; //receive enabled
 }
+
 unsigned char compute_checksum(unsigned char * data, int size)
 {
     unsigned char checksum = 0;
@@ -278,6 +290,7 @@ unsigned char compute_checksum(unsigned char * data, int size)
     }
     return checksum;
 }
+
 void uart_xmit(unsigned char mydata_byte)
 {
 
@@ -322,6 +335,7 @@ void ToggleSleepGPS()
     PORTAbits.RA6 = 0;
     __delay_ms(1000);
 }
+
 void DisableGPS()
 {
     //Disables the GPS, the previous settings remain intact
@@ -357,10 +371,9 @@ void SetupGPS()
 }
 
 
-
 void UpdateGPS()
 {
-    unsigned int count = 0;
+    //unsigned int count = 0;
     unsigned char GPSupdateMessage[22]  = "$PSRF103,01,01,01,00*"; //Send for an update
     //Set interrupts for handling incoming GPS signals
     //This will interrupt any outgoing transmission, so only do it when needed.
@@ -368,27 +381,36 @@ void UpdateGPS()
     PEIE = 1;
     GIE = 1;
 
-    if(!PORTCbits.RC7)          //if GPS is off
-        ToggleSleepGPS();       //Turn GPS on
+    //if(!PORTCbits.RC7)          //if GPS is off
+    //    ToggleSleepGPS();       //Turn GPS on
 
     gpsIndex = 0;
     uart_write_message(GPSupdateMessage,  22);  //Get a single GLL message
-    while(!messageDoneFlag)
+    PORTBbits.PORTB = LATBbits.LATB | 0x20; //turn red LED on
+    PORTBbits.PORTB = LATBbits.LATB & 0xEF; //turn green LED off
+    do
     {
+        
+        //uart_write_message(GPSupdateMessage,  22);
+        //__delay_ms(1000);
+        /*
         if(count == 60000) //wait for GPS to finish transferring message
         {
+
             ToggleSleepGPS();
             __delay_ms(1000);
             if(!PORTCbits.RC7)
                 ToggleSleepGPS();
-            SetupGPS();
+            //SetupGPS();
             while(!messageDoneFlag);
             messageDoneFlag = 0;
             count = 0;
             uart_write_message(GPSupdateMessage,  22);
-        }
-        count++;
-    }
+            */
+        //}
+        //count++;
+    }while(!messageDoneFlag);
+    PORTBbits.PORTB = LATBbits.LATB & 0xDF; //turn red LED off
     messageDoneFlag = 0;        //clear the message done flag
     DecodeGPS();                //decode the message sent by the GPS
 
@@ -410,7 +432,10 @@ void DecodeGPS()
     for(x=0;x<6;x++)
     {
         if(gpsMessage[x] != messageID[x])
+        {
             gpsInvalidFlag = 1;
+            return;
+        }
     }
 
     //Skip comma
@@ -507,7 +532,9 @@ void DecodeGPS()
       validNorthSouth = northSouth;
       validEastWest   = eastWest;
 
-      SendGPSSPI();
+      hasValidGPSFlag = 1;
+
+      //SendGPSSPI();
     }
 }
 
@@ -537,17 +564,30 @@ void RecordMode()
     long int address = RECORD_BEGIN_ADDRESS+HEADER_OFFSET;
     int count = BEGIN_PAGE_OFFSET;
 
-    //if(PORTCbits.RC7)          //if GPS is on
-    //    ToggleSleepGPS();       //Turn GPS off
     InitSPI();            //Start-up SPI again
+
+    //__delay_ms(1);
+    if(CheckDisconnect())
+    {
+        SPI_CS = CS_IDLE;
+        RING_START = 0; //clear the buffer
+        RING_END = 0;
+        SSPCON1bits.SSPEN=0;  // Disable SPI Port
+        PORTCbits.RC5 = 0;    //Set MOSI low
+        MEM_ACCESS = 0;
+        return;
+    }
 
     RING_START = 0; //clear the buffer
     RING_END = 0;
+    
+    __delay_ms(300); //wait for mic to charge up
     WriteOverheadSPI(address);
-
     TMR1IF  = 0;    //Clear interrupt flag
     TMR1IE  = 1;    //Start Interrupt
     TMR1ON  = 1;    //Start Timer
+    PORTBbits.PORTB = LATBbits.LATB | 0x20; //turn red LED on
+    PORTBbits.PORTB = LATBbits.LATB & 0xEF; //turn green LED off
 
     while((recordFlag) && (address < RECORD_END_ADDRESS))
     {
@@ -565,6 +605,7 @@ void RecordMode()
         }
 
     }
+    //Finish writing the circular buffer over spi
     while(!isEmpty() && (address < RECORD_END_ADDRESS))
     {
         if(count>=256) //perform overhead on next page
@@ -584,6 +625,8 @@ void RecordMode()
     TMR1IE  = 0;    //Stop Interrupt
     TMR1ON  = 0;    //Stop Timer
     __delay_ms(5);
+
+    //Write header end address
     WriteOverheadSPI(RECORD_BEGIN_ADDRESS);
     if(address >= RECORD_END_ADDRESS)
     {
@@ -597,7 +640,14 @@ void RecordMode()
         WriteSPI(address>>8);
         WriteSPI(address);
     }
+    
     SPI_CS = CS_IDLE;
+    if(hasValidGPSFlag)
+    {
+        SendGPSSPI();
+        hasValidGPSFlag = 0;
+    }
+    PORTBbits.PORTB = LATBbits.LATB & 0xDF; //turn red LED off
     RING_START = 0; //clear the buffer
     RING_END = 0;
     SSPCON1bits.SSPEN=0;  // Disable SPI Port
@@ -610,7 +660,20 @@ void SendGPSSPI()
     long int address = RECORD_BEGIN_ADDRESS + 3;
     int x;
     MEM_ACCESS = 1;
-
+    if(SSPCON1bits.SSPEN == 0)
+        InitSPI();
+/*
+    if(CheckDisconnect())
+    {
+        SPI_CS = CS_IDLE;
+        //RING_START = 0; //clear the buffer
+        //RING_END = 0;
+        SSPCON1bits.SSPEN=0;  // Disable SPI Port
+        PORTCbits.RC5 = 0;    //Set MOSI low
+        MEM_ACCESS = 0;
+        return;
+    }
+*/
     //Write the Header GPS Data
     WriteOverheadSPI(address);
     for(x=0;x<3;x++)
@@ -623,9 +686,27 @@ void SendGPSSPI()
         WriteSPI(validLongitude[x]);
     }
     WriteSPI(validEastWest);
-    SPI_CS = CS_IDLE;
-    MEM_ACCESS = 0;
 
+    SPI_CS = CS_IDLE;
+    /*
+    RING_START = 0; //clear the buffer
+    RING_END = 0;
+    SSPCON1bits.SSPEN=0;  // Disable SPI Port
+    PORTCbits.RC5 = 0;    //Set MOSI low
+    MEM_ACCESS = 0;
+    */
+    return;
+
+}
+
+unsigned char CheckDisconnect()
+{
+    unsigned char status;
+    status = ReadStatusSPI();
+    if(status==0xff)
+        return 1;
+    else
+        return 0;
 }
 
 //to make pre-recorded messages only!
@@ -636,8 +717,20 @@ void PreRecordMode()
     int x;
     RING_START = 0;
     RING_END = 0;
+    MEM_ACCESS = 1;
 
-    for(x = 0;x < 17; x++)
+    if(CheckDisconnect())
+    {
+        SPI_CS = CS_IDLE;
+        RING_START = 0; //clear the buffer
+        RING_END = 0;
+        SSPCON1bits.SSPEN=0;  // Disable SPI Port
+        PORTCbits.RC5 = 0;    //Set MOSI low
+        MEM_ACCESS = 0;
+        return;
+    }
+
+    for(x = 0;x < 18; x++)
     {
         while(!recordFlag);
         __delay_ms(320); //wait for mic to charge
