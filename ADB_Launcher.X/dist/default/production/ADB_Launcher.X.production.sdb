@@ -157,11 +157,11 @@
 [v _Hibernate Hibernate `(v  1 e 0 0 ]
 "561
 [v _RecordMode RecordMode `(v  1 e 0 0 ]
-"658
+"662
 [v _SendGPSSPI SendGPSSPI `(v  1 e 0 0 ]
-"702
+"706
 [v _CheckDisconnect CheckDisconnect `(uc  1 e 1 0 ]
-"713
+"717
 [v _PreRecordMode PreRecordMode `(v  1 e 0 0 ]
 "20 P:\Desktop\project\project_repo\ADB_Launcher.X\launcher_main.c
 [v _main main `(i  1 e 2 0 ]
@@ -184,7 +184,7 @@
 ]
 [u S57 . 1 `S43 1 . 1 0 `S52 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES57  1 e 1 @11 ]
-[s S79 . 1 `uc 1 RB0 1 0 :1:0 
+[s S83 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -194,12 +194,12 @@
 `uc 1 RB7 1 0 :1:7 
 ]
 "432
-[s S88 . 1 `uc 1 PORTB 1 0 :8:0 
+[s S92 . 1 `uc 1 PORTB 1 0 :8:0 
 ]
-[u S90 . 1 `S79 1 . 1 0 `S88 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES90  1 e 1 @12 ]
+[u S94 . 1 `S83 1 . 1 0 `S92 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES94  1 e 1 @12 ]
 "501
-[v _PORTBbits PORTBbits `VES90  1 e 1 @13 ]
+[v _PORTBbits PORTBbits `VES94  1 e 1 @13 ]
 [s S185 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -243,23 +243,23 @@
 [u S252 . 1 `S233 1 . 1 0 `S242 1 . 1 0 `S246 1 . 1 0 `S249 1 . 1 0 ]
 [v _ADCON0bits ADCON0bits `VES252  1 e 1 @157 ]
 "2245
-[v _LATBbits LATBbits `VES90  1 e 1 @269 ]
+[v _LATBbits LATBbits `VES94  1 e 1 @269 ]
 "3491
 [v _RCREG RCREG `VEuc  1 e 1 @409 ]
 "3855
 [v _RCSTAbits RCSTAbits `VES194  1 e 1 @413 ]
 "6138
-[v _IOCAPbits IOCAPbits `VES90  1 e 1 @913 ]
+[v _IOCAPbits IOCAPbits `VES94  1 e 1 @913 ]
 "6207
-[v _IOCANbits IOCANbits `VES90  1 e 1 @914 ]
+[v _IOCANbits IOCANbits `VES94  1 e 1 @914 ]
 "6276
-[v _IOCAFbits IOCAFbits `VES90  1 e 1 @915 ]
+[v _IOCAFbits IOCAFbits `VES94  1 e 1 @915 ]
 "6345
-[v _IOCBPbits IOCBPbits `VES90  1 e 1 @916 ]
+[v _IOCBPbits IOCBPbits `VES94  1 e 1 @916 ]
 "6414
-[v _IOCBNbits IOCBNbits `VES90  1 e 1 @917 ]
+[v _IOCBNbits IOCBNbits `VES94  1 e 1 @917 ]
 "6483
-[v _IOCBFbits IOCBFbits `VES90  1 e 1 @918 ]
+[v _IOCBFbits IOCBFbits `VES94  1 e 1 @918 ]
 "10990
 [v _LATC2 LATC2 `VEb  1 e 0 @2162 ]
 "11062
@@ -269,7 +269,7 @@
 "12098
 [v _TMR1IF TMR1IF `VEb  1 e 0 @136 ]
 "570 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16lf1783.h
-[v _PORTCbits PORTCbits `VES90  1 e 1 @14 ]
+[v _PORTCbits PORTCbits `VES94  1 e 1 @14 ]
 [s S954 . 1 `uc 1 TMR1ON 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 nT1SYNC 1 0 :1:2 
@@ -301,11 +301,11 @@
 [u S995 . 1 `S984 1 . 1 0 `S993 1 . 1 0 ]
 [v _T1GCONbits T1GCONbits `VES995  1 e 1 @25 ]
 "1125
-[v _TRISAbits TRISAbits `VES90  1 e 1 @140 ]
+[v _TRISAbits TRISAbits `VES94  1 e 1 @140 ]
 "1194
-[v _TRISBbits TRISBbits `VES90  1 e 1 @141 ]
+[v _TRISBbits TRISBbits `VES94  1 e 1 @141 ]
 "1263
-[v _TRISCbits TRISCbits `VES90  1 e 1 @142 ]
+[v _TRISCbits TRISCbits `VES94  1 e 1 @142 ]
 [s S922 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
@@ -383,8 +383,10 @@
 ]
 [u S903 . 1 `S891 1 . 1 0 `S900 1 . 1 0 ]
 [v _ADCON2bits ADCON2bits `VES903  1 e 1 @159 ]
+"2314
+[v _LATCbits LATCbits `VES94  1 e 1 @270 ]
 "3179
-[v _ANSELAbits ANSELAbits `VES90  1 e 1 @396 ]
+[v _ANSELAbits ANSELAbits `VES94  1 e 1 @396 ]
 [s S742 . 1 `uc 1 ANSB0 1 0 :1:0 
 `uc 1 ANSB1 1 0 :1:1 
 `uc 1 ANSB2 1 0 :1:2 
@@ -635,10 +637,10 @@
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
 [v sprintf@sp sp `*.4uc  1 a 1 wreg ]
-[s S1476 . 4 `*.26DCCuc 1 _cp 2 0 `ui 1 _len 2 2 ]
+[s S1495 . 4 `*.26DCCuc 1 _cp 2 0 `ui 1 _len 2 2 ]
 "533
-[u S1479 . 4 `ui 1 _val 2 0 `S1476 1 _str 4 0 ]
-[v sprintf@_val _val `S1479  1 a 4 28 ]
+[u S1498 . 4 `ui 1 _val 2 0 `S1495 1 _str 4 0 ]
+[v sprintf@_val _val `S1498  1 a 4 28 ]
 "499
 [v sprintf@c c `c  1 a 1 32 ]
 "494
@@ -683,16 +685,16 @@
 [v RecordMode@address address `l  1 a 4 35 ]
 "565
 [v RecordMode@count count `i  1 a 2 33 ]
-"656
+"660
 } 0
-"658
+"662
 [v _SendGPSSPI SendGPSSPI `(v  1 e 0 0 ]
 {
-"660
+"664
 [v SendGPSSPI@address address `l  1 a 4 22 ]
-"661
+"665
 [v SendGPSSPI@x x `i  1 a 2 26 ]
-"700
+"704
 } 0
 "176
 [v _WriteOverheadSPI WriteOverheadSPI `(v  1 e 0 0 ]
@@ -717,12 +719,12 @@
 [v ReadBuffer@read_data read_data `uc  1 a 1 1 ]
 "234
 } 0
-"702
+"706
 [v _CheckDisconnect CheckDisconnect `(uc  1 e 1 0 ]
 {
-"704
+"708
 [v CheckDisconnect@status status `uc  1 a 1 8 ]
-"710
+"714
 } 0
 "164
 [v _ReadStatusSPI ReadStatusSPI `(uc  1 e 1 0 ]

@@ -12388,10 +12388,8 @@ playbackFlag = 0;
 if(transmitFlag)
 TransmitMode();
 
-if(PORTAbits.RA4)
-_delay((unsigned long)((1)*(16000000/4000000.0)));
 
-
+Hibernate();
 }
 
 return (0);

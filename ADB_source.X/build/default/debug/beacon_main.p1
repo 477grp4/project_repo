@@ -109,10 +109,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PlaybackMode `(v ~T0 @X0 0 ef ]
 "78
 [v _TransmitMode `(v ~T0 @X0 0 ef ]
-[v F7943 `(v ~T0 @X0 1 tf1`ul ]
-"154 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic.h
-[v __delay `JF7943 ~T0 @X0 0 e ]
-[p i __delay ]
+"100
+[v _Hibernate `(v ~T0 @X0 0 ef ]
 [; ;stdio.h: 8: typedef int ptrdiff_t;
 [; ;stdio.h: 9: typedef unsigned size_t;
 [; ;stdio.h: 10: typedef unsigned short wchar_t;
@@ -9281,25 +9279,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 "90
 [e ( _TransmitMode ..  ]
 [e :U 1028 ]
-[; ;beacon_main.c: 92: if(PORTAbits.RA4)
-"92
-[e $ ! != -> . . _PORTAbits 0 4 `i -> -> -> 0 `i `Vuc `i 1029  ]
-[; ;beacon_main.c: 93: _delay((unsigned long)((1)*(16000000/4000000.0)));
+[; ;beacon_main.c: 93: Hibernate();
 "93
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-[e :U 1029 ]
-"96
+[e ( _Hibernate ..  ]
+"94
 }
 [e :U 1024 ]
 "75
 [e $U 1025  ]
 [e :U 1026 ]
-[; ;beacon_main.c: 96: }
-[; ;beacon_main.c: 98: return (0);
-"98
+[; ;beacon_main.c: 94: }
+[; ;beacon_main.c: 96: return (0);
+"96
 [e ) -> 0 `i ]
 [e $UE 1023  ]
-[; ;beacon_main.c: 99: }
-"99
+[; ;beacon_main.c: 97: }
+"97
 [e :UE 1023 ]
 }

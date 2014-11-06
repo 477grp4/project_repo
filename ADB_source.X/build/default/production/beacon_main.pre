@@ -12369,7 +12369,9 @@ LATC2 = (1);
 
 
 SSPCON1bits.SSPEN=0;
-PORTCbits.RC5 = 0;
+
+
+PORTCbits.PORTC = LATCbits.LATC & 0xD7;
 
 while(1)
 {

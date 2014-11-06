@@ -6574,17 +6574,14 @@ uart_write_message(message, 22);
 
 _delay((unsigned long)((1000)*(16000000/4000.0)));
 
-# 368
-sprintf(message, "%s104,40.441944,-86.9125,0,0,0,0,12,2*", startSequence);
-uart_write_message(message, 42);
-
+# 371
 }
 
 
 void UpdateGPS()
 {
 
-unsigned char GPSupdateMessage[22] = "$PSRF103,01,01,01,00*";
+unsigned char GPSupdateMessage[22] = "$PSRF103,01,00,01,00*";
 
 
 RCIE = 1;
@@ -6766,7 +6763,9 @@ LATC2 = (1);
 (start) = 0;
 (end) = 0;
 SSPCON1bits.SSPEN=0;
-PORTCbits.RC5 = 0;
+
+
+PORTCbits.PORTC = LATCbits.LATC & 0xD7;
 PORTAbits.RA4 = 0;
 return;
 }
@@ -6844,7 +6843,9 @@ PORTBbits.PORTB = LATBbits.LATB & 0xDF;
 (start) = 0;
 (end) = 0;
 SSPCON1bits.SSPEN=0;
-PORTCbits.RC5 = 0;
+
+
+PORTCbits.PORTC = LATCbits.LATC & 0xD7;
 PORTAbits.RA4 = 0;
 }
 
@@ -6856,7 +6857,7 @@ PORTAbits.RA4 = 1;
 if(SSPCON1bits.SSPEN == 0)
 InitSPI();
 
-# 678
+# 682
 WriteOverheadSPI(address);
 for(x=0;x<3;x++)
 {
@@ -6871,7 +6872,7 @@ WriteSPI(validEastWest);
 
 LATC2 = (1);
 
-# 698
+# 702
 return;
 
 }
@@ -6902,7 +6903,9 @@ LATC2 = (1);
 (start) = 0;
 (end) = 0;
 SSPCON1bits.SSPEN=0;
-PORTCbits.RC5 = 0;
+
+
+PORTCbits.PORTC = LATCbits.LATC & 0xD7;
 PORTAbits.RA4 = 0;
 return;
 }

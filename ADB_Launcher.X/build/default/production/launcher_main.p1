@@ -23,7 +23,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S31 . . . ]
 "358
 [v _INTCONbits `VS31 ~T0 @X0 0 e@11 ]
-"94 launcher.h
+"92 launcher.h
+[v _ToggleSleepGPS `(v ~T0 @X0 0 ef ]
+"94
 [v _SetupGPS `(v ~T0 @X0 0 ef ]
 "487 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1783.h
 [s S38 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -70,8 +72,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _UpdateGPS `(v ~T0 @X0 0 ef ]
 "99
 [v _GoToSleep `(v ~T0 @X0 0 ef1`uc ]
-"92
-[v _ToggleSleepGPS `(v ~T0 @X0 0 ef ]
 "100
 [v _Hibernate `(v ~T0 @X0 0 ef ]
 "645 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1783.h
@@ -9251,6 +9251,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;launcher_main.c: 35: INTCONbits.GIE = 1;
 "35
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[; ;launcher_main.c: 38: ToggleSleepGPS();
+"38
+[e ( _ToggleSleepGPS ..  ]
 [; ;launcher_main.c: 39: SetupGPS();
 "39
 [e ( _SetupGPS ..  ]

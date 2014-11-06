@@ -70,7 +70,9 @@ int main(int argc, char** argv)
 
 
     SSPCON1bits.SSPEN=0;  // Disable SPI Port
-    PORTCbits.RC5 = 0;    //Set MOSI low
+    //PORTCbits.RC5 = 0;    //Set MOSI low
+    //PORTCbits.RC3 = 0;    //Set SCK low
+    PORTCbits.PORTC = LATCbits.LATC & 0xD7; //set MOSI and SCK low
 
     while(1)
     {

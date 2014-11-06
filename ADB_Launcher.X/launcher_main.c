@@ -34,10 +34,8 @@ int main(int argc, char** argv) {
 
     INTCONbits.GIE = 1;
 
-    //if(!PORTCbits.RC7)
-    //    ToggleSleepGPS();       //Turn GPS on
+    ToggleSleepGPS();       //Turn GPS on
     SetupGPS();             //Setup Lat/Long recording
-    //SendGPSSPI();
 
     PORTBbits.PORTB = LATBbits.LATB & 0xDF; //turn red LED off
     PORTBbits.PORTB = LATBbits.LATB | 0x10; //turn green LED on
@@ -75,7 +73,18 @@ int main(int argc, char** argv) {
         }
 
         //Not recording, Update the GPS
-        UpdateGPS(); //tell GPS to send an update
+        if(!gpsTimeoutState)
+            UpdateGPS(); //tell GPS to send an update
+        else if(gpsTimeoutState==1)
+        {
+            ToggleSleepGPS();
+            gpsTimeoutState = 2;
+        }
+        else
+        {
+            ToggleSleepGPS();
+            gpsTimeoutState = 0;
+        }
 
         if(gpsInvalidFlag) //turn on red LED if invalid message
         {

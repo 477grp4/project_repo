@@ -112,6 +112,7 @@ unsigned char messageDoneFlag = 0;
 unsigned char strobeFlag = 0;
 unsigned char eeprom_timeoutFlag = 0;
 unsigned char hasValidGPSFlag = 0;
+unsigned char gpsTimeoutState = 0;
 
 
 //EEPROM Memory Buffers

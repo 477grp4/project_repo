@@ -6346,16 +6346,19 @@ unsigned char addressBytes[3];
 addressBytes[0]=(unsigned char)(address>>16);
 addressBytes[1]=(unsigned char)(address>>8);
 addressBytes[2]=(unsigned char)(address);
+LATC2 = (0);
+_delay((unsigned long)((1)*(16000000/4000.0)));
+LATC2 = (1);
 
 
-int StatusReg;
 
 if(PORTAbits.RA4)
 return;
-do
-{
-StatusReg = (ReadStatusSPI() & 0x01);
-} while (StatusReg&&!PORTAbits.RA4);
+
+
+
+
+_delay((unsigned long)((5)*(16000000/4000.0)));
 if(PORTAbits.RA4)
 return;
 

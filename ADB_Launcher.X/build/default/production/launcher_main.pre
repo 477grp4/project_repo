@@ -12319,7 +12319,7 @@ gpsIndex = 0;
 INTCONbits.GIE = 1;
 
 
-
+ToggleSleepGPS();
 SetupGPS();
 
 

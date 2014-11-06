@@ -6259,7 +6259,9 @@ ReadOverheadSPI(0xBB68);
 if(PORTAbits.RA4)
 {
 SSPCON1bits.SSPEN=0;
-PORTCbits.RC5 = 0;
+
+
+PORTCbits.PORTC = LATCbits.LATC & 0xD7;
 LATC2 = (1);
 dacOutputFlag = 0;
 return;
@@ -6301,7 +6303,9 @@ while((transmitFlag || (!transmitFlag && !PORTAbits.RA4 && playbackFlag)) && !((
 GPStoAudio();
 
 SSPCON1bits.SSPEN=0;
-PORTCbits.RC5 = 0;
+
+
+PORTCbits.PORTC = LATCbits.LATC & 0xD7;
 LATC2 = (1);
 dacOutputFlag = 0;
 
@@ -6327,7 +6331,7 @@ PIR1bits.SSP1IF=0;
 return (dataByte);
 }
 
-# 331
+# 335
 unsigned char ReadStatusSPI(void)
 {
 unsigned char dataRead;
@@ -6346,16 +6350,19 @@ unsigned char addressBytes[3];
 addressBytes[0]=(unsigned char)(address>>16);
 addressBytes[1]=(unsigned char)(address>>8);
 addressBytes[2]=(unsigned char)(address);
+LATC2 = (0);
+_delay((unsigned long)((1)*(16000000/4000.0)));
+LATC2 = (1);
 
 
-int StatusReg;
 
 if(PORTAbits.RA4)
 return;
-do
-{
-StatusReg = (ReadStatusSPI() & 0x01);
-} while (StatusReg&&!PORTAbits.RA4);
+
+
+
+
+_delay((unsigned long)((5)*(16000000/4000.0)));
 if(PORTAbits.RA4)
 return;
 

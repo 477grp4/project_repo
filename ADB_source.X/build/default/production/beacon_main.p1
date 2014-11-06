@@ -103,6 +103,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S40 . . . ]
 "570
 [v _PORTCbits `VS40 ~T0 @X0 0 e@14 ]
+"2300
+[s S125 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S125 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
+"2310
+[s S126 :8 `uc 1 ]
+[n S126 . LATC ]
+"2299
+[u S124 `S125 1 `S126 1 ]
+[n S124 . . . ]
+"2314
+[v _LATCbits `VS124 ~T0 @X0 0 e@270 ]
 "77 beacon.h
 [v _CheckDisconnect `(v ~T0 @X0 0 ef ]
 "79
@@ -9241,59 +9252,59 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;beacon_main.c: 72: SSPCON1bits.SSPEN=0;
 "72
 [e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
-[; ;beacon_main.c: 73: PORTCbits.RC5 = 0;
-"73
-[e = . . _PORTCbits 0 5 -> -> 0 `i `uc ]
-[; ;beacon_main.c: 75: while(1)
+[; ;beacon_main.c: 75: PORTCbits.PORTC = LATCbits.LATC & 0xD7;
 "75
-[e :U 1025 ]
-[; ;beacon_main.c: 76: {
-"76
-{
-[; ;beacon_main.c: 77: LATC2 = (1);
+[e = . . _PORTCbits 1 0 -> & -> . . _LATCbits 1 0 `i -> 215 `i `uc ]
+[; ;beacon_main.c: 77: while(1)
 "77
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;beacon_main.c: 80: CheckDisconnect();
-"80
-[e ( _CheckDisconnect ..  ]
-[; ;beacon_main.c: 82: if(playbackFlag&&!PORTAbits.RA4)
-"82
-[e $ ! && != -> _playbackFlag `i -> -> -> 0 `i `uc `i ! != -> . . _PORTAbits 0 4 `i -> -> -> 0 `i `Vuc `i 1027  ]
-[; ;beacon_main.c: 83: {
-"83
+[e :U 1025 ]
+[; ;beacon_main.c: 78: {
+"78
 {
-[; ;beacon_main.c: 84: PlaybackMode();
+[; ;beacon_main.c: 79: LATC2 = (1);
+"79
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;beacon_main.c: 82: CheckDisconnect();
+"82
+[e ( _CheckDisconnect ..  ]
+[; ;beacon_main.c: 84: if(playbackFlag&&!PORTAbits.RA4)
 "84
-[e ( _PlaybackMode ..  ]
-[; ;beacon_main.c: 85: playbackFlag = 0;
+[e $ ! && != -> _playbackFlag `i -> -> -> 0 `i `uc `i ! != -> . . _PORTAbits 0 4 `i -> -> -> 0 `i `Vuc `i 1027  ]
+[; ;beacon_main.c: 85: {
 "85
-[e = _playbackFlag -> -> 0 `i `uc ]
+{
+[; ;beacon_main.c: 86: PlaybackMode();
 "86
+[e ( _PlaybackMode ..  ]
+[; ;beacon_main.c: 87: playbackFlag = 0;
+"87
+[e = _playbackFlag -> -> 0 `i `uc ]
+"88
 }
 [e :U 1027 ]
-[; ;beacon_main.c: 86: }
-[; ;beacon_main.c: 89: if(transmitFlag)
-"89
+[; ;beacon_main.c: 88: }
+[; ;beacon_main.c: 91: if(transmitFlag)
+"91
 [e $ ! != -> _transmitFlag `i -> -> -> 0 `i `uc `i 1028  ]
-[; ;beacon_main.c: 90: TransmitMode();
-"90
+[; ;beacon_main.c: 92: TransmitMode();
+"92
 [e ( _TransmitMode ..  ]
 [e :U 1028 ]
-[; ;beacon_main.c: 93: Hibernate();
-"93
+[; ;beacon_main.c: 95: Hibernate();
+"95
 [e ( _Hibernate ..  ]
-"94
+"96
 }
 [e :U 1024 ]
-"75
+"77
 [e $U 1025  ]
 [e :U 1026 ]
-[; ;beacon_main.c: 94: }
-[; ;beacon_main.c: 96: return (0);
-"96
+[; ;beacon_main.c: 96: }
+[; ;beacon_main.c: 98: return (0);
+"98
 [e ) -> 0 `i ]
 [e $UE 1023  ]
-[; ;beacon_main.c: 97: }
-"97
+[; ;beacon_main.c: 99: }
+"99
 [e :UE 1023 ]
 }

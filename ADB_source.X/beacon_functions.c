@@ -166,7 +166,9 @@ void PlaybackMode()
   if(MEM_ACCESS)
   {
       SSPCON1bits.SSPEN=0;  // Disable SPI Port
-      PORTCbits.RC5 = 0;    //Set MOSI low
+      //PORTCbits.RC5 = 0;    //Set MOSI low
+      //PORTCbits.RC3 = 0;    //Set SCK low
+      PORTCbits.PORTC = LATCbits.LATC & 0xD7; //set MOSI and SCK low
       SPI_CS = CS_IDLE;
       dacOutputFlag = 0;   //signals DAC to stop output
       return;
@@ -208,7 +210,9 @@ void PlaybackMode()
   GPStoAudio();
 
   SSPCON1bits.SSPEN=0;  // Disable SPI Port
-  PORTCbits.RC5 = 0;    //Set MOSI low
+  //PORTCbits.RC5 = 0;    //Set MOSI low
+  //PORTCbits.RC3 = 0;    //Set SCK low
+  PORTCbits.PORTC = LATCbits.LATC & 0xD7; //set MOSI and SCK low
   SPI_CS = CS_IDLE;
   dacOutputFlag = 0;   //signals DAC to stop output
 
@@ -346,21 +350,24 @@ void ReadOverheadSPI(long int address)
     addressBytes[0]=(unsigned char)(address>>16);
     addressBytes[1]=(unsigned char)(address>>8);
     addressBytes[2]=(unsigned char)(address);
-    //SPI_CS = 0; //must be removed!
+    SPI_CS = CS_ACTIVE;
+    __delay_ms(1);
+    SPI_CS = CS_IDLE;
 
-    int StatusReg;
+    //int StatusReg;
 
     if(MEM_ACCESS)
         return;
-    do
-    {
-        StatusReg = (ReadStatusSPI() & 0x01);   // Read the Status Register and mask out WIP bit
-    } while (StatusReg&&!MEM_ACCESS);
+    //do
+    //{
+    //    StatusReg = (ReadStatusSPI() & 0x01);   // Read the Status Register and mask out WIP bit
+    //} while (StatusReg&&!MEM_ACCESS);
+    __delay_ms(5); //or wait the max write time
     if(MEM_ACCESS)
         return;
 
     //__delay_ms(5);
-    SPI_CS = CS_ACTIVE; //must be changed!
+    SPI_CS = CS_ACTIVE;
     WriteSPI(SPI_READ);
     WriteSPI(addressBytes[0]);
     WriteSPI(addressBytes[1]);

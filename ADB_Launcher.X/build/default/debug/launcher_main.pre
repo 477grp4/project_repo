@@ -12318,7 +12318,7 @@ gpsIndex = 0;
 
 INTCONbits.GIE = 1;
 
-if(!PORTCbits.RC7)
+
 ToggleSleepGPS();
 SetupGPS();
 

@@ -328,6 +328,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S35 . . . ]
 "570
 [v _PORTCbits `VS35 ~T0 @X0 0 e@14 ]
+"2300
+[s S120 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S120 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
+"2310
+[s S121 :8 `uc 1 ]
+[n S121 . LATC ]
+"2299
+[u S119 `S120 1 `S121 1 ]
+[n S119 . . . ]
+"2314
+[v _LATCbits `VS119 ~T0 @X0 0 e@270 ]
 "12078
 [v _TMR1IF `Vb ~T0 @X0 0 e@136 ]
 "12076
@@ -5878,12 +5889,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;launcher_functions.c: 362: _delay((unsigned long)((1000)*(16000000/4000.0)));
 "362
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_functions.c: 368: sprintf(message, "%s104,40.441944,-86.9125,0,0,0,0,12,2*", startSequence);
-"368
-[e ( _sprintf (1 , (. , &U _message :s 2C -> &U _startSequence `*Cuc ]
-[; ;launcher_functions.c: 369: uart_write_message(message, 42);
-"369
-[e ( _uart_write_message (2 , &U _message -> 42 `i ]
 [; ;launcher_functions.c: 371: }
 "371
 [e :UE 560 ]
@@ -5912,7 +5917,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 49 `c
 -> 44 `c
 -> 48 `c
--> 49 `c
+-> 48 `c
 -> 44 `c
 -> 48 `c
 -> 49 `c
@@ -5925,7 +5930,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 "377
 [v _GPSupdateMessage `uc ~T0 @X0 -> 22 `i a ]
-[; ;launcher_functions.c: 377: unsigned char GPSupdateMessage[22] = "$PSRF103,01,01,01,00*";
+[; ;launcher_functions.c: 377: unsigned char GPSupdateMessage[22] = "$PSRF103,01,00,01,00*";
 [e = _GPSupdateMessage F4931 ]
 [; ;launcher_functions.c: 380: RCIE = 1;
 "380
@@ -6356,537 +6361,537 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;launcher_functions.c: 575: SSPCON1bits.SSPEN=0;
 "575
 [e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 576: PORTCbits.RC5 = 0;
-"576
-[e = . . _PORTCbits 0 5 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 577: PORTAbits.RA4 = 0;
-"577
-[e = . . _PORTAbits 0 4 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 578: return;
+[; ;launcher_functions.c: 578: PORTCbits.PORTC = LATCbits.LATC & 0xD7;
 "578
-[e $UE 591  ]
+[e = . . _PORTCbits 1 0 -> & -> . . _LATCbits 1 0 `i -> 215 `i `uc ]
+[; ;launcher_functions.c: 579: PORTAbits.RA4 = 0;
 "579
+[e = . . _PORTAbits 0 4 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 580: return;
+"580
+[e $UE 591  ]
+"581
 }
 [e :U 592 ]
-[; ;launcher_functions.c: 579: }
-[; ;launcher_functions.c: 581: (start) = 0;
-"581
+[; ;launcher_functions.c: 581: }
+[; ;launcher_functions.c: 583: (start) = 0;
+"583
 [e = _start -> 0 `i ]
-[; ;launcher_functions.c: 582: (end) = 0;
-"582
-[e = _end -> 0 `i ]
-[; ;launcher_functions.c: 584: _delay((unsigned long)((300)*(16000000/4000.0)));
+[; ;launcher_functions.c: 584: (end) = 0;
 "584
-[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_functions.c: 585: WriteOverheadSPI(address);
-"585
-[e ( _WriteOverheadSPI (1 _address ]
-[; ;launcher_functions.c: 586: TMR1IF = 0;
+[e = _end -> 0 `i ]
+[; ;launcher_functions.c: 586: _delay((unsigned long)((300)*(16000000/4000.0)));
 "586
-[e = _TMR1IF -> -> 0 `i `b ]
-[; ;launcher_functions.c: 587: TMR1IE = 1;
+[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;launcher_functions.c: 587: WriteOverheadSPI(address);
 "587
-[e = _TMR1IE -> -> 1 `i `b ]
-[; ;launcher_functions.c: 588: TMR1ON = 1;
+[e ( _WriteOverheadSPI (1 _address ]
+[; ;launcher_functions.c: 588: TMR1IF = 0;
 "588
-[e = _TMR1ON -> -> 1 `i `b ]
-[; ;launcher_functions.c: 589: PORTBbits.PORTB = LATBbits.LATB | 0x20;
+[e = _TMR1IF -> -> 0 `i `b ]
+[; ;launcher_functions.c: 589: TMR1IE = 1;
 "589
-[e = . . _PORTBbits 1 0 -> | -> . . _LATBbits 1 0 `i -> 32 `i `uc ]
-[; ;launcher_functions.c: 590: PORTBbits.PORTB = LATBbits.LATB & 0xEF;
+[e = _TMR1IE -> -> 1 `i `b ]
+[; ;launcher_functions.c: 590: TMR1ON = 1;
 "590
-[e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 239 `i `uc ]
-[; ;launcher_functions.c: 592: while((recordFlag) && (address < 131072))
+[e = _TMR1ON -> -> 1 `i `b ]
+[; ;launcher_functions.c: 591: PORTBbits.PORTB = LATBbits.LATB | 0x20;
+"591
+[e = . . _PORTBbits 1 0 -> | -> . . _LATBbits 1 0 `i -> 32 `i `uc ]
+[; ;launcher_functions.c: 592: PORTBbits.PORTB = LATBbits.LATB & 0xEF;
 "592
+[e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 239 `i `uc ]
+[; ;launcher_functions.c: 594: while((recordFlag) && (address < 131072))
+"594
 [e $U 593  ]
 [e :U 594 ]
-[; ;launcher_functions.c: 593: {
-"593
-{
-[; ;launcher_functions.c: 594: if(count>=256)
-"594
-[e $ ! >= _count -> 256 `i 596  ]
 [; ;launcher_functions.c: 595: {
 "595
 {
-[; ;launcher_functions.c: 596: LATC2 = (1);
+[; ;launcher_functions.c: 596: if(count>=256)
 "596
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_functions.c: 597: count = 0;
+[e $ ! >= _count -> 256 `i 596  ]
+[; ;launcher_functions.c: 597: {
 "597
-[e = _count -> 0 `i ]
-[; ;launcher_functions.c: 598: WriteOverheadSPI(address);
+{
+[; ;launcher_functions.c: 598: LATC2 = (1);
 "598
-[e ( _WriteOverheadSPI (1 _address ]
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;launcher_functions.c: 599: count = 0;
 "599
+[e = _count -> 0 `i ]
+[; ;launcher_functions.c: 600: WriteOverheadSPI(address);
+"600
+[e ( _WriteOverheadSPI (1 _address ]
+"601
 }
 [e :U 596 ]
-[; ;launcher_functions.c: 599: }
-[; ;launcher_functions.c: 600: if(!((((start))==((end)))?(1):(0)))
-"600
-[e $ ! ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i 597  ]
-[; ;launcher_functions.c: 601: {
-"601
-{
-[; ;launcher_functions.c: 602: WriteSPI(ReadBuffer());
+[; ;launcher_functions.c: 601: }
+[; ;launcher_functions.c: 602: if(!((((start))==((end)))?(1):(0)))
 "602
-[e ( _WriteSPI (1 ( _ReadBuffer ..  ]
-[; ;launcher_functions.c: 603: address++;
+[e $ ! ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i 597  ]
+[; ;launcher_functions.c: 603: {
 "603
-[e ++ _address -> -> 1 `i `l ]
-[; ;launcher_functions.c: 604: count++;
+{
+[; ;launcher_functions.c: 604: WriteSPI(ReadBuffer());
 "604
-[e ++ _count -> 1 `i ]
+[e ( _WriteSPI (1 ( _ReadBuffer ..  ]
+[; ;launcher_functions.c: 605: address++;
 "605
-}
-[e :U 597 ]
+[e ++ _address -> -> 1 `i `l ]
+[; ;launcher_functions.c: 606: count++;
+"606
+[e ++ _count -> 1 `i ]
 "607
 }
+[e :U 597 ]
+"609
+}
 [e :U 593 ]
-"592
+"594
 [e $ && != -> _recordFlag `i -> -> -> 0 `i `uc `i < _address -> 131072 `l 594  ]
 [e :U 595 ]
-[; ;launcher_functions.c: 605: }
 [; ;launcher_functions.c: 607: }
-[; ;launcher_functions.c: 609: while(!((((start))==((end)))?(1):(0)) && (address < 131072))
-"609
+[; ;launcher_functions.c: 609: }
+[; ;launcher_functions.c: 611: while(!((((start))==((end)))?(1):(0)) && (address < 131072))
+"611
 [e $U 598  ]
 [e :U 599 ]
-[; ;launcher_functions.c: 610: {
-"610
-{
-[; ;launcher_functions.c: 611: if(count>=256)
-"611
-[e $ ! >= _count -> 256 `i 601  ]
 [; ;launcher_functions.c: 612: {
 "612
 {
-[; ;launcher_functions.c: 613: LATC2 = (1);
+[; ;launcher_functions.c: 613: if(count>=256)
 "613
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_functions.c: 614: count = 0;
+[e $ ! >= _count -> 256 `i 601  ]
+[; ;launcher_functions.c: 614: {
 "614
-[e = _count -> 0 `i ]
-[; ;launcher_functions.c: 615: WriteOverheadSPI(address);
+{
+[; ;launcher_functions.c: 615: LATC2 = (1);
 "615
-[e ( _WriteOverheadSPI (1 _address ]
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;launcher_functions.c: 616: count = 0;
 "616
+[e = _count -> 0 `i ]
+[; ;launcher_functions.c: 617: WriteOverheadSPI(address);
+"617
+[e ( _WriteOverheadSPI (1 _address ]
+"618
 }
 [e :U 601 ]
-[; ;launcher_functions.c: 616: }
-[; ;launcher_functions.c: 617: if(!((((start))==((end)))?(1):(0)))
-"617
-[e $ ! ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i 602  ]
-[; ;launcher_functions.c: 618: {
-"618
-{
-[; ;launcher_functions.c: 619: WriteSPI(ReadBuffer());
+[; ;launcher_functions.c: 618: }
+[; ;launcher_functions.c: 619: if(!((((start))==((end)))?(1):(0)))
 "619
-[e ( _WriteSPI (1 ( _ReadBuffer ..  ]
-[; ;launcher_functions.c: 620: address++;
+[e $ ! ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i 602  ]
+[; ;launcher_functions.c: 620: {
 "620
-[e ++ _address -> -> 1 `i `l ]
-[; ;launcher_functions.c: 621: count++;
+{
+[; ;launcher_functions.c: 621: WriteSPI(ReadBuffer());
 "621
-[e ++ _count -> 1 `i ]
+[e ( _WriteSPI (1 ( _ReadBuffer ..  ]
+[; ;launcher_functions.c: 622: address++;
 "622
+[e ++ _address -> -> 1 `i `l ]
+[; ;launcher_functions.c: 623: count++;
+"623
+[e ++ _count -> 1 `i ]
+"624
 }
 [e :U 602 ]
-"623
+"625
 }
 [e :U 598 ]
-"609
+"611
 [e $ && ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i < _address -> 131072 `l 599  ]
 [e :U 600 ]
-[; ;launcher_functions.c: 622: }
-[; ;launcher_functions.c: 623: }
-[; ;launcher_functions.c: 624: LATC2 = (1);
-"624
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_functions.c: 625: TMR1IE = 0;
-"625
-[e = _TMR1IE -> -> 0 `i `b ]
-[; ;launcher_functions.c: 626: TMR1ON = 0;
+[; ;launcher_functions.c: 624: }
+[; ;launcher_functions.c: 625: }
+[; ;launcher_functions.c: 626: LATC2 = (1);
 "626
-[e = _TMR1ON -> -> 0 `i `b ]
-[; ;launcher_functions.c: 627: _delay((unsigned long)((5)*(16000000/4000.0)));
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;launcher_functions.c: 627: TMR1IE = 0;
 "627
+[e = _TMR1IE -> -> 0 `i `b ]
+[; ;launcher_functions.c: 628: TMR1ON = 0;
+"628
+[e = _TMR1ON -> -> 0 `i `b ]
+[; ;launcher_functions.c: 629: _delay((unsigned long)((5)*(16000000/4000.0)));
+"629
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_functions.c: 630: WriteOverheadSPI(0xBB68);
-"630
-[e ( _WriteOverheadSPI (1 -> -> 47976 `ui `l ]
-[; ;launcher_functions.c: 631: if(address >= 131072)
-"631
-[e $ ! >= _address -> 131072 `l 603  ]
-[; ;launcher_functions.c: 632: {
+[; ;launcher_functions.c: 632: WriteOverheadSPI(0xBB68);
 "632
-{
-[; ;launcher_functions.c: 633: WriteSPI((131072 - 1)>>16);
+[e ( _WriteOverheadSPI (1 -> -> 47976 `ui `l ]
+[; ;launcher_functions.c: 633: if(address >= 131072)
 "633
-[e ( _WriteSPI (1 -> >> - -> 131072 `l -> -> 1 `i `l -> 16 `i `uc ]
-[; ;launcher_functions.c: 634: WriteSPI((131072 - 1)>>8);
+[e $ ! >= _address -> 131072 `l 603  ]
+[; ;launcher_functions.c: 634: {
 "634
-[e ( _WriteSPI (1 -> >> - -> 131072 `l -> -> 1 `i `l -> 8 `i `uc ]
-[; ;launcher_functions.c: 635: WriteSPI(131072 - 1);
-"635
-[e ( _WriteSPI (1 -> - -> 131072 `l -> -> 1 `i `l `uc ]
-"636
-}
-[; ;launcher_functions.c: 636: }
-[e $U 604  ]
-"637
-[e :U 603 ]
-[; ;launcher_functions.c: 637: else
-[; ;launcher_functions.c: 638: {
-"638
 {
-[; ;launcher_functions.c: 639: WriteSPI(address>>16);
+[; ;launcher_functions.c: 635: WriteSPI((131072 - 1)>>16);
+"635
+[e ( _WriteSPI (1 -> >> - -> 131072 `l -> -> 1 `i `l -> 16 `i `uc ]
+[; ;launcher_functions.c: 636: WriteSPI((131072 - 1)>>8);
+"636
+[e ( _WriteSPI (1 -> >> - -> 131072 `l -> -> 1 `i `l -> 8 `i `uc ]
+[; ;launcher_functions.c: 637: WriteSPI(131072 - 1);
+"637
+[e ( _WriteSPI (1 -> - -> 131072 `l -> -> 1 `i `l `uc ]
+"638
+}
+[; ;launcher_functions.c: 638: }
+[e $U 604  ]
 "639
-[e ( _WriteSPI (1 -> >> _address -> 16 `i `uc ]
-[; ;launcher_functions.c: 640: WriteSPI(address>>8);
+[e :U 603 ]
+[; ;launcher_functions.c: 639: else
+[; ;launcher_functions.c: 640: {
 "640
-[e ( _WriteSPI (1 -> >> _address -> 8 `i `uc ]
-[; ;launcher_functions.c: 641: WriteSPI(address);
+{
+[; ;launcher_functions.c: 641: WriteSPI(address>>16);
 "641
-[e ( _WriteSPI (1 -> _address `uc ]
+[e ( _WriteSPI (1 -> >> _address -> 16 `i `uc ]
+[; ;launcher_functions.c: 642: WriteSPI(address>>8);
 "642
+[e ( _WriteSPI (1 -> >> _address -> 8 `i `uc ]
+[; ;launcher_functions.c: 643: WriteSPI(address);
+"643
+[e ( _WriteSPI (1 -> _address `uc ]
+"644
 }
 [e :U 604 ]
-[; ;launcher_functions.c: 642: }
-[; ;launcher_functions.c: 644: LATC2 = (1);
-"644
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_functions.c: 645: if(hasValidGPSFlag)
-"645
-[e $ ! != -> _hasValidGPSFlag `i -> -> -> 0 `i `uc `i 605  ]
-[; ;launcher_functions.c: 646: {
+[; ;launcher_functions.c: 644: }
+[; ;launcher_functions.c: 646: LATC2 = (1);
 "646
-{
-[; ;launcher_functions.c: 647: SendGPSSPI();
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;launcher_functions.c: 647: if(hasValidGPSFlag)
 "647
-[e ( _SendGPSSPI ..  ]
-[; ;launcher_functions.c: 648: hasValidGPSFlag = 0;
+[e $ ! != -> _hasValidGPSFlag `i -> -> -> 0 `i `uc `i 605  ]
+[; ;launcher_functions.c: 648: {
 "648
-[e = _hasValidGPSFlag -> -> 0 `i `uc ]
+{
+[; ;launcher_functions.c: 649: SendGPSSPI();
 "649
+[e ( _SendGPSSPI ..  ]
+[; ;launcher_functions.c: 650: hasValidGPSFlag = 0;
+"650
+[e = _hasValidGPSFlag -> -> 0 `i `uc ]
+"651
 }
 [e :U 605 ]
-[; ;launcher_functions.c: 649: }
-[; ;launcher_functions.c: 650: PORTBbits.PORTB = LATBbits.LATB & 0xDF;
-"650
-[e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 223 `i `uc ]
-[; ;launcher_functions.c: 651: (start) = 0;
-"651
-[e = _start -> 0 `i ]
-[; ;launcher_functions.c: 652: (end) = 0;
+[; ;launcher_functions.c: 651: }
+[; ;launcher_functions.c: 652: PORTBbits.PORTB = LATBbits.LATB & 0xDF;
 "652
-[e = _end -> 0 `i ]
-[; ;launcher_functions.c: 653: SSPCON1bits.SSPEN=0;
+[e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 223 `i `uc ]
+[; ;launcher_functions.c: 653: (start) = 0;
 "653
-[e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 654: PORTCbits.RC5 = 0;
+[e = _start -> 0 `i ]
+[; ;launcher_functions.c: 654: (end) = 0;
 "654
-[e = . . _PORTCbits 0 5 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 655: PORTAbits.RA4 = 0;
+[e = _end -> 0 `i ]
+[; ;launcher_functions.c: 655: SSPCON1bits.SSPEN=0;
 "655
+[e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 658: PORTCbits.PORTC = LATCbits.LATC & 0xD7;
+"658
+[e = . . _PORTCbits 1 0 -> & -> . . _LATCbits 1 0 `i -> 215 `i `uc ]
+[; ;launcher_functions.c: 659: PORTAbits.RA4 = 0;
+"659
 [e = . . _PORTAbits 0 4 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 656: }
-"656
+[; ;launcher_functions.c: 660: }
+"660
 [e :UE 591 ]
 }
-"658
+"662
 [v _SendGPSSPI `(v ~T0 @X0 1 ef ]
-"659
+"663
 {
-[; ;launcher_functions.c: 658: void SendGPSSPI()
-[; ;launcher_functions.c: 659: {
+[; ;launcher_functions.c: 662: void SendGPSSPI()
+[; ;launcher_functions.c: 663: {
 [e :U _SendGPSSPI ]
 [f ]
-"660
-[v _address `l ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 660: long int address = 0xBB68 + 3;
-[e = _address -> + -> 47976 `ui -> -> 3 `i `ui `l ]
-"661
-[v _x `i ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 661: int x;
-[; ;launcher_functions.c: 662: PORTAbits.RA4 = 1;
-"662
-[e = . . _PORTAbits 0 4 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 663: if(SSPCON1bits.SSPEN == 0)
-"663
-[e $ ! == -> . . _SSPCON1bits 0 5 `i -> 0 `i 607  ]
-[; ;launcher_functions.c: 664: InitSPI();
 "664
+[v _address `l ~T0 @X0 1 a ]
+[; ;launcher_functions.c: 664: long int address = 0xBB68 + 3;
+[e = _address -> + -> 47976 `ui -> -> 3 `i `ui `l ]
+"665
+[v _x `i ~T0 @X0 1 a ]
+[; ;launcher_functions.c: 665: int x;
+[; ;launcher_functions.c: 666: PORTAbits.RA4 = 1;
+"666
+[e = . . _PORTAbits 0 4 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 667: if(SSPCON1bits.SSPEN == 0)
+"667
+[e $ ! == -> . . _SSPCON1bits 0 5 `i -> 0 `i 607  ]
+[; ;launcher_functions.c: 668: InitSPI();
+"668
 [e ( _InitSPI ..  ]
 [e :U 607 ]
-[; ;launcher_functions.c: 678: WriteOverheadSPI(address);
-"678
+[; ;launcher_functions.c: 682: WriteOverheadSPI(address);
+"682
 [e ( _WriteOverheadSPI (1 _address ]
-[; ;launcher_functions.c: 679: for(x=0;x<3;x++)
-"679
+[; ;launcher_functions.c: 683: for(x=0;x<3;x++)
+"683
 {
 [e = _x -> 0 `i ]
 [e $ < _x -> 3 `i 608  ]
 [e $U 609  ]
-"680
+"684
 [e :U 608 ]
-[; ;launcher_functions.c: 680: {
+[; ;launcher_functions.c: 684: {
 {
-[; ;launcher_functions.c: 681: WriteSPI(validLatitude[x]);
-"681
+[; ;launcher_functions.c: 685: WriteSPI(validLatitude[x]);
+"685
 [e ( _WriteSPI (1 *U + &U _validLatitude * -> -> _x `ui `ux -> -> # *U &U _validLatitude `ui `ux ]
-"682
+"686
 }
-"679
+"683
 [e ++ _x -> 1 `i ]
 [e $ < _x -> 3 `i 608  ]
 [e :U 609 ]
-"682
+"686
 }
-[; ;launcher_functions.c: 682: }
-[; ;launcher_functions.c: 683: WriteSPI(validNorthSouth);
-"683
+[; ;launcher_functions.c: 686: }
+[; ;launcher_functions.c: 687: WriteSPI(validNorthSouth);
+"687
 [e ( _WriteSPI (1 _validNorthSouth ]
-[; ;launcher_functions.c: 684: for(x=0;x<3;x++)
-"684
+[; ;launcher_functions.c: 688: for(x=0;x<3;x++)
+"688
 {
 [e = _x -> 0 `i ]
 [e $ < _x -> 3 `i 611  ]
 [e $U 612  ]
-"685
+"689
 [e :U 611 ]
-[; ;launcher_functions.c: 685: {
+[; ;launcher_functions.c: 689: {
 {
-[; ;launcher_functions.c: 686: WriteSPI(validLongitude[x]);
-"686
+[; ;launcher_functions.c: 690: WriteSPI(validLongitude[x]);
+"690
 [e ( _WriteSPI (1 *U + &U _validLongitude * -> -> _x `ui `ux -> -> # *U &U _validLongitude `ui `ux ]
-"687
+"691
 }
-"684
+"688
 [e ++ _x -> 1 `i ]
 [e $ < _x -> 3 `i 611  ]
 [e :U 612 ]
-"687
+"691
 }
-[; ;launcher_functions.c: 687: }
-[; ;launcher_functions.c: 688: WriteSPI(validEastWest);
-"688
+[; ;launcher_functions.c: 691: }
+[; ;launcher_functions.c: 692: WriteSPI(validEastWest);
+"692
 [e ( _WriteSPI (1 _validEastWest ]
-[; ;launcher_functions.c: 690: LATC2 = (1);
-"690
+[; ;launcher_functions.c: 694: LATC2 = (1);
+"694
 [e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_functions.c: 698: return;
-"698
+[; ;launcher_functions.c: 702: return;
+"702
 [e $UE 606  ]
-[; ;launcher_functions.c: 700: }
-"700
+[; ;launcher_functions.c: 704: }
+"704
 [e :UE 606 ]
 }
-"702
+"706
 [v _CheckDisconnect `(uc ~T0 @X0 1 ef ]
-"703
+"707
 {
-[; ;launcher_functions.c: 702: unsigned char CheckDisconnect()
-[; ;launcher_functions.c: 703: {
+[; ;launcher_functions.c: 706: unsigned char CheckDisconnect()
+[; ;launcher_functions.c: 707: {
 [e :U _CheckDisconnect ]
 [f ]
-"704
+"708
 [v _status `uc ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 704: unsigned char status;
-[; ;launcher_functions.c: 705: status = ReadStatusSPI();
-"705
+[; ;launcher_functions.c: 708: unsigned char status;
+[; ;launcher_functions.c: 709: status = ReadStatusSPI();
+"709
 [e = _status ( _ReadStatusSPI ..  ]
-[; ;launcher_functions.c: 706: if(status==0xff)
-"706
+[; ;launcher_functions.c: 710: if(status==0xff)
+"710
 [e $ ! == -> _status `i -> 255 `i 615  ]
-[; ;launcher_functions.c: 707: return 1;
-"707
+[; ;launcher_functions.c: 711: return 1;
+"711
 [e ) -> -> 1 `i `uc ]
 [e $UE 614  ]
 [e $U 616  ]
-"708
+"712
 [e :U 615 ]
-[; ;launcher_functions.c: 708: else
-[; ;launcher_functions.c: 709: return 0;
-"709
+[; ;launcher_functions.c: 712: else
+[; ;launcher_functions.c: 713: return 0;
+"713
 [e ) -> -> 0 `i `uc ]
 [e $UE 614  ]
 [e :U 616 ]
-[; ;launcher_functions.c: 710: }
-"710
+[; ;launcher_functions.c: 714: }
+"714
 [e :UE 614 ]
 }
-"713
+"717
 [v _PreRecordMode `(v ~T0 @X0 1 ef ]
-"714
+"718
 {
-[; ;launcher_functions.c: 713: void PreRecordMode()
-[; ;launcher_functions.c: 714: {
+[; ;launcher_functions.c: 717: void PreRecordMode()
+[; ;launcher_functions.c: 718: {
 [e :U _PreRecordMode ]
 [f ]
-"715
-[v _address `l ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 715: long int address = 0;
-[e = _address -> -> 0 `i `l ]
-"716
-[v _count `i ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 716: int count = 256;
-[e = _count -> 256 `i ]
-"717
-[v _x `i ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 717: int x;
-[; ;launcher_functions.c: 718: (start) = 0;
-"718
-[e = _start -> 0 `i ]
-[; ;launcher_functions.c: 719: (end) = 0;
 "719
-[e = _end -> 0 `i ]
-[; ;launcher_functions.c: 720: PORTAbits.RA4 = 1;
+[v _address `l ~T0 @X0 1 a ]
+[; ;launcher_functions.c: 719: long int address = 0;
+[e = _address -> -> 0 `i `l ]
 "720
-[e = . . _PORTAbits 0 4 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 722: if(CheckDisconnect())
+[v _count `i ~T0 @X0 1 a ]
+[; ;launcher_functions.c: 720: int count = 256;
+[e = _count -> 256 `i ]
+"721
+[v _x `i ~T0 @X0 1 a ]
+[; ;launcher_functions.c: 721: int x;
+[; ;launcher_functions.c: 722: (start) = 0;
 "722
-[e $ ! != -> ( _CheckDisconnect ..  `i -> -> -> 0 `i `uc `i 618  ]
-[; ;launcher_functions.c: 723: {
-"723
-{
-[; ;launcher_functions.c: 724: LATC2 = (1);
-"724
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_functions.c: 725: (start) = 0;
-"725
 [e = _start -> 0 `i ]
-[; ;launcher_functions.c: 726: (end) = 0;
-"726
+[; ;launcher_functions.c: 723: (end) = 0;
+"723
 [e = _end -> 0 `i ]
-[; ;launcher_functions.c: 727: SSPCON1bits.SSPEN=0;
+[; ;launcher_functions.c: 724: PORTAbits.RA4 = 1;
+"724
+[e = . . _PORTAbits 0 4 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 726: if(CheckDisconnect())
+"726
+[e $ ! != -> ( _CheckDisconnect ..  `i -> -> -> 0 `i `uc `i 618  ]
+[; ;launcher_functions.c: 727: {
 "727
-[e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 728: PORTCbits.RC5 = 0;
+{
+[; ;launcher_functions.c: 728: LATC2 = (1);
 "728
-[e = . . _PORTCbits 0 5 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 729: PORTAbits.RA4 = 0;
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;launcher_functions.c: 729: (start) = 0;
 "729
-[e = . . _PORTAbits 0 4 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 730: return;
+[e = _start -> 0 `i ]
+[; ;launcher_functions.c: 730: (end) = 0;
 "730
-[e $UE 617  ]
+[e = _end -> 0 `i ]
+[; ;launcher_functions.c: 731: SSPCON1bits.SSPEN=0;
 "731
+[e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 734: PORTCbits.PORTC = LATCbits.LATC & 0xD7;
+"734
+[e = . . _PORTCbits 1 0 -> & -> . . _LATCbits 1 0 `i -> 215 `i `uc ]
+[; ;launcher_functions.c: 735: PORTAbits.RA4 = 0;
+"735
+[e = . . _PORTAbits 0 4 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 736: return;
+"736
+[e $UE 617  ]
+"737
 }
 [e :U 618 ]
-[; ;launcher_functions.c: 731: }
-[; ;launcher_functions.c: 733: for(x = 0;x < 18; x++)
-"733
+[; ;launcher_functions.c: 737: }
+[; ;launcher_functions.c: 739: for(x = 0;x < 18; x++)
+"739
 {
 [e = _x -> 0 `i ]
 [e $ < _x -> 18 `i 619  ]
 [e $U 620  ]
-"734
+"740
 [e :U 619 ]
-[; ;launcher_functions.c: 734: {
+[; ;launcher_functions.c: 740: {
 {
-[; ;launcher_functions.c: 735: while(!recordFlag);
-"735
+[; ;launcher_functions.c: 741: while(!recordFlag);
+"741
 [e $U 622  ]
 [e :U 623 ]
 [e :U 622 ]
 [e $ ! != -> _recordFlag `i -> -> -> 0 `i `uc `i 623  ]
 [e :U 624 ]
-[; ;launcher_functions.c: 736: _delay((unsigned long)((320)*(16000000/4000.0)));
-"736
+[; ;launcher_functions.c: 742: _delay((unsigned long)((320)*(16000000/4000.0)));
+"742
 [e ( __delay (1 -> * -> -> 320 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_functions.c: 737: TMR1IF = 0;
-"737
+[; ;launcher_functions.c: 743: TMR1IF = 0;
+"743
 [e = _TMR1IF -> -> 0 `i `b ]
-[; ;launcher_functions.c: 738: TMR1IE = 1;
-"738
+[; ;launcher_functions.c: 744: TMR1IE = 1;
+"744
 [e = _TMR1IE -> -> 1 `i `b ]
-[; ;launcher_functions.c: 739: TMR1ON = 1;
-"739
+[; ;launcher_functions.c: 745: TMR1ON = 1;
+"745
 [e = _TMR1ON -> -> 1 `i `b ]
-[; ;launcher_functions.c: 740: while(((recordFlag) || !((((start))==((end)))?(1):(0))) && (address < 131072))
-"740
+[; ;launcher_functions.c: 746: while(((recordFlag) || !((((start))==((end)))?(1):(0))) && (address < 131072))
+"746
 [e $U 625  ]
 [e :U 626 ]
-[; ;launcher_functions.c: 741: {
-"741
-{
-[; ;launcher_functions.c: 742: if(count>=256)
-"742
-[e $ ! >= _count -> 256 `i 628  ]
-[; ;launcher_functions.c: 743: {
-"743
-{
-[; ;launcher_functions.c: 744: LATC2 = (1);
-"744
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_functions.c: 745: count = 0;
-"745
-[e = _count -> 0 `i ]
-[; ;launcher_functions.c: 746: WriteOverheadSPI(address);
-"746
-[e ( _WriteOverheadSPI (1 _address ]
+[; ;launcher_functions.c: 747: {
 "747
-}
-[e :U 628 ]
-[; ;launcher_functions.c: 747: }
-[; ;launcher_functions.c: 748: if(!((((start))==((end)))?(1):(0)))
+{
+[; ;launcher_functions.c: 748: if(count>=256)
 "748
-[e $ ! ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i 629  ]
+[e $ ! >= _count -> 256 `i 628  ]
 [; ;launcher_functions.c: 749: {
 "749
 {
-[; ;launcher_functions.c: 750: WriteSPI(ReadBuffer());
+[; ;launcher_functions.c: 750: LATC2 = (1);
 "750
-[e ( _WriteSPI (1 ( _ReadBuffer ..  ]
-[; ;launcher_functions.c: 751: address++;
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;launcher_functions.c: 751: count = 0;
 "751
-[e ++ _address -> -> 1 `i `l ]
-[; ;launcher_functions.c: 752: count++;
+[e = _count -> 0 `i ]
+[; ;launcher_functions.c: 752: WriteOverheadSPI(address);
 "752
-[e ++ _count -> 1 `i ]
+[e ( _WriteOverheadSPI (1 _address ]
 "753
 }
-[e :U 629 ]
-"754
-}
-[e :U 625 ]
-"740
-[e $ && || != -> _recordFlag `i -> -> -> 0 `i `uc `i ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i < _address -> 131072 `l 626  ]
-[e :U 627 ]
+[e :U 628 ]
 [; ;launcher_functions.c: 753: }
-[; ;launcher_functions.c: 754: }
-[; ;launcher_functions.c: 755: LATC2 = (1);
+[; ;launcher_functions.c: 754: if(!((((start))==((end)))?(1):(0)))
+"754
+[e $ ! ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i 629  ]
+[; ;launcher_functions.c: 755: {
 "755
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_functions.c: 756: TMR1IF = 0;
+{
+[; ;launcher_functions.c: 756: WriteSPI(ReadBuffer());
 "756
-[e = _TMR1IF -> -> 0 `i `b ]
-[; ;launcher_functions.c: 757: TMR1IE = 0;
+[e ( _WriteSPI (1 ( _ReadBuffer ..  ]
+[; ;launcher_functions.c: 757: address++;
 "757
-[e = _TMR1IE -> -> 0 `i `b ]
-[; ;launcher_functions.c: 758: TMR1ON = 0;
+[e ++ _address -> -> 1 `i `l ]
+[; ;launcher_functions.c: 758: count++;
 "758
-[e = _TMR1ON -> -> 0 `i `b ]
-[; ;launcher_functions.c: 759: preRecordingAddresses[x] = address;
+[e ++ _count -> 1 `i ]
 "759
-[e = *U + &U _preRecordingAddresses * -> -> _x `ui `ux -> -> # *U &U _preRecordingAddresses `ui `ux _address ]
+}
+[e :U 629 ]
 "760
 }
-"733
+[e :U 625 ]
+"746
+[e $ && || != -> _recordFlag `i -> -> -> 0 `i `uc `i ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i < _address -> 131072 `l 626  ]
+[e :U 627 ]
+[; ;launcher_functions.c: 759: }
+[; ;launcher_functions.c: 760: }
+[; ;launcher_functions.c: 761: LATC2 = (1);
+"761
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;launcher_functions.c: 762: TMR1IF = 0;
+"762
+[e = _TMR1IF -> -> 0 `i `b ]
+[; ;launcher_functions.c: 763: TMR1IE = 0;
+"763
+[e = _TMR1IE -> -> 0 `i `b ]
+[; ;launcher_functions.c: 764: TMR1ON = 0;
+"764
+[e = _TMR1ON -> -> 0 `i `b ]
+[; ;launcher_functions.c: 765: preRecordingAddresses[x] = address;
+"765
+[e = *U + &U _preRecordingAddresses * -> -> _x `ui `ux -> -> # *U &U _preRecordingAddresses `ui `ux _address ]
+"766
+}
+"739
 [e ++ _x -> 1 `i ]
 [e $ < _x -> 18 `i 619  ]
 [e :U 620 ]
-"760
+"766
 }
-[; ;launcher_functions.c: 760: }
-[; ;launcher_functions.c: 761: return;
-"761
+[; ;launcher_functions.c: 766: }
+[; ;launcher_functions.c: 767: return;
+"767
 [e $UE 617  ]
-[; ;launcher_functions.c: 763: }
-"763
+[; ;launcher_functions.c: 769: }
+"769
 [e :UE 617 ]
 }
 [p f _sprintf 8650880 ]
-[a 2C 37 115 49 48 52 44 52 48 46 52 52 49 57 52 52 44 45 56 54 46 57 49 50 53 44 48 44 48 44 48 44 48 44 49 50 44 50 42 0 ]
 [a 1C 37 115 37 115 44 48 37 100 44 48 48 44 48 48 44 48 48 42 0 ]
+

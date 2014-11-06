@@ -96,9 +96,10 @@ void InitADC()
 void InitTimer0()
 {
     INTCONbits.TMR0IE = 0;
-    OPTION_REGbits.TMR0CS = 0; //use instruction clock
+    OPTION_REGbits.TMR0CS = 0; //use instruction clock = FOSC/4 = 4Mhz
     OPTION_REGbits.PSA = 0; //use prescalar
     OPTION_REGbits.PS = 0x3; //use 256 prescalar
+    TMR0 = 0;
 }
 
 void InitTimer1()
@@ -365,8 +366,8 @@ void SetupGPS()
     //uart_write_message(message,  22);
 
     //Initialize with West Lafayette's cordinates
-    sprintf(message, "%s104,40.441944,-86.9125,0,0,0,0,12,2*", startSequence);
-    uart_write_message(message,  42);
+    //sprintf(message, "%s104,40.441944,-86.9125,0,0,0,0,12,2*", startSequence);
+    //uart_write_message(message,  42);
 
 }
 
@@ -388,28 +389,14 @@ void UpdateGPS()
     uart_write_message(GPSupdateMessage,  22);  //Get a single GLL message
     PORTBbits.PORTB = LATBbits.LATB | 0x20; //turn red LED on
     PORTBbits.PORTB = LATBbits.LATB & 0xEF; //turn green LED off
-    do
+    TMR0IF = 0;
+    TMR0 = TIMEOUT_PERIOD;
+    while(!messageDoneFlag&&!TMR0IF);
+    if(TMR0IF)
     {
-        
-        //uart_write_message(GPSupdateMessage,  22);
-        //__delay_ms(1000);
-        /*
-        if(count == 60000) //wait for GPS to finish transferring message
-        {
-
-            ToggleSleepGPS();
-            __delay_ms(1000);
-            if(!PORTCbits.RC7)
-                ToggleSleepGPS();
-            //SetupGPS();
-            while(!messageDoneFlag);
-            messageDoneFlag = 0;
-            count = 0;
-            uart_write_message(GPSupdateMessage,  22);
-            */
-        //}
-        //count++;
-    }while(!messageDoneFlag);
+        gpsTimeoutState = 1;
+        return;
+    }
     PORTBbits.PORTB = LATBbits.LATB & 0xDF; //turn red LED off
     messageDoneFlag = 0;        //clear the message done flag
     DecodeGPS();                //decode the message sent by the GPS
@@ -573,7 +560,9 @@ void RecordMode()
         RING_START = 0; //clear the buffer
         RING_END = 0;
         SSPCON1bits.SSPEN=0;  // Disable SPI Port
-        PORTCbits.RC5 = 0;    //Set MOSI low
+        //PORTCbits.RC5 = 0;    //Set MOSI low
+        //PORTCbits.RC3 = 0;    //Set SCK low
+        PORTCbits.PORTC = LATCbits.LATC & 0xD7; //set MOSI and SCK low
         MEM_ACCESS = 0;
         return;
     }
@@ -651,7 +640,9 @@ void RecordMode()
     RING_START = 0; //clear the buffer
     RING_END = 0;
     SSPCON1bits.SSPEN=0;  // Disable SPI Port
-    PORTCbits.RC5 = 0;    //Set MOSI low
+    //PORTCbits.RC5 = 0;    //Set MOSI low
+    //PORTCbits.RC3 = 0;    //set SCK low
+    PORTCbits.PORTC = LATCbits.LATC & 0xD7; //set MOSI and SCK low
     MEM_ACCESS = 0;
 }
 
@@ -725,7 +716,9 @@ void PreRecordMode()
         RING_START = 0; //clear the buffer
         RING_END = 0;
         SSPCON1bits.SSPEN=0;  // Disable SPI Port
-        PORTCbits.RC5 = 0;    //Set MOSI low
+        //PORTCbits.RC5 = 0;    //Set MOSI low
+        //PORTCbits.RC3 = 0;    //Set SCK low
+        PORTCbits.PORTC = LATCbits.LATC & 0xD7; //set MOSI and SCK low
         MEM_ACCESS = 0;
         return;
     }
