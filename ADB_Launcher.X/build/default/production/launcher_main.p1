@@ -1,16 +1,18 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"59 launcher.h
+"60 launcher.h
 [v _InitCLK `(v ~T0 @X0 0 ef ]
-"60
-[v _InitGPIO `(v ~T0 @X0 0 ef ]
 "61
+[v _InitGPIO `(v ~T0 @X0 0 ef ]
+"62
 [v _InitADC `(v ~T0 @X0 0 ef ]
 "63
+[v _InitTimer0 `(v ~T0 @X0 0 ef ]
+"64
 [v _InitTimer1 `(v ~T0 @X0 0 ef ]
-"65
+"66
 [v _InitWatchdog `(v ~T0 @X0 0 ef ]
-"86
+"87
 [v _InitUART `(v ~T0 @X0 0 ef ]
 "341 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1783.h
 [s S32 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -23,9 +25,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S31 . . . ]
 "358
 [v _INTCONbits `VS31 ~T0 @X0 0 e@11 ]
-"92 launcher.h
+"93 launcher.h
 [v _ToggleSleepGPS `(v ~T0 @X0 0 ef ]
-"94
+"95
 [v _SetupGPS `(v ~T0 @X0 0 ef ]
 "487 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1783.h
 [s S38 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -49,9 +51,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S121 . . . ]
 "2245
 [v _LATBbits `VS121 ~T0 @X0 0 e@269 ]
-[v F7958 `(v ~T0 @X0 1 tf1`ul ]
+[v F7959 `(v ~T0 @X0 1 tf1`ul ]
 "154 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic.h
-[v __delay `JF7958 ~T0 @X0 0 e ]
+[v __delay `JF7959 ~T0 @X0 0 e ]
 [p i __delay ]
 "10990 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1783.h
 [v _LATC2 `Vb ~T0 @X0 0 e@2162 ]
@@ -66,13 +68,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S34 . . . ]
 "432
 [v _PORTAbits `VS34 ~T0 @X0 0 e@12 ]
-"101 launcher.h
+"102 launcher.h
 [v _RecordMode `(v ~T0 @X0 0 ef ]
-"96
+"97
 [v _UpdateGPS `(v ~T0 @X0 0 ef ]
-"99
-[v _GoToSleep `(v ~T0 @X0 0 ef1`uc ]
 "100
+[v _GoToSleep `(v ~T0 @X0 0 ef1`uc ]
+"101
 [v _Hibernate `(v ~T0 @X0 0 ef ]
 "645 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1783.h
 [s S46 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -127,7 +129,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S81 . . ]
 "1349
 [v _PIE1bits `VS81 ~T0 @X0 0 e@145 ]
-"77 launcher.h
+"78 launcher.h
 [v _WriteBuffer `(v ~T0 @X0 0 ef1`uc ]
 "1897 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1783.h
 [v _ADRESH `Vuc ~T0 @X0 0 e@156 ]
@@ -4686,91 +4688,97 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic16f1783.h: 12286: extern volatile __bit nT1SYNC @ (((unsigned) &T1CON)*8) + 2;
 [; ;pic16f1783.h: 12288: extern volatile __bit nTO @ (((unsigned) &STATUS)*8) + 4;
 [; ;pic16f1783.h: 12290: extern volatile __bit nWPUEN @ (((unsigned) &OPTION_REG)*8) + 7;
-[; ;launcher.h: 59: void InitCLK();
-[; ;launcher.h: 60: void InitGPIO();
-[; ;launcher.h: 61: void InitADC();
-[; ;launcher.h: 62: void InitTimer0();
-[; ;launcher.h: 63: void InitTimer1();
-[; ;launcher.h: 64: void InitSPI();
-[; ;launcher.h: 65: void InitWatchdog();
-[; ;launcher.h: 69: void WriteSPI(unsigned char databyte);
-[; ;launcher.h: 70: unsigned char ReadSPI(void);
-[; ;launcher.h: 71: unsigned char ReadStatusSPI(void);
-[; ;launcher.h: 72: void WriteOverheadSPI(long int address);
-[; ;launcher.h: 73: void SendGPSSPI();
-[; ;launcher.h: 74: unsigned char CheckDisconnect();
-[; ;launcher.h: 77: void WriteBuffer(unsigned char data);
-[; ;launcher.h: 78: unsigned char ReadBuffer();
-[; ;launcher.h: 81: void ReadOverheadSPI(long int address);
-"82 launcher.h
+[; ;launcher.h: 60: void InitCLK();
+[; ;launcher.h: 61: void InitGPIO();
+[; ;launcher.h: 62: void InitADC();
+[; ;launcher.h: 63: void InitTimer0();
+[; ;launcher.h: 64: void InitTimer1();
+[; ;launcher.h: 65: void InitSPI();
+[; ;launcher.h: 66: void InitWatchdog();
+[; ;launcher.h: 70: void WriteSPI(unsigned char databyte);
+[; ;launcher.h: 71: unsigned char ReadSPI(void);
+[; ;launcher.h: 72: unsigned char ReadStatusSPI(void);
+[; ;launcher.h: 73: void WriteOverheadSPI(long int address);
+[; ;launcher.h: 74: void SendGPSSPI();
+[; ;launcher.h: 75: unsigned char CheckDisconnect();
+[; ;launcher.h: 78: void WriteBuffer(unsigned char data);
+[; ;launcher.h: 79: unsigned char ReadBuffer();
+[; ;launcher.h: 82: void ReadOverheadSPI(long int address);
+"83 launcher.h
 [v _preRecordingAddresses `l ~T0 @X0 -> 18 `i e ]
-[; ;launcher.h: 82: long int preRecordingAddresses[18];
-[; ;launcher.h: 83: void PreRecordMode();
-[; ;launcher.h: 86: void InitUART();
-[; ;launcher.h: 87: void uart_xmit(unsigned char mydata_byte);
-[; ;launcher.h: 88: void uart_write_message(unsigned char * data, int size);
-[; ;launcher.h: 91: unsigned char compute_checksum(unsigned char * data, int size);
-[; ;launcher.h: 92: void ToggleSleepGPS();
-[; ;launcher.h: 93: void DisableGPS();
-[; ;launcher.h: 94: void SetupGPS();
-[; ;launcher.h: 95: void DecodeGPS();
-[; ;launcher.h: 96: void UpdateGPS();
-[; ;launcher.h: 99: void GoToSleep(unsigned char count);
-[; ;launcher.h: 100: void Hibernate();
-[; ;launcher.h: 101: void RecordMode();
-"105
+[; ;launcher.h: 83: long int preRecordingAddresses[18];
+[; ;launcher.h: 84: void PreRecordMode();
+[; ;launcher.h: 87: void InitUART();
+[; ;launcher.h: 88: void uart_xmit(unsigned char mydata_byte);
+[; ;launcher.h: 89: void uart_write_message(unsigned char * data, int size);
+[; ;launcher.h: 92: unsigned char compute_checksum(unsigned char * data, int size);
+[; ;launcher.h: 93: void ToggleSleepGPS();
+[; ;launcher.h: 94: void DisableGPS();
+[; ;launcher.h: 95: void SetupGPS();
+[; ;launcher.h: 96: void DecodeGPS();
+[; ;launcher.h: 97: void UpdateGPS();
+[; ;launcher.h: 100: void GoToSleep(unsigned char count);
+[; ;launcher.h: 101: void Hibernate();
+[; ;launcher.h: 102: void RecordMode();
+"106
 [v _recordFlag `uc ~T0 @X0 1 e ]
 [i _recordFlag
 -> -> 0 `i `uc
 ]
-[; ;launcher.h: 105: unsigned char recordFlag = 0;
-"106
+[; ;launcher.h: 106: unsigned char recordFlag = 0;
+"107
 [v _start `i ~T0 @X0 1 e ]
 [v _end `i ~T0 @X0 1 e ]
 [i _end
 -> 0 `i
 ]
-[; ;launcher.h: 106: int start, end = 0;
-"107
-[v _buffer `uc ~T0 @X0 -> 51 `i e ]
-[; ;launcher.h: 107: unsigned char buffer[51];
+[; ;launcher.h: 107: int start, end = 0;
 "108
-[v _gpsMessage `Vuc ~T0 @X0 -> 50 `i e ]
-[; ;launcher.h: 108: volatile unsigned char gpsMessage[50];
+[v _buffer `uc ~T0 @X0 -> 51 `i e ]
+[; ;launcher.h: 108: unsigned char buffer[51];
 "109
-[v _gpsIndex `Vuc ~T0 @X0 1 e ]
-[; ;launcher.h: 109: volatile char gpsIndex;
+[v _gpsMessage `Vuc ~T0 @X0 -> 50 `i e ]
+[; ;launcher.h: 109: volatile unsigned char gpsMessage[50];
 "110
+[v _gpsIndex `Vuc ~T0 @X0 1 e ]
+[; ;launcher.h: 110: volatile char gpsIndex;
+"111
 [v _gpsInvalidFlag `uc ~T0 @X0 1 e ]
 [i _gpsInvalidFlag
 -> -> 1 `i `uc
 ]
-[; ;launcher.h: 110: unsigned char gpsInvalidFlag = 1;
-"111
+[; ;launcher.h: 111: unsigned char gpsInvalidFlag = 1;
+"112
 [v _messageDoneFlag `uc ~T0 @X0 1 e ]
 [i _messageDoneFlag
 -> -> 0 `i `uc
 ]
-[; ;launcher.h: 111: unsigned char messageDoneFlag = 0;
-"112
+[; ;launcher.h: 112: unsigned char messageDoneFlag = 0;
+"113
 [v _strobeFlag `uc ~T0 @X0 1 e ]
 [i _strobeFlag
 -> -> 0 `i `uc
 ]
-[; ;launcher.h: 112: unsigned char strobeFlag = 0;
-"113
+[; ;launcher.h: 113: unsigned char strobeFlag = 0;
+"114
 [v _eeprom_timeoutFlag `uc ~T0 @X0 1 e ]
 [i _eeprom_timeoutFlag
 -> -> 0 `i `uc
 ]
-[; ;launcher.h: 113: unsigned char eeprom_timeoutFlag = 0;
-"114
+[; ;launcher.h: 114: unsigned char eeprom_timeoutFlag = 0;
+"115
 [v _hasValidGPSFlag `uc ~T0 @X0 1 e ]
 [i _hasValidGPSFlag
 -> -> 0 `i `uc
 ]
-[; ;launcher.h: 114: unsigned char hasValidGPSFlag = 0;
-"118
+[; ;launcher.h: 115: unsigned char hasValidGPSFlag = 0;
+"116
+[v _gpsTimeoutState `uc ~T0 @X0 1 e ]
+[i _gpsTimeoutState
+-> -> 0 `i `uc
+]
+[; ;launcher.h: 116: unsigned char gpsTimeoutState = 0;
+"120
 [v _validLatitude `uc ~T0 @X0 -> 3 `i e ]
 [i _validLatitude
 :U ..
@@ -4779,14 +4787,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 20 `i `uc
 ..
 ]
-[; ;launcher.h: 118: unsigned char validLatitude[3] = {40,25,20};
-"119
+[; ;launcher.h: 120: unsigned char validLatitude[3] = {40,25,20};
+"121
 [v _validNorthSouth `uc ~T0 @X0 1 e ]
 [i _validNorthSouth
 -> -> 78 `ui `uc
 ]
-[; ;launcher.h: 119: unsigned char validNorthSouth = 'N';
-"120
+[; ;launcher.h: 121: unsigned char validNorthSouth = 'N';
+"122
 [v _validLongitude `uc ~T0 @X0 -> 3 `i e ]
 [i _validLongitude
 :U ..
@@ -4795,16 +4803,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 20 `i `uc
 ..
 ]
-[; ;launcher.h: 120: unsigned char validLongitude[3] = {86,68,20};
-"121
+[; ;launcher.h: 122: unsigned char validLongitude[3] = {86,68,20};
+"123
 [v _validEastWest `uc ~T0 @X0 1 e ]
 [i _validEastWest
 -> -> 69 `ui `uc
 ]
-[; ;launcher.h: 121: unsigned char validEastWest = 'E';
-"122
+[; ;launcher.h: 123: unsigned char validEastWest = 'E';
+"124
 [v _recordEndAdress `l ~T0 @X0 1 e ]
-[; ;launcher.h: 122: long int recordEndAdress;
+[; ;launcher.h: 124: long int recordEndAdress;
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic16lf1783.h: 47: extern volatile unsigned char INDF0 @ 0x000;
@@ -9232,6 +9240,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;launcher_main.c: 25: InitADC();
 "25
 [e ( _InitADC ..  ]
+[; ;launcher_main.c: 27: InitTimer0();
+"27
+[e ( _InitTimer0 ..  ]
 [; ;launcher_main.c: 28: InitTimer1();
 "28
 [e ( _InitTimer1 ..  ]
@@ -9251,436 +9262,494 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;launcher_main.c: 35: INTCONbits.GIE = 1;
 "35
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;launcher_main.c: 38: ToggleSleepGPS();
-"38
+[; ;launcher_main.c: 37: ToggleSleepGPS();
+"37
 [e ( _ToggleSleepGPS ..  ]
-[; ;launcher_main.c: 39: SetupGPS();
-"39
+[; ;launcher_main.c: 38: SetupGPS();
+"38
 [e ( _SetupGPS ..  ]
-[; ;launcher_main.c: 42: PORTBbits.PORTB = LATBbits.LATB & 0xDF;
-"42
+[; ;launcher_main.c: 40: PORTBbits.PORTB = LATBbits.LATB & 0xDF;
+"40
 [e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 223 `i `uc ]
-[; ;launcher_main.c: 43: PORTBbits.PORTB = LATBbits.LATB | 0x10;
-"43
+[; ;launcher_main.c: 41: PORTBbits.PORTB = LATBbits.LATB | 0x10;
+"41
 [e = . . _PORTBbits 1 0 -> | -> . . _LATBbits 1 0 `i -> 16 `i `uc ]
-[; ;launcher_main.c: 44: _delay((unsigned long)((100)*(16000000/4000.0)));
-"44
+[; ;launcher_main.c: 42: _delay((unsigned long)((100)*(16000000/4000.0)));
+"42
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_main.c: 45: PORTBbits.PORTB = LATBbits.LATB & 0xEF;
-"45
+[; ;launcher_main.c: 43: PORTBbits.PORTB = LATBbits.LATB & 0xEF;
+"43
 [e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 239 `i `uc ]
-[; ;launcher_main.c: 48: LATC2 = (1);
-"48
+[; ;launcher_main.c: 46: LATC2 = (1);
+"46
 [e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_main.c: 50: while(1){
-"50
+[; ;launcher_main.c: 48: while(1){
+"48
 [e :U 1018 ]
 {
-[; ;launcher_main.c: 60: LATC2 = (1);
-"60
+[; ;launcher_main.c: 58: LATC2 = (1);
+"58
 [e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_main.c: 63: if(PORTAbits.RA1)
-"63
+[; ;launcher_main.c: 61: if(PORTAbits.RA1)
+"61
 [e $ ! != -> . . _PORTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 1020  ]
-[; ;launcher_main.c: 64: {
-"64
+[; ;launcher_main.c: 62: {
+"62
 {
-[; ;launcher_main.c: 66: PORTBbits.RB0 = 1;
-"66
+[; ;launcher_main.c: 64: PORTBbits.RB0 = 1;
+"64
 [e = . . _PORTBbits 0 0 -> -> 1 `i `uc ]
-[; ;launcher_main.c: 67: _delay((unsigned long)((100)*(16000000/4000.0)));
-"67
+[; ;launcher_main.c: 65: _delay((unsigned long)((100)*(16000000/4000.0)));
+"65
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_main.c: 68: PORTBbits.RB0 = 0;
-"68
+[; ;launcher_main.c: 66: PORTBbits.RB0 = 0;
+"66
 [e = . . _PORTBbits 0 0 -> -> 0 `i `uc ]
-"69
+"67
 }
 [e :U 1020 ]
-[; ;launcher_main.c: 69: }
-[; ;launcher_main.c: 71: if(recordFlag)
-"71
+[; ;launcher_main.c: 67: }
+[; ;launcher_main.c: 69: if(recordFlag)
+"69
 [e $ ! != -> _recordFlag `i -> -> -> 0 `i `uc `i 1021  ]
-[; ;launcher_main.c: 72: {
-"72
+[; ;launcher_main.c: 70: {
+"70
 {
-[; ;launcher_main.c: 73: RecordMode();
-"73
+[; ;launcher_main.c: 71: RecordMode();
+"71
 [e ( _RecordMode ..  ]
-[; ;launcher_main.c: 74: recordFlag = 0;
-"74
+[; ;launcher_main.c: 72: recordFlag = 0;
+"72
 [e = _recordFlag -> -> 0 `i `uc ]
-"75
+[; ;launcher_main.c: 73: _delay((unsigned long)((500)*(16000000/4000.0)));
+"73
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"74
 }
 [e :U 1021 ]
-[; ;launcher_main.c: 75: }
+[; ;launcher_main.c: 74: }
+[; ;launcher_main.c: 77: if(gpsTimeoutState==0)
+"77
+[e $ ! == -> _gpsTimeoutState `i -> 0 `i 1022  ]
 [; ;launcher_main.c: 78: UpdateGPS();
 "78
 [e ( _UpdateGPS ..  ]
-[; ;launcher_main.c: 80: if(gpsInvalidFlag)
+[e $U 1023  ]
+"79
+[e :U 1022 ]
+[; ;launcher_main.c: 79: else if(gpsTimeoutState==1)
+[e $ ! == -> _gpsTimeoutState `i -> 1 `i 1024  ]
+[; ;launcher_main.c: 80: {
 "80
-[e $ ! != -> _gpsInvalidFlag `i -> -> -> 0 `i `uc `i 1022  ]
-[; ;launcher_main.c: 81: {
-"81
 {
-[; ;launcher_main.c: 82: PORTBbits.PORTB = LATBbits.LATB | 0x20;
+[; ;launcher_main.c: 81: ToggleSleepGPS();
+"81
+[e ( _ToggleSleepGPS ..  ]
+[; ;launcher_main.c: 82: gpsTimeoutState = 2;
 "82
-[e = . . _PORTBbits 1 0 -> | -> . . _LATBbits 1 0 `i -> 32 `i `uc ]
-[; ;launcher_main.c: 83: PORTBbits.PORTB = LATBbits.LATB & 0xEF;
+[e = _gpsTimeoutState -> -> 2 `i `uc ]
 "83
-[e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 239 `i `uc ]
-[; ;launcher_main.c: 84: _delay((unsigned long)((250)*(16000000/4000.0)));
+}
+[; ;launcher_main.c: 83: }
+[e $U 1025  ]
 "84
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_main.c: 85: PORTBbits.PORTB = LATBbits.LATB & 0xDF;
+[e :U 1024 ]
+[; ;launcher_main.c: 84: else if(gpsTimeoutState==2)
+[e $ ! == -> _gpsTimeoutState `i -> 2 `i 1026  ]
+[; ;launcher_main.c: 85: {
 "85
-[e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 223 `i `uc ]
-[; ;launcher_main.c: 86: if(periodicCounter < 14)
+{
+[; ;launcher_main.c: 86: ToggleSleepGPS();
 "86
-[e $ ! < -> _periodicCounter `i -> 14 `i 1023  ]
-[; ;launcher_main.c: 87: periodicCounter++;
+[e ( _ToggleSleepGPS ..  ]
+[; ;launcher_main.c: 87: gpsTimeoutState = 3;
 "87
-[e ++ _periodicCounter -> -> 1 `i `uc ]
-[e :U 1023 ]
+[e = _gpsTimeoutState -> -> 3 `i `uc ]
 "88
 }
 [; ;launcher_main.c: 88: }
-[e $U 1024  ]
+[e $U 1027  ]
 "89
-[e :U 1022 ]
-[; ;launcher_main.c: 89: else
+[e :U 1026 ]
+[; ;launcher_main.c: 89: else if(gpsTimeoutState==3)
+[e $ ! == -> _gpsTimeoutState `i -> 3 `i 1028  ]
 [; ;launcher_main.c: 90: {
 "90
 {
-[; ;launcher_main.c: 91: PORTBbits.PORTB = LATBbits.LATB | 0x10;
+[; ;launcher_main.c: 91: _delay((unsigned long)((1000)*(16000000/4000.0)));
 "91
-[e = . . _PORTBbits 1 0 -> | -> . . _LATBbits 1 0 `i -> 16 `i `uc ]
-[; ;launcher_main.c: 92: PORTBbits.PORTB = LATBbits.LATB & 0xDF;
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;launcher_main.c: 92: gpsTimeoutState = 0;
 "92
-[e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 223 `i `uc ]
-[; ;launcher_main.c: 93: _delay((unsigned long)((250)*(16000000/4000.0)));
+[e = _gpsTimeoutState -> -> 0 `i `uc ]
 "93
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_main.c: 94: PORTBbits.PORTB = LATBbits.LATB & 0xEF;
-"94
-[e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 239 `i `uc ]
-[; ;launcher_main.c: 95: periodicCounter = 10;
-"95
-[e = _periodicCounter -> -> 10 `i `uc ]
-"96
 }
-[e :U 1024 ]
-[; ;launcher_main.c: 96: }
-[; ;launcher_main.c: 98: if(!recordFlag)
-"98
-[e $ ! ! != -> _recordFlag `i -> -> -> 0 `i `uc `i 1025  ]
-[; ;launcher_main.c: 99: {
-"99
-{
-[; ;launcher_main.c: 100: if(PORTAbits.RA1)
-"100
-[e $ ! != -> . . _PORTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 1026  ]
-[; ;launcher_main.c: 101: GoToSleep(10);
-"101
-[e ( _GoToSleep (1 -> -> 10 `i `uc ]
-[e $U 1027  ]
-"102
-[e :U 1026 ]
-[; ;launcher_main.c: 102: else if(gpsInvalidFlag)
-[e $ ! != -> _gpsInvalidFlag `i -> -> -> 0 `i `uc `i 1028  ]
-[; ;launcher_main.c: 103: GoToSleep(periodicCounter);
-"103
-[e ( _GoToSleep (1 _periodicCounter ]
+[; ;launcher_main.c: 93: }
 [e $U 1029  ]
-"104
+"94
 [e :U 1028 ]
-[; ;launcher_main.c: 104: else
-[; ;launcher_main.c: 105: {
-"105
+[; ;launcher_main.c: 94: else
+[; ;launcher_main.c: 95: {
+"95
 {
-[; ;launcher_main.c: 106: ToggleSleepGPS();
-"106
-[e ( _ToggleSleepGPS ..  ]
-[; ;launcher_main.c: 107: Hibernate();
-"107
-[e ( _Hibernate ..  ]
-[; ;launcher_main.c: 108: ToggleSleepGPS();
-"108
-[e ( _ToggleSleepGPS ..  ]
-"109
+[; ;launcher_main.c: 96: gpsTimeoutState = 0;
+"96
+[e = _gpsTimeoutState -> -> 0 `i `uc ]
+"97
 }
 [e :U 1029 ]
 [e :U 1027 ]
-"110
-}
 [e :U 1025 ]
+[e :U 1023 ]
+[; ;launcher_main.c: 97: }
+[; ;launcher_main.c: 99: if(gpsInvalidFlag)
+"99
+[e $ ! != -> _gpsInvalidFlag `i -> -> -> 0 `i `uc `i 1030  ]
+[; ;launcher_main.c: 100: {
+"100
+{
+[; ;launcher_main.c: 101: PORTBbits.PORTB = LATBbits.LATB | 0x20;
+"101
+[e = . . _PORTBbits 1 0 -> | -> . . _LATBbits 1 0 `i -> 32 `i `uc ]
+[; ;launcher_main.c: 102: PORTBbits.PORTB = LATBbits.LATB & 0xEF;
+"102
+[e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 239 `i `uc ]
+[; ;launcher_main.c: 103: _delay((unsigned long)((250)*(16000000/4000.0)));
+"103
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;launcher_main.c: 104: PORTBbits.PORTB = LATBbits.LATB & 0xDF;
+"104
+[e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 223 `i `uc ]
+[; ;launcher_main.c: 105: if(periodicCounter < 14)
+"105
+[e $ ! < -> _periodicCounter `i -> 14 `i 1031  ]
+[; ;launcher_main.c: 106: periodicCounter++;
+"106
+[e ++ _periodicCounter -> -> 1 `i `uc ]
+[e :U 1031 ]
+"107
+}
+[; ;launcher_main.c: 107: }
+[e $U 1032  ]
+"108
+[e :U 1030 ]
+[; ;launcher_main.c: 108: else
+[; ;launcher_main.c: 109: {
+"109
+{
+[; ;launcher_main.c: 110: PORTBbits.PORTB = LATBbits.LATB | 0x10;
+"110
+[e = . . _PORTBbits 1 0 -> | -> . . _LATBbits 1 0 `i -> 16 `i `uc ]
+[; ;launcher_main.c: 111: PORTBbits.PORTB = LATBbits.LATB & 0xDF;
+"111
+[e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 223 `i `uc ]
+[; ;launcher_main.c: 112: _delay((unsigned long)((250)*(16000000/4000.0)));
+"112
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;launcher_main.c: 113: PORTBbits.PORTB = LATBbits.LATB & 0xEF;
 "113
-}
-[e :U 1017 ]
-"50
-[e $U 1018  ]
-[e :U 1019 ]
-[; ;launcher_main.c: 109: }
-[; ;launcher_main.c: 110: }
-[; ;launcher_main.c: 113: }
-[; ;launcher_main.c: 115: return (0);
+[e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 239 `i `uc ]
+[; ;launcher_main.c: 114: periodicCounter = 10;
+"114
+[e = _periodicCounter -> -> 10 `i `uc ]
 "115
-[e ) -> 0 `i ]
-[e $UE 1016  ]
-[; ;launcher_main.c: 116: }
-"116
-[e :UE 1016 ]
-}
-[v F7969 `(v ~T0 @X0 1 tf ]
-"118
-[v _isr `IF7969 ~T0 @X0 1 e ]
-"119
-{
-[; ;launcher_main.c: 118: interrupt void isr(void)
-[; ;launcher_main.c: 119: {
-[e :U _isr ]
-[f ]
-[; ;launcher_main.c: 121: if (PIR1bits.RCIF)
-"121
-[e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 1031  ]
-[; ;launcher_main.c: 122: {
-"122
-{
-[; ;launcher_main.c: 124: if(OERR)
-"124
-[e $ ! _OERR 1032  ]
-[; ;launcher_main.c: 125: {
-"125
-{
-[; ;launcher_main.c: 126: RCSTAbits.CREN = 0;
-"126
-[e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
-[; ;launcher_main.c: 127: RCSTAbits.CREN = 1;
-"127
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-"128
 }
 [e :U 1032 ]
-[; ;launcher_main.c: 128: }
-[; ;launcher_main.c: 129: gpsMessage[gpsIndex++] = RCREG;
-"129
-[e = *U + &U _gpsMessage * -> ++ _gpsIndex -> -> 1 `i `uc `ux -> -> # *U &U _gpsMessage `ui `ux _RCREG ]
-[; ;launcher_main.c: 130: if(gpsIndex >= 50)
-"130
-[e $ ! >= -> _gpsIndex `i -> 50 `i 1033  ]
-[; ;launcher_main.c: 131: {
-"131
+[; ;launcher_main.c: 115: }
+[; ;launcher_main.c: 117: if(!recordFlag)
+"117
+[e $ ! ! != -> _recordFlag `i -> -> -> 0 `i `uc `i 1033  ]
+[; ;launcher_main.c: 118: {
+"118
 {
-[; ;launcher_main.c: 132: messageDoneFlag = 1;
-"132
-[e = _messageDoneFlag -> -> 1 `i `uc ]
-[; ;launcher_main.c: 133: gpsIndex = 0;
-"133
-[e = _gpsIndex -> -> 0 `i `uc ]
-"134
+[; ;launcher_main.c: 119: if(PORTAbits.RA1)
+"119
+[e $ ! != -> . . _PORTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 1034  ]
+[; ;launcher_main.c: 120: GoToSleep(10);
+"120
+[e ( _GoToSleep (1 -> -> 10 `i `uc ]
+[e $U 1035  ]
+"121
+[e :U 1034 ]
+[; ;launcher_main.c: 121: else if(gpsInvalidFlag)
+[e $ ! != -> _gpsInvalidFlag `i -> -> -> 0 `i `uc `i 1036  ]
+[; ;launcher_main.c: 122: GoToSleep(periodicCounter);
+"122
+[e ( _GoToSleep (1 _periodicCounter ]
+[e $U 1037  ]
+"123
+[e :U 1036 ]
+[; ;launcher_main.c: 123: else
+[; ;launcher_main.c: 124: {
+"124
+{
+[; ;launcher_main.c: 125: ToggleSleepGPS();
+"125
+[e ( _ToggleSleepGPS ..  ]
+[; ;launcher_main.c: 126: Hibernate();
+"126
+[e ( _Hibernate ..  ]
+[; ;launcher_main.c: 127: ToggleSleepGPS();
+"127
+[e ( _ToggleSleepGPS ..  ]
+"128
 }
-[; ;launcher_main.c: 134: }
-[e $U 1034  ]
-"135
+[e :U 1037 ]
+[e :U 1035 ]
+"129
+}
 [e :U 1033 ]
-[; ;launcher_main.c: 135: else
-[; ;launcher_main.c: 136: {
-"136
-{
-[; ;launcher_main.c: 137: if(gpsMessage[gpsIndex-1] == 0x0A)
+"132
+}
+[e :U 1017 ]
+"48
+[e $U 1018  ]
+[e :U 1019 ]
+[; ;launcher_main.c: 128: }
+[; ;launcher_main.c: 129: }
+[; ;launcher_main.c: 132: }
+[; ;launcher_main.c: 134: return (0);
+"134
+[e ) -> 0 `i ]
+[e $UE 1016  ]
+[; ;launcher_main.c: 135: }
+"135
+[e :UE 1016 ]
+}
+[v F7972 `(v ~T0 @X0 1 tf ]
 "137
-[e $ ! == -> *U + &U _gpsMessage * -> -> - -> _gpsIndex `i -> 1 `i `ui `ux -> -> # *U &U _gpsMessage `ui `ux `i -> 10 `i 1035  ]
-[; ;launcher_main.c: 138: {
+[v _isr `IF7972 ~T0 @X0 1 e ]
 "138
 {
-[; ;launcher_main.c: 139: messageDoneFlag = 1;
-"139
-[e = _messageDoneFlag -> -> 1 `i `uc ]
+[; ;launcher_main.c: 137: interrupt void isr(void)
+[; ;launcher_main.c: 138: {
+[e :U _isr ]
+[f ]
+[; ;launcher_main.c: 140: if (PIR1bits.RCIF)
 "140
-}
-[; ;launcher_main.c: 140: }
-[e $U 1036  ]
+[e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 1039  ]
+[; ;launcher_main.c: 141: {
 "141
-[e :U 1035 ]
-[; ;launcher_main.c: 141: else
-[; ;launcher_main.c: 142: {
-"142
 {
-[; ;launcher_main.c: 143: messageDoneFlag = 0;
+[; ;launcher_main.c: 143: if(OERR)
 "143
-[e = _messageDoneFlag -> -> 0 `i `uc ]
+[e $ ! _OERR 1040  ]
+[; ;launcher_main.c: 144: {
 "144
-}
-[e :U 1036 ]
+{
+[; ;launcher_main.c: 145: RCSTAbits.CREN = 0;
 "145
-}
-[e :U 1034 ]
-[; ;launcher_main.c: 144: }
-[; ;launcher_main.c: 145: }
-[; ;launcher_main.c: 146: PIR1bits.RCIF = 0;
+[e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
+[; ;launcher_main.c: 146: RCSTAbits.CREN = 1;
 "146
-[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
 "147
 }
-[e :U 1031 ]
+[e :U 1040 ]
 [; ;launcher_main.c: 147: }
-[; ;launcher_main.c: 150: if (TMR1IF && TMR1IE)
+[; ;launcher_main.c: 148: gpsMessage[gpsIndex++] = RCREG;
+"148
+[e = *U + &U _gpsMessage * -> ++ _gpsIndex -> -> 1 `i `uc `ux -> -> # *U &U _gpsMessage `ui `ux _RCREG ]
+[; ;launcher_main.c: 149: if(gpsIndex >= 50)
+"149
+[e $ ! >= -> _gpsIndex `i -> 50 `i 1041  ]
+[; ;launcher_main.c: 150: {
 "150
-[e $ ! && _TMR1IF _TMR1IE 1037  ]
-[; ;launcher_main.c: 151: {
-"151
 {
-[; ;launcher_main.c: 152: TMR1H = 0xFF;
+[; ;launcher_main.c: 151: messageDoneFlag = 1;
+"151
+[e = _messageDoneFlag -> -> 1 `i `uc ]
+[; ;launcher_main.c: 152: gpsIndex = 0;
 "152
-[e = _TMR1H -> -> 255 `i `uc ]
-[; ;launcher_main.c: 153: TMR1L = 0x71;
+[e = _gpsIndex -> -> 0 `i `uc ]
 "153
-[e = _TMR1L -> -> 113 `i `uc ]
-[; ;launcher_main.c: 154: TMR1IF = 0;
+}
+[; ;launcher_main.c: 153: }
+[e $U 1042  ]
 "154
-[e = _TMR1IF -> -> 0 `i `b ]
-[; ;launcher_main.c: 156: if(recordFlag)
+[e :U 1041 ]
+[; ;launcher_main.c: 154: else
+[; ;launcher_main.c: 155: {
+"155
+{
+[; ;launcher_main.c: 156: if(gpsMessage[gpsIndex-1] == 0x0A)
 "156
-[e $ ! != -> _recordFlag `i -> -> -> 0 `i `uc `i 1038  ]
+[e $ ! == -> *U + &U _gpsMessage * -> -> - -> _gpsIndex `i -> 1 `i `ui `ux -> -> # *U &U _gpsMessage `ui `ux `i -> 10 `i 1043  ]
 [; ;launcher_main.c: 157: {
 "157
 {
-[; ;launcher_main.c: 158: ADCON0bits.ADGO = 1;
+[; ;launcher_main.c: 158: messageDoneFlag = 1;
 "158
-[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
+[e = _messageDoneFlag -> -> 1 `i `uc ]
 "159
 }
-[e :U 1038 ]
-"160
-}
-[e :U 1037 ]
 [; ;launcher_main.c: 159: }
-[; ;launcher_main.c: 160: }
-[; ;launcher_main.c: 163: if(PIR1bits.ADIF & PIE1bits.ADIE)
-"163
-[e $ ! != & -> . . _PIR1bits 0 6 `i -> . . _PIE1bits 0 6 `i -> 0 `i 1039  ]
-[; ;launcher_main.c: 164: {
-"164
-{
-[; ;launcher_main.c: 165: if(!((((end))==(51))?((((start))==0)?(1):(0)):((((end)+1)==((start)))?(1):(0))))
-"165
-[e $ ! ! != ? == _end -> 51 `i : ? == _start -> 0 `i : -> 1 `i -> 0 `i ? == + _end -> 1 `i _start : -> 1 `i -> 0 `i -> 0 `i 1040  ]
-[; ;launcher_main.c: 166: {
-"166
-{
-[; ;launcher_main.c: 167: if(recordFlag)
-"167
-[e $ ! != -> _recordFlag `i -> -> -> 0 `i `uc `i 1041  ]
-[; ;launcher_main.c: 168: WriteBuffer(ADRESH);
-"168
-[e ( _WriteBuffer (1 _ADRESH ]
-[e :U 1041 ]
-"169
-}
-[e :U 1040 ]
-[; ;launcher_main.c: 169: }
-[; ;launcher_main.c: 170: PIR1bits.ADIF = 0;
-"170
-[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"171
-}
-[e :U 1039 ]
-[; ;launcher_main.c: 171: }
-[; ;launcher_main.c: 174: if(INTCONbits.IOCIE && IOCBFbits.IOCBF3)
-"174
-[e $ ! && != -> . . _INTCONbits 0 3 `i -> -> -> 0 `i `Vuc `i != -> . . _IOCBFbits 0 3 `i -> -> -> 0 `i `Vuc `i 1042  ]
-[; ;launcher_main.c: 175: {
-"175
-{
-[; ;launcher_main.c: 176: IOCBFbits.IOCBF3 = 0;
-"176
-[e = . . _IOCBFbits 0 3 -> -> 0 `i `uc ]
-[; ;launcher_main.c: 177: if(IOCBPbits.IOCBP3 & PORTBbits.RB3)
-"177
-[e $ ! != & -> . . _IOCBPbits 0 3 `i -> . . _PORTBbits 0 3 `i -> 0 `i 1043  ]
-[; ;launcher_main.c: 178: {
-"178
-{
-[; ;launcher_main.c: 179: recordFlag = 1;
-"179
-[e = _recordFlag -> -> 1 `i `uc ]
-"180
-}
+[e $U 1044  ]
+"160
 [e :U 1043 ]
-[; ;launcher_main.c: 180: }
-[; ;launcher_main.c: 181: if(IOCBNbits.IOCBN3 & !PORTBbits.RB3)
-"181
-[e $ ! != & -> . . _IOCBNbits 0 3 `i -> ! != -> . . _PORTBbits 0 3 `i -> -> -> 0 `i `Vuc `i `i -> 0 `i 1044  ]
-[; ;launcher_main.c: 182: {
-"182
+[; ;launcher_main.c: 160: else
+[; ;launcher_main.c: 161: {
+"161
 {
-[; ;launcher_main.c: 183: recordFlag = 0;
-"183
-[e = _recordFlag -> -> 0 `i `uc ]
-"184
+[; ;launcher_main.c: 162: messageDoneFlag = 0;
+"162
+[e = _messageDoneFlag -> -> 0 `i `uc ]
+"163
 }
 [e :U 1044 ]
-"185
+"164
 }
 [e :U 1042 ]
-[; ;launcher_main.c: 184: }
-[; ;launcher_main.c: 185: }
-[; ;launcher_main.c: 188: if(INTCONbits.IOCIE && IOCAFbits.IOCAF1)
-"188
-[e $ ! && != -> . . _INTCONbits 0 3 `i -> -> -> 0 `i `Vuc `i != -> . . _IOCAFbits 0 1 `i -> -> -> 0 `i `Vuc `i 1045  ]
-[; ;launcher_main.c: 189: {
-"189
+[; ;launcher_main.c: 163: }
+[; ;launcher_main.c: 164: }
+[; ;launcher_main.c: 165: PIR1bits.RCIF = 0;
+"165
+[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
+"166
+}
+[e :U 1039 ]
+[; ;launcher_main.c: 166: }
+[; ;launcher_main.c: 169: if (TMR1IF && TMR1IE)
+"169
+[e $ ! && _TMR1IF _TMR1IE 1045  ]
+[; ;launcher_main.c: 170: {
+"170
 {
-[; ;launcher_main.c: 190: IOCAFbits.IOCAF1 = 0;
-"190
-[e = . . _IOCAFbits 0 1 -> -> 0 `i `uc ]
-[; ;launcher_main.c: 191: if(IOCAPbits.IOCAP1 & PORTAbits.RA1)
-"191
-[e $ ! != & -> . . _IOCAPbits 0 1 `i -> . . _PORTAbits 0 1 `i -> 0 `i 1046  ]
-[; ;launcher_main.c: 192: {
-"192
+[; ;launcher_main.c: 171: TMR1H = 0xFF;
+"171
+[e = _TMR1H -> -> 255 `i `uc ]
+[; ;launcher_main.c: 172: TMR1L = 0x71;
+"172
+[e = _TMR1L -> -> 113 `i `uc ]
+[; ;launcher_main.c: 173: TMR1IF = 0;
+"173
+[e = _TMR1IF -> -> 0 `i `b ]
+[; ;launcher_main.c: 175: if(recordFlag)
+"175
+[e $ ! != -> _recordFlag `i -> -> -> 0 `i `uc `i 1046  ]
+[; ;launcher_main.c: 176: {
+"176
 {
-[; ;launcher_main.c: 193: strobeFlag = 1;
-"193
-[e = _strobeFlag -> -> 1 `i `uc ]
-"194
+[; ;launcher_main.c: 177: ADCON0bits.ADGO = 1;
+"177
+[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
+"178
 }
 [e :U 1046 ]
-[; ;launcher_main.c: 194: }
-[; ;launcher_main.c: 195: if(IOCANbits.IOCAN1 & !PORTAbits.RA1)
-"195
-[e $ ! != & -> . . _IOCANbits 0 1 `i -> ! != -> . . _PORTAbits 0 1 `i -> -> -> 0 `i `Vuc `i `i -> 0 `i 1047  ]
-[; ;launcher_main.c: 196: {
-"196
-{
-[; ;launcher_main.c: 197: strobeFlag = 0;
-"197
-[e = _strobeFlag -> -> 0 `i `uc ]
-"198
-}
-[e :U 1047 ]
-"199
+"179
 }
 [e :U 1045 ]
-[; ;launcher_main.c: 198: }
-[; ;launcher_main.c: 199: }
-[; ;launcher_main.c: 201: if(INTCONbits.TMR0IE && INTCONbits.TMR0IF)
-"201
-[e $ ! && != -> . . _INTCONbits 0 5 `i -> -> -> 0 `i `Vuc `i != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 1048  ]
-[; ;launcher_main.c: 202: {
-"202
+[; ;launcher_main.c: 178: }
+[; ;launcher_main.c: 179: }
+[; ;launcher_main.c: 182: if(PIR1bits.ADIF & PIE1bits.ADIE)
+"182
+[e $ ! != & -> . . _PIR1bits 0 6 `i -> . . _PIE1bits 0 6 `i -> 0 `i 1047  ]
+[; ;launcher_main.c: 183: {
+"183
 {
-[; ;launcher_main.c: 203: eeprom_timeoutFlag = 1;
-"203
-[e = _eeprom_timeoutFlag -> -> 1 `i `uc ]
-[; ;launcher_main.c: 204: INTCONbits.TMR0IF = 0;
-"204
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-"205
+[; ;launcher_main.c: 184: if(!((((end))==(51))?((((start))==0)?(1):(0)):((((end)+1)==((start)))?(1):(0))))
+"184
+[e $ ! ! != ? == _end -> 51 `i : ? == _start -> 0 `i : -> 1 `i -> 0 `i ? == + _end -> 1 `i _start : -> 1 `i -> 0 `i -> 0 `i 1048  ]
+[; ;launcher_main.c: 185: {
+"185
+{
+[; ;launcher_main.c: 186: if(recordFlag)
+"186
+[e $ ! != -> _recordFlag `i -> -> -> 0 `i `uc `i 1049  ]
+[; ;launcher_main.c: 187: WriteBuffer(ADRESH);
+"187
+[e ( _WriteBuffer (1 _ADRESH ]
+[e :U 1049 ]
+"188
 }
 [e :U 1048 ]
-[; ;launcher_main.c: 205: }
-[; ;launcher_main.c: 207: }
+[; ;launcher_main.c: 188: }
+[; ;launcher_main.c: 189: PIR1bits.ADIF = 0;
+"189
+[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
+"190
+}
+[e :U 1047 ]
+[; ;launcher_main.c: 190: }
+[; ;launcher_main.c: 193: if(INTCONbits.IOCIE && IOCBFbits.IOCBF3)
+"193
+[e $ ! && != -> . . _INTCONbits 0 3 `i -> -> -> 0 `i `Vuc `i != -> . . _IOCBFbits 0 3 `i -> -> -> 0 `i `Vuc `i 1050  ]
+[; ;launcher_main.c: 194: {
+"194
+{
+[; ;launcher_main.c: 195: IOCBFbits.IOCBF3 = 0;
+"195
+[e = . . _IOCBFbits 0 3 -> -> 0 `i `uc ]
+[; ;launcher_main.c: 196: if(IOCBPbits.IOCBP3 & PORTBbits.RB3)
+"196
+[e $ ! != & -> . . _IOCBPbits 0 3 `i -> . . _PORTBbits 0 3 `i -> 0 `i 1051  ]
+[; ;launcher_main.c: 197: {
+"197
+{
+[; ;launcher_main.c: 198: recordFlag = 1;
+"198
+[e = _recordFlag -> -> 1 `i `uc ]
+"199
+}
+[e :U 1051 ]
+[; ;launcher_main.c: 199: }
+[; ;launcher_main.c: 200: if(IOCBNbits.IOCBN3 & !PORTBbits.RB3)
+"200
+[e $ ! != & -> . . _IOCBNbits 0 3 `i -> ! != -> . . _PORTBbits 0 3 `i -> -> -> 0 `i `Vuc `i `i -> 0 `i 1052  ]
+[; ;launcher_main.c: 201: {
+"201
+{
+[; ;launcher_main.c: 202: recordFlag = 0;
+"202
+[e = _recordFlag -> -> 0 `i `uc ]
+"203
+}
+[e :U 1052 ]
+"204
+}
+[e :U 1050 ]
+[; ;launcher_main.c: 203: }
+[; ;launcher_main.c: 204: }
+[; ;launcher_main.c: 207: if(INTCONbits.IOCIE && IOCAFbits.IOCAF1)
 "207
-[e :UE 1030 ]
+[e $ ! && != -> . . _INTCONbits 0 3 `i -> -> -> 0 `i `Vuc `i != -> . . _IOCAFbits 0 1 `i -> -> -> 0 `i `Vuc `i 1053  ]
+[; ;launcher_main.c: 208: {
+"208
+{
+[; ;launcher_main.c: 209: IOCAFbits.IOCAF1 = 0;
+"209
+[e = . . _IOCAFbits 0 1 -> -> 0 `i `uc ]
+[; ;launcher_main.c: 210: if(IOCAPbits.IOCAP1 & PORTAbits.RA1)
+"210
+[e $ ! != & -> . . _IOCAPbits 0 1 `i -> . . _PORTAbits 0 1 `i -> 0 `i 1054  ]
+[; ;launcher_main.c: 211: {
+"211
+{
+[; ;launcher_main.c: 212: strobeFlag = 1;
+"212
+[e = _strobeFlag -> -> 1 `i `uc ]
+"213
+}
+[e :U 1054 ]
+[; ;launcher_main.c: 213: }
+[; ;launcher_main.c: 214: if(IOCANbits.IOCAN1 & !PORTAbits.RA1)
+"214
+[e $ ! != & -> . . _IOCANbits 0 1 `i -> ! != -> . . _PORTAbits 0 1 `i -> -> -> 0 `i `Vuc `i `i -> 0 `i 1055  ]
+[; ;launcher_main.c: 215: {
+"215
+{
+[; ;launcher_main.c: 216: strobeFlag = 0;
+"216
+[e = _strobeFlag -> -> 0 `i `uc ]
+"217
+}
+[e :U 1055 ]
+"218
+}
+[e :U 1053 ]
+[; ;launcher_main.c: 217: }
+[; ;launcher_main.c: 218: }
+[; ;launcher_main.c: 228: }
+"228
+[e :UE 1038 ]
 }

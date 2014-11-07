@@ -180,17 +180,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ADIE `Vb ~T0 @X0 0 e@1166 ]
 "11404
 [v _PEIE `Vb ~T0 @X0 0 e@94 ]
-"1493
-[s S83 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S83 . PS0 PS1 PS2 PSA TMR0SE TMR0CS INTEDG nWPUEN ]
-"1503
-[s S84 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S84 . PS . T0SE T0CS ]
-"1492
-[u S82 `S83 1 `S84 1 ]
-[n S82 . . . ]
-"1510
-[v _OPTION_REGbits `VS82 ~T0 @X0 0 e@149 ]
+"12060
+[v _TMR0IE `Vb ~T0 @X0 0 e@93 ]
+"12062
+[v _TMR0IF `Vb ~T0 @X0 0 e@90 ]
+"12058
+[v _TMR0CS `Vb ~T0 @X0 0 e@1197 ]
+"11416
+[v _PSA `Vb ~T0 @X0 0 e@1195 ]
+"11410
+[v _PS0 `Vb ~T0 @X0 0 e@1192 ]
+"11412
+[v _PS1 `Vb ~T0 @X0 0 e@1193 ]
+"11414
+[v _PS2 `Vb ~T0 @X0 0 e@1194 ]
+"794
+[v _TMR0 `Vuc ~T0 @X0 0 e@21 ]
 "863
 [s S53 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S53 . TMR1ON . nT1SYNC T1OSCEN T1CKPS0 T1CKPS1 TMR1CS0 TMR1CS1 ]
@@ -292,9 +297,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S29 . . . ]
 "432
 [v _PORTAbits `VS29 ~T0 @X0 0 e@12 ]
-[v F4734 `(v ~T0 @X0 1 tf1`ul ]
+[v F4735 `(v ~T0 @X0 1 tf1`ul ]
 "154 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic.h
-[v __delay `JF4734 ~T0 @X0 0 e ]
+[v __delay `JF4735 ~T0 @X0 0 e ]
 [p i __delay ]
 "205 C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
@@ -313,9 +318,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S116 . . . ]
 "2245
 [v _LATBbits `VS116 ~T0 @X0 0 e@269 ]
-"95 launcher.h
+"96 launcher.h
 [v _DecodeGPS `(v ~T0 @X0 0 ef ]
-"74
+"75
 [v _CheckDisconnect `(uc ~T0 @X0 0 ef ]
 "556 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16lf1783.h
 [s S36 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -345,93 +350,99 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR1IE `Vb ~T0 @X0 0 e@1160 ]
 "12080
 [v _TMR1ON `Vb ~T0 @X0 0 e@192 ]
-"73 launcher.h
+"74 launcher.h
 [v _SendGPSSPI `(v ~T0 @X0 0 ef ]
-[; ;launcher.h: 59: void InitCLK();
-[; ;launcher.h: 60: void InitGPIO();
-[; ;launcher.h: 61: void InitADC();
-[; ;launcher.h: 62: void InitTimer0();
-[; ;launcher.h: 63: void InitTimer1();
-[; ;launcher.h: 64: void InitSPI();
-[; ;launcher.h: 65: void InitWatchdog();
-[; ;launcher.h: 69: void WriteSPI(unsigned char databyte);
-[; ;launcher.h: 70: unsigned char ReadSPI(void);
-[; ;launcher.h: 71: unsigned char ReadStatusSPI(void);
-[; ;launcher.h: 72: void WriteOverheadSPI(long int address);
-[; ;launcher.h: 73: void SendGPSSPI();
-[; ;launcher.h: 74: unsigned char CheckDisconnect();
-[; ;launcher.h: 77: void WriteBuffer(unsigned char data);
-[; ;launcher.h: 78: unsigned char ReadBuffer();
-[; ;launcher.h: 81: void ReadOverheadSPI(long int address);
-"82 launcher.h
+[; ;launcher.h: 60: void InitCLK();
+[; ;launcher.h: 61: void InitGPIO();
+[; ;launcher.h: 62: void InitADC();
+[; ;launcher.h: 63: void InitTimer0();
+[; ;launcher.h: 64: void InitTimer1();
+[; ;launcher.h: 65: void InitSPI();
+[; ;launcher.h: 66: void InitWatchdog();
+[; ;launcher.h: 70: void WriteSPI(unsigned char databyte);
+[; ;launcher.h: 71: unsigned char ReadSPI(void);
+[; ;launcher.h: 72: unsigned char ReadStatusSPI(void);
+[; ;launcher.h: 73: void WriteOverheadSPI(long int address);
+[; ;launcher.h: 74: void SendGPSSPI();
+[; ;launcher.h: 75: unsigned char CheckDisconnect();
+[; ;launcher.h: 78: void WriteBuffer(unsigned char data);
+[; ;launcher.h: 79: unsigned char ReadBuffer();
+[; ;launcher.h: 82: void ReadOverheadSPI(long int address);
+"83 launcher.h
 [v _preRecordingAddresses `l ~T0 @X0 -> 18 `i e ]
-[; ;launcher.h: 82: long int preRecordingAddresses[18];
-[; ;launcher.h: 83: void PreRecordMode();
-[; ;launcher.h: 86: void InitUART();
-[; ;launcher.h: 87: void uart_xmit(unsigned char mydata_byte);
-[; ;launcher.h: 88: void uart_write_message(unsigned char * data, int size);
-[; ;launcher.h: 91: unsigned char compute_checksum(unsigned char * data, int size);
-[; ;launcher.h: 92: void ToggleSleepGPS();
-[; ;launcher.h: 93: void DisableGPS();
-[; ;launcher.h: 94: void SetupGPS();
-[; ;launcher.h: 95: void DecodeGPS();
-[; ;launcher.h: 96: void UpdateGPS();
-[; ;launcher.h: 99: void GoToSleep(unsigned char count);
-[; ;launcher.h: 100: void Hibernate();
-[; ;launcher.h: 101: void RecordMode();
-"105
+[; ;launcher.h: 83: long int preRecordingAddresses[18];
+[; ;launcher.h: 84: void PreRecordMode();
+[; ;launcher.h: 87: void InitUART();
+[; ;launcher.h: 88: void uart_xmit(unsigned char mydata_byte);
+[; ;launcher.h: 89: void uart_write_message(unsigned char * data, int size);
+[; ;launcher.h: 92: unsigned char compute_checksum(unsigned char * data, int size);
+[; ;launcher.h: 93: void ToggleSleepGPS();
+[; ;launcher.h: 94: void DisableGPS();
+[; ;launcher.h: 95: void SetupGPS();
+[; ;launcher.h: 96: void DecodeGPS();
+[; ;launcher.h: 97: void UpdateGPS();
+[; ;launcher.h: 100: void GoToSleep(unsigned char count);
+[; ;launcher.h: 101: void Hibernate();
+[; ;launcher.h: 102: void RecordMode();
+"106
 [v _recordFlag `uc ~T0 @X0 1 e ]
 [i _recordFlag
 -> -> 0 `i `uc
 ]
-[; ;launcher.h: 105: unsigned char recordFlag = 0;
-"106
+[; ;launcher.h: 106: unsigned char recordFlag = 0;
+"107
 [v _start `i ~T0 @X0 1 e ]
 [v _end `i ~T0 @X0 1 e ]
 [i _end
 -> 0 `i
 ]
-[; ;launcher.h: 106: int start, end = 0;
-"107
-[v _buffer `uc ~T0 @X0 -> 51 `i e ]
-[; ;launcher.h: 107: unsigned char buffer[51];
+[; ;launcher.h: 107: int start, end = 0;
 "108
-[v _gpsMessage `Vuc ~T0 @X0 -> 50 `i e ]
-[; ;launcher.h: 108: volatile unsigned char gpsMessage[50];
+[v _buffer `uc ~T0 @X0 -> 51 `i e ]
+[; ;launcher.h: 108: unsigned char buffer[51];
 "109
-[v _gpsIndex `Vuc ~T0 @X0 1 e ]
-[; ;launcher.h: 109: volatile char gpsIndex;
+[v _gpsMessage `Vuc ~T0 @X0 -> 50 `i e ]
+[; ;launcher.h: 109: volatile unsigned char gpsMessage[50];
 "110
+[v _gpsIndex `Vuc ~T0 @X0 1 e ]
+[; ;launcher.h: 110: volatile char gpsIndex;
+"111
 [v _gpsInvalidFlag `uc ~T0 @X0 1 e ]
 [i _gpsInvalidFlag
 -> -> 1 `i `uc
 ]
-[; ;launcher.h: 110: unsigned char gpsInvalidFlag = 1;
-"111
+[; ;launcher.h: 111: unsigned char gpsInvalidFlag = 1;
+"112
 [v _messageDoneFlag `uc ~T0 @X0 1 e ]
 [i _messageDoneFlag
 -> -> 0 `i `uc
 ]
-[; ;launcher.h: 111: unsigned char messageDoneFlag = 0;
-"112
+[; ;launcher.h: 112: unsigned char messageDoneFlag = 0;
+"113
 [v _strobeFlag `uc ~T0 @X0 1 e ]
 [i _strobeFlag
 -> -> 0 `i `uc
 ]
-[; ;launcher.h: 112: unsigned char strobeFlag = 0;
-"113
+[; ;launcher.h: 113: unsigned char strobeFlag = 0;
+"114
 [v _eeprom_timeoutFlag `uc ~T0 @X0 1 e ]
 [i _eeprom_timeoutFlag
 -> -> 0 `i `uc
 ]
-[; ;launcher.h: 113: unsigned char eeprom_timeoutFlag = 0;
-"114
+[; ;launcher.h: 114: unsigned char eeprom_timeoutFlag = 0;
+"115
 [v _hasValidGPSFlag `uc ~T0 @X0 1 e ]
 [i _hasValidGPSFlag
 -> -> 0 `i `uc
 ]
-[; ;launcher.h: 114: unsigned char hasValidGPSFlag = 0;
-"118
+[; ;launcher.h: 115: unsigned char hasValidGPSFlag = 0;
+"116
+[v _gpsTimeoutState `uc ~T0 @X0 1 e ]
+[i _gpsTimeoutState
+-> -> 0 `i `uc
+]
+[; ;launcher.h: 116: unsigned char gpsTimeoutState = 0;
+"120
 [v _validLatitude `uc ~T0 @X0 -> 3 `i e ]
 [i _validLatitude
 :U ..
@@ -440,14 +451,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 20 `i `uc
 ..
 ]
-[; ;launcher.h: 118: unsigned char validLatitude[3] = {40,25,20};
-"119
+[; ;launcher.h: 120: unsigned char validLatitude[3] = {40,25,20};
+"121
 [v _validNorthSouth `uc ~T0 @X0 1 e ]
 [i _validNorthSouth
 -> -> 78 `ui `uc
 ]
-[; ;launcher.h: 119: unsigned char validNorthSouth = 'N';
-"120
+[; ;launcher.h: 121: unsigned char validNorthSouth = 'N';
+"122
 [v _validLongitude `uc ~T0 @X0 -> 3 `i e ]
 [i _validLongitude
 :U ..
@@ -456,16 +467,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 20 `i `uc
 ..
 ]
-[; ;launcher.h: 120: unsigned char validLongitude[3] = {86,68,20};
-"121
+[; ;launcher.h: 122: unsigned char validLongitude[3] = {86,68,20};
+"123
 [v _validEastWest `uc ~T0 @X0 1 e ]
 [i _validEastWest
 -> -> 69 `ui `uc
 ]
-[; ;launcher.h: 121: unsigned char validEastWest = 'E';
-"122
+[; ;launcher.h: 123: unsigned char validEastWest = 'E';
+"124
 [v _recordEndAdress `l ~T0 @X0 1 e ]
-[; ;launcher.h: 122: long int recordEndAdress;
+[; ;launcher.h: 124: long int recordEndAdress;
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic16lf1783.h: 47: extern volatile unsigned char INDF0 @ 0x000;
@@ -5118,677 +5129,689 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;launcher_functions.c: 97: {
 [e :U _InitTimer0 ]
 [f ]
-[; ;launcher_functions.c: 98: INTCONbits.TMR0IE = 0;
-"98
-[e = . . _INTCONbits 0 5 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 99: OPTION_REGbits.TMR0CS = 0;
-"99
-[e = . . _OPTION_REGbits 0 5 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 100: OPTION_REGbits.PSA = 0;
+[; ;launcher_functions.c: 100: TMR0IE = 0;
 "100
-[e = . . _OPTION_REGbits 0 3 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 101: OPTION_REGbits.PS = 0x3;
+[e = _TMR0IE -> -> 0 `i `b ]
+[; ;launcher_functions.c: 101: TMR0IF = 0;
 "101
-[e = . . _OPTION_REGbits 1 0 -> -> 3 `i `uc ]
-[; ;launcher_functions.c: 102: }
+[e = _TMR0IF -> -> 0 `i `b ]
+[; ;launcher_functions.c: 102: TMR0CS = 0;
 "102
+[e = _TMR0CS -> -> 0 `i `b ]
+[; ;launcher_functions.c: 103: PSA = 0;
+"103
+[e = _PSA -> -> 0 `i `b ]
+[; ;launcher_functions.c: 104: PS0 = 1;
+"104
+[e = _PS0 -> -> 1 `i `b ]
+[; ;launcher_functions.c: 105: PS1 = 1;
+"105
+[e = _PS1 -> -> 1 `i `b ]
+[; ;launcher_functions.c: 106: PS2 = 1;
+"106
+[e = _PS2 -> -> 1 `i `b ]
+[; ;launcher_functions.c: 107: TMR0 = 61;;
+"107
+[e = _TMR0 -> -> 61 `i `uc ]
+[; ;launcher_functions.c: 108: }
+"108
 [e :UE 509 ]
 }
-"104
+"110
 [v _InitTimer1 `(v ~T0 @X0 1 ef ]
-"105
+"111
 {
-[; ;launcher_functions.c: 104: void InitTimer1()
-[; ;launcher_functions.c: 105: {
+[; ;launcher_functions.c: 110: void InitTimer1()
+[; ;launcher_functions.c: 111: {
 [e :U _InitTimer1 ]
 [f ]
-[; ;launcher_functions.c: 106: T1CONbits.TMR1CS = 0;
-"106
-[e = . . _T1CONbits 1 2 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 107: T1CONbits.T1CKPS = 2;
-"107
-[e = . . _T1CONbits 1 1 -> -> 2 `i `uc ]
-[; ;launcher_functions.c: 108: T1CONbits.nT1SYNC = 1;
-"108
-[e = . . _T1CONbits 0 2 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 109: T1GCONbits.TMR1GE = 0;
-"109
-[e = . . _T1GCONbits 0 7 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 110: TMR1H = 0xFF;
-"110
-[e = _TMR1H -> -> 255 `i `uc ]
-[; ;launcher_functions.c: 111: TMR1L = 0x71;
-"111
-[e = _TMR1L -> -> 113 `i `uc ]
-[; ;launcher_functions.c: 112: T1CONbits.TMR1ON = 1;
+[; ;launcher_functions.c: 112: T1CONbits.TMR1CS = 0;
 "112
-[e = . . _T1CONbits 0 0 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 114: }
+[e = . . _T1CONbits 1 2 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 113: T1CONbits.T1CKPS = 2;
+"113
+[e = . . _T1CONbits 1 1 -> -> 2 `i `uc ]
+[; ;launcher_functions.c: 114: T1CONbits.nT1SYNC = 1;
 "114
+[e = . . _T1CONbits 0 2 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 115: T1GCONbits.TMR1GE = 0;
+"115
+[e = . . _T1GCONbits 0 7 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 116: TMR1H = 0xFF;
+"116
+[e = _TMR1H -> -> 255 `i `uc ]
+[; ;launcher_functions.c: 117: TMR1L = 0x71;
+"117
+[e = _TMR1L -> -> 113 `i `uc ]
+[; ;launcher_functions.c: 118: T1CONbits.TMR1ON = 1;
+"118
+[e = . . _T1CONbits 0 0 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 120: }
+"120
 [e :UE 510 ]
 }
-"116
+"122
 [v _InitSPI `(v ~T0 @X0 1 ef ]
-"117
+"123
 {
-[; ;launcher_functions.c: 116: void InitSPI()
-[; ;launcher_functions.c: 117: {
+[; ;launcher_functions.c: 122: void InitSPI()
+[; ;launcher_functions.c: 123: {
 [e :U _InitSPI ]
 [f ]
-[; ;launcher_functions.c: 119: TRISCbits.TRISC2 = 0;
-"119
+[; ;launcher_functions.c: 125: TRISCbits.TRISC2 = 0;
+"125
 [e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 120: TRISCbits.TRISC3 = 0;
-"120
+[; ;launcher_functions.c: 126: TRISCbits.TRISC3 = 0;
+"126
 [e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 121: TRISCbits.TRISC4 = 1;
-"121
-[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 122: TRISCbits.TRISC5 = 0;
-"122
-[e = . . _TRISCbits 0 5 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 124: LATC2 = (1);
-"124
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_functions.c: 127: SSPCON1bits.SSPEN=0x00;
+[; ;launcher_functions.c: 127: TRISCbits.TRISC4 = 1;
 "127
-[e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 128: SSPCON1bits.SSPM=0x01;
+[e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 128: TRISCbits.TRISC5 = 0;
 "128
-[e = . . _SSPCON1bits 1 0 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 129: SSPCON1bits.CKP=0;
-"129
-[e = . . _SSPCON1bits 0 4 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 130: SSPSTATbits.CKE=1;
+[e = . . _TRISCbits 0 5 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 130: LATC2 = (1);
 "130
-[e = . . _SSPSTATbits 0 6 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 131: SSPSTATbits.SMP=0;
-"131
-[e = . . _SSPSTATbits 0 7 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 132: SSPCON1bits.SSPEN=0x01;
-"132
-[e = . . _SSPCON1bits 0 5 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 133: }
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;launcher_functions.c: 133: SSPCON1bits.SSPEN=0x00;
 "133
+[e = . . _SSPCON1bits 0 5 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 134: SSPCON1bits.SSPM=0x01;
+"134
+[e = . . _SSPCON1bits 1 0 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 135: SSPCON1bits.CKP=0;
+"135
+[e = . . _SSPCON1bits 0 4 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 136: SSPSTATbits.CKE=1;
+"136
+[e = . . _SSPSTATbits 0 6 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 137: SSPSTATbits.SMP=0;
+"137
+[e = . . _SSPSTATbits 0 7 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 138: SSPCON1bits.SSPEN=0x01;
+"138
+[e = . . _SSPCON1bits 0 5 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 139: }
+"139
 [e :UE 511 ]
 }
-"135
+"141
 [v _InitWatchdog `(v ~T0 @X0 1 ef ]
-"136
+"142
 {
-[; ;launcher_functions.c: 135: void InitWatchdog()
-[; ;launcher_functions.c: 136: {
+[; ;launcher_functions.c: 141: void InitWatchdog()
+[; ;launcher_functions.c: 142: {
 [e :U _InitWatchdog ]
 [f ]
-[; ;launcher_functions.c: 138: WDTCONbits.WDTPS = 0x0A;
-"138
+[; ;launcher_functions.c: 144: WDTCONbits.WDTPS = 0x0A;
+"144
 [e = . . _WDTCONbits 1 1 -> -> 10 `i `uc ]
-[; ;launcher_functions.c: 139: WDTCONbits.SWDTEN = 0;
-"139
+[; ;launcher_functions.c: 145: WDTCONbits.SWDTEN = 0;
+"145
 [e = . . _WDTCONbits 0 0 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 140: }
-"140
+[; ;launcher_functions.c: 146: }
+"146
 [e :UE 512 ]
 }
-"144
-[v _WriteSPI `(v ~T0 @X0 1 ef1`uc ]
-"145
-{
-[; ;launcher_functions.c: 144: void WriteSPI(unsigned char databyte)
-[; ;launcher_functions.c: 145: {
-[e :U _WriteSPI ]
-"144
-[v _databyte `uc ~T0 @X0 1 r1 ]
-"145
-[f ]
-"146
-[v _temp `ui ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 146: unsigned int temp;
-[; ;launcher_functions.c: 147: temp = SSPBUF;
-"147
-[e = _temp -> _SSPBUF `ui ]
-[; ;launcher_functions.c: 148: PIR1bits.SSP1IF=0;
-"148
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 149: SSPBUF = databyte;
-"149
-[e = _SSPBUF _databyte ]
-[; ;launcher_functions.c: 150: while(!PIR1bits.SSP1IF);
 "150
+[v _WriteSPI `(v ~T0 @X0 1 ef1`uc ]
+"151
+{
+[; ;launcher_functions.c: 150: void WriteSPI(unsigned char databyte)
+[; ;launcher_functions.c: 151: {
+[e :U _WriteSPI ]
+"150
+[v _databyte `uc ~T0 @X0 1 r1 ]
+"151
+[f ]
+"152
+[v _temp `ui ~T0 @X0 1 a ]
+[; ;launcher_functions.c: 152: unsigned int temp;
+[; ;launcher_functions.c: 153: temp = SSPBUF;
+"153
+[e = _temp -> _SSPBUF `ui ]
+[; ;launcher_functions.c: 154: PIR1bits.SSP1IF=0;
+"154
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 155: SSPBUF = databyte;
+"155
+[e = _SSPBUF _databyte ]
+[; ;launcher_functions.c: 156: while(!PIR1bits.SSP1IF);
+"156
 [e $U 514  ]
 [e :U 515 ]
 [e :U 514 ]
 [e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 515  ]
 [e :U 516 ]
-[; ;launcher_functions.c: 151: }
-"151
+[; ;launcher_functions.c: 157: }
+"157
 [e :UE 513 ]
 }
-"153
+"159
 [v _ReadSPI `(uc ~T0 @X0 1 ef ]
-"154
+"160
 {
-[; ;launcher_functions.c: 153: unsigned char ReadSPI(void)
-[; ;launcher_functions.c: 154: {
+[; ;launcher_functions.c: 159: unsigned char ReadSPI(void)
+[; ;launcher_functions.c: 160: {
 [e :U _ReadSPI ]
 [f ]
-"155
+"161
 [v _dataByte `uc ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 155: unsigned char dataByte;
-[; ;launcher_functions.c: 157: SSPBUF = 0x00;
-"157
+[; ;launcher_functions.c: 161: unsigned char dataByte;
+[; ;launcher_functions.c: 163: SSPBUF = 0x00;
+"163
 [e = _SSPBUF -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 158: while(!SSPSTATbits.BF);
-"158
+[; ;launcher_functions.c: 164: while(!SSPSTATbits.BF);
+"164
 [e $U 518  ]
 [e :U 519 ]
 [e :U 518 ]
 [e $ ! != -> . . _SSPSTATbits 0 0 `i -> -> -> 0 `i `Vuc `i 519  ]
 [e :U 520 ]
-[; ;launcher_functions.c: 159: dataByte = SSPBUF;
-"159
+[; ;launcher_functions.c: 165: dataByte = SSPBUF;
+"165
 [e = _dataByte _SSPBUF ]
-[; ;launcher_functions.c: 160: PIR1bits.SSP1IF=0;
-"160
+[; ;launcher_functions.c: 166: PIR1bits.SSP1IF=0;
+"166
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 161: return (dataByte);
-"161
+[; ;launcher_functions.c: 167: return (dataByte);
+"167
 [e ) _dataByte ]
 [e $UE 517  ]
-[; ;launcher_functions.c: 162: }
-"162
+[; ;launcher_functions.c: 168: }
+"168
 [e :UE 517 ]
 }
-"164
+"170
 [v _ReadStatusSPI `(uc ~T0 @X0 1 ef ]
-"165
+"171
 {
-[; ;launcher_functions.c: 164: unsigned char ReadStatusSPI(void)
-[; ;launcher_functions.c: 165: {
+[; ;launcher_functions.c: 170: unsigned char ReadStatusSPI(void)
+[; ;launcher_functions.c: 171: {
 [e :U _ReadStatusSPI ]
 [f ]
-"166
+"172
 [v _dataRead `uc ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 166: unsigned char dataRead;
-[; ;launcher_functions.c: 168: LATC2=(0);
-"168
+[; ;launcher_functions.c: 172: unsigned char dataRead;
+[; ;launcher_functions.c: 174: LATC2=(0);
+"174
 [e = _LATC2 -> -> 0 `i `b ]
-[; ;launcher_functions.c: 169: WriteSPI((0x05));
-"169
+[; ;launcher_functions.c: 175: WriteSPI((0x05));
+"175
 [e ( _WriteSPI (1 -> -> 5 `i `uc ]
-[; ;launcher_functions.c: 170: dataRead = ReadSPI();
-"170
+[; ;launcher_functions.c: 176: dataRead = ReadSPI();
+"176
 [e = _dataRead ( _ReadSPI ..  ]
-[; ;launcher_functions.c: 171: LATC2=(1);
-"171
+[; ;launcher_functions.c: 177: LATC2=(1);
+"177
 [e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_functions.c: 173: return(dataRead);
-"173
+[; ;launcher_functions.c: 179: return(dataRead);
+"179
 [e ) _dataRead ]
 [e $UE 521  ]
-[; ;launcher_functions.c: 174: }
-"174
+[; ;launcher_functions.c: 180: }
+"180
 [e :UE 521 ]
 }
-"176
-[v _WriteOverheadSPI `(v ~T0 @X0 1 ef1`l ]
-"177
-{
-[; ;launcher_functions.c: 176: void WriteOverheadSPI(long int address)
-[; ;launcher_functions.c: 177: {
-[e :U _WriteOverheadSPI ]
-"176
-[v _address `l ~T0 @X0 1 r1 ]
-"177
-[f ]
-"178
-[v _address_bytes `uc ~T0 @X0 -> 3 `i a ]
-"179
-[v _StatusReg `uc ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 178: unsigned char address_bytes[3];
-[; ;launcher_functions.c: 179: unsigned char StatusReg;
-[; ;launcher_functions.c: 181: address_bytes[0]=(unsigned char)(address>>16);
-"181
-[e = *U + &U _address_bytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux -> >> _address -> 16 `i `uc ]
-[; ;launcher_functions.c: 182: address_bytes[1]=(unsigned char)(address>>8);
 "182
-[e = *U + &U _address_bytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux -> >> _address -> 8 `i `uc ]
-[; ;launcher_functions.c: 183: address_bytes[2]=(unsigned char)(address);
+[v _WriteOverheadSPI `(v ~T0 @X0 1 ef1`l ]
 "183
-[e = *U + &U _address_bytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux -> _address `uc ]
-[; ;launcher_functions.c: 185: do
-"185
-[e :U 525 ]
-[; ;launcher_functions.c: 186: {
-"186
 {
-[; ;launcher_functions.c: 187: StatusReg = (ReadStatusSPI() & 0x01);
+[; ;launcher_functions.c: 182: void WriteOverheadSPI(long int address)
+[; ;launcher_functions.c: 183: {
+[e :U _WriteOverheadSPI ]
+"182
+[v _address `l ~T0 @X0 1 r1 ]
+"183
+[f ]
+"184
+[v _address_bytes `uc ~T0 @X0 -> 3 `i a ]
+"185
+[v _StatusReg `uc ~T0 @X0 1 a ]
+[; ;launcher_functions.c: 184: unsigned char address_bytes[3];
+[; ;launcher_functions.c: 185: unsigned char StatusReg;
+[; ;launcher_functions.c: 187: address_bytes[0]=(unsigned char)(address>>16);
 "187
-[e = _StatusReg -> & -> ( _ReadStatusSPI ..  `i -> 1 `i `uc ]
+[e = *U + &U _address_bytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux -> >> _address -> 16 `i `uc ]
+[; ;launcher_functions.c: 188: address_bytes[1]=(unsigned char)(address>>8);
 "188
+[e = *U + &U _address_bytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux -> >> _address -> 8 `i `uc ]
+[; ;launcher_functions.c: 189: address_bytes[2]=(unsigned char)(address);
+"189
+[e = *U + &U _address_bytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux -> _address `uc ]
+[; ;launcher_functions.c: 191: do
+"191
+[e :U 525 ]
+[; ;launcher_functions.c: 192: {
+"192
+{
+[; ;launcher_functions.c: 193: StatusReg = (ReadStatusSPI() & 0x01);
+"193
+[e = _StatusReg -> & -> ( _ReadStatusSPI ..  `i -> 1 `i `uc ]
+"194
 }
-[; ;launcher_functions.c: 188: } while (StatusReg);
+[; ;launcher_functions.c: 194: } while (StatusReg);
 [e $ != -> _StatusReg `i -> -> -> 0 `i `uc `i 525  ]
 [e :U 524 ]
-[; ;launcher_functions.c: 191: LATC2 = (0);
-"191
-[e = _LATC2 -> -> 0 `i `b ]
-[; ;launcher_functions.c: 192: WriteSPI((0x06));
-"192
-[e ( _WriteSPI (1 -> -> 6 `i `uc ]
-[; ;launcher_functions.c: 193: LATC2 = (1);
-"193
-[e = _LATC2 -> -> 1 `i `b ]
-[; ;launcher_functions.c: 195: do
-"195
-[e :U 528 ]
-[; ;launcher_functions.c: 196: {
-"196
-{
-[; ;launcher_functions.c: 197: StatusReg = (ReadStatusSPI() & 0x02);
+[; ;launcher_functions.c: 197: LATC2 = (0);
 "197
-[e = _StatusReg -> & -> ( _ReadStatusSPI ..  `i -> 2 `i `uc ]
+[e = _LATC2 -> -> 0 `i `b ]
+[; ;launcher_functions.c: 198: WriteSPI((0x06));
 "198
+[e ( _WriteSPI (1 -> -> 6 `i `uc ]
+[; ;launcher_functions.c: 199: LATC2 = (1);
+"199
+[e = _LATC2 -> -> 1 `i `b ]
+[; ;launcher_functions.c: 201: do
+"201
+[e :U 528 ]
+[; ;launcher_functions.c: 202: {
+"202
+{
+[; ;launcher_functions.c: 203: StatusReg = (ReadStatusSPI() & 0x02);
+"203
+[e = _StatusReg -> & -> ( _ReadStatusSPI ..  `i -> 2 `i `uc ]
+"204
 }
-[; ;launcher_functions.c: 198: } while (!StatusReg);
+[; ;launcher_functions.c: 204: } while (!StatusReg);
 [e $ ! != -> _StatusReg `i -> -> -> 0 `i `uc `i 528  ]
 [e :U 527 ]
-[; ;launcher_functions.c: 203: LATC2=(0);
-"203
-[e = _LATC2 -> -> 0 `i `b ]
-[; ;launcher_functions.c: 204: WriteSPI((0x02));
-"204
-[e ( _WriteSPI (1 -> -> 2 `i `uc ]
-[; ;launcher_functions.c: 205: WriteSPI(address_bytes[0]);
-"205
-[e ( _WriteSPI (1 *U + &U _address_bytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux ]
-[; ;launcher_functions.c: 206: WriteSPI(address_bytes[1]);
-"206
-[e ( _WriteSPI (1 *U + &U _address_bytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux ]
-[; ;launcher_functions.c: 207: WriteSPI(address_bytes[2]);
-"207
-[e ( _WriteSPI (1 *U + &U _address_bytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux ]
-[; ;launcher_functions.c: 209: return;
+[; ;launcher_functions.c: 209: LATC2=(0);
 "209
-[e $UE 522  ]
-[; ;launcher_functions.c: 210: }
+[e = _LATC2 -> -> 0 `i `b ]
+[; ;launcher_functions.c: 210: WriteSPI((0x02));
 "210
+[e ( _WriteSPI (1 -> -> 2 `i `uc ]
+[; ;launcher_functions.c: 211: WriteSPI(address_bytes[0]);
+"211
+[e ( _WriteSPI (1 *U + &U _address_bytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux ]
+[; ;launcher_functions.c: 212: WriteSPI(address_bytes[1]);
+"212
+[e ( _WriteSPI (1 *U + &U _address_bytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux ]
+[; ;launcher_functions.c: 213: WriteSPI(address_bytes[2]);
+"213
+[e ( _WriteSPI (1 *U + &U _address_bytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _address_bytes `ui `ux ]
+[; ;launcher_functions.c: 215: return;
+"215
+[e $UE 522  ]
+[; ;launcher_functions.c: 216: }
+"216
 [e :UE 522 ]
 }
-"214
+"220
 [v _WriteBuffer `(v ~T0 @X0 1 ef1`uc ]
-"215
+"221
 {
-[; ;launcher_functions.c: 214: void WriteBuffer(unsigned char data)
-[; ;launcher_functions.c: 215: {
+[; ;launcher_functions.c: 220: void WriteBuffer(unsigned char data)
+[; ;launcher_functions.c: 221: {
 [e :U _WriteBuffer ]
-"214
+"220
 [v _data `uc ~T0 @X0 1 r1 ]
-"215
+"221
 [f ]
-[; ;launcher_functions.c: 216: buffer[end] = data;
-"216
+[; ;launcher_functions.c: 222: buffer[end] = data;
+"222
 [e = *U + &U _buffer * -> -> _end `ui `ux -> -> # *U &U _buffer `ui `ux _data ]
-[; ;launcher_functions.c: 218: if (end == 51)
-"218
+[; ;launcher_functions.c: 224: if (end == 51)
+"224
 [e $ ! == _end -> 51 `i 530  ]
-[; ;launcher_functions.c: 219: end = 0;
-"219
+[; ;launcher_functions.c: 225: end = 0;
+"225
 [e = _end -> 0 `i ]
 [e $U 531  ]
-"220
+"226
 [e :U 530 ]
-[; ;launcher_functions.c: 220: else
-[; ;launcher_functions.c: 221: end++;
-"221
+[; ;launcher_functions.c: 226: else
+[; ;launcher_functions.c: 227: end++;
+"227
 [e ++ _end -> 1 `i ]
 [e :U 531 ]
-[; ;launcher_functions.c: 222: }
-"222
+[; ;launcher_functions.c: 228: }
+"228
 [e :UE 529 ]
 }
-"224
+"230
 [v _ReadBuffer `(uc ~T0 @X0 1 ef ]
-"225
+"231
 {
-[; ;launcher_functions.c: 224: unsigned char ReadBuffer()
-[; ;launcher_functions.c: 225: {
+[; ;launcher_functions.c: 230: unsigned char ReadBuffer()
+[; ;launcher_functions.c: 231: {
 [e :U _ReadBuffer ]
 [f ]
-"226
+"232
 [v _read_data `uc ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 226: unsigned char read_data;
-[; ;launcher_functions.c: 228: read_data = buffer[start];
-"228
+[; ;launcher_functions.c: 232: unsigned char read_data;
+[; ;launcher_functions.c: 234: read_data = buffer[start];
+"234
 [e = _read_data *U + &U _buffer * -> -> _start `ui `ux -> -> # *U &U _buffer `ui `ux ]
-[; ;launcher_functions.c: 229: if (start == 51)
-"229
+[; ;launcher_functions.c: 235: if (start == 51)
+"235
 [e $ ! == _start -> 51 `i 533  ]
-[; ;launcher_functions.c: 230: start = 0;
-"230
+[; ;launcher_functions.c: 236: start = 0;
+"236
 [e = _start -> 0 `i ]
 [e $U 534  ]
-"231
+"237
 [e :U 533 ]
-[; ;launcher_functions.c: 231: else
-[; ;launcher_functions.c: 232: start++;
-"232
+[; ;launcher_functions.c: 237: else
+[; ;launcher_functions.c: 238: start++;
+"238
 [e ++ _start -> 1 `i ]
 [e :U 534 ]
-[; ;launcher_functions.c: 233: return read_data;
-"233
+[; ;launcher_functions.c: 239: return read_data;
+"239
 [e ) _read_data ]
 [e $UE 532  ]
-[; ;launcher_functions.c: 234: }
-"234
+[; ;launcher_functions.c: 240: }
+"240
 [e :UE 532 ]
 }
-"237
+"243
 [v _ReadOverheadSPI `(v ~T0 @X0 1 ef1`l ]
-"238
-{
-[; ;launcher_functions.c: 237: void ReadOverheadSPI(long int address)
-[; ;launcher_functions.c: 238: {
-[e :U _ReadOverheadSPI ]
-"237
-[v _address `l ~T0 @X0 1 r1 ]
-"238
-[f ]
-"239
-[v _addressBytes `uc ~T0 @X0 -> 3 `i a ]
-[; ;launcher_functions.c: 239: unsigned char addressBytes[3];
-[; ;launcher_functions.c: 240: addressBytes[0]=(unsigned char)(address>>16);
-"240
-[e = *U + &U _addressBytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux -> >> _address -> 16 `i `uc ]
-[; ;launcher_functions.c: 241: addressBytes[1]=(unsigned char)(address>>8);
-"241
-[e = *U + &U _addressBytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux -> >> _address -> 8 `i `uc ]
-[; ;launcher_functions.c: 242: addressBytes[2]=(unsigned char)(address);
-"242
-[e = *U + &U _addressBytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux -> _address `uc ]
 "244
-[v _StatusReg `i ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 244: int StatusReg;
-[; ;launcher_functions.c: 246: do
-"246
-[e :U 538 ]
-[; ;launcher_functions.c: 247: {
-"247
 {
-[; ;launcher_functions.c: 248: StatusReg = (ReadStatusSPI() & 0x01);
+[; ;launcher_functions.c: 243: void ReadOverheadSPI(long int address)
+[; ;launcher_functions.c: 244: {
+[e :U _ReadOverheadSPI ]
+"243
+[v _address `l ~T0 @X0 1 r1 ]
+"244
+[f ]
+"245
+[v _addressBytes `uc ~T0 @X0 -> 3 `i a ]
+[; ;launcher_functions.c: 245: unsigned char addressBytes[3];
+[; ;launcher_functions.c: 246: addressBytes[0]=(unsigned char)(address>>16);
+"246
+[e = *U + &U _addressBytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux -> >> _address -> 16 `i `uc ]
+[; ;launcher_functions.c: 247: addressBytes[1]=(unsigned char)(address>>8);
+"247
+[e = *U + &U _addressBytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux -> >> _address -> 8 `i `uc ]
+[; ;launcher_functions.c: 248: addressBytes[2]=(unsigned char)(address);
 "248
+[e = *U + &U _addressBytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux -> _address `uc ]
+"250
+[v _StatusReg `i ~T0 @X0 1 a ]
+[; ;launcher_functions.c: 250: int StatusReg;
+[; ;launcher_functions.c: 252: do
+"252
+[e :U 538 ]
+[; ;launcher_functions.c: 253: {
+"253
+{
+[; ;launcher_functions.c: 254: StatusReg = (ReadStatusSPI() & 0x01);
+"254
 [e = _StatusReg & -> ( _ReadStatusSPI ..  `i -> 1 `i ]
-"249
+"255
 }
-[; ;launcher_functions.c: 249: } while (StatusReg);
+[; ;launcher_functions.c: 255: } while (StatusReg);
 [e $ != _StatusReg -> 0 `i 538  ]
 [e :U 537 ]
-[; ;launcher_functions.c: 253: LATC2 = (0);
-"253
-[e = _LATC2 -> -> 0 `i `b ]
-[; ;launcher_functions.c: 254: WriteSPI((0x03));
-"254
-[e ( _WriteSPI (1 -> -> 3 `i `uc ]
-[; ;launcher_functions.c: 255: WriteSPI(addressBytes[0]);
-"255
-[e ( _WriteSPI (1 *U + &U _addressBytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux ]
-[; ;launcher_functions.c: 256: WriteSPI(addressBytes[1]);
-"256
-[e ( _WriteSPI (1 *U + &U _addressBytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux ]
-[; ;launcher_functions.c: 257: WriteSPI(addressBytes[2]);
-"257
-[e ( _WriteSPI (1 *U + &U _addressBytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux ]
-[; ;launcher_functions.c: 259: return;
+[; ;launcher_functions.c: 259: LATC2 = (0);
 "259
-[e $UE 535  ]
-[; ;launcher_functions.c: 260: }
+[e = _LATC2 -> -> 0 `i `b ]
+[; ;launcher_functions.c: 260: WriteSPI((0x03));
 "260
+[e ( _WriteSPI (1 -> -> 3 `i `uc ]
+[; ;launcher_functions.c: 261: WriteSPI(addressBytes[0]);
+"261
+[e ( _WriteSPI (1 *U + &U _addressBytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux ]
+[; ;launcher_functions.c: 262: WriteSPI(addressBytes[1]);
+"262
+[e ( _WriteSPI (1 *U + &U _addressBytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux ]
+[; ;launcher_functions.c: 263: WriteSPI(addressBytes[2]);
+"263
+[e ( _WriteSPI (1 *U + &U _addressBytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _addressBytes `ui `ux ]
+[; ;launcher_functions.c: 265: return;
+"265
+[e $UE 535  ]
+[; ;launcher_functions.c: 266: }
+"266
 [e :UE 535 ]
 }
-"264
+"270
 [v _InitUART `(v ~T0 @X0 1 ef ]
-"265
+"271
 {
-[; ;launcher_functions.c: 264: void InitUART()
-[; ;launcher_functions.c: 265: {
+[; ;launcher_functions.c: 270: void InitUART()
+[; ;launcher_functions.c: 271: {
 [e :U _InitUART ]
 [f ]
-[; ;launcher_functions.c: 267: TRISCbits.TRISC6 = 0;
-"267
-[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 268: TRISCbits.TRISC7 = 1;
-"268
-[e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 269: TXSTAbits.BRGH = 0;
-"269
-[e = . . _TXSTAbits 0 2 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 271: SPBRGH = 0;
-"271
-[e = _SPBRGH -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 272: SPBRGL = 51;
-"272
-[e = _SPBRGL -> -> 51 `i `uc ]
-[; ;launcher_functions.c: 273: TXSTAbits.TX9 = 0;
+[; ;launcher_functions.c: 273: TRISCbits.TRISC6 = 0;
 "273
-[e = . . _TXSTAbits 0 6 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 274: TXSTAbits.SYNC = 0;
+[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 274: TRISCbits.TRISC7 = 1;
 "274
-[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 275: TXSTAbits.TXEN = 1;
+[e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 275: TXSTAbits.BRGH = 0;
 "275
-[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 277: RCSTAbits.SPEN = 1;
+[e = . . _TXSTAbits 0 2 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 277: SPBRGH = 0;
 "277
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 278: RCSTAbits.RX9 = 0;
+[e = _SPBRGH -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 278: SPBRGL = 51;
 "278
-[e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 279: RCSTAbits.CREN = 1;
+[e = _SPBRGL -> -> 51 `i `uc ]
+[; ;launcher_functions.c: 279: TXSTAbits.TX9 = 0;
 "279
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 280: }
+[e = . . _TXSTAbits 0 6 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 280: TXSTAbits.SYNC = 0;
 "280
+[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 281: TXSTAbits.TXEN = 1;
+"281
+[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 283: RCSTAbits.SPEN = 1;
+"283
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 284: RCSTAbits.RX9 = 0;
+"284
+[e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 285: RCSTAbits.CREN = 1;
+"285
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 286: }
+"286
 [e :UE 539 ]
 }
-"282
+"288
 [v _compute_checksum `(uc ~T0 @X0 1 ef2`*uc`i ]
-"283
+"289
 {
-[; ;launcher_functions.c: 282: unsigned char compute_checksum(unsigned char * data, int size)
-[; ;launcher_functions.c: 283: {
+[; ;launcher_functions.c: 288: unsigned char compute_checksum(unsigned char * data, int size)
+[; ;launcher_functions.c: 289: {
 [e :U _compute_checksum ]
-"282
+"288
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _size `i ~T0 @X0 1 r2 ]
-"283
+"289
 [f ]
-"284
+"290
 [v _checksum `uc ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 284: unsigned char checksum = 0;
+[; ;launcher_functions.c: 290: unsigned char checksum = 0;
 [e = _checksum -> -> 0 `i `uc ]
-"285
+"291
 [v _x `i ~T0 @X0 1 a ]
-[; ;launcher_functions.c: 285: int x;
-[; ;launcher_functions.c: 286: for(x=0; x<size; x++)
-"286
+[; ;launcher_functions.c: 291: int x;
+[; ;launcher_functions.c: 292: for(x=0; x<size; x++)
+"292
 {
 [e = _x -> 0 `i ]
 [e $U 544  ]
-"287
+"293
 [e :U 541 ]
-[; ;launcher_functions.c: 287: {
+[; ;launcher_functions.c: 293: {
 {
-[; ;launcher_functions.c: 288: if ((data[x] != '$') && (data[x] != '*') && (data[x] != '!'))
-"288
+[; ;launcher_functions.c: 294: if ((data[x] != '$') && (data[x] != '*') && (data[x] != '!'))
+"294
 [e $ ! && && != -> *U + _data * -> _x `x -> -> # *U _data `i `x `ui -> 36 `ui != -> *U + _data * -> _x `x -> -> # *U _data `i `x `ui -> 42 `ui != -> *U + _data * -> _x `x -> -> # *U _data `i `x `ui -> 33 `ui 545  ]
-[; ;launcher_functions.c: 289: checksum ^= data[x];
-"289
+[; ;launcher_functions.c: 295: checksum ^= data[x];
+"295
 [e =^ _checksum *U + _data * -> _x `x -> -> # *U _data `i `x ]
 [e :U 545 ]
-"290
+"296
 }
-"286
+"292
 [e ++ _x -> 1 `i ]
 [e :U 544 ]
 [e $ < _x _size 541  ]
 [e :U 542 ]
-"290
+"296
 }
-[; ;launcher_functions.c: 290: }
-[; ;launcher_functions.c: 291: return checksum;
-"291
+[; ;launcher_functions.c: 296: }
+[; ;launcher_functions.c: 297: return checksum;
+"297
 [e ) _checksum ]
 [e $UE 540  ]
-[; ;launcher_functions.c: 292: }
-"292
+[; ;launcher_functions.c: 298: }
+"298
 [e :UE 540 ]
 }
-"294
+"300
 [v _uart_xmit `(v ~T0 @X0 1 ef1`uc ]
-"295
+"301
 {
-[; ;launcher_functions.c: 294: void uart_xmit(unsigned char mydata_byte)
-[; ;launcher_functions.c: 295: {
+[; ;launcher_functions.c: 300: void uart_xmit(unsigned char mydata_byte)
+[; ;launcher_functions.c: 301: {
 [e :U _uart_xmit ]
-"294
+"300
 [v _mydata_byte `uc ~T0 @X0 1 r1 ]
-"295
+"301
 [f ]
-[; ;launcher_functions.c: 297: while(!TXSTAbits.TRMT);
-"297
+[; ;launcher_functions.c: 303: while(!TXSTAbits.TRMT);
+"303
 [e $U 547  ]
 [e :U 548 ]
 [e :U 547 ]
 [e $ ! != -> . . _TXSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 548  ]
 [e :U 549 ]
-[; ;launcher_functions.c: 298: TXREG = mydata_byte;
-"298
+[; ;launcher_functions.c: 304: TXREG = mydata_byte;
+"304
 [e = _TXREG _mydata_byte ]
-[; ;launcher_functions.c: 299: }
-"299
+[; ;launcher_functions.c: 305: }
+"305
 [e :UE 546 ]
 }
-"302
+"308
 [v _uart_write_message `(v ~T0 @X0 1 ef2`*uc`i ]
-"303
+"309
 {
-[; ;launcher_functions.c: 302: void uart_write_message(unsigned char * data, int size)
-[; ;launcher_functions.c: 303: {
+[; ;launcher_functions.c: 308: void uart_write_message(unsigned char * data, int size)
+[; ;launcher_functions.c: 309: {
 [e :U _uart_write_message ]
-"302
+"308
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _size `i ~T0 @X0 1 r2 ]
-"303
-[f ]
-"304
-[v _x `i ~T0 @X0 1 a ]
-"305
-[v _checksum `uc ~T0 @X0 1 a ]
-"306
-[v _ascii_checksum `uc ~T0 @X0 -> 2 `i a ]
-[; ;launcher_functions.c: 304: int x;
-[; ;launcher_functions.c: 305: unsigned char checksum;
-[; ;launcher_functions.c: 306: unsigned char ascii_checksum[2];
-[; ;launcher_functions.c: 308: checksum = compute_checksum(data, size);
-"308
-[e = _checksum ( _compute_checksum (2 , _data _size ]
-[; ;launcher_functions.c: 309: ascii_checksum[0] = checksum >> 4;
 "309
-[e = *U + &U _ascii_checksum * -> -> -> 0 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux -> >> -> _checksum `i -> 4 `i `uc ]
-[; ;launcher_functions.c: 310: ascii_checksum[1] = checksum & 0x0F;
+[f ]
 "310
-[e = *U + &U _ascii_checksum * -> -> -> 1 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux -> & -> _checksum `i -> 15 `i `uc ]
-[; ;launcher_functions.c: 312: ascii_checksum[0] += (ascii_checksum[0] < 10 ? 48 : 55);
+[v _x `i ~T0 @X0 1 a ]
+"311
+[v _checksum `uc ~T0 @X0 1 a ]
 "312
-[e =+ *U + &U _ascii_checksum * -> -> -> 0 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux -> ? < -> *U + &U _ascii_checksum * -> -> -> 0 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux `i -> 10 `i : -> 48 `i -> 55 `i `uc ]
-[; ;launcher_functions.c: 313: ascii_checksum[1] += (ascii_checksum[1] < 10 ? 48 : 55);
-"313
-[e =+ *U + &U _ascii_checksum * -> -> -> 1 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux -> ? < -> *U + &U _ascii_checksum * -> -> -> 1 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux `i -> 10 `i : -> 48 `i -> 55 `i `uc ]
-[; ;launcher_functions.c: 315: for(x=0; x<size-1; x++)
+[v _ascii_checksum `uc ~T0 @X0 -> 2 `i a ]
+[; ;launcher_functions.c: 310: int x;
+[; ;launcher_functions.c: 311: unsigned char checksum;
+[; ;launcher_functions.c: 312: unsigned char ascii_checksum[2];
+[; ;launcher_functions.c: 314: checksum = compute_checksum(data, size);
+"314
+[e = _checksum ( _compute_checksum (2 , _data _size ]
+[; ;launcher_functions.c: 315: ascii_checksum[0] = checksum >> 4;
 "315
+[e = *U + &U _ascii_checksum * -> -> -> 0 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux -> >> -> _checksum `i -> 4 `i `uc ]
+[; ;launcher_functions.c: 316: ascii_checksum[1] = checksum & 0x0F;
+"316
+[e = *U + &U _ascii_checksum * -> -> -> 1 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux -> & -> _checksum `i -> 15 `i `uc ]
+[; ;launcher_functions.c: 318: ascii_checksum[0] += (ascii_checksum[0] < 10 ? 48 : 55);
+"318
+[e =+ *U + &U _ascii_checksum * -> -> -> 0 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux -> ? < -> *U + &U _ascii_checksum * -> -> -> 0 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux `i -> 10 `i : -> 48 `i -> 55 `i `uc ]
+[; ;launcher_functions.c: 319: ascii_checksum[1] += (ascii_checksum[1] < 10 ? 48 : 55);
+"319
+[e =+ *U + &U _ascii_checksum * -> -> -> 1 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux -> ? < -> *U + &U _ascii_checksum * -> -> -> 1 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux `i -> 10 `i : -> 48 `i -> 55 `i `uc ]
+[; ;launcher_functions.c: 321: for(x=0; x<size-1; x++)
+"321
 {
 [e = _x -> 0 `i ]
 [e $U 554  ]
-"316
+"322
 [e :U 551 ]
-[; ;launcher_functions.c: 316: {
+[; ;launcher_functions.c: 322: {
 {
-[; ;launcher_functions.c: 317: uart_xmit(data[x]);
-"317
+[; ;launcher_functions.c: 323: uart_xmit(data[x]);
+"323
 [e ( _uart_xmit (1 *U + _data * -> _x `x -> -> # *U _data `i `x ]
-"318
+"324
 }
-"315
+"321
 [e ++ _x -> 1 `i ]
 [e :U 554 ]
 [e $ < _x - _size -> 1 `i 551  ]
 [e :U 552 ]
-"318
-}
-[; ;launcher_functions.c: 318: }
-[; ;launcher_functions.c: 319: uart_xmit(ascii_checksum[0]);
-"319
-[e ( _uart_xmit (1 *U + &U _ascii_checksum * -> -> -> 0 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux ]
-[; ;launcher_functions.c: 320: uart_xmit(ascii_checksum[1]);
-"320
-[e ( _uart_xmit (1 *U + &U _ascii_checksum * -> -> -> 1 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux ]
-[; ;launcher_functions.c: 322: uart_xmit(0x0D);
-"322
-[e ( _uart_xmit (1 -> -> 13 `i `uc ]
-[; ;launcher_functions.c: 323: uart_xmit(0x0A);
-"323
-[e ( _uart_xmit (1 -> -> 10 `i `uc ]
-[; ;launcher_functions.c: 324: while(!TXSTAbits.TRMT);
 "324
+}
+[; ;launcher_functions.c: 324: }
+[; ;launcher_functions.c: 325: uart_xmit(ascii_checksum[0]);
+"325
+[e ( _uart_xmit (1 *U + &U _ascii_checksum * -> -> -> 0 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux ]
+[; ;launcher_functions.c: 326: uart_xmit(ascii_checksum[1]);
+"326
+[e ( _uart_xmit (1 *U + &U _ascii_checksum * -> -> -> 1 `i `ui `ux -> -> # *U &U _ascii_checksum `ui `ux ]
+[; ;launcher_functions.c: 328: uart_xmit(0x0D);
+"328
+[e ( _uart_xmit (1 -> -> 13 `i `uc ]
+[; ;launcher_functions.c: 329: uart_xmit(0x0A);
+"329
+[e ( _uart_xmit (1 -> -> 10 `i `uc ]
+[; ;launcher_functions.c: 330: while(!TXSTAbits.TRMT);
+"330
 [e $U 555  ]
 [e :U 556 ]
 [e :U 555 ]
 [e $ ! != -> . . _TXSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 556  ]
 [e :U 557 ]
-[; ;launcher_functions.c: 325: }
-"325
+[; ;launcher_functions.c: 331: }
+"331
 [e :UE 550 ]
 }
-"329
+"335
 [v _ToggleSleepGPS `(v ~T0 @X0 1 ef ]
-"330
+"336
 {
-[; ;launcher_functions.c: 329: void ToggleSleepGPS()
-[; ;launcher_functions.c: 330: {
+[; ;launcher_functions.c: 335: void ToggleSleepGPS()
+[; ;launcher_functions.c: 336: {
 [e :U _ToggleSleepGPS ]
 [f ]
-[; ;launcher_functions.c: 331: PORTAbits.RA6 = 0;
-"331
-[e = . . _PORTAbits 0 6 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 332: _delay((unsigned long)((1000)*(16000000/4000.0)));
-"332
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_functions.c: 333: PORTAbits.RA6 = 1;
-"333
-[e = . . _PORTAbits 0 6 -> -> 1 `i `uc ]
-[; ;launcher_functions.c: 334: _delay((unsigned long)((100)*(16000000/4000.0)));
-"334
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_functions.c: 335: PORTAbits.RA6 = 0;
-"335
-[e = . . _PORTAbits 0 6 -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 336: _delay((unsigned long)((1000)*(16000000/4000.0)));
-"336
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_functions.c: 337: }
+[; ;launcher_functions.c: 337: PORTAbits.RA6 = 0;
 "337
+[e = . . _PORTAbits 0 6 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 338: _delay((unsigned long)((1000)*(16000000/4000.0)));
+"338
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;launcher_functions.c: 339: PORTAbits.RA6 = 1;
+"339
+[e = . . _PORTAbits 0 6 -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 340: _delay((unsigned long)((100)*(16000000/4000.0)));
+"340
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;launcher_functions.c: 341: PORTAbits.RA6 = 0;
+"341
+[e = . . _PORTAbits 0 6 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 342: _delay((unsigned long)((1000)*(16000000/4000.0)));
+"342
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;launcher_functions.c: 343: }
+"343
 [e :UE 558 ]
 }
-"339
+"345
 [v _DisableGPS `(v ~T0 @X0 1 ef ]
-"340
+"346
 {
-[; ;launcher_functions.c: 339: void DisableGPS()
-[; ;launcher_functions.c: 340: {
+[; ;launcher_functions.c: 345: void DisableGPS()
+[; ;launcher_functions.c: 346: {
 [e :U _DisableGPS ]
 [f ]
-[v F4921 `uc ~T0 @X0 -> 13 `i s ]
-[i F4921
+[v F4922 `uc ~T0 @X0 -> 13 `i s ]
+[i F4922
 :U ..
 -> 36 `c
 -> 80 `c
@@ -5805,29 +5828,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-"342
+"348
 [v _init_117 `uc ~T0 @X0 -> 13 `i a ]
-[; ;launcher_functions.c: 342: unsigned char init_117[13] = "$PSRF117,16*";
-[e = _init_117 F4921 ]
-[; ;launcher_functions.c: 343: uart_write_message(init_117, 13);
-"343
+[; ;launcher_functions.c: 348: unsigned char init_117[13] = "$PSRF117,16*";
+[e = _init_117 F4922 ]
+[; ;launcher_functions.c: 349: uart_write_message(init_117, 13);
+"349
 [e ( _uart_write_message (2 , &U _init_117 -> 13 `i ]
-[; ;launcher_functions.c: 344: }
-"344
+[; ;launcher_functions.c: 350: }
+"350
 [e :UE 559 ]
 }
-"347
+"353
 [v _SetupGPS `(v ~T0 @X0 1 ef ]
-"348
+"354
 {
-[; ;launcher_functions.c: 347: void SetupGPS()
-[; ;launcher_functions.c: 348: {
+[; ;launcher_functions.c: 353: void SetupGPS()
+[; ;launcher_functions.c: 354: {
 [e :U _SetupGPS ]
 [f ]
-"349
+"355
 [v _x `i ~T0 @X0 1 a ]
-[v F4924 `uc ~T0 @X0 -> 6 `i s ]
-[i F4924
+[v F4925 `uc ~T0 @X0 -> 6 `i s ]
+[i F4925
 :U ..
 -> 36 `c
 -> 80 `c
@@ -5837,13 +5860,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-"350
+"356
 [v _startSequence `uc ~T0 @X0 -> 6 `i a ]
-[; ;launcher_functions.c: 349: int x;
-[; ;launcher_functions.c: 350: unsigned char startSequence[6] = "$PSRF";
-[e = _startSequence F4924 ]
-[v F4926 `uc ~T0 @X0 -> 4 `i s ]
-[i F4926
+[; ;launcher_functions.c: 355: int x;
+[; ;launcher_functions.c: 356: unsigned char startSequence[6] = "$PSRF";
+[e = _startSequence F4925 ]
+[v F4927 `uc ~T0 @X0 -> 4 `i s ]
+[i F4927
 :U ..
 -> 49 `c
 -> 48 `c
@@ -5851,58 +5874,62 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-"351
+"357
 [v _MID `uc ~T0 @X0 -> 4 `i a ]
-[; ;launcher_functions.c: 351: unsigned char MID[4] = "103";
-[e = _MID F4926 ]
-"352
+[; ;launcher_functions.c: 357: unsigned char MID[4] = "103";
+[e = _MID F4927 ]
+"358
 [v _message `uc ~T0 @X0 -> 50 `i a ]
-[; ;launcher_functions.c: 352: unsigned char message[50];
-[; ;launcher_functions.c: 355: for(x = 0; x < 6; x++)
-"355
+[; ;launcher_functions.c: 358: unsigned char message[50];
+[; ;launcher_functions.c: 361: for(x = 0; x < 6; x++)
+"361
 {
 [e = _x -> 0 `i ]
 [e $ < _x -> 6 `i 561  ]
 [e $U 562  ]
-"356
+"362
 [e :U 561 ]
-[; ;launcher_functions.c: 356: {
+[; ;launcher_functions.c: 362: {
 {
-[; ;launcher_functions.c: 357: _delay((unsigned long)((1000)*(16000000/4000.0)));
-"357
+[; ;launcher_functions.c: 363: _delay((unsigned long)((1000)*(16000000/4000.0)));
+"363
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_functions.c: 358: sprintf(message, "%s%s,0%d,00,00,00*", startSequence, MID, x);
-"358
+[; ;launcher_functions.c: 364: sprintf(message, "%s%s,0%d,00,00,00*", startSequence, MID, x);
+"364
 [e ( _sprintf (1 , , , (. , &U _message :s 1C -> &U _startSequence `*Cuc -> &U _MID `*Cuc _x ]
-[; ;launcher_functions.c: 359: uart_write_message(message, 22);
-"359
+[; ;launcher_functions.c: 365: uart_write_message(message, 22);
+"365
 [e ( _uart_write_message (2 , &U _message -> 22 `i ]
-"360
+"366
 }
-"355
+"361
 [e ++ _x -> 1 `i ]
 [e $ < _x -> 6 `i 561  ]
 [e :U 562 ]
-"360
+"366
 }
-[; ;launcher_functions.c: 360: }
-[; ;launcher_functions.c: 362: _delay((unsigned long)((1000)*(16000000/4000.0)));
-"362
+[; ;launcher_functions.c: 366: }
+[; ;launcher_functions.c: 368: _delay((unsigned long)((1000)*(16000000/4000.0)));
+"368
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;launcher_functions.c: 371: }
-"371
+[; ;launcher_functions.c: 377: }
+"377
 [e :UE 560 ]
 }
-"374
+"380
 [v _UpdateGPS `(v ~T0 @X0 1 ef ]
-"375
+"381
 {
-[; ;launcher_functions.c: 374: void UpdateGPS()
-[; ;launcher_functions.c: 375: {
+[; ;launcher_functions.c: 380: void UpdateGPS()
+[; ;launcher_functions.c: 381: {
 [e :U _UpdateGPS ]
 [f ]
-[v F4931 `uc ~T0 @X0 -> 22 `i s ]
-[i F4931
+"382
+[v _timeoutCounter `ui ~T0 @X0 1 a ]
+[; ;launcher_functions.c: 382: unsigned int timeoutCounter = 0;
+[e = _timeoutCounter -> -> 0 `i `ui ]
+[v F4933 `uc ~T0 @X0 -> 22 `i s ]
+[i F4933
 :U ..
 -> 36 `c
 -> 80 `c
@@ -5928,42 +5955,86 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-"377
+"383
 [v _GPSupdateMessage `uc ~T0 @X0 -> 22 `i a ]
-[; ;launcher_functions.c: 377: unsigned char GPSupdateMessage[22] = "$PSRF103,01,00,01,00*";
-[e = _GPSupdateMessage F4931 ]
-[; ;launcher_functions.c: 380: RCIE = 1;
-"380
+[; ;launcher_functions.c: 383: unsigned char GPSupdateMessage[22] = "$PSRF103,01,00,01,00*";
+[e = _GPSupdateMessage F4933 ]
+[; ;launcher_functions.c: 386: RCIE = 1;
+"386
 [e = _RCIE -> -> 1 `i `b ]
-[; ;launcher_functions.c: 381: PEIE = 1;
-"381
-[e = _PEIE -> -> 1 `i `b ]
-[; ;launcher_functions.c: 382: GIE = 1;
-"382
-[e = _GIE -> -> 1 `i `b ]
-[; ;launcher_functions.c: 387: gpsIndex = 0;
+[; ;launcher_functions.c: 387: PEIE = 1;
 "387
-[e = _gpsIndex -> -> 0 `i `uc ]
-[; ;launcher_functions.c: 388: uart_write_message(GPSupdateMessage, 22);
+[e = _PEIE -> -> 1 `i `b ]
+[; ;launcher_functions.c: 388: GIE = 1;
 "388
+[e = _GIE -> -> 1 `i `b ]
+[; ;launcher_functions.c: 393: gpsIndex = 0;
+"393
+[e = _gpsIndex -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 394: uart_write_message(GPSupdateMessage, 22);
+"394
 [e ( _uart_write_message (2 , &U _GPSupdateMessage -> 22 `i ]
-[; ;launcher_functions.c: 389: PORTBbits.PORTB = LATBbits.LATB | 0x20;
-"389
+[; ;launcher_functions.c: 395: PORTBbits.PORTB = LATBbits.LATB | 0x20;
+"395
 [e = . . _PORTBbits 1 0 -> | -> . . _LATBbits 1 0 `i -> 32 `i `uc ]
-[; ;launcher_functions.c: 390: PORTBbits.PORTB = LATBbits.LATB & 0xEF;
-"390
+[; ;launcher_functions.c: 396: PORTBbits.PORTB = LATBbits.LATB & 0xEF;
+"396
 [e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 239 `i `uc ]
-[; ;launcher_functions.c: 391: do
-"391
-[e :U 567 ]
-[; ;launcher_functions.c: 392: {
-"392
+[; ;launcher_functions.c: 397: TMR0IF = 0;
+"397
+[e = _TMR0IF -> -> 0 `i `b ]
+[; ;launcher_functions.c: 398: TMR0 = 0x00;;
+"398
+[e = _TMR0 -> -> 0 `i `uc ]
+[; ;launcher_functions.c: 399: while(!messageDoneFlag && (timeoutCounter <= 61))
+"399
+[e $U 565  ]
+[e :U 566 ]
+[; ;launcher_functions.c: 400: {
+"400
 {
+[; ;launcher_functions.c: 401: if(INTCONbits.TMR0IF)
+"401
+[e $ ! != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 568  ]
+[; ;launcher_functions.c: 402: {
+"402
+{
+[; ;launcher_functions.c: 403: timeoutCounter++;
+"403
+[e ++ _timeoutCounter -> -> 1 `i `ui ]
+[; ;launcher_functions.c: 404: TMR0IF = 0;
+"404
+[e = _TMR0IF -> -> 0 `i `b ]
+[; ;launcher_functions.c: 405: TMR0 = 0x00;;
+"405
+[e = _TMR0 -> -> 0 `i `uc ]
+"406
+}
+[e :U 568 ]
+"407
+}
+[e :U 565 ]
+"399
+[e $ && ! != -> _messageDoneFlag `i -> -> -> 0 `i `uc `i <= _timeoutCounter -> -> 61 `i `ui 566  ]
+[e :U 567 ]
+[; ;launcher_functions.c: 406: }
+[; ;launcher_functions.c: 407: }
+[; ;launcher_functions.c: 408: if(timeoutCounter > 61)
+"408
+[e $ ! > _timeoutCounter -> -> 61 `i `ui 569  ]
+[; ;launcher_functions.c: 409: {
+"409
+{
+[; ;launcher_functions.c: 410: gpsTimeoutState = 1;
+"410
+[e = _gpsTimeoutState -> -> 1 `i `uc ]
+[; ;launcher_functions.c: 411: return;
+"411
+[e $UE 564  ]
 "412
 }
-[; ;launcher_functions.c: 412: }while(!messageDoneFlag);
-[e $ ! != -> _messageDoneFlag `i -> -> -> 0 `i `uc `i 567  ]
-[e :U 566 ]
+[e :U 569 ]
+[; ;launcher_functions.c: 412: }
 [; ;launcher_functions.c: 413: PORTBbits.PORTB = LATBbits.LATB & 0xDF;
 "413
 [e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 223 `i `uc ]
@@ -5985,8 +6056,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;launcher_functions.c: 422: {
 [e :U _DecodeGPS ]
 [f ]
-[v F4933 `uc ~T0 @X0 -> 7 `i s ]
-[i F4933
+[v F4935 `uc ~T0 @X0 -> 7 `i s ]
+[i F4935
 :U ..
 -> 36 `c
 -> 71 `c
@@ -6000,9 +6071,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "424
 [v _messageID `uc ~T0 @X0 -> 7 `i a ]
 [; ;launcher_functions.c: 424: unsigned char messageID[7] = "$GPGLL";
-[e = _messageID F4933 ]
-[v F4935 `uc ~T0 @X0 -> 3 `i s ]
-[i F4935
+[e = _messageID F4935 ]
+[v F4937 `uc ~T0 @X0 -> 3 `i s ]
+[i F4937
 :U ..
 "425
 -> -> 0 `i `uc
@@ -6012,9 +6083,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _latitude `uc ~T0 @X0 -> 3 `i a ]
 [; ;launcher_functions.c: 425: unsigned char latitude[3] = {0,0,0};
-[e = _latitude F4935 ]
-[v F4937 `uc ~T0 @X0 -> 3 `i s ]
-[i F4937
+[e = _latitude F4937 ]
+[v F4939 `uc ~T0 @X0 -> 3 `i s ]
+[i F4939
 :U ..
 "426
 -> -> 0 `i `uc
@@ -6024,7 +6095,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _longitude `uc ~T0 @X0 -> 3 `i a ]
 [; ;launcher_functions.c: 426: unsigned char longitude[3] = {0,0,0};
-[e = _longitude F4937 ]
+[e = _longitude F4939 ]
 "427
 [v _northSouth `uc ~T0 @X0 1 a ]
 "428
@@ -6041,15 +6112,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 "432
 {
 [e = _x -> 0 `i ]
-[e $ < _x -> 6 `i 569  ]
-[e $U 570  ]
+[e $ < _x -> 6 `i 571  ]
+[e $U 572  ]
 "433
-[e :U 569 ]
+[e :U 571 ]
 [; ;launcher_functions.c: 433: {
 {
 [; ;launcher_functions.c: 434: if(gpsMessage[x] != messageID[x])
 "434
-[e $ ! != -> *U + &U _gpsMessage * -> -> _x `ui `ux -> -> # *U &U _gpsMessage `ui `ux `i -> *U + &U _messageID * -> -> _x `ui `ux -> -> # *U &U _messageID `ui `ux `i 572  ]
+[e $ ! != -> *U + &U _gpsMessage * -> -> _x `ui `ux -> -> # *U &U _gpsMessage `ui `ux `i -> *U + &U _messageID * -> -> _x `ui `ux -> -> # *U &U _messageID `ui `ux `i 574  ]
 [; ;launcher_functions.c: 435: {
 "435
 {
@@ -6058,16 +6129,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _gpsInvalidFlag -> -> 1 `i `uc ]
 [; ;launcher_functions.c: 437: return;
 "437
-[e $UE 568  ]
+[e $UE 570  ]
 "438
 }
-[e :U 572 ]
+[e :U 574 ]
 "439
 }
 "432
 [e ++ _x -> 1 `i ]
-[e $ < _x -> 6 `i 569  ]
-[e :U 570 ]
+[e $ < _x -> 6 `i 571  ]
+[e :U 572 ]
 "439
 }
 [; ;launcher_functions.c: 438: }
@@ -6077,7 +6148,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _x + _x -> 1 `i ]
 [; ;launcher_functions.c: 445: if(gpsMessage[x]!= ',')
 "445
-[e $ ! != -> *U + &U _gpsMessage * -> -> _x `ui `ux -> -> # *U &U _gpsMessage `ui `ux `ui -> 44 `ui 573  ]
+[e $ ! != -> *U + &U _gpsMessage * -> -> _x `ui `ux -> -> # *U &U _gpsMessage `ui `ux `ui -> 44 `ui 575  ]
 [; ;launcher_functions.c: 446: {
 "446
 {
@@ -6110,24 +6181,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _x + _x -> 2 `i ]
 "465
 }
-[e :U 573 ]
+[e :U 575 ]
 [; ;launcher_functions.c: 465: }
 [; ;launcher_functions.c: 468: x = x + 1;
 "468
 [e = _x + _x -> 1 `i ]
 [; ;launcher_functions.c: 471: if(gpsMessage[x] != ',')
 "471
-[e $ ! != -> *U + &U _gpsMessage * -> -> _x `ui `ux -> -> # *U &U _gpsMessage `ui `ux `ui -> 44 `ui 574  ]
+[e $ ! != -> *U + &U _gpsMessage * -> -> _x `ui `ux -> -> # *U &U _gpsMessage `ui `ux `ui -> 44 `ui 576  ]
 [; ;launcher_functions.c: 472: northSouth = gpsMessage[x++];
 "472
 [e = _northSouth *U + &U _gpsMessage * -> -> ++ _x -> 1 `i `ui `ux -> -> # *U &U _gpsMessage `ui `ux ]
-[e :U 574 ]
+[e :U 576 ]
 [; ;launcher_functions.c: 475: x = x + 1;
 "475
 [e = _x + _x -> 1 `i ]
 [; ;launcher_functions.c: 478: if(gpsMessage[x]!= ',')
 "478
-[e $ ! != -> *U + &U _gpsMessage * -> -> _x `ui `ux -> -> # *U &U _gpsMessage `ui `ux `ui -> 44 `ui 575  ]
+[e $ ! != -> *U + &U _gpsMessage * -> -> _x `ui `ux -> -> # *U &U _gpsMessage `ui `ux `ui -> 44 `ui 577  ]
 [; ;launcher_functions.c: 479: {
 "479
 {
@@ -6163,50 +6234,50 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _x + _x -> 2 `i ]
 "499
 }
-[e :U 575 ]
+[e :U 577 ]
 [; ;launcher_functions.c: 499: }
 [; ;launcher_functions.c: 502: x = x + 1;
 "502
 [e = _x + _x -> 1 `i ]
 [; ;launcher_functions.c: 505: if(gpsMessage[x] != ',')
 "505
-[e $ ! != -> *U + &U _gpsMessage * -> -> _x `ui `ux -> -> # *U &U _gpsMessage `ui `ux `ui -> 44 `ui 576  ]
+[e $ ! != -> *U + &U _gpsMessage * -> -> _x `ui `ux -> -> # *U &U _gpsMessage `ui `ux `ui -> 44 `ui 578  ]
 [; ;launcher_functions.c: 506: eastWest = gpsMessage[x++];
 "506
 [e = _eastWest *U + &U _gpsMessage * -> -> ++ _x -> 1 `i `ui `ux -> -> # *U &U _gpsMessage `ui `ux ]
-[e :U 576 ]
+[e :U 578 ]
 [; ;launcher_functions.c: 509: x = x + 1;
 "509
 [e = _x + _x -> 1 `i ]
 [; ;launcher_functions.c: 512: while(gpsMessage[x++] != ','){}
 "512
-[e $U 577  ]
-[e :U 578 ]
+[e $U 579  ]
+[e :U 580 ]
 {
 }
-[e :U 577 ]
-[e $ != -> *U + &U _gpsMessage * -> -> ++ _x -> 1 `i `ui `ux -> -> # *U &U _gpsMessage `ui `ux `ui -> 44 `ui 578  ]
 [e :U 579 ]
+[e $ != -> *U + &U _gpsMessage * -> -> ++ _x -> 1 `i `ui `ux -> -> # *U &U _gpsMessage `ui `ux `ui -> 44 `ui 580  ]
+[e :U 581 ]
 [; ;launcher_functions.c: 515: status = gpsMessage[x];
 "515
 [e = _status *U + &U _gpsMessage * -> -> _x `ui `ux -> -> # *U &U _gpsMessage `ui `ux ]
 [; ;launcher_functions.c: 517: if(status == 'A')
 "517
-[e $ ! == -> _status `ui -> 65 `ui 580  ]
+[e $ ! == -> _status `ui -> 65 `ui 582  ]
 [; ;launcher_functions.c: 518: gpsInvalidFlag = 0;
 "518
 [e = _gpsInvalidFlag -> -> 0 `i `uc ]
-[e $U 581  ]
+[e $U 583  ]
 "519
-[e :U 580 ]
+[e :U 582 ]
 [; ;launcher_functions.c: 519: else
 [; ;launcher_functions.c: 520: gpsInvalidFlag = 1;
 "520
 [e = _gpsInvalidFlag -> -> 1 `i `uc ]
-[e :U 581 ]
+[e :U 583 ]
 [; ;launcher_functions.c: 524: if(!gpsInvalidFlag)
 "524
-[e $ ! ! != -> _gpsInvalidFlag `i -> -> -> 0 `i `uc `i 582  ]
+[e $ ! ! != -> _gpsInvalidFlag `i -> -> -> 0 `i `uc `i 584  ]
 [; ;launcher_functions.c: 525: {
 "525
 {
@@ -6214,10 +6285,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 "527
 {
 [e = _x -> 0 `i ]
-[e $ < _x -> 3 `i 583  ]
-[e $U 584  ]
+[e $ < _x -> 3 `i 585  ]
+[e $U 586  ]
 "528
-[e :U 583 ]
+[e :U 585 ]
 [; ;launcher_functions.c: 528: {
 {
 [; ;launcher_functions.c: 529: validLatitude[x] = latitude[x];
@@ -6230,8 +6301,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "527
 [e ++ _x -> 1 `i ]
-[e $ < _x -> 3 `i 583  ]
-[e :U 584 ]
+[e $ < _x -> 3 `i 585  ]
+[e :U 586 ]
 "531
 }
 [; ;launcher_functions.c: 531: }
@@ -6246,11 +6317,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _hasValidGPSFlag -> -> 1 `i `uc ]
 "538
 }
-[e :U 582 ]
+[e :U 584 ]
 [; ;launcher_functions.c: 538: }
 [; ;launcher_functions.c: 539: }
 "539
-[e :UE 568 ]
+[e :UE 570 ]
 }
 "541
 [v _GoToSleep `(v ~T0 @X0 1 ef1`uc ]
@@ -6277,7 +6348,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _WDTCONbits 0 0 -> -> 0 `i `uc ]
 [; ;launcher_functions.c: 547: }
 "547
-[e :UE 586 ]
+[e :UE 588 ]
 }
 "549
 [v _Hibernate `(v ~T0 @X0 1 ef ]
@@ -6299,8 +6370,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _WDTCONbits 0 0 -> -> 1 `i `uc ]
 [; ;launcher_functions.c: 554: while(!recordFlag && count++ < 3)
 "554
-[e $U 588  ]
-[e :U 589 ]
+[e $U 590  ]
+[e :U 591 ]
 [; ;launcher_functions.c: 555: {
 "555
 {
@@ -6309,17 +6380,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; <" sleep ;# ">
 "557
 }
-[e :U 588 ]
-"554
-[e $ && ! != -> _recordFlag `i -> -> -> 0 `i `uc `i < -> ++ _count -> -> 1 `i `uc `i -> 3 `i 589  ]
 [e :U 590 ]
+"554
+[e $ && ! != -> _recordFlag `i -> -> -> 0 `i `uc `i < -> ++ _count -> -> 1 `i `uc `i -> 3 `i 591  ]
+[e :U 592 ]
 [; ;launcher_functions.c: 557: }
 [; ;launcher_functions.c: 558: WDTCONbits.SWDTEN = 0;
 "558
 [e = . . _WDTCONbits 0 0 -> -> 0 `i `uc ]
 [; ;launcher_functions.c: 559: }
 "559
-[e :UE 587 ]
+[e :UE 589 ]
 }
 "561
 [v _RecordMode `(v ~T0 @X0 1 ef ]
@@ -6345,7 +6416,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _InitSPI ..  ]
 [; ;launcher_functions.c: 570: if(CheckDisconnect())
 "570
-[e $ ! != -> ( _CheckDisconnect ..  `i -> -> -> 0 `i `uc `i 592  ]
+[e $ ! != -> ( _CheckDisconnect ..  `i -> -> -> 0 `i `uc `i 594  ]
 [; ;launcher_functions.c: 571: {
 "571
 {
@@ -6369,10 +6440,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTAbits 0 4 -> -> 0 `i `uc ]
 [; ;launcher_functions.c: 580: return;
 "580
-[e $UE 591  ]
+[e $UE 593  ]
 "581
 }
-[e :U 592 ]
+[e :U 594 ]
 [; ;launcher_functions.c: 581: }
 [; ;launcher_functions.c: 583: (start) = 0;
 "583
@@ -6403,14 +6474,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTBbits 1 0 -> & -> . . _LATBbits 1 0 `i -> 239 `i `uc ]
 [; ;launcher_functions.c: 594: while((recordFlag) && (address < 131072))
 "594
-[e $U 593  ]
-[e :U 594 ]
+[e $U 595  ]
+[e :U 596 ]
 [; ;launcher_functions.c: 595: {
 "595
 {
 [; ;launcher_functions.c: 596: if(count>=256)
 "596
-[e $ ! >= _count -> 256 `i 596  ]
+[e $ ! >= _count -> 256 `i 598  ]
 [; ;launcher_functions.c: 597: {
 "597
 {
@@ -6425,11 +6496,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _WriteOverheadSPI (1 _address ]
 "601
 }
-[e :U 596 ]
+[e :U 598 ]
 [; ;launcher_functions.c: 601: }
 [; ;launcher_functions.c: 602: if(!((((start))==((end)))?(1):(0)))
 "602
-[e $ ! ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i 597  ]
+[e $ ! ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i 599  ]
 [; ;launcher_functions.c: 603: {
 "603
 {
@@ -6444,25 +6515,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _count -> 1 `i ]
 "607
 }
-[e :U 597 ]
+[e :U 599 ]
 "609
 }
-[e :U 593 ]
-"594
-[e $ && != -> _recordFlag `i -> -> -> 0 `i `uc `i < _address -> 131072 `l 594  ]
 [e :U 595 ]
+"594
+[e $ && != -> _recordFlag `i -> -> -> 0 `i `uc `i < _address -> 131072 `l 596  ]
+[e :U 597 ]
 [; ;launcher_functions.c: 607: }
 [; ;launcher_functions.c: 609: }
 [; ;launcher_functions.c: 611: while(!((((start))==((end)))?(1):(0)) && (address < 131072))
 "611
-[e $U 598  ]
-[e :U 599 ]
+[e $U 600  ]
+[e :U 601 ]
 [; ;launcher_functions.c: 612: {
 "612
 {
 [; ;launcher_functions.c: 613: if(count>=256)
 "613
-[e $ ! >= _count -> 256 `i 601  ]
+[e $ ! >= _count -> 256 `i 603  ]
 [; ;launcher_functions.c: 614: {
 "614
 {
@@ -6477,11 +6548,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _WriteOverheadSPI (1 _address ]
 "618
 }
-[e :U 601 ]
+[e :U 603 ]
 [; ;launcher_functions.c: 618: }
 [; ;launcher_functions.c: 619: if(!((((start))==((end)))?(1):(0)))
 "619
-[e $ ! ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i 602  ]
+[e $ ! ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i 604  ]
 [; ;launcher_functions.c: 620: {
 "620
 {
@@ -6496,13 +6567,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _count -> 1 `i ]
 "624
 }
-[e :U 602 ]
+[e :U 604 ]
 "625
 }
-[e :U 598 ]
-"611
-[e $ && ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i < _address -> 131072 `l 599  ]
 [e :U 600 ]
+"611
+[e $ && ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i < _address -> 131072 `l 601  ]
+[e :U 602 ]
 [; ;launcher_functions.c: 624: }
 [; ;launcher_functions.c: 625: }
 [; ;launcher_functions.c: 626: LATC2 = (1);
@@ -6522,7 +6593,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _WriteOverheadSPI (1 -> -> 47976 `ui `l ]
 [; ;launcher_functions.c: 633: if(address >= 131072)
 "633
-[e $ ! >= _address -> 131072 `l 603  ]
+[e $ ! >= _address -> 131072 `l 605  ]
 [; ;launcher_functions.c: 634: {
 "634
 {
@@ -6538,9 +6609,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "638
 }
 [; ;launcher_functions.c: 638: }
-[e $U 604  ]
+[e $U 606  ]
 "639
-[e :U 603 ]
+[e :U 605 ]
 [; ;launcher_functions.c: 639: else
 [; ;launcher_functions.c: 640: {
 "640
@@ -6556,14 +6627,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _WriteSPI (1 -> _address `uc ]
 "644
 }
-[e :U 604 ]
+[e :U 606 ]
 [; ;launcher_functions.c: 644: }
 [; ;launcher_functions.c: 646: LATC2 = (1);
 "646
 [e = _LATC2 -> -> 1 `i `b ]
 [; ;launcher_functions.c: 647: if(hasValidGPSFlag)
 "647
-[e $ ! != -> _hasValidGPSFlag `i -> -> -> 0 `i `uc `i 605  ]
+[e $ ! != -> _hasValidGPSFlag `i -> -> -> 0 `i `uc `i 607  ]
 [; ;launcher_functions.c: 648: {
 "648
 {
@@ -6575,7 +6646,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _hasValidGPSFlag -> -> 0 `i `uc ]
 "651
 }
-[e :U 605 ]
+[e :U 607 ]
 [; ;launcher_functions.c: 651: }
 [; ;launcher_functions.c: 652: PORTBbits.PORTB = LATBbits.LATB & 0xDF;
 "652
@@ -6597,7 +6668,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTAbits 0 4 -> -> 0 `i `uc ]
 [; ;launcher_functions.c: 660: }
 "660
-[e :UE 591 ]
+[e :UE 593 ]
 }
 "662
 [v _SendGPSSPI `(v ~T0 @X0 1 ef ]
@@ -6619,11 +6690,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTAbits 0 4 -> -> 1 `i `uc ]
 [; ;launcher_functions.c: 667: if(SSPCON1bits.SSPEN == 0)
 "667
-[e $ ! == -> . . _SSPCON1bits 0 5 `i -> 0 `i 607  ]
+[e $ ! == -> . . _SSPCON1bits 0 5 `i -> 0 `i 609  ]
 [; ;launcher_functions.c: 668: InitSPI();
 "668
 [e ( _InitSPI ..  ]
-[e :U 607 ]
+[e :U 609 ]
 [; ;launcher_functions.c: 682: WriteOverheadSPI(address);
 "682
 [e ( _WriteOverheadSPI (1 _address ]
@@ -6631,10 +6702,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 "683
 {
 [e = _x -> 0 `i ]
-[e $ < _x -> 3 `i 608  ]
-[e $U 609  ]
+[e $ < _x -> 3 `i 610  ]
+[e $U 611  ]
 "684
-[e :U 608 ]
+[e :U 610 ]
 [; ;launcher_functions.c: 684: {
 {
 [; ;launcher_functions.c: 685: WriteSPI(validLatitude[x]);
@@ -6644,8 +6715,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "683
 [e ++ _x -> 1 `i ]
-[e $ < _x -> 3 `i 608  ]
-[e :U 609 ]
+[e $ < _x -> 3 `i 610  ]
+[e :U 611 ]
 "686
 }
 [; ;launcher_functions.c: 686: }
@@ -6656,10 +6727,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 "688
 {
 [e = _x -> 0 `i ]
-[e $ < _x -> 3 `i 611  ]
-[e $U 612  ]
+[e $ < _x -> 3 `i 613  ]
+[e $U 614  ]
 "689
-[e :U 611 ]
+[e :U 613 ]
 [; ;launcher_functions.c: 689: {
 {
 [; ;launcher_functions.c: 690: WriteSPI(validLongitude[x]);
@@ -6669,8 +6740,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "688
 [e ++ _x -> 1 `i ]
-[e $ < _x -> 3 `i 611  ]
-[e :U 612 ]
+[e $ < _x -> 3 `i 613  ]
+[e :U 614 ]
 "691
 }
 [; ;launcher_functions.c: 691: }
@@ -6682,10 +6753,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _LATC2 -> -> 1 `i `b ]
 [; ;launcher_functions.c: 702: return;
 "702
-[e $UE 606  ]
+[e $UE 608  ]
 [; ;launcher_functions.c: 704: }
 "704
-[e :UE 606 ]
+[e :UE 608 ]
 }
 "706
 [v _CheckDisconnect `(uc ~T0 @X0 1 ef ]
@@ -6703,23 +6774,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _status ( _ReadStatusSPI ..  ]
 [; ;launcher_functions.c: 710: if(status==0xff)
 "710
-[e $ ! == -> _status `i -> 255 `i 615  ]
+[e $ ! == -> _status `i -> 255 `i 617  ]
 [; ;launcher_functions.c: 711: return 1;
 "711
 [e ) -> -> 1 `i `uc ]
-[e $UE 614  ]
-[e $U 616  ]
+[e $UE 616  ]
+[e $U 618  ]
 "712
-[e :U 615 ]
+[e :U 617 ]
 [; ;launcher_functions.c: 712: else
 [; ;launcher_functions.c: 713: return 0;
 "713
 [e ) -> -> 0 `i `uc ]
-[e $UE 614  ]
-[e :U 616 ]
+[e $UE 616  ]
+[e :U 618 ]
 [; ;launcher_functions.c: 714: }
 "714
-[e :UE 614 ]
+[e :UE 616 ]
 }
 "717
 [v _PreRecordMode `(v ~T0 @X0 1 ef ]
@@ -6751,7 +6822,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTAbits 0 4 -> -> 1 `i `uc ]
 [; ;launcher_functions.c: 726: if(CheckDisconnect())
 "726
-[e $ ! != -> ( _CheckDisconnect ..  `i -> -> -> 0 `i `uc `i 618  ]
+[e $ ! != -> ( _CheckDisconnect ..  `i -> -> -> 0 `i `uc `i 620  ]
 [; ;launcher_functions.c: 727: {
 "727
 {
@@ -6775,28 +6846,28 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PORTAbits 0 4 -> -> 0 `i `uc ]
 [; ;launcher_functions.c: 736: return;
 "736
-[e $UE 617  ]
+[e $UE 619  ]
 "737
 }
-[e :U 618 ]
+[e :U 620 ]
 [; ;launcher_functions.c: 737: }
 [; ;launcher_functions.c: 739: for(x = 0;x < 18; x++)
 "739
 {
 [e = _x -> 0 `i ]
-[e $ < _x -> 18 `i 619  ]
-[e $U 620  ]
+[e $ < _x -> 18 `i 621  ]
+[e $U 622  ]
 "740
-[e :U 619 ]
+[e :U 621 ]
 [; ;launcher_functions.c: 740: {
 {
 [; ;launcher_functions.c: 741: while(!recordFlag);
 "741
-[e $U 622  ]
-[e :U 623 ]
-[e :U 622 ]
-[e $ ! != -> _recordFlag `i -> -> -> 0 `i `uc `i 623  ]
+[e $U 624  ]
+[e :U 625 ]
 [e :U 624 ]
+[e $ ! != -> _recordFlag `i -> -> -> 0 `i `uc `i 625  ]
+[e :U 626 ]
 [; ;launcher_functions.c: 742: _delay((unsigned long)((320)*(16000000/4000.0)));
 "742
 [e ( __delay (1 -> * -> -> 320 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
@@ -6811,14 +6882,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _TMR1ON -> -> 1 `i `b ]
 [; ;launcher_functions.c: 746: while(((recordFlag) || !((((start))==((end)))?(1):(0))) && (address < 131072))
 "746
-[e $U 625  ]
-[e :U 626 ]
+[e $U 627  ]
+[e :U 628 ]
 [; ;launcher_functions.c: 747: {
 "747
 {
 [; ;launcher_functions.c: 748: if(count>=256)
 "748
-[e $ ! >= _count -> 256 `i 628  ]
+[e $ ! >= _count -> 256 `i 630  ]
 [; ;launcher_functions.c: 749: {
 "749
 {
@@ -6833,11 +6904,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _WriteOverheadSPI (1 _address ]
 "753
 }
-[e :U 628 ]
+[e :U 630 ]
 [; ;launcher_functions.c: 753: }
 [; ;launcher_functions.c: 754: if(!((((start))==((end)))?(1):(0)))
 "754
-[e $ ! ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i 629  ]
+[e $ ! ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i 631  ]
 [; ;launcher_functions.c: 755: {
 "755
 {
@@ -6852,13 +6923,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _count -> 1 `i ]
 "759
 }
-[e :U 629 ]
+[e :U 631 ]
 "760
 }
-[e :U 625 ]
-"746
-[e $ && || != -> _recordFlag `i -> -> -> 0 `i `uc `i ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i < _address -> 131072 `l 626  ]
 [e :U 627 ]
+"746
+[e $ && || != -> _recordFlag `i -> -> -> 0 `i `uc `i ! != ? == _start _end : -> 1 `i -> 0 `i -> 0 `i < _address -> 131072 `l 628  ]
+[e :U 629 ]
 [; ;launcher_functions.c: 759: }
 [; ;launcher_functions.c: 760: }
 [; ;launcher_functions.c: 761: LATC2 = (1);
@@ -6880,17 +6951,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "739
 [e ++ _x -> 1 `i ]
-[e $ < _x -> 18 `i 619  ]
-[e :U 620 ]
+[e $ < _x -> 18 `i 621  ]
+[e :U 622 ]
 "766
 }
 [; ;launcher_functions.c: 766: }
 [; ;launcher_functions.c: 767: return;
 "767
-[e $UE 617  ]
+[e $UE 619  ]
 [; ;launcher_functions.c: 769: }
 "769
-[e :UE 617 ]
+[e :UE 619 ]
 }
 [p f _sprintf 8650880 ]
 [a 1C 37 115 37 115 44 48 37 100 44 48 48 44 48 48 44 48 48 42 0 ]

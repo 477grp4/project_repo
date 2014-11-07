@@ -1,7 +1,7 @@
 
 # 1 "launcher_functions.c"
 
-# 59 "launcher.h"
+# 60 "launcher.h"
 void InitCLK();
 void InitGPIO();
 void InitADC();
@@ -58,6 +58,7 @@ unsigned char messageDoneFlag = 0;
 unsigned char strobeFlag = 0;
 unsigned char eeprom_timeoutFlag = 0;
 unsigned char hasValidGPSFlag = 0;
+unsigned char gpsTimeoutState = 0;
 
 
 
@@ -6308,10 +6309,16 @@ PEIE = 1;
 
 void InitTimer0()
 {
-INTCONbits.TMR0IE = 0;
-OPTION_REGbits.TMR0CS = 0;
-OPTION_REGbits.PSA = 0;
-OPTION_REGbits.PS = 0x3;
+
+
+TMR0IE = 0;
+TMR0IF = 0;
+TMR0CS = 0;
+PSA = 0;
+PS0 = 1;
+PS1 = 1;
+PS2 = 1;
+TMR0 = 61;;
 }
 
 void InitTimer1()
@@ -6574,14 +6581,14 @@ uart_write_message(message, 22);
 
 _delay((unsigned long)((1000)*(16000000/4000.0)));
 
-# 371
+# 377
 }
 
 
 void UpdateGPS()
 {
-
-unsigned char GPSupdateMessage[22] = "$PSRF103,01,01,01,00*";
+unsigned int timeoutCounter = 0;
+unsigned char GPSupdateMessage[22] = "$PSRF103,01,00,01,00*";
 
 
 RCIE = 1;
@@ -6593,14 +6600,25 @@ GIE = 1;
 
 gpsIndex = 0;
 uart_write_message(GPSupdateMessage, 22);
-PORTBbits.PORTB = LATBbits.LATB | 0x20;
-PORTBbits.PORTB = LATBbits.LATB & 0xEF;
-do
-{
 
-# 412
-}while(!messageDoneFlag);
-PORTBbits.PORTB = LATBbits.LATB & 0xDF;
+
+TMR0IF = 0;
+TMR0 = 0x00;;
+while(!messageDoneFlag && (timeoutCounter <= 61))
+{
+if(INTCONbits.TMR0IF)
+{
+timeoutCounter++;
+TMR0IF = 0;
+TMR0 = 0x00;;
+}
+}
+if(timeoutCounter > 61)
+{
+gpsTimeoutState = 1;
+return;
+}
+
 messageDoneFlag = 0;
 DecodeGPS();
 
@@ -6741,7 +6759,7 @@ void Hibernate()
 unsigned char count = 0;
 WDTCONbits.WDTPS = 14;
 WDTCONbits.SWDTEN = 1;
-while(!recordFlag && count++ < 3)
+while(!recordFlag && (count++ < 3) && !strobeFlag)
 {
 asm("sleep");
 }

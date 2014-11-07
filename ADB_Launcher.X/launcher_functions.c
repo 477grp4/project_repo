@@ -95,11 +95,16 @@ void InitADC()
 
 void InitTimer0()
 {
-    INTCONbits.TMR0IE = 0;
-    OPTION_REGbits.TMR0CS = 0; //use instruction clock = FOSC/4 = 4Mhz
-    OPTION_REGbits.PSA = 0; //use prescalar
-    OPTION_REGbits.PS = 0x3; //use 256 prescalar
-    TMR0 = 0;
+    //for playback and transmission frequency
+    //interrupt once every ~10kHz
+    TMR0IE              = 0;    //turn off timer0 interrupt
+    TMR0IF              = 0;    //turn off timer0 interrupt flag
+    TMR0CS              = 0;    //set clock source to internal instruction clock (FOSC/4)
+    PSA                 = 0;    //turn on prescalar to timer0
+    PS0                 = 1;    //set prescalar to 256
+    PS1                 = 1;
+    PS2                 = 1;
+    TMR0                = TIMEOUT_COUNT;
 }
 
 void InitTimer1()
@@ -374,8 +379,8 @@ void SetupGPS()
 
 void UpdateGPS()
 {
-    //unsigned int count = 0;
-    unsigned char GPSupdateMessage[22]  = "$PSRF103,01,01,01,00*"; //Send for an update
+    unsigned int timeoutCounter = 0;
+    unsigned char GPSupdateMessage[22]  = "$PSRF103,01,00,01,00*"; //Send for an update
     //Set interrupts for handling incoming GPS signals
     //This will interrupt any outgoing transmission, so only do it when needed.
     RCIE = 1;
@@ -387,17 +392,25 @@ void UpdateGPS()
 
     gpsIndex = 0;
     uart_write_message(GPSupdateMessage,  22);  //Get a single GLL message
-    PORTBbits.PORTB = LATBbits.LATB | 0x20; //turn red LED on
-    PORTBbits.PORTB = LATBbits.LATB & 0xEF; //turn green LED off
+    //PORTBbits.PORTB = LATBbits.LATB | 0x20; //turn red LED on
+    //PORTBbits.PORTB = LATBbits.LATB & 0xEF; //turn green LED off
     TMR0IF = 0;
     TMR0 = TIMEOUT_PERIOD;
-    while(!messageDoneFlag&&!TMR0IF);
-    if(TMR0IF)
+    while(!messageDoneFlag && (timeoutCounter <= 61))
+    {
+        if(INTCONbits.TMR0IF)
+        {
+            timeoutCounter++;
+            TMR0IF = 0;
+            TMR0 = TIMEOUT_PERIOD;
+        }
+    }
+    if(timeoutCounter > 61)
     {
         gpsTimeoutState = 1;
         return;
     }
-    PORTBbits.PORTB = LATBbits.LATB & 0xDF; //turn red LED off
+    //PORTBbits.PORTB = LATBbits.LATB & 0xDF; //turn red LED off
     messageDoneFlag = 0;        //clear the message done flag
     DecodeGPS();                //decode the message sent by the GPS
 
@@ -538,7 +551,7 @@ void Hibernate()
     unsigned char count = 0;
     WDTCONbits.WDTPS = MAX_PERIOD;
     WDTCONbits.SWDTEN = 1;
-    while(!recordFlag && count++ < NUM_PERIODS)
+    while(!recordFlag && (count++ < NUM_PERIODS) && !strobeFlag)
     {
         SLEEP();
     }

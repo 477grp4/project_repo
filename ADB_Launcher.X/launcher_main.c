@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
     InitGPIO();
     InitADC();
     //InitSPI();
-    //InitTimer0();
+    InitTimer0();
     InitTimer1();
     InitWatchdog();
     InitUART();             //Initialize UART module
@@ -70,19 +70,29 @@ int main(int argc, char** argv) {
         {
           RecordMode();
           recordFlag = 0;
+          __delay_ms(500); //trying to get gps to not hangup
         }
 
         //Not recording, Update the GPS
-        if(!gpsTimeoutState)
+        if(gpsTimeoutState==0)
             UpdateGPS(); //tell GPS to send an update
         else if(gpsTimeoutState==1)
         {
             ToggleSleepGPS();
             gpsTimeoutState = 2;
         }
-        else
+        else if(gpsTimeoutState==2)
         {
             ToggleSleepGPS();
+            gpsTimeoutState = 3;
+        }
+        else if(gpsTimeoutState==3)
+        {
+            __delay_ms(1000);
+            gpsTimeoutState = 0;
+        }
+        else
+        {
             gpsTimeoutState = 0;
         }
 
@@ -207,10 +217,12 @@ interrupt void isr(void)
         }
     }
 
+    /*
     if(INTCONbits.TMR0IE && INTCONbits.TMR0IF)
     {
         eeprom_timeoutFlag = 1;
         INTCONbits.TMR0IF = 0;
     }
+     * */
 
 }

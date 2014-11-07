@@ -6180,7 +6180,7 @@ extern volatile __bit nTO @ (((unsigned) &STATUS)*8) + 4;
 
 extern volatile __bit nWPUEN @ (((unsigned) &OPTION_REG)*8) + 7;
 
-# 59 "launcher.h"
+# 60 "launcher.h"
 void InitCLK();
 void InitGPIO();
 void InitADC();
@@ -6237,6 +6237,7 @@ unsigned char messageDoneFlag = 0;
 unsigned char strobeFlag = 0;
 unsigned char eeprom_timeoutFlag = 0;
 unsigned char hasValidGPSFlag = 0;
+unsigned char gpsTimeoutState = 0;
 
 
 
@@ -12308,7 +12309,7 @@ InitCLK();
 InitGPIO();
 InitADC();
 
-
+InitTimer0();
 InitTimer1();
 InitWatchdog();
 InitUART();
@@ -12318,10 +12319,8 @@ gpsIndex = 0;
 
 INTCONbits.GIE = 1;
 
-
 ToggleSleepGPS();
 SetupGPS();
-
 
 PORTBbits.PORTB = LATBbits.LATB & 0xDF;
 PORTBbits.PORTB = LATBbits.LATB | 0x10;
@@ -12333,7 +12332,7 @@ LATC2 = (1);
 
 while(1){
 
-# 60
+# 58
 LATC2 = (1);
 
 
@@ -12349,10 +12348,31 @@ if(recordFlag)
 {
 RecordMode();
 recordFlag = 0;
+_delay((unsigned long)((500)*(16000000/4000.0)));
 }
 
 
+if(gpsTimeoutState==0)
 UpdateGPS();
+else if(gpsTimeoutState==1)
+{
+ToggleSleepGPS();
+gpsTimeoutState = 2;
+}
+else if(gpsTimeoutState==2)
+{
+ToggleSleepGPS();
+gpsTimeoutState = 3;
+}
+else if(gpsTimeoutState==3)
+{
+_delay((unsigned long)((1000)*(16000000/4000.0)));
+gpsTimeoutState = 0;
+}
+else
+{
+gpsTimeoutState = 0;
+}
 
 if(gpsInvalidFlag)
 {
@@ -12475,10 +12495,5 @@ strobeFlag = 0;
 }
 }
 
-if(INTCONbits.TMR0IE && INTCONbits.TMR0IF)
-{
-eeprom_timeoutFlag = 1;
-INTCONbits.TMR0IF = 0;
-}
-
+# 228
 }

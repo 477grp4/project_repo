@@ -53,7 +53,8 @@ extern "C" {
     
 #define MEM_ACCESS PORTAbits.RA4
 
-#define TIMEOUT_PERIOD 0xC0;
+#define TIMEOUT_PERIOD 0x00;
+#define TIMEOUT_COUNT 61;
 
 //Initializaton Functions
 void InitCLK();
